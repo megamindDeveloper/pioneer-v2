@@ -27,6 +27,11 @@ export default function Home() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+  // ✅ ADD THIS HOOK
+  useEffect(() => {
+    // This forces the page to scroll to the top when it's loaded.
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       {/* ✅ Loader rendered from the page itself */}
