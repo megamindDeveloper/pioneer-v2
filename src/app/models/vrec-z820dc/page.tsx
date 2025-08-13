@@ -3,6 +3,7 @@ import { defaultProducts } from "@/app/utils/ProductData/ProductData";
 import { Compare } from "@/components/CommonComponents/Compare/page";
 import DriveSmarter from "@/components/CommonComponents/DriveSmarter/page";
 import EverythingNeedToKnow from "@/components/CommonComponents/EverythingNeedToKnow/page";
+import Footer from "@/components/CommonComponents/Footer/page";
 import ProductFeatureTable from "@/components/CommonComponents/ProductFeatureTable/page";
 import ZenVue from "@/components/CommonComponents/ZenVue/page";
 import Blender2JSPageModel1 from "@/components/Model1Components/Blender2JSPageModel1/page";
@@ -65,8 +66,8 @@ const page = () => {
      <DriveSmarter
         subText="Drive with confidence, capture every moment, & stay protected. Explore what the Z820DC brings to every drive."
         image="/productPageImages/driveSmarterImages/z820dc.webp"
-      />{/* 
-      <Footer /> */}
+      />
+      <Footer /> 
     </div>
   );
 };
