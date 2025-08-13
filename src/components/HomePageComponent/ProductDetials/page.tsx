@@ -100,7 +100,7 @@ const contentMap = {
       description: `A sleek, minimal design that doesn’t take up\n space, perfect for discreet installs.`,
       imageSrc: model1Image4,
       buttonLabel: "Check It Out",
-      buttonLink: "/models/vrec-h120sc",
+      buttonLink: "/models/vrec-h120dc",
       imagePositionClass: "bottom-0 left-[40%]",
       imageClassName: "md:w-[90%] xl:w-[77%]",
     },
