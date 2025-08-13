@@ -124,7 +124,7 @@ export default function Model4TextOverlay() {
     // ),
     s7: (
       <div className="w-[300px] md:w-500px">
-        <p className="text-cherryRed text-lg sm:text-xl md:text-lg font-bold text-center">Store More Footage with Ease</p>
+        <p className="text-[#AD2239] text-lg sm:text-xl md:text-lg font-bold text-center">Store More Footage with Ease</p>
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white text-center font-medium">Supports up to 128GB microSD</h2>
         <p className="text-pretty text-[#ABABAB] text-center max-w-xl mx-auto text-sm sm:text-base md:text-md">
           Gives you the space to record and save more of your drives without worrying about running out of memory.
@@ -142,10 +142,17 @@ export default function Model4TextOverlay() {
     ),
     s9: (
       <div className="w-md md:w-[100%] z-[-1]">
-        <FieldOfVision
+        {/* <FieldOfVision
           highlightedText="Stay Secure While Parked"
           heading="Optional Parking Mode"
           subheading="When hardwired, the VREC‑H120SC stays on standby and begins recording the moment it detects an impact, giving you subtle protection even when you’re away."
+        /> */}
+         <OptionalParking
+          style="flex flex-col items-center sm:items-start justify-center sm:justify-center"
+          highlightedText="Stay Secure While Parked"
+          heading="Optional Parking Mode"
+          subheading="When hardwired, the VREC‑H120SC stays on standby and begins recording the moment it detects an impact, giving you subtle protection even when you’re away."
+          description="*Disclaimer: Parking mode requires additional installation of an external Hardwire Kit, which enables power supply to the Dash Camera directly from the vehicle battery."
         />
       </div>
     ),
