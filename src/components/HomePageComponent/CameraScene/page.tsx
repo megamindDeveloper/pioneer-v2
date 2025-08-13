@@ -61,9 +61,19 @@ function CameraModel({ onModelReady, onIntroComplete }: { onModelReady: () => vo
       if (!groupRef.current) return;
       if (hasPlayedRef.current) return;
       const { scale, position } = getModelTransformByBreakpoint(breakpoint);
-
-      tl = gsap.timeline({ defaults: { duration: 6, ease: "slow(0.7, 0.7, false)" }, onComplete: onIntroComplete });
-
+    
+      tl = gsap.timeline({
+        defaults: { duration: 6, ease: "slow(0.7, 0.7, false)" },
+        onComplete: onIntroComplete,
+        onUpdate: () => {
+          const progress = tl?.progress() ?? 0;
+          // When animation reaches >= 50%, unlock scroll
+          if (progress >= 0.3) {
+            window.dispatchEvent(new Event("introHalfComplete"));
+          }
+        }
+      });
+    
       tl.to(groupRef.current!.position, { x: position[0], y: position[1], z: position[2] }, 0)
         .to(groupRef.current!.scale, { x: scale, y: scale, z: scale }, 0)
         .to(
@@ -75,9 +85,10 @@ function CameraModel({ onModelReady, onIntroComplete }: { onModelReady: () => vo
           },
           0
         );
-
+    
       hasPlayedRef.current = true;
     }, 1800);
+    
 
     return () => {
       clearTimeout(timer);
@@ -105,27 +116,37 @@ export default function CameraScene({ onModelReady }: { onModelReady: () => void
   useEffect(() => {
     const section = document.getElementById("scroll-container");
     const previous = document.body.style.overflow;
+    let halfComplete = false;
   
     function updateScrollLock() {
       const rect = section?.getBoundingClientRect();
       const isVisible = rect && rect.top < window.innerHeight && rect.bottom > 0;
   
-      if (isVisible && !introComplete) {
+      // Lock only if intro is not at least half complete
+      if (isVisible && !introComplete && !halfComplete) {
         document.body.style.overflow = "hidden";
       } else {
         document.body.style.overflow = previous;
       }
     }
   
-    // Check on load and on scroll
+    function handleHalfComplete() {
+      halfComplete = true;
+      updateScrollLock();
+    }
+  
+    // Check on load and scroll
     updateScrollLock();
     window.addEventListener("scroll", updateScrollLock);
+    window.addEventListener("introHalfComplete", handleHalfComplete);
   
     return () => {
       document.body.style.overflow = previous;
       window.removeEventListener("scroll", updateScrollLock);
+      window.removeEventListener("introHalfComplete", handleHalfComplete);
     };
   }, [introComplete]);
+  
   
 
   useEffect(() => {
