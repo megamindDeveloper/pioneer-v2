@@ -2,7 +2,7 @@
 
 import React, { Suspense, useRef, useEffect, useState, useMemo } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Environment, useGLTF, useTexture, AdaptiveDpr, useProgress } from "@react-three/drei";
+import { Environment, useGLTF, useTexture, AdaptiveDpr, useProgress, PerformanceMonitor } from "@react-three/drei";
 import * as THREE from "three";
 import { SRGBColorSpace } from "three";
 import { Color } from "three";
@@ -1026,9 +1026,9 @@ export default function Blender2JSPageModel1() {
     initGSAP();
     return () => cleanup?.();
   }, [modelIsReady]);
-
+  const [dpr, setDpr] = useState(1.5);
   return (
-    <div id="blender2js-scroll-container-model1" ref={containerRef} style={{ height: "3500vh", width:"100%"}}>
+    <div id="blender2js-scroll-container-model1" ref={containerRef} style={{ height: "1500vh", width:"100%"}}>
       {!modelIsReady && (
         <div className="fixed inset-0 z-[9999] bg-black flex items-center justify-center">
           <FadeLoader isModelReady={false} />
@@ -1048,10 +1048,14 @@ export default function Blender2JSPageModel1() {
           antialias: false,
           powerPreference: "high-performance",
         }}
-        dpr={[1, 2]}
+        dpr={dpr}
         frameloop={modelIsReady ? "always" : "never"}
 
       >
+        <PerformanceMonitor 
+          onIncline={() => setDpr(1.5)} 
+          onDecline={() => setDpr(1)} 
+        />
         <AdaptiveDpr pixelated />
         <BackgroundFade scrollProgress={scrollProgress} />
 
