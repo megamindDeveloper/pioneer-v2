@@ -103,16 +103,30 @@ export default function CameraScene({ onModelReady }: { onModelReady: () => void
 
   // Lock page scroll until intro animation completes
   useEffect(() => {
+    const section = document.getElementById("scroll-container");
     const previous = document.body.style.overflow;
-    if (!introComplete) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = previous;
+  
+    function updateScrollLock() {
+      const rect = section?.getBoundingClientRect();
+      const isVisible = rect && rect.top < window.innerHeight && rect.bottom > 0;
+  
+      if (isVisible && !introComplete) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = previous;
+      }
     }
+  
+    // Check on load and on scroll
+    updateScrollLock();
+    window.addEventListener("scroll", updateScrollLock);
+  
     return () => {
       document.body.style.overflow = previous;
+      window.removeEventListener("scroll", updateScrollLock);
     };
   }, [introComplete]);
+  
 
   useEffect(() => {
     if (isModelReady) {
