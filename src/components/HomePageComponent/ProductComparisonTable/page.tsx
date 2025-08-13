@@ -58,12 +58,20 @@ export default function ProductComparisonTable() {
           <div />
           {products.map((product, i) => (
             <div key={i} className="text-center space-y-4">
-              <div className="relative w-20 lg2:w-40 h-28 mx-auto">
+              <div className="relative w-32 lg2:w-40 h-28 mx-auto">
                 {/* Gradient Overlay */}
             
 
                 {/* Product Image */}
-                <Image src={product.image} alt={product.name} fill className="object-contain w-full h-full relative z-0" />
+                {
+                  product.name === "VREC - H120SC" ? (
+                    <Image src={product.image} alt={product.name} fill className="object-contain md:!w-[80%] !w-[55%] mx-auto my-auto md:!h-[70%] relative z-0" />
+                  ):(
+                    <Image src={product.image} alt={product.name} fill className="object-contain w-full h-full relative z-0" />
+                  )
+                  
+                }
+              
               </div>
 
               <Typography variant="comparison-grid-side-heading" className="font-bold">{product.name}</Typography>

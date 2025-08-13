@@ -72,7 +72,7 @@ const DashcamCardMobile = ({
       </motion.div>
       <div className="w-full  h-[430px] md:h-auto mx-auto aspect-[4/3]">
         {title === "VREC-H120SC" ? (
-          <Image src={image} fill className="object-contain p-5 pb-44" alt="modelImage" />
+          <Image src={image} fill className="object-contain p-5 pb-44 !w-[80%] mx-auto my-auto !h-[90%]" alt="modelImage" />
         ) : (
           <Image src={image} fill className="object-contain p-2 pb-32" alt="modelImage" />
         )}
