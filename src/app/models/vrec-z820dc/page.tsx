@@ -1,3 +1,10 @@
+import { faqData } from "@/app/utils/FaqData/FaqData";
+import { defaultProducts } from "@/app/utils/ProductData/ProductData";
+import { Compare } from "@/components/CommonComponents/Compare/page";
+import DriveSmarter from "@/components/CommonComponents/DriveSmarter/page";
+import EverythingNeedToKnow from "@/components/CommonComponents/EverythingNeedToKnow/page";
+import ProductFeatureTable from "@/components/CommonComponents/ProductFeatureTable/page";
+import ZenVue from "@/components/CommonComponents/ZenVue/page";
 import Blender2JSPageModel1 from "@/components/Model1Components/Blender2JSPageModel1/page";
 import Model1TextOverlay from "@/components/Model1Components/TextOverlayModel1/page";
 import React from "react";
@@ -7,7 +14,7 @@ const page = () => {
     <div className="bg-black">
       <Blender2JSPageModel1 />
       <Model1TextOverlay />
-      {/* <Model1textOverlay />
+     
       <Compare
         tabs={[
           {
@@ -48,15 +55,17 @@ const page = () => {
           },
         ]}
       />
-      <ZenVue />
+     
+      <ZenVue /> 
       <section className="bg-black">
         <ProductFeatureTable products={defaultProducts} priorityProductIndex={0} />
       </section>
-      <EverythingNeedToKnow collectionName="faq_detailed_specs_Z820DC"  />
-      <DriveSmarter
+       
+      <EverythingNeedToKnow faqData={faqData.set1} />
+     <DriveSmarter
         subText="Drive with confidence, capture every moment, & stay protected. Explore what the Z820DC brings to every drive."
         image="/productPageImages/driveSmarterImages/z820dc.webp"
-      />
+      />{/* 
       <Footer /> */}
     </div>
   );

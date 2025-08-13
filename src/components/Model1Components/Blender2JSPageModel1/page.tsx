@@ -31,6 +31,7 @@ const animationData = [
   { time: 0.3333, position: [-0.0093, 6.6768, 0.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
   { time: 0.375, position: [-0.0093, 6.6768, 2.0115], quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883], fov: 20 },
   { time: 0.375, position: [-0.0092, 6.6768, -9], quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883], fov: 20 },
+  { time: 0.375, position: [-0.0092, 6.6768, -9], quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883], fov: 20 },
   // { time: 0.375, position: [-0.0092, 6.6768, -9], quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883], fov: 20},
 ];
 
@@ -1027,7 +1028,7 @@ export default function Blender2JSPageModel1() {
   }, [modelIsReady]);
 
   return (
-    <div id="blender2js-scroll-container-model1" ref={containerRef} style={{ height: "3500vh", scrollBehavior: "smooth" }}>
+    <div id="blender2js-scroll-container-model1" ref={containerRef} style={{ height: "3500vh", width:"100%"}}>
       {!modelIsReady && (
         <div className="fixed inset-0 z-[9999] bg-black flex items-center justify-center">
           <FadeLoader isModelReady={false} />
@@ -1039,7 +1040,7 @@ export default function Blender2JSPageModel1() {
       {modelIsReady && <FullscreenBlackOverlay scrollProgress={scrollProgress} />}
       <Canvas
         camera={{ position: [0, 5, 15], fov: 20, near: 0.01, far: 1000 }}
-        style={{ background: "#ffff", width: "100vw", height: "100vh", position: "sticky", top: 0 }}
+        style={{ background: "#ffff", height: "100vh", position: "sticky", top: 0 }}
         shadows
         gl={{
           toneMapping: THREE.NoToneMapping,
