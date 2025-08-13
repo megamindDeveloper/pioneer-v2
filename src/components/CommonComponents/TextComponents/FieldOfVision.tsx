@@ -12,29 +12,29 @@ export default function FieldOfVision({
   subheading,
 }: FieldOfVisionProps) {
   return (
- <main className="relative h-[100%] w-[100%] overflow-hidden text-white px-4">
-  {/* Background Layer */}
-  <div className="absolute top-0 left-0 w-full h-full z-0" />
-
-  {/* Content Wrapper */}
-  <div className="relative z-20 w-full h-full flex flex-col lg:flex-row items-center justify-center lg:justify-between lg:items-center px-6 mt-[-1rem] md:mt-1 lg2:px-32 text-center lg:text-left">
-    {/* Top / Left Section */}
-    <div className="max-w-[300px] lg2:max-w-sm space-y-2 ">
-      {highlightedText && (
-        <p className="text-[#AD2239] font-bold text-sm sm:text-base md:text-md text-center">
-          {highlightedText}
-        </p>
-      )}
-      <h1 className="text-center font-medium leading-tight text-white text-2xl sm:text-3xl md:text-4xl lg2:text-5xl">
+<main className="relative w-full h-screen text-white">
+  <div className="max-w-[1440px] mx-auto h-full flex items-center justify-between px-[80px]">
+    
+    {/* Left Text */}
+    <div className="flex flex-col  text-center items-start max-w-[320px]">
+      <p className="text-[#AD2239] min-w-md font-bold text-[14px] leading-[18px] mb-[8px]">
+        {highlightedText}
+      </p>
+      <h1 className="text-white  text-center min-w-md font-medium text-[50px]   leading-[44px]">
         {heading}
       </h1>
     </div>
 
-    {/* Bottom / Right Section */}
-    <div className="lg2:max-w-md max-w-[350px] text-center text-[#ABABAB] leading-relaxed text-sm sm:text-base md:text-md">
-      <p>{subheading}</p>
+    {/* Center Main Image (Three.js canvas or <img>) */}
+    <div className="flex-shrink-0 w-[500px] h-[500px]"></div>
+
+    {/* Right Text */}
+    <div className="  min-w-md max-w-[600px] text-center text-[#ABABAB] text-[18px] leading-[22px]">
+      {subheading}
     </div>
+
   </div>
 </main>
+
   );
 }

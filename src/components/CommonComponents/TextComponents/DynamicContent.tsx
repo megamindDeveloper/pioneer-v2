@@ -14,7 +14,7 @@ export default function DynamicContent({ highlightedText, heading, subheading, s
           <p className="text-[#AD2239] font-bold text-sm sm:text-base md:text-lg">{highlightedText}</p>
 
           {/* Heading */}
-          <h1 className="text-3xl sm:text-3xl md:text-4xl lg2:text-5xl  text-white font-medium leading-tight">{heading}</h1>
+          <h1 className="text-3xl sm:text-3xl md:text-4xl lg2:text-[50px]  text-white font-medium leading-tight">{heading}</h1>
 
           {/* Description */}
           <div className="w-full max-w-xl text-[#ABABAB] text-sm sm:text-base md:px-16 lg2:px-0 lg2:text-lg leading-relaxed">
