@@ -154,7 +154,9 @@ export default function DashcamShowcase() {
 
         {/* Cards Grid */}
         <div className="relative z-20 grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-0 w-full h-full">
+          
           <DashcamCard
+            link="/models/vrec-z820dc"
             cardIndex={0}
             title="VREC-Z820DC"
             Component={<VRECZ820DC />}
@@ -209,6 +211,7 @@ export default function DashcamShowcase() {
                 color: "#ffffff",
               },
             ]}
+            link="/models/vrec-h520dc"
             cardIndex={1}
             title="VREC-H520DC"
             Component={<VRECH520DC />}
@@ -247,6 +250,7 @@ export default function DashcamShowcase() {
                 color: "#ffffff",
               },
             ]}
+            link="/models/vrec-h320sc"
             cardIndex={2}
             title="VREC-H320SC"
             Component={<VRECH320SC />}
@@ -284,6 +288,7 @@ export default function DashcamShowcase() {
                 color: "#ffffff",
               },
             ]}
+            link="/models/vrec-h120dc"
             cardIndex={3}
             title="VREC-H120SC"
             Component={<VRECH120SC />}

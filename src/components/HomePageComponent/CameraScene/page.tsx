@@ -169,7 +169,7 @@ export default function CameraScene({ onModelReady }: { onModelReady: () => void
         <div className="w-screen sticky top-0 md:h-[100vh] sm:h-[60vh] ">
           <Canvas
             onCreated={({ gl, scene }) => {
-              gl.setClearColor("#000000"); // or any hex color
+              gl.setClearColor("#fffffff"); // or any hex color
               // Or use: scene.background = new THREE.Color("#ffffff");
             }}
             camera={{ position: [0, 1, 18], fov: 40 }}

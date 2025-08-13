@@ -8,6 +8,8 @@ import { Environment } from "@react-three/drei";
 import { SceneLights } from "./SceneLights";
 import { DirectionalLightConfig } from "@/app/types/lights";
 import { Typography } from "@/components/CommonComponents/Typography/page";
+import { useRouter } from "next/navigation";
+
 
 // ✅ 3D Group wrapper to use useFrame inside Canvas
 const AnimatedModel = ({
@@ -65,6 +67,7 @@ const DashcamCard = ({
   hoveredRotation = [-0.2, 0.75, 0],
   featureIcons,
   directionalLights = [],
+  link= ""
 }: {
   title: string;
   Component: JSX.Element;
@@ -78,11 +81,14 @@ const DashcamCard = ({
   defaultRotation?: [number, number, number];
   hoveredRotation?: [number, number, number];
   featureIcons?: string[];
+  link?:string;
   cardIndex: number;
   directionalLights?: DirectionalLightConfig[];
 }) => {
   const [hovered, setHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     const handleResize = () => {
@@ -107,6 +113,9 @@ const DashcamCard = ({
       } overflow-hidden cursor-pointer  shadow-xl transition-all duration-300`}
       onMouseEnter={() => !isMobile && setHovered(true)}
       onMouseLeave={() => !isMobile && setHovered(false)}
+      onClick={() => {
+        if (link) router.push(link);
+      }}
     >
       {/* Corner borders - top left & top right only, visible on hover */}
       <motion.div

@@ -2,12 +2,13 @@
 
 import { Typography } from "@/components/CommonComponents/Typography/page";
 import DashcamCardMobile from "./DashcamMobileShowCase";
+import image1 from "../../../../public/modelImages/VREC-Z820DC/main.png"
 export default function DashcamShowcaseMobile() {
   // Memoize scale arrays
 
   return (
     <section className="relative min-h-screen py-12 md:px-4 md:mt-32 mt-0">
-      <Typography variant="section-heading" className="!font-medium   text-white text-center mb-20 px-12">
+      <Typography variant="section-heading" className="!font-medium   text-white text-center px-6">
         Explore the Pioneer lineup built for real driving
       </Typography>
 
@@ -25,6 +26,7 @@ export default function DashcamShowcaseMobile() {
           <DashcamCardMobile
             cardIndex={0}
             title="VREC-Z820DC"
+            link="/models/vrec-z820dc"
             image="/modelImages/VREC-Z820DC/main.png"
             imageClassName="!w-[90%] mx-auto !h-60"
             description={`4K Flagship Dual Channel
@@ -42,6 +44,7 @@ export default function DashcamShowcaseMobile() {
             cardIndex={1}
             title="VREC-H520DC"
             image="/modelImages/VREC-H520DC/main.png"
+             link="/models/vrec-h520dc"
             imageClassName=" !w-[90%] mx-auto !h-56  mt-4"
             description={`2K Dual Channel Dash Cam with
       ADAS Alerts`}
@@ -57,6 +60,7 @@ export default function DashcamShowcaseMobile() {
           <DashcamCardMobile
             cardIndex={2}
             title="VREC-H320SC"
+             link="/models/vrec-h320sc"
             description={`Full HD Dash Cam
       `}
             features={["2 MP 1080P\nFront Camera", "WDR\nRecording", "In-built\nGPS Logger", "ADAS\nAlerts"]}
@@ -76,6 +80,7 @@ export default function DashcamShowcaseMobile() {
             features={["1.5K Resolution\nFront Camera", "Super\nCompact", "Emergency\nRecording", "Wide Field\nView", "In-built\nG-Sensor"]}
             image="/modelImages/VREC-H120SC/main.png"
             imageClassName=" !w-[50%] mx-auto !h-52 mt-4"
+             link="/models/vrec-h120dc"
             featureIcons={[
               "/homePageImages/dashboardShowcaseIcons/1.5k.svg",
               "/homePageImages/dashboardShowcaseIcons/compact.svg",

@@ -1,10 +1,9 @@
 "use client";
 
-import {  useState, useEffect, JSX } from "react";
+import { useState, useEffect, JSX } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Typography } from "@/components/CommonComponents/Typography/page";
-
 
 // ✅ 3D Group wrapper to use useFrame inside Canvas
 
@@ -15,14 +14,17 @@ const DashcamCardMobile = ({
   features,
   featureIcons,
   image,
-  imageClassName}: {
+  link,
+  imageClassName,
+}: {
   title: string;
   description: string;
   features: string[];
-  image:string;
+  image: string;
   featureIcons?: string[];
   cardIndex: number;
-  imageClassName:string
+  imageClassName: string;
+  link?: string;
 }) => {
   const [hovered, setHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -68,8 +70,13 @@ const DashcamCardMobile = ({
         {/* Bottom Right */}
         <div className="absolute bottom-4 right-4 xl:bottom-6 xl:right-6 w-4 h-4 border-b-2 border-r-2 border-[#AD2239] rounded-br-[8px]" />
       </motion.div>
-      <div className="w-full  h-[400px] md:h-auto mx-auto aspect-[4/3]">
-        <Image src={image} fill className={imageClassName} alt="modelImage"/>
+      <div className="w-full  h-[430px] md:h-auto mx-auto aspect-[4/3]">
+        {title === "VREC-H120SC" ? (
+          <Image src={image} fill className="object-contain p-5 pb-44" alt="modelImage" />
+        ) : (
+          <Image src={image} fill className="object-contain p-2 pb-32" alt="modelImage" />
+        )}
+        {/* <Image src={image} fill className="object-contain p-2 pb-32" alt="modelImage" /> */}
       </div>
       {/* Hover UI */}
       <motion.div
