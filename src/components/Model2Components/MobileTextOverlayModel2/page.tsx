@@ -19,14 +19,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 type Stage = "s2" | "s3" | "s4" | "s5" | "s6" | "s7" | "s8" | "s9" | "s10" | "s11" | "s12" | "s13" | null;
 
-export default function Model2textOverlay() {
+export default function MobileModel2textOverlay() {
   const [stage, setStage] = useState<Stage>(null);
   const overlayRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
-        trigger: "#blender2js-scroll-container-model2",
+        trigger: "#blender2js-scroll-container",
         start: "top top",
         end: "bottom bottom",
         scrub: true,
@@ -36,17 +36,17 @@ export default function Model2textOverlay() {
 
           if (p === 0) setStage(null);
 
-          else if (p >= 0.0365 && p < 0.1113) setStage("s3");
+          else if (p >= 0.0365 && p < 0.101) setStage("s3");
           else if (p >= 0.1741 && p < 0.2432) setStage("s4");
           else if (p >= 0.2433 && p < 0.2633) setStage("s13");
           else if (p >= 0.2941 && p < 0.3506) setStage("s5");
           else if (p >= 0.4118 && p < 0.4490) setStage("s6");
           else if (p >= 0.4534 && p < 0.4838) setStage("s7");
           else if (p >= 0.6413 && p < 0.6666) setStage("s8");
-          else if (p >= 0.7833 && p < 0.840) setStage("s9");
-          // else if (p >= 0.9508 && p < 0.9529) setStage("s10");
-          else if (p >= 0.934 && p < 0.948) setStage("s12");
-          else if (p >= 0.967 && p < 1) setStage("s11");
+          else if (p >= 0.7833 && p < 0.8879) setStage("s9");
+          else if (p >= 0.9508 && p < 0.9529) setStage("s10");
+          else if (p >= 0.8824 && p < 0.9529) setStage("s12");
+          else if (p >= 0.9712 && p < 1) setStage("s11");
           else setStage(null);
         },
       });
@@ -107,7 +107,7 @@ export default function Model2textOverlay() {
       </div>
     ),
     s5: (
-      <div className="">
+      <div>
         <DynamicContent
           style="flex-col items-center justify-end sm:items-start sm:justify-center"
           highlightedText="Consistent Clarity in Any Light"
@@ -117,8 +117,8 @@ export default function Model2textOverlay() {
       </div>
     ),
     s6: (
-      <div className="w-sm md:w-lg space-y-0">
-        <Typography variant="overlay-highlighted-text" className="text-[#750707] font-bold text-center text-lg sm:text-xl md:text-md">
+      <div className="w-sm md:w-lg space-y-4">
+        <Typography variant="overlay-highlighted-text" className="text-[#AD2239] font-bold text-center text-lg sm:text-xl md:text-md">
           Clear Control with a Wider Screen
         </Typography>
 
@@ -149,8 +149,8 @@ export default function Model2textOverlay() {
       </div>
     ),
     s8: (
-      <div className="w-sm md:w-2xl">
-        <Typography variant="overlay-highlighted-text" className="text-[#710707] font-bold text-center text-sm sm:text-base md:text-lg">
+      <div className="w-sm md:w-xl">
+        <Typography variant="overlay-highlighted-text" className="text-[#AD2239] font-bold text-center text-sm sm:text-base md:text-lg">
           Dual Camera Setup
         </Typography>
         <Typography variant="overlay-heading" className="text-white text-center font-medium text-3xl sm:text-4xl md:text-[50px]">
@@ -165,7 +165,7 @@ export default function Model2textOverlay() {
     s9: (
       // <div>asas</div>
 
-      <div className="w-[100%]  hidden lg:block">
+      <div className="w-[100%]">
         <FieldOfVision
           highlightedText="Wide Angle View"
           heading="140° Field of Vision"
@@ -199,8 +199,8 @@ export default function Model2textOverlay() {
     default: "top-1/2 left-1/2 z-[100] -translate-x-1/2 -translate-y-1/2",
     s2: "top-1/2 left-1/2 z-[100] -translate-x-1/2 -translate-y-1/2",
     s3: "top-1/2 left-1/2 z-[100] -translate-x-1/2 -translate-y-1/2",
-    s4: " sm:bottom-32 sm:left-[50rem]   bottom-12 left-[-70px] z-[100]",
-    s5: "    md:top-1/2 md:left-1/4  top-98 left-[205px] z-[100] -translate-x-1/2 -translate-y-1/2",
+    s4: " sm:top-0 sm:left-2/3 z-[100]  top-98 left-[205px]   -translate-x-1/2 -translate-y-1/2",
+    s5: "  sm:top-0 sm:left-2/3 z-[100]  top-98 left-[205px]   -translate-x-1/2 -translate-y-1/2",
     s6: "bottom-1 left-1/2 z-[100] -translate-x-1/2 -translate-y-1/2",
     s7: "top-1/2 left-1/2 z-[100] -translate-x-1/2 -translate-y-1/2",
     s8: "top-32 left-1/2 z-[100] -translate-x-1/2 -translate-y-1/2",
@@ -222,7 +222,7 @@ export default function Model2textOverlay() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.6, ease: [0.4, 0.0, 0.2, 1] }} // easeOutCubic
-          className={`fixed transition-all ${overlayPosition[stage || "default"]} pointer-events-none  hidden lg:block`}
+          className={`fixed transition-all ${overlayPosition[stage || "default"]} pointer-events-none  lg:hidden`}
         >
           {currentOverlay}
         </motion.div>
@@ -235,7 +235,7 @@ export default function Model2textOverlay() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 10 }}
           transition={{ duration: 0.4 }}
-          className={`fixed transition-all ease-in-out duration-300 w-full ${overlayPosition[stage || "default"]} pointer-events-none `}
+          className={`fixed transition-all ease-in-out duration-300 w-full ${overlayPosition[stage || "default"]} pointer-events-none`}
         >
           {overlays.s9}
         </motion.div>

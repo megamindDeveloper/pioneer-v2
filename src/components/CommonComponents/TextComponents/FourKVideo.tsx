@@ -1,3 +1,5 @@
+import { Typography } from "../Typography/page";
+
 type FourKVideoProps = {
   highlightedText?: string;
   heading: string;
@@ -7,22 +9,22 @@ type FourKVideoProps = {
 export default function FourKVideo({ highlightedText, heading, subheading }: FourKVideoProps) {
   return (
     <>
-   <section className="relative min-h-screen text-white flex items-center justify-center px-12">
-  <div className="text-center min-w-xl  sm:min-w-3xl px-22 sm:mt-1 mt-16 ">
+   <section className="relative min-h-screen text-white flex items-center justify-center px-12 md:px-12">
+  <div className="text-center min-w-md max-w-2xl lg:max-w-lg  lg:min-w-4xl px-32 md:px-22 sm:mt-1 mt-16  ">
     {/* Red Subheading */}
-    <p className="text-[#AD2239] font-bold text-sm sm:text-base md:text-lg mb-3">
+    <Typography variant="ovelay-higlighted-text"  className="text-[#AD2239] min-w-xs md:min-w-xl font-bold text-sm sm:text-base md:text-lg mb-3 ">
       {highlightedText}
-    </p>
+    </Typography>
 
     {/* Main Heading */}
-    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight mb-1">
+    <Typography variant="overlay-heading" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl min-w-xs md:min-w-xl font-semibold  leading-tight mb-1    ">
       {heading}
-    </h2>
+    </Typography>
 
     {/* Description */}
-    <p className="text-[#ABABAB] text-sm sm:text-base md:text-md max-w-xl  leading-relaxed">
+    <Typography variant="overlay-subheading" className="text-[#ABABAB] text-sm sm:text-base md:text-md leading-relaxed min-w-sm md:min-w-xl">
       {subheading}
-    </p>
+    </Typography>
   </div>
 </section>
 
