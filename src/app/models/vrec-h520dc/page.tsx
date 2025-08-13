@@ -1,13 +1,22 @@
-import Blender2JSPageModel from '@/components/Model2Components/Blender2JSPageModel2/page'
+import { faqData } from '@/app/utils/FaqData/FaqData'
+import { defaultProducts } from '@/app/utils/ProductData/ProductData'
+import { Compare } from '@/components/CommonComponents/Compare/page'
+import DriveSmarter from '@/components/CommonComponents/DriveSmarter/page'
+import EverythingNeedToKnow from '@/components/CommonComponents/EverythingNeedToKnow/page'
+import Footer from '@/components/CommonComponents/Footer/page'
+import ProductFeatureTable from '@/components/CommonComponents/ProductFeatureTable/page'
+import ZenVue from '@/components/CommonComponents/ZenVue/page'
+import Blender2JSPageModel2 from '@/components/Model2Components/Blender2JSPageModel2/page'
+import Model2textOverlay from '@/components/Model2Components/TextOverlayModel2/page'
 import React from 'react'
 
 
 const page = () => {
   return (
     <div className='bg-black'>
-      <Blender2JSPageModel/>
+      <Blender2JSPageModel2/>
       <Model2textOverlay />
-      {/* <Compare
+      <Compare
         tabs={[
           {
             tabtitle: "Drive every day?",
@@ -51,27 +60,13 @@ const page = () => {
         ]}
       />
       <ZenVue />
-      <ProductFeatureTable 
-      // products={defaultProducts} 
-      priorityProductIndex={1} />
-      <EverythingNeedToKnow   collectionName="faq_detailed_specs_H520DC" />
+      <ProductFeatureTable products={defaultProducts} priorityProductIndex={1} />
+      <EverythingNeedToKnow faqData={faqData.set2} />
       <DriveSmarter
         subText="Drive with confidence, capture every moment, & stay protected. Explore what the H520DC brings to every drive."
            image="/productPageImages/driveSmarterImages/h520dc.webp"
-      /> */}
-      {/* <div
-        id="model2-scroll-container"
-        style={{ height: "1000vh", position: "relative" }}
-      >
-        <div style={{ position: "sticky", top: 0, zIndex: 1 }}>
-          <CarCameraScene />
-        </div>
-      </div> */}
-      {/* <Compare />
-      <ZenVue />
-      <ProductFeatureTable />
-      <EverythingNeedToKnow />
-      <DriveSmarter /> */}
+      />
+
       <Footer />
     </div>
   )
