@@ -15,7 +15,7 @@ const page = () => {
   return (
     <div className='bg-black'>
       <Blender2JSPageModel2/>
-      <Model2textOverlay />
+      {/* <Model2textOverlay /> */}
       <Compare
         tabs={[
           {
