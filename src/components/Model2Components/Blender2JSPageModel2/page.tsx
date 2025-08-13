@@ -16,7 +16,7 @@ useTexture.preload("/modelImages/CommonModelImages/aiNight.png");
 const animationData = [
   { time: 0.0, position: [0.005, 1.222, 0.4968], quaternion: [0.0, 0.0, 0.0, 1.0], fov: 2 },
   // { time: 0.0, position: [0.005, 1.222, 0.4968], quaternion: [0.0, 0.0, 0.0, 1.0], fov: 2.5 },
-  { time: 0.0, position: [0.005, 1.222, 0.4968], quaternion: [0.0, 0.0, 0.0, 1.0], fov: 3 },
+  // { time: 0.0, position: [0.005, 1.222, 0.4968], quaternion: [0.0, 0.0, 0.0, 1.0], fov: 3 },
   { time: 0.0417, position: [-0.11, 1.215, 0.44], quaternion: [0.03902204, -0.5, -0.0781377, 0.9276399], fov: 20 },
   { time: 0.0417, position: [-0.11, 1.215, 0.44], quaternion: [0.03902204, -0.5, -0.0781377, 0.9276399], fov: 20 },
   { time: 0.122, position: [-0.08, 1.22, 0.275], quaternion: [0, -0.90010577, 0.00000004, 0.43567151], fov: 20 },
@@ -231,7 +231,7 @@ function useCameraAnimationSync(
   const cameraMountWorldMatrix = new THREE.Matrix4();
 
   useFrame(() => {
-    const inExplodeRange = scrollProgress >= 0.1748 && scrollProgress < 0.1965;
+    const inExplodeRange = scrollProgress >= 0.1229 && scrollProgress < 0.1552;
     if (inExplodeRange && !explodedRef.current) {
       console.log("🎯 Scroll in range → EXPLODE");
       setLensAnimation(true);
@@ -553,7 +553,7 @@ function Blender2JSScene({
 
   // This logic block now handles all 3 states for the screen
   if (imagePlaneRef.current) {
-    if (scrollProgress >= 0.4556) {
+    if (scrollProgress >= 0.3891) {
       const { videoMap, videoEl } = imagePlaneRef.current.userData;
       if (videoMap) {
         const material = imagePlaneRef.current.material as THREE.MeshBasicMaterial;
@@ -566,7 +566,8 @@ function Blender2JSScene({
       } else {
         imagePlaneRef.current.visible = false;
       }
-    } else if (scrollProgress >= 0.4126 && scrollProgress <= 0.4515) {
+    } else if (scrollProgress >= 0.3721
+      && scrollProgress <= 0.3881) {
       const { imageMap, videoEl } = imagePlaneRef.current.userData;
       const material = imagePlaneRef.current.material as THREE.MeshBasicMaterial;
       if (imageMap && material.map !== imageMap) {
@@ -578,7 +579,7 @@ function Blender2JSScene({
     }
     // ✨ --- START: NEW CODE --- ✨
     // Add new condition for the HDR image
-    else if (scrollProgress >= 0.2944 && scrollProgress <= 0.35) {
+    else if (scrollProgress >= 0.2413 && scrollProgress <= 0.3062) {
       const { hdrImageMap, videoEl } = imagePlaneRef.current.userData;
       const material = imagePlaneRef.current.material as THREE.MeshBasicMaterial;
       // Check if hdrImageMap is loaded and not already set
@@ -790,7 +791,7 @@ function IntroImageAnimation({ scrollProgress }: { scrollProgress: number }) {
 
     // ✅ --- CORRECTED OPACITY LOGIC ---
     const holdEnd = 0.01;
-    const fadeEnd = 0.11;
+    const fadeEnd = 0.0605;
     let targetOpacity: number;
 
     if (scrollProgress <= holdEnd) {

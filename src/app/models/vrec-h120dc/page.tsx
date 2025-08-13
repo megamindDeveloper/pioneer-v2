@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react'
+import React from 'react'
 
 import Blender2JSPageModel4 from '@/components/Model4Components/Blender4JSPageModel4/page';
 import Model4TextOverlay from '@/components/Model4Components/TextOverlayModel4/page';
@@ -11,14 +11,19 @@ import EverythingNeedToKnow from '@/components/CommonComponents/EverythingNeedTo
 import { faqData } from '@/app/utils/FaqData/FaqData';
 import DriveSmarter from '@/components/CommonComponents/DriveSmarter/page';
 import Footer from '@/components/CommonComponents/Footer/page';
+import { useMediaQuery } from '@/app/hooks/useMediaQuery';
+import Blender2JSPageModel4Mobile from '@/components/Model4Components/Blender2JsPageMobile/page';
 
 
 
 const page = () => {
+  const isDesktop = useMediaQuery('(min-width: 768px)');
   return (
     <div className='bg-black'>
-     
-      <Blender2JSPageModel4/>
+     {isDesktop && <Blender2JSPageModel4/>}
+      {!isDesktop && <Blender2JSPageModel4Mobile />}
+
+      
       <Model4TextOverlay />
       <Compare
         tabs={[

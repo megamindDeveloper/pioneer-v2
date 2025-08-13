@@ -27,8 +27,8 @@ const animationData = [
   }, // close
   {
     time: 0.0417,
-    position: [-0.09, 1.22, 0.45],
-    quaternion: [0.0, -0.42, -0, 0.9276399],
+    position: [-0.1, 1.22, 0.45],
+    quaternion: [0.0, -0.3, -0, 0.99],
     fov: 20,
   }, // LEFT lens explode
   {
@@ -818,13 +818,8 @@ function IntroImageAnimation({ scrollProgress }: { scrollProgress: number }) {
       texture.colorSpace = THREE.SRGBColorSpace;
 
       if (imagePlaneRef.current) {
-        const mat = imagePlaneRef.current.material as unknown as THREE.MeshBasicMaterial | THREE.MeshBasicMaterial[];
-        if (Array.isArray(mat)) {
-          mat.forEach((m) => {
-            m.map = texture;
-            m.needsUpdate = true;
-          });
-        } else if (mat) {
+        const mat = imagePlaneRef.current.material as THREE.MeshBasicMaterial;
+        if (mat) {
           mat.map = texture;
           mat.needsUpdate = true;
         }
@@ -838,30 +833,31 @@ function IntroImageAnimation({ scrollProgress }: { scrollProgress: number }) {
     if (!imagePlaneRef.current || !materialRef.current) return;
 
     const { gsap } = require("gsap");
-    const start = 0;
     const end = 0.113;
     const progress = THREE.MathUtils.clamp(scrollProgress / end, 0, 1);
 
-    // Scale: from 5 to 1
-    const scale = THREE.MathUtils.lerp(12, 5.4, progress);
+    const scale = THREE.MathUtils.lerp(0.7, 0.4, progress);
     imagePlaneRef.current.scale.set(scale, scale, 1);
 
-    // Rotation: 0 to 2π
     const rotation = THREE.MathUtils.lerp(0, Math.PI * 1, progress);
     imagePlaneRef.current.rotation.z = rotation;
 
-    // Opacity behavior: 0 → 0.07 keep at 1; 0.07 → 0.1 fade 1 → 0
-    const holdEnd = 0.08;
-    const fadeEnd = 0.1;
+    // ✅ --- CORRECTED OPACITY LOGIC ---
+    const holdEnd = 0.025;
+    const fadeEnd = 0.08;
     let targetOpacity: number;
+
     if (scrollProgress <= holdEnd) {
-      targetOpacity = 1;
+      targetOpacity = 1; // Opacity is 1 until 0.08
     } else if (scrollProgress >= fadeEnd) {
-      targetOpacity = 0;
+      targetOpacity = 0; // Opacity is 0 after 0.11
     } else {
-      const t = (scrollProgress - holdEnd) / (fadeEnd - holdEnd);
-      targetOpacity = THREE.MathUtils.lerp(1, 0, t);
+      // Calculate the progress of the fade (a value from 0 to 1)
+      const fadeProgress = (scrollProgress - holdEnd) / (fadeEnd - holdEnd);
+      // Animate opacity from 1 down to 0
+      targetOpacity = THREE.MathUtils.lerp(1, 0, fadeProgress);
     }
+    // --- END CORRECTION ---
 
     gsap.to(materialRef.current, {
       opacity: targetOpacity,
@@ -869,15 +865,15 @@ function IntroImageAnimation({ scrollProgress }: { scrollProgress: number }) {
       ease: "power1.out",
     });
 
-    materialRef.current.opacity = targetOpacity;
-    materialRef.current.transparent = true;
+    materialRef.current.transparent = targetOpacity < 1;
 
-    // Visibility
+    // Update visibility based on when the animation fully ends
     imagePlaneRef.current.visible = scrollProgress <= fadeEnd;
   }, [scrollProgress]);
+
   return (
-    <mesh ref={imagePlaneRef} renderOrder={10} position={[0.004, 1.211, -4]} visible={true}>
-      <planeGeometry args={[1]} />
+    <mesh ref={imagePlaneRef} renderOrder={10} position={[0, 1.211, -4]} visible={true}>
+      <planeGeometry args={[1, 1]} />
       <meshBasicMaterial
         ref={materialRef}
         blending={THREE.NormalBlending}
@@ -1062,7 +1058,7 @@ export default function Blender2JSPageModel4() {
         </div>
       )}
       {/* <div id="text-overlay-portal"></div> */}
-      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} />} */}
+      {modelIsReady && <Timeline scrollProgress={scrollProgress} />}
       {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}
       {modelIsReady && <FullscreenBlackOverlay scrollProgress={scrollProgress} />}
       <Canvas
