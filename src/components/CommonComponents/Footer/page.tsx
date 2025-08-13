@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../../../public/logo/image.png";
+import logo from "../../../../public/logo/image.png";
 
 // Desktop link data (your original)
 
