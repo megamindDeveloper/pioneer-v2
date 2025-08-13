@@ -13,17 +13,20 @@ type TextSectionProps = {
   highlightedText: string;
   disclaimer?:string;
   top?: string;
+  bottom?:string;
+  right?:string;
   left?: string;
   icon1?:string;
   icon2?:string;
   icon3?:string;
   width?:string;
   padding?:string;
+  descPostion?:string
   
 };
 
 // This component handles the fade-in/fade-out logic for a single text block
-function TextSection({ scrollProgress, start, end, title, subtitle, highlightedText, disclaimer,icon3,icon2,icon1, padding, width="300px", top = '50%', left = '12%' }: TextSectionProps) {
+function TextSection({ scrollProgress, start, end, title, subtitle, highlightedText, disclaimer,icon3,icon2,icon1, padding, width="300px", top = '0%', left = '0%',bottom="0%",right="0%",descPostion }: TextSectionProps) {
   // Define a fade margin (e.g., 20% of the section's duration)
   const fadeDuration = (end - start) * 0.2;
   const fadeInEnd = start + fadeDuration;
@@ -51,6 +54,8 @@ function TextSection({ scrollProgress, start, end, title, subtitle, highlightedT
         position: 'absolute',
         top, // Position the text block
         left,
+        bottom,
+        right,
         width,
         transform: `translateY(-50%)`,
         transition: 'opacity 0.3s ease-out',
@@ -61,7 +66,7 @@ function TextSection({ scrollProgress, start, end, title, subtitle, highlightedT
       <p className="mt-4 text-sm  text-center font-bold text-[#760000]">{highlightedText}</p>
       <h2 className="text-3xl  text-center font-bold text-white">{title}</h2>
       <p className={`mt-4 text-sm ${padding}  text-center text-[#7f7a7a]`}>{subtitle}</p>
-      <p className={`mt-4 text-sm   text-center absolute top-135 text-[#484848]`}>{disclaimer}</p>
+      <p className={`mt-4 text-sm   text-center absolute ${descPostion} text-[#484848]`}>{disclaimer}</p>
     </div>
   );
 }
@@ -71,107 +76,127 @@ export default function TextOverlay({ scrollProgress }: { scrollProgress: number
   // Define your text content and scroll ranges here
   const textSections = [
     {
-      start: 0.0685, // When the camera is looking at the dashcam
-      end: 0.0870,
-      top: "50%",
-      left: "0%",
-      highlightedText: "Sharp Footage in Low Light",
-      title: "AI Powered Night Vision",
-      subtitle: "An 8MP sensor that captures sharp, detailed video with high sensitivity, preserving image quality even during night drives and low-light conditions.",
-     width:"400px"  ,
+      start: 0.0887, // When the camera is looking at the dashcam
+      end: 0.1169,
+      top: "62%",
+      left: "29%",
+      highlightedText: "2K Video Resolution",
+      title: "AI Powerw23w2ed Night Vision",
+      subtitle: " From morning commutes to late-night returns, the front camera records in sharp 2K while the rear captures in Full HD. Whether it’s a close call or a scenic stretch, you’ll have a clear, reliable record from both angles.",
+     width:"600px"  ,
      padding:"px-6"
     },
     {
-      start: 0.1168, // When the camera is high above the car
-      end: 0.1509,
-      top: "53%",
-      left: "0%",
-      highlightedText: "Details Stay Intact",
-      title: "4K Video Resolution",
-     subtitle: "The VREC-Z820DC records in true 4K, producing sharp video that makes plates, signs, and unexpected moments easy to identify when needed.",
-     width:"400px"  ,
+      start: 0.1774, // When the camera is high above the car
+      end: 0.1972,
+     top: "75%",
+      left: "60%",
+      highlightedText: "STARVIS 2 Sensor + HDR",
+      title: "Sharp Vision in Every Frame",
+     subtitle: "Equipped with Sony’s STARVIS 2 sensor and HDR processing, the VREC-H520DC delivers clear, balanced video with improved contrast and visibility, especially in challenging lighting.",
+     width:"500px"  ,
      padding:"px-6"
 
     },
     {
-      start: 0.2468, // When the camera is high above the car
-      end: 0.2958,
-      top: "82%",
-      left: "-13%",
-      highlightedText: "Clarity That Goes Further",
-      title: "High-Performance Imaging",
-      subtitle: "The VREC-Z820DC uses a Sony STARVIS IMX415 sensor, an f/1.8 aperture, and a 7-layer glass lens. Together, they capture sharp, bright footage with accurate detail even in low or uneven lighting.",
+      start: 0.2946, // When the camera is high above the car
+      end: 0.3475,
+      top: "55%",
+      left: "10%",
+      highlightedText: "Consistent Clarity in Any Light",
+      title: "High Dynamic Range",
+      subtitle: "HDR keeps exposure balanced so footage stays sharp and detailed whether you're driving under bright sunlight, through shadows or into low-light conditions.",
     width:"500px" , 
     padding:"px-8.5"
     },
+  //   {
+  //     start: 0.3506, // When the camera is high above the car
+  //     end: 0.3867,
+  //     top: "82%",
+  //     left: "6%",
+  //     highlightedText: "Sharp On-Screen Clarity",
+  //     title: '3.2" IPS Display',
+  //     subtitle: "The 8.1 cm built-in screen lets you review footage and adjust settings with sharp detail, all without taking up space on your dash.",
+  //  width:"350px"  
+  //   },
     {
-      start: 0.3506, // When the camera is high above the car
-      end: 0.3867,
-      top: "82%",
-      left: "6%",
-      highlightedText: "Sharp On-Screen Clarity",
-      title: '3.2" IPS Display',
-      subtitle: "The 8.1 cm built-in screen lets you review footage and adjust settings with sharp detail, all without taking up space on your dash.",
-   width:"350px"  
-    },
-    {
-      start: 0.4387, // When the camera is high above the car
-      end: 0.4678,
-      top: "82%",
-      left: "12%",
-      highlightedText: "Adapts to Any Light",
-      title: "WDR & HDR Recording",
-      subtitle: "It adjusts exposure in real time, preserving visibility and fine detail, so footage stays clear in both bright and low-light conditions.",
+      start: 0.1975, // When the camera is high above the car
+      end: 0.2374,
+      top: "55%",
+      left: "60%",
+      highlightedText: "Automatic Event Recording",
+      title: "Built-in G-Sensor",
+      subtitle: "Stay protected with built-in G-sensor technology that automatically locks important footage during emergencies.",
    width:"550px"  ,
        padding:"px-8.5"
 
     },
     {
-      start: 0.4635, // When the camera is high above the car
-      end: 0.5301,
-            top: "65%",
-      left: "12%",
-      highlightedText: "Built to Notice Before You Do",
-      title: "Advanced Driving Alerts",
-      subtitle: "The VREC-Z820DC monitors lane position, vehicle distance, and traffic flow to deliver timely alerts and help you stay in control.",
+      width:"500px",
+      start: 0.4147, // When the camera is high above the car
+      end: 0.4513,
+            top: "75%",
+      left: "34%",
+      highlightedText: "Clear Control with a Wider Screen",
+      title: `3" IPS Display`,
+      subtitle: "The built-in screen measures 7.6 cm across and offers a clear, responsive view for checking footage, adjusting settings or navigating menus without needing your phone.",
     },
 
     {
-      start: 0.7229, // When the camera is high above the car
-      end: 0.7652,
-            top: "32%",
-      left: "12%",
-      highlightedText: "Every Angle Matters",
-      title: "Dual Camera Set-up",
-      subtitle: "The VREC-Z820DC pairs a 4K front and HD rear camera to record both directions at once, delivering clearer evidence and wider coverage.",
+      width:"500px",
+      start: 0.4515, // When the camera is high above the car
+      end: 0.4836,
+            top: "75%",
+      left: "35%",
+      highlightedText: "ADAS Enabled",
+      title: "Smart Alerts for Safer Driving",
+      subtitle: "Smart Alerts for Safer Driving Get audio alerts for lane departure, forward collision and stop-and-go alert so you stay aware of your surroundings and respond faster to sudden changes on the road.",
     },
     {
-      start: 0.8692, // When the camera is high above the car
-      end: 0.8909,
-            top: "20%",
-      left: "12%",
-      highlightedText: "Comprehensive Coverage",
-      title: "137° Wide-Angle Lens",
-      subtitle: "Gives you a broader view of the road, capturing side lanes, nearby traffic, and details that narrower lenses might miss.",
+      width:"500px",
+      start: 0.6489, // When the camera is high above the car
+      end: 0.6569,
+            top: "35%",
+       left: "33%",
+      highlightedText: "Dual Camera Setup",
+      title: "Front and Rear in Focus",
+      subtitle: "The VREC‑H520DC captures your journey from both ends with 2K clarity in front and Full HD behind, giving you balanced, high-quality footage wherever the road takes you.",
     },
     {
-      start: 0.9067, // When the camera is high above the car
-      end: 0.9599,
-            top: "22%",
-      left: "12%",
-      highlightedText: "Parked, Not Unwatched",
-      title: "Parking Mode",
-      subtitle: "The VREC-Z820DC stays active even when parked, recording any motion or impact to help keep your vehicle secure at all times.",
-      disclaimer:" This feature is available only with additional setup and components, sold separately."    
+      width:"200%",
+      descPostion:"top-[8%] w-[13%] left-[70%]",
+      start: 0.7899, // When the camera is high above the car
+      end: 0.8820,
+            top: "65%",
+      left: "-74%",
+      highlightedText: "Wide Angle View",
+      title: "140° Field of Vision",
+      subtitle: "",
+      disclaimer:" The lens captures more of what’s around you including lanes, nearby vehicles and surroundings so you get a complete view of every drive."    
     },
         {
-      start: 0.9600, // When the camera is high above the car
+          width:"350px",
+          descPostion:"top-[90%] ",
+      start: 0.9420, // When the camera is high above the car
+      end: 0.9468,
+            top: "58%",
+      left: "18%",
+      highlightedText: "Stay Secure While Parked",
+      title: "Optional Parking Mode",
+      subtitle: "Parking mode requires additional installation of an external Hardwire Kit, which enables power supply to the Dash Camera directly from the vehicle battery.",
+       disclaimer:" *Disclaimer: Parking mode requires additional installation of an external Hardwire Kit, which enables power supply to the Dash Camera directly from the vehicle battery."    
+    },
+      {
+        descPostion:"top-[90%] ",
+        disclaimer:"Disclaimer: Route tracking is available only for footage downloaded to the user’s mobile device via the app. An active internet connection is required to display route details on the map.",
+        width:"450px",
+      start: 0.9835, // When the camera is high above the car
       end: 0.9999,
-            top: "62%",
-      left: "12%",
+            top: "50%",
+      left: "38%",
       highlightedText: "Every Trip Logged",
-      title: "Built-in GPS",
-      subtitle: "Accurate location and speed data are added to every video so you know exactly where and how incidents happened.",
+      title: "GPS Logger",
+      subtitle: "Automatically record your driving routes with GPS logging, making it easy to revisit past trips whenever needed.",
     },
 
     // Add as many sections as you need
@@ -203,6 +228,8 @@ export default function TextOverlay({ scrollProgress }: { scrollProgress: number
           left={section.left}
           width={section.width}
           padding={section.padding}
+          descPostion={section.descPostion}
+          
 
         />
       ))}
