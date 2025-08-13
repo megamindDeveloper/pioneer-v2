@@ -8,35 +8,35 @@ import { SRGBColorSpace } from "three";
 import { Color } from "three";
 import { Typography } from "@/components/CommonComponents/Typography/page";
 import FadeLoader from "@/components/CommonComponents/Loader/page";
+import TextOverlay from "../TextOverlayModel2/page";
 useGLTF.preload("/models/car.glb");
 useGLTF.preload("/models/VREC_H520DC.glb");
 useTexture.preload("/modelImages/CommonModelImages/aiNight.png");
 
 const animationData = [
-  { time: 0.0, position: [0.005, 1.222, 0.4968], quaternion: [0.0, 0.0, 0.0, 1.0], fov: 2 },
+  { time: 0.0, position: [0.0047, 1.2216, 0.4968], quaternion: [0.0, 0.0, 0.0, 1.0], fov: 2 },
   // { time: 0.0, position: [0.005, 1.222, 0.4968], quaternion: [0.0, 0.0, 0.0, 1.0], fov: 2.5 },
   { time: 0.0, position: [0.005, 1.222, 0.4968], quaternion: [0.0, 0.0, 0.0, 1.0], fov: 3 },
-  { time: 0.0417, position: [-0.11, 1.215, 0.44], quaternion: [0.03902204, -0.5, -0.0781377, 0.9276399], fov: 20 },
-  { time: 0.0417, position: [-0.11, 1.215, 0.44], quaternion: [0.03902204, -0.5, -0.0781377, 0.9276399], fov: 20 },
+  { time: 0.0417, position: [-0.12, 1.215, 0.44], quaternion: [0.03902204, -0.5, -0.0781377, 0.9276399], fov: 20 },
+  { time: 0.0417, position: [-0.18, 1.215, 0.44], quaternion: [0.03902204, -0.0, -0.0781377, 0.9276399], fov: 20 },
   { time: 0.122, position: [-0.08, 1.22, 0.275], quaternion: [0, -0.90010577, 0.00000004, 0.43567151], fov: 20 },
   { time: 0.122, position: [-0.08, 1.22, 0.275], quaternion: [0, -0.90010577, 0.00000004, 0.43567151], fov: 20 },
-  { time: 0.1667, position: [-0.000, 1.216, 0.3], quaternion: [0, 1.0, 0.0, 0.0], fov: 30 },
+  { time: 0.1667, position: [-0.001, 1.216, 0.3], quaternion: [0, 1.0, 0.0, 0.0], fov: 30 },
 
   { time: 0.1667, position: [-0.001, 1.216, 0.3], quaternion: [0, 1.0, 0.0, 0.0], fov: 30 },
 
   { time: 0.1667, position: [-0.002, 1.216, 0.3], quaternion: [0, 1.0, 0.0, 0.0], fov: 35 },
   { time: 0.2083, position: [-0.0094, 1.2136, 0.0113], quaternion: [0.0, 1.0, -0.00000004, 0.00000004], fov: 30.9915 },
 
-  { time: 0.25, position: [-0.0093, 1.1809, -2.2], quaternion: [0.00000002, 0.99999607, 0.00280268, 0.00000016], fov: 40 },
+//   { time: 0.25, position: [-0.0093, 1.1809, -2.2], quaternion: [0.00000002, 0.99999607, 0.00280268, 0.00000016], fov: 30 },
 
-  { time: 0.2917, position: [-0.0093, 3.9288, -3.2975], quaternion: [0.00000007, 0.9208445, 0.38993004, 0.00000008], fov: 26.9915 },
+//   { time: 0.2917, position: [-0.0093, 3.9288, -3.2975], quaternion: [0.00000007, 0.9208445, 0.38993004, 0.00000008], fov: 26.9915 },
 
-  { time: 0.3333, position: [-0.0093, 6.6768, 0.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
-  { time: 0.3333, position: [-0.0093, 6.6768, 0.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
-  { time: 0.3333, position: [-0.0093, 6.6768, 0.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
-  { time: 0.375, position: [-0.0093, 6.6768, 3.1115], quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883], fov: 30.6028 },
-  { time: 0.375, position: [-0.0093, 6.6768, -9], quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883], fov: 33.6028 },
-
+//   { time: 0.3333, position: [-0.0093, 6.6768, 0.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
+//   { time: 0.3333, position: [-0.0093, 6.6768, 0.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
+//   { time: 0.3333, position: [-0.0093, 6.6768, 0.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
+//   { time: 0.375, position: [-0.0093, 6.6768, 3.1115], quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883], fov: 30.6028 },
+//   { time: 0.375, position: [-0.0093, 6.6768, -9], quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883], fov: 33.6028 },
 ];
 
 function HeroTextFade({ scrollProgress }: { scrollProgress: number }) {
@@ -65,10 +65,10 @@ function HeroTextFade({ scrollProgress }: { scrollProgress: number }) {
         transition: "transform 0.2s ease-out, opacity 0.2s ease-out",
       }}
     >
-      <Typography variant="hero-section-heading" className="text-xl !md:text-[62px] font-bold text-white text-center px-4 max-w-2xl">
+      <Typography variant="hero-section-heading" className="text-xl !md:text-[62px] font-bold text-white text-center px-4">
         When Detail Matters the Most
       </Typography>
-      <p className="text-[32px] text-[#ABABAB] mt-2">VREC-Z820DC Keeps the Road on Record</p>
+      <p className="text-[32px] text-[#ABABAB] mt-2">VREC‑H520DC captures sharp 2K video, even in low light and on the move.</p>
       <button className="bg-[#262626] px-2 pl-4 py-2 rounded-full text-white mt-12 flex text-[16px] font-medium items-center mx-auto">
         Scroll to explore
         <img src="/icons/chevDownCircle.svg" width={24} height={24} alt="Arrow Down" className="ml-3" />
@@ -129,12 +129,7 @@ function FullscreenBlackOverlay({
 
 const degToRad = (degrees: number): number => degrees * (Math.PI / 180);
 
-function useFadeModelOpacity(
-  groupRef: React.RefObject<THREE.Group | null>,
-  scrollProgress: number,
-  rangeStart = 0,
-  rangeEnd = 0.12
-) {
+function useFadeModelOpacity(groupRef: React.RefObject<THREE.Group | null>, scrollProgress: number, rangeStart = 0, rangeEnd = 0.12) {
   useFrame(() => {
     if (!groupRef.current) return;
 
@@ -236,8 +231,7 @@ function useCameraAnimationSync(
   const cameraMountWorldMatrix = new THREE.Matrix4();
 
   useFrame(() => {
-    const inExplodeRange = scrollProgress >= 0.195 && scrollProgress < 0.235;
-
+    const inExplodeRange = scrollProgress >= 0.1748 && scrollProgress < 0.1965;
     if (inExplodeRange && !explodedRef.current) {
       console.log("🎯 Scroll in range → EXPLODE");
       setLensAnimation(true);
@@ -429,14 +423,12 @@ function Blender2JSScene({
   const imagePlaneRef = useRef<THREE.Mesh | null>(null);
   const imageTextureRef = useRef<THREE.Texture | null>(null);
   const windshieldObjects = useRef<THREE.Mesh[]>([]);
+
   useEffect(() => {
     if (scrollProgress >= 1) {
       console.log("🎬 Triggering animation at scrollProgress 1");
-
-      // Example: start GSAP animation
       (async () => {
         const { gsap } = await import("gsap");
-
         gsap.to(dashcamGroupRef.current?.rotation || {}, {
           y: "+=Math.PI * 2",
           duration: 2,
@@ -490,24 +482,17 @@ function Blender2JSScene({
 
     onLoadComplete();
   }, [carGLTF, dashcamGLTF, onLoadComplete, setCarSceneRef]);
+
   useEffect(() => {
     console.log("🎯 Searching for DISPLAY object in camera model...");
     const displayMount = cameraModelScene.getObjectByName("DISPLAY");
     if (displayMount) {
       console.log("🎯 Found DISPLAY as object:", displayMount);
-      console.log("🎯 DISPLAY position:", displayMount.position);
-      console.log("🎯 DISPLAY world position:", displayMount.getWorldPosition(new THREE.Vector3()));
       displayMountRef.current = displayMount;
     } else {
-      console.log("🎯 DISPLAY not found - searching all objects...");
-      cameraModelScene.traverse((node) => {
-        console.log("🎯 Node name:", node.name);
-        if (node.name.toLowerCase().includes("display")) {
-          console.log("🎯 Found similar object:", node.name);
-        }
-      });
+      console.log("🎯 DISPLAY not found");
     }
-    // Load image texture
+
     const loader = new THREE.TextureLoader();
     loader.load("/modelImages/CommonModelImages/520 Screen.webp", (texture) => {
       console.log("🎯 Image texture loaded successfully");
@@ -515,9 +500,8 @@ function Blender2JSScene({
       texture.repeat.x = -1;
       texture.offset.x = 1;
 
-      // Create image plane
       const plane = new THREE.Mesh(
-        new THREE.PlaneGeometry(0.064, 0.036), // Adjust width and height here
+        new THREE.PlaneGeometry(0.065, 0.036),
         new THREE.MeshBasicMaterial({
           map: texture,
           transparent: false,
@@ -529,19 +513,23 @@ function Blender2JSScene({
       imagePlaneRef.current = plane;
       plane.userData.imageMap = texture;
 
-      console.log("🎯 Display mount found:", displayMountRef.current);
       if (displayMountRef.current) {
         displayMountRef.current.add(plane);
-        plane.position.set(0.003, 0.00353, 0); // Much further in front to be outside the model
-        plane.visible = false; // Start hidden, controlled by scroll logic
+        plane.position.set(0.0038, 0.00353, 0);
+        plane.visible = false;
         console.log("🎯 Plane added to display mount");
-        console.log("🎯 Plane position:", plane.position);
-        console.log("🎯 Plane world position:", plane.getWorldPosition(new THREE.Vector3()));
-      } else {
-        console.log("🎯 Display mount not found");
       }
 
-      // Load video texture
+      // ✨ --- START: NEW CODE --- ✨
+      // Load the new HDR image texture
+      loader.load("/productPageImages/comparisionImages/h520dc/520 - 3rd card.webp", (hdrTexture) => {
+        console.log("🎯 HDR image texture loaded successfully");
+        hdrTexture.colorSpace = THREE.SRGBColorSpace;
+        // Store it in userData, following the existing pattern
+        plane.userData.hdrImageMap = hdrTexture;
+      });
+      // ✨ --- END: NEW CODE --- ✨
+
       const video = document.createElement("video");
       video.src = "/video/Video520.mp4";
       video.crossOrigin = "anonymous";
@@ -561,7 +549,9 @@ function Blender2JSScene({
 
       console.log("🎯 Video texture created");
     });
-  }, [cameraNodes]);
+  }, [cameraNodes]); // Note: dependency array is intentionally kept simple
+
+  // This logic block now handles all 3 states for the screen
   if (imagePlaneRef.current) {
     if (scrollProgress >= 0.4556) {
       const { videoMap, videoEl } = imagePlaneRef.current.userData;
@@ -574,10 +564,9 @@ function Blender2JSScene({
         if (videoEl && videoEl.paused) videoEl.play();
         imagePlaneRef.current.visible = true;
       } else {
-        // fallback: hide until video is ready
         imagePlaneRef.current.visible = false;
       }
-    } else if (scrollProgress >= 0.2884 && scrollProgress <= 0.3493) {
+    } else if (scrollProgress >= 0.4126 && scrollProgress <= 0.4515) {
       const { imageMap, videoEl } = imagePlaneRef.current.userData;
       const material = imagePlaneRef.current.material as THREE.MeshBasicMaterial;
       if (imageMap && material.map !== imageMap) {
@@ -586,120 +575,90 @@ function Blender2JSScene({
       }
       if (videoEl && !videoEl.paused) videoEl.pause();
       imagePlaneRef.current.visible = true;
-    } else {
+    }
+    // ✨ --- START: NEW CODE --- ✨
+    // Add new condition for the HDR image
+    else if (scrollProgress >= 0.2944 && scrollProgress <= 0.35) {
+      const { hdrImageMap, videoEl } = imagePlaneRef.current.userData;
+      const material = imagePlaneRef.current.material as THREE.MeshBasicMaterial;
+      // Check if hdrImageMap is loaded and not already set
+      if (hdrImageMap && material.map !== hdrImageMap) {
+        material.map = hdrImageMap;
+        material.needsUpdate = true;
+      }
+      // Ensure video is paused
+      if (videoEl && !videoEl.paused) videoEl.pause();
+      // Make plane visible if texture is ready
+      imagePlaneRef.current.visible = !!hdrImageMap;
+    }
+    // ✨ --- END: NEW CODE --- ✨
+    else {
       const { videoEl } = imagePlaneRef.current.userData;
       imagePlaneRef.current.visible = false;
       if (videoEl && !videoEl.paused) videoEl.pause();
     }
   }
+
   const fadeRef = useRef<THREE.Group>(null);
+  // This part of your code remains unchanged
   const geometry = useMemo(() => {
     const interpolated = getInterpolatedClip(scrollProgress);
+
     return clipPathToShape(interpolated, 10, 10);
   }, [scrollProgress]);
 
-  // useFrame(() => {
-  //   const highlightStart = 0.3546;
-  //   const highlightEnd = 0.5221;
-
-  //   const blend = THREE.MathUtils.clamp(
-  //     (scrollProgress - highlightStart) / (highlightEnd - highlightStart),
-  //     0,
-  //     1
-  //   );
-
-  //   windshieldObjects.current.forEach((mesh) => {
-  //     const mat = mesh.material as THREE.MeshStandardMaterial;
-  //     mat.transparent = true;
-  //     mat.opacity = THREE.MathUtils.lerp(0, 1.0, blend);
-  //     mat.color.lerp(new THREE.Color(0x00ffff), blend * 0.5);
-  //     mat.needsUpdate = true;
-  //   });
-  // });
   useFrame(() => {
     const highlightStart = 0.4968;
+
     const highlightEnd = 0.6024;
 
     const blend = THREE.MathUtils.clamp((scrollProgress - highlightStart) / (highlightEnd - highlightStart), 0, 1);
 
     windshieldObjects.current.forEach((mesh) => {
       const mat = mesh.material as THREE.MeshStandardMaterial;
+
       mat.transparent = true;
+
       mat.opacity = THREE.MathUtils.lerp(0, 0.5, blend);
+
       mat.needsUpdate = true;
     });
   });
 
   useFadeModelOpacity(fadeRef, scrollProgress);
+
   return (
     <>
       {/* DEBUG: Always visible test plane */}
+
       {imageTextureRef.current && (
         <mesh position={[0, 2, 5]} visible={true}>
           <planeGeometry args={[2, 2]} />
+
           <meshBasicMaterial map={imageTextureRef.current} toneMapped={false} />
         </mesh>
       )}
 
       {/* DEBUG: Independent plane at DISPLAY world position */}
+
       {displayMountRef.current && imageTextureRef.current && (
         <mesh position={displayMountRef.current.getWorldPosition(new THREE.Vector3())} visible={true}>
           <planeGeometry args={[2, 2]} />
+
           <meshBasicMaterial map={imageTextureRef.current} toneMapped={false} color="red" />
         </mesh>
       )}
 
-      {/* DEBUG: HTML overlay showing positions */}
-      {/* <Html position={[0, 3, 0]}>
-        <div
-          style={{
-            background: "rgba(0,0,0,0.8)",
-            color: "white",
-            padding: "10px",
-            borderRadius: "5px",
-            fontSize: "12px",
-            whiteSpace: "pre-wrap",
-          }}
-        >
-          {`Camera: ${scrollProgress.toFixed(3)}
- DISPLAY World: ${
-   displayMountRef.current
-     ? displayMountRef.current
-         .getWorldPosition(new THREE.Vector3())
-         .toArray()
-         .map((v) => v.toFixed(3))
-         .join(", ")
-     : "N/A"
- }
- Plane World: ${
-   imagePlaneRef.current
-     ? imagePlaneRef.current
-         .getWorldPosition(new THREE.Vector3())
-         .toArray()
-         .map((v) => v.toFixed(3))
-         .join(", ")
-     : "N/A"
- }
- Dashcam World: ${
-   dashcamGroupRef.current
-     ? dashcamGroupRef.current
-         .getWorldPosition(new THREE.Vector3())
-         .toArray()
-         .map((v) => v.toFixed(3))
-         .join(", ")
-     : "N/A"
- }
-     LookAt Active: ${scrollProgress >= 0.0417 && scrollProgress <= 0.0833 ? "YES" : "NO"}`}
-        </div>
-      </Html> */}
       {/* ✅ White platform under car model */}
-      {scrollProgress >= 0.7833 && scrollProgress <= 0.8879 && (
+
+      {scrollProgress >= 0.7663 && scrollProgress <= 0.8879 && (
         <mesh geometry={geometry} rotation={[-Math.PI / 2, 0, Math.PI / 1]} position={[0, 0.1, 0]}>
           <meshBasicMaterial color="#313131" toneMapped={false} />
         </mesh>
       )}
 
       <primitive object={carGLTF.scene} visible={carVisible} />
+
       <group ref={dashcamGroupRef}>
         <group ref={dashcamOffsetGroupRef}>
           <primitive object={dashcamGLTF.scene} />
@@ -750,7 +709,7 @@ const openShape = "polygon(-15% 34%, 0 0, 100% 0, 115% 34%, 50% 44%)";
 const closedShape = "polygon(49.75% 0%, 49.75% 0%, 49.75% 0%, 49.75% 0%, 50.41% 66.01%)";
 
 function getInterpolatedClip(scrollProgress: number) {
-  const start = 0.703;
+  const start = 0.7664;
   const mid = 0.792;
   const end = 0.8813;
 
@@ -772,7 +731,13 @@ function getInterpolatedClip(scrollProgress: number) {
       .replace("polygon(", "")
       .replace(")", "")
       .split(",")
-      .map((pt: string) => pt.trim().split(" ").map((v: string) => parseFloat(v)) as number[]);
+      .map(
+        (pt: string) =>
+          pt
+            .trim()
+            .split(" ")
+            .map((v: string) => parseFloat(v)) as number[]
+      );
 
   const a = parse(shapeFrom);
   const b = parse(shapeTo);
@@ -788,91 +753,87 @@ function getInterpolatedClip(scrollProgress: number) {
 }
 
 function IntroImageAnimation({ scrollProgress }: { scrollProgress: number }) {
-    const imagePlaneRef = useRef<THREE.Mesh>(null);
-    const materialRef = useRef<THREE.MeshBasicMaterial>(null);
-  
-    useEffect(() => {
-      // Load image texture
-      const loader = new THREE.TextureLoader();
-      loader.load("/modelImages/CommonModelImages/aiNight.png", (texture) => {
-        texture.flipY = false;
-        texture.colorSpace = THREE.SRGBColorSpace;
-  
-        if (imagePlaneRef.current) {
-          const mat = imagePlaneRef.current.material as unknown as THREE.MeshBasicMaterial | THREE.MeshBasicMaterial[];
-          if (Array.isArray(mat)) {
-            mat.forEach((m) => {
-              m.map = texture;
-              m.needsUpdate = true;
-            });
-          } else if (mat) {
-            mat.map = texture;
-            mat.needsUpdate = true;
-          }
-        } else {
-          console.warn("⚠️ imagePlaneRef or its material is null");
+  const imagePlaneRef = useRef<THREE.Mesh>(null);
+  const materialRef = useRef<THREE.MeshBasicMaterial>(null);
+
+  useEffect(() => {
+    // Load image texture
+    const loader = new THREE.TextureLoader();
+    loader.load("/modelImages/CommonModelImages/aiNight.png", (texture) => {
+      texture.flipY = false;
+      texture.colorSpace = THREE.SRGBColorSpace;
+
+      if (imagePlaneRef.current) {
+        const mat = imagePlaneRef.current.material as THREE.MeshBasicMaterial;
+        if (mat) {
+          mat.map = texture;
+          mat.needsUpdate = true;
         }
-      });
-    }, []);
-  
-    useEffect(() => {
-      if (!imagePlaneRef.current || !materialRef.current) return;
-  
-      const { gsap } = require("gsap");
-      const start = 0;
-      const end = 0.113;
-      const progress = THREE.MathUtils.clamp(scrollProgress / end, 0, 1);
-  
-      // Scale: from 5 to 1
-      const scale = THREE.MathUtils.lerp(12, 5.4, progress);
-      imagePlaneRef.current.scale.set(scale, scale, 1);
-  
-      // Rotation: 0 to 2π
-      const rotation = THREE.MathUtils.lerp(0, Math.PI * 1, progress);
-      imagePlaneRef.current.rotation.z = rotation;
-  
-      // Opacity behavior: 0 → 0.07 keep at 1; 0.07 → 0.1 fade 1 → 0
-      const holdEnd = 0.08;
-      const fadeEnd = 0.1;
-      let targetOpacity: number;
-      if (scrollProgress <= holdEnd) {
-        targetOpacity = 1;
-      } else if (scrollProgress >= fadeEnd) {
-        targetOpacity = 0;
       } else {
-        const t = (scrollProgress - holdEnd) / (fadeEnd - holdEnd);
-        targetOpacity = THREE.MathUtils.lerp(1, 0, t);
+        console.warn("⚠️ imagePlaneRef or its material is null");
       }
-  
-      gsap.to(materialRef.current, {
-        opacity: targetOpacity,
-        duration: 0.3,
-        ease: "power1.out",
-      });
-  
-      materialRef.current.opacity = targetOpacity;
-      materialRef.current.transparent = true;
-  
-      // Visibility
-      imagePlaneRef.current.visible = scrollProgress <= fadeEnd;
-    }, [scrollProgress]);
-    return (
-      <mesh ref={imagePlaneRef} renderOrder={10} position={[0.004, 1.211, -4]} visible={true}>
-        <planeGeometry args={[1]} />
-        <meshBasicMaterial
-          ref={materialRef}
-          blending={THREE.NormalBlending}
-          transparent={true}
-          opacity={1}
-          depthWrite={false}
-          depthTest={false}
-          side={THREE.DoubleSide}
-          toneMapped={false}
-          color="white"
-        />
-      </mesh>
-    );
-  }
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!imagePlaneRef.current || !materialRef.current) return;
+
+    const { gsap } = require("gsap");
+    const end = 0.113;
+    const progress = THREE.MathUtils.clamp(scrollProgress / end, 0, 1);
+
+    const scale = THREE.MathUtils.lerp(0.7, 0.7, progress);
+    imagePlaneRef.current.scale.set(scale, scale, 1);
+
+    const rotation = THREE.MathUtils.lerp(0, Math.PI * 1, progress);
+    imagePlaneRef.current.rotation.z = rotation;
+
+    // ✅ --- CORRECTED OPACITY LOGIC ---
+    const holdEnd = 0.01;
+    const fadeEnd = 0.11;
+    let targetOpacity: number;
+
+    if (scrollProgress <= holdEnd) {
+      targetOpacity = 1; // Opacity is 1 until 0.08
+    } else if (scrollProgress >= fadeEnd) {
+      targetOpacity = 0; // Opacity is 0 after 0.11
+    } else {
+      // Calculate the progress of the fade (a value from 0 to 1)
+      const fadeProgress = (scrollProgress - holdEnd) / (fadeEnd - holdEnd);
+      // Animate opacity from 1 down to 0
+      targetOpacity = THREE.MathUtils.lerp(1, 0, fadeProgress);
+    }
+    // --- END CORRECTION ---
+
+    gsap.to(materialRef.current, {
+      opacity: targetOpacity,
+      duration: 0.3,
+      ease: "power1.out",
+    });
+
+    materialRef.current.transparent = targetOpacity < 1;
+
+    // Update visibility based on when the animation fully ends
+    imagePlaneRef.current.visible = scrollProgress <= fadeEnd;
+  }, [scrollProgress]);
+
+  return (
+    <mesh ref={imagePlaneRef} renderOrder={10} position={[0, 1.211, -4]} visible={true}>
+      <planeGeometry args={[1, 1]} />
+      <meshBasicMaterial
+        ref={materialRef}
+        blending={THREE.NormalBlending}
+        transparent={true}
+        opacity={1}
+        depthWrite={false}
+        depthTest={false}
+        side={THREE.DoubleSide}
+        toneMapped={false}
+        color="white"
+      />
+    </mesh>
+  );
+}
 
 function LensAnimation({ isAnimating, dashcamGroupRef }: { isAnimating: boolean; dashcamGroupRef: React.RefObject<THREE.Group | null> }) {
   const timelineRef = useRef<any>(null);
@@ -902,7 +863,7 @@ function LensAnimation({ isAnimating, dashcamGroupRef }: { isAnimating: boolean;
           timelineRef.current.to(
             part.position,
             {
-              z: [0.07, 0.075, 0.055, 0.04, 0.02, 0.01][i] || 0.05,
+              z: [0.001, 0.0, 0.03, 0.015, 0.026, 0.05][i] || 0.036,
               duration: 1.2,
               ease: "power2.out",
             },
@@ -942,14 +903,12 @@ function LensAnimation({ isAnimating, dashcamGroupRef }: { isAnimating: boolean;
   return null;
 }
 
-
-
 function BackgroundFade({ scrollProgress }: { scrollProgress: number }) {
   const { scene } = useThree();
 
   useEffect(() => {
-    const start = 0;   // fade start
-    const end = 0.1;   // fade end
+    const start = 0; // fade start
+    const end = 0.1; // fade end
     let t = 0;
 
     if (scrollProgress < start) {
@@ -1022,7 +981,7 @@ export default function Blender2JSPageModel2() {
           },
         });
         gsap.ticker.add(() => {
-          setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress, 0.03));
+          setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress, 0.07));
         });
 
         cleanup = () => {
@@ -1038,16 +997,17 @@ export default function Blender2JSPageModel2() {
   }, [modelIsReady]);
 
   return (
-    <div id="blender2js-scroll-container-model2" ref={containerRef} style={{ height: "3500vh", width:"100%"}}>
+    <div id="blender2js-scroll-container-model2" ref={containerRef} style={{ height: "1500vh", width: "100%" }}>
       {!modelIsReady && (
         <div className="fixed inset-0 z-[9999] bg-black flex items-center justify-center">
           <FadeLoader isModelReady={false} />
         </div>
       )}
       <div id="text-overlay-portal"></div>
-      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} />} */}
+      {modelIsReady && <Timeline scrollProgress={scrollProgress} />}
       {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}
       {modelIsReady && <FullscreenBlackOverlay scrollProgress={scrollProgress} />}
+      {modelIsReady && <TextOverlay scrollProgress={scrollProgress} />}
       <Canvas
         camera={{ position: [0, 5, 15], fov: 20, near: 0.01, far: 1000 }}
         style={{ background: "#ffff", height: "100vh", position: "sticky", top: 0 }}
@@ -1058,9 +1018,8 @@ export default function Blender2JSPageModel2() {
           antialias: false,
           powerPreference: "high-performance",
         }}
-        dpr={[1, 2]}
+        dpr={[2, 2]}
         frameloop={modelIsReady ? "always" : "never"}
-
       >
         <AdaptiveDpr pixelated />
         <BackgroundFade scrollProgress={scrollProgress} />

@@ -1,3 +1,6 @@
+"use client"; 
+
+import { useMediaQuery } from '@/app/hooks/useMediaQuery'
 import { faqData } from '@/app/utils/FaqData/FaqData'
 import { defaultProducts } from '@/app/utils/ProductData/ProductData'
 import { Compare } from '@/components/CommonComponents/Compare/page'
@@ -6,15 +9,20 @@ import EverythingNeedToKnow from '@/components/CommonComponents/EverythingNeedTo
 import Footer from '@/components/CommonComponents/Footer/page'
 import ProductFeatureTable from '@/components/CommonComponents/ProductFeatureTable/page'
 import ZenVue from '@/components/CommonComponents/ZenVue/page'
+import Blender2JSPageModel2Mobile from '@/components/Model2Components/Blender2JSPageModel1Mobile/page';
 import Blender2JSPageModel2 from '@/components/Model2Components/Blender2JSPageModel2/page'
 import Model2textOverlay from '@/components/Model2Components/TextOverlayModel2/page'
 import React from 'react'
 
 
 const page = () => {
+  const isDesktop = useMediaQuery('(min-width: 768px)');
+
   return (
     <div className='bg-black'>
-      <Blender2JSPageModel2/>
+      
+      {isDesktop && <Blender2JSPageModel2 />}
+      {!isDesktop && <Blender2JSPageModel2Mobile />}
       {/* <Model2textOverlay /> */}
       <Compare
         tabs={[
