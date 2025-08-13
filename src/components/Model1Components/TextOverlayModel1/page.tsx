@@ -191,7 +191,6 @@ export default function Model1TextOverlay() {
       const tl = gsap.timeline();
       if (currentOverlay) {
         // Fade in new overlay at fixed position
-        // sss
       
         tl.fromTo(
           overlayRef.current,
