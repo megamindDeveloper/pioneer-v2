@@ -536,7 +536,7 @@ function Blender2JSScene({
       }
 
       const video = document.createElement("video");
-      video.src = "/video/video.mp4";
+      video.src = "/video/Video.mp4";
       video.crossOrigin = "anonymous";
       video.loop = true;
       video.muted = true;
