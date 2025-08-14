@@ -13,26 +13,26 @@ useGLTF.preload("/models/VREC_H320SC.glb");
 useTexture.preload("/modelImages/CommonModelImages/aiNight.png");
 
 const animationData = [
-    { time: 0.0, position: [-0.00079, 1.22144, 0.4968], quaternion: [0.0, 0.0, 0.0, 1.0], fov: 2 },
-    { time: 0.0417, position: [-0.1033, 1.213, 0.48], quaternion: [0.0, -0.35, 0.0, 0.9276399], fov: 20 },
-    // { time: 0.0417, position: [-0.1, 1.213, 0.48], quaternion: [0., -0.4, -0.0781377, 0.9276399], fov: 20 },
-    { time: 0.122, position: [-0.083, 1.22, 0.275], quaternion: [0, -0.90010577, 0.00000004, 0.43567151], fov: 29 },
-    { time: 0.1667, position: [-0.0008, 1.216, 0.276], quaternion: [0, 1.0, 0.0, 0.0], fov: 30 },
-    { time: 0.1667, position: [-0.0, 1.216, 0.176], quaternion: [0, 1.0, 0.0, 0.0], fov: 30 },
-    { time: 0.2083, position: [-0.00, 1.2136, -1], quaternion: [0.0, 1.0, -0.00000004, 0.00000004], fov: 20},
-    { time: 0.25, position: [-0.00, 1.1809, -2.2], quaternion: [0.00000002, 0.99999607, 0.00280268, 0.00000016], fov: 30 },
-    { time: 0.3333, position: [-0.0093, 5.6768, 2.038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
-    { time: 0.3333, position: [-0.0093, 5.6768, 2.038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
-    { time: 0.3333, position: [-0.0093, 5.6768, -2.038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
-    { time: 0.3333, position: [-0.0093, 5.6768, -2.038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
-    // { time: 0.2917, position: [-0.0093, 3.9288, -3.2975], quaternion: [0.00000007, 0.9208445, 0.38993004, 0.00000008], fov: 26.9915 },
-    // { time: 0.3333, position: [-0.0093, 6.6768, 0.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
-    // { time: 0.3333, position: [-0.0093, 6.6768, 0.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
-    // { time: 0.3333, position: [-0.0093, 6.6768, 0.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
-    // { time: 0.375, position: [-0.0093, 6.6768, 3.1115], quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883], fov: 28.6028 },
-    // { time: 0.375, position: [-0.0093, 6.6768, -9], quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883], fov: 28.6028 },
-  
-  ];
+  { time: 0.0, position: [-0.00079, 1.22144, 0.4968], quaternion: [0.0, 0.0, 0.0, 1.0], fov: 2 },
+  { time: 0.0417, position: [-0.1033, 1.213, 0.48], quaternion: [0.0, -0.35, 0.0, 0.9276399], fov: 20 },
+  // { time: 0.0417, position: [-0.1, 1.213, 0.48], quaternion: [0., -0.4, -0.0781377, 0.9276399], fov: 20 },
+  { time: 0.122, position: [-0.083, 1.22, 0.275], quaternion: [0, -0.90010577, 0.00000004, 0.43567151], fov: 29 },
+  { time: 0.1667, position: [-0.0008, 1.216, 0.276], quaternion: [0, 1.0, 0.0, 0.0], fov: 30 },
+  { time: 0.1667, position: [-0.0, 1.216, 0.176], quaternion: [0, 1.0, 0.0, 0.0], fov: 30 },
+  { time: 0.2083, position: [-0.00, 1.2136, -1], quaternion: [0.0, 1.0, -0.00000004, 0.00000004], fov: 20},
+  { time: 0.25, position: [-0.00, 1.1809, -2.2], quaternion: [0.00000002, 0.99999607, 0.00280268, 0.00000016], fov: 30 },
+  { time: 0.3333, position: [-0.0093, 5.6768, 2.038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
+  { time: 0.3333, position: [-0.0093, 5.6768, 2.038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
+  { time: 0.3333, position: [-0.0093, 5.6768, -2.038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
+  { time: 0.3333, position: [-0.0093, 5.6768, -2.038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
+  // { time: 0.2917, position: [-0.0093, 3.9288, -3.2975], quaternion: [0.00000007, 0.9208445, 0.38993004, 0.00000008], fov: 26.9915 },
+  // { time: 0.3333, position: [-0.0093, 6.6768, 0.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
+  // { time: 0.3333, position: [-0.0093, 6.6768, 0.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
+  // { time: 0.3333, position: [-0.0093, 6.6768, 0.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
+  // { time: 0.375, position: [-0.0093, 6.6768, 3.1115], quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883], fov: 28.6028 },
+  // { time: 0.375, position: [-0.0093, 6.6768, -9], quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883], fov: 28.6028 },
+
+];
 
 function HeroTextFade({ scrollProgress }: { scrollProgress: number }) {
   const progress = THREE.MathUtils.clamp(scrollProgress / 0.028, 0, 1);
@@ -60,10 +60,10 @@ function HeroTextFade({ scrollProgress }: { scrollProgress: number }) {
         transition: "transform 0.2s ease-out, opacity 0.2s ease-out",
       }}
     >
-      <Typography variant="hero-section-heading" className="text-xl !text-[40px] font-bold text-white text-center px-4 max-w-2xl">
-      Every Drive Backed by Proof
+       <Typography variant="hero-section-heading" className=" font-bold text-white text-center px-4 max-w-6xl">
+       Every Drive Backed by Proof
       </Typography>
-      <p className="text-[16px] text-[#ABABAB] mt-2">The VREC‑H320SC combines real-time driver alerts with built-in G Sensor for emergency recording.</p>
+      <Typography variant="hero-body" className="text-[32px] text-[#ABABAB] mt-2">The VREC‑H320SC combines real-time driver alerts with built-in G Sensor for emergency recording.</Typography>
       <button className="bg-[#262626] px-2 pl-4 py-2 rounded-full text-white mt-12 flex text-[16px] font-medium items-center mx-auto">
         Scroll to explore
         <img src="/icons/chevDownCircle.svg" width={24} height={24} alt="Arrow Down" className="ml-3" />
@@ -685,8 +685,8 @@ const closedShape = "polygon(49.75% 0%, 49.75% 0%, 49.75% 0%, 49.75% 0%, 50.41% 
 
 function getInterpolatedClip(scrollProgress: number) {
   const start = 0.703;
-  const mid = 0.752;
-  const end = 0.8;
+  const mid = 0.792;
+  const end = 0.8813;
 
   let blend;
   let shapeFrom, shapeTo;
@@ -758,7 +758,7 @@ function IntroImageAnimation({ scrollProgress }: { scrollProgress: number }) {
     imagePlaneRef.current.rotation.z = rotation;
 
     // ✅ --- CORRECTED OPACITY LOGIC ---
-    const holdEnd = 0.02;
+    const holdEnd = 0.0248;
     const fadeEnd = 0.06;
     let targetOpacity: number;
 
@@ -901,7 +901,7 @@ function BackgroundFade({ scrollProgress }: { scrollProgress: number }) {
   return null;
 }
 
-export default function Blender2JSPageModel3Mobile() {
+export default function Blender3JSPageModel1() {
   const [modelIsReady, setModelIsReady] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [carScene, setCarScene] = useState<THREE.Group | null>(null);
@@ -952,7 +952,7 @@ export default function Blender2JSPageModel3Mobile() {
           },
         });
         gsap.ticker.add(() => {
-          setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress, 8));
+          setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress, 0.03));
         });
 
         cleanup = () => {
@@ -968,7 +968,7 @@ export default function Blender2JSPageModel3Mobile() {
   }, [modelIsReady]);
 
   return (
-    <div id="blender2js-scroll-container-model3" ref={containerRef} style={{ height: "1500vh", width:"100%"}}>
+    <div id="blender2js-scroll-container-model3" ref={containerRef} style={{ height: "3500vh", width:"100%"}}>
       {!modelIsReady && (
         <div className="fixed inset-0 z-[9999] bg-black flex items-center justify-center">
           <FadeLoader isModelReady={false} />
@@ -988,7 +988,7 @@ export default function Blender2JSPageModel3Mobile() {
           antialias: false,
           powerPreference: "high-performance",
         }}
-        dpr={[1, 2]}
+        dpr={[2, 2]}
         frameloop={modelIsReady ? "always" : "never"}
 
       >
