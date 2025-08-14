@@ -347,7 +347,7 @@ export default function Model1TextOverlay({ scrollProgress }: { scrollProgress: 
     },
     {
       start: 0.2680,
-      end: 0.2857,
+      end: 0.2769,
       top: "50%",
       left: "20%",
       content: (
@@ -414,7 +414,7 @@ export default function Model1TextOverlay({ scrollProgress }: { scrollProgress: 
     },
     {
       start: 0.6674,
-      end: 0.8003,
+      end: 0.751,
       
       content: (
         <div className="">

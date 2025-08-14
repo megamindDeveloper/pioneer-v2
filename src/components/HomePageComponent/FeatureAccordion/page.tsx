@@ -9,14 +9,14 @@ import { Typography } from "@/components/CommonComponents/Typography/page";
 const features = [
   {
     id: "innovation",
-    title: "Trusted Innovation for Over \n 85 Years",
+    title: "Trusted Innovation for Over  85 Years",
     content: `For over 85 years, Pioneer has been a leader in precision engineering and innovation in audio and video products — a commitment to quality and reliability we now extend to our Dash Cam range.`,
     image: "/homePageImages/featureAccordionImages/feature1.png",
     imageClass: "object-cover object-center w-", // 👈 custom class
   },
   {
     id: "control",
-    title: "Control That Goes Beyond\n the Camera",
+    title: "Control That Goes Beyond the Camera",
     content: `With the Pioneer ZenValue app, you can instantly view, download and share your footage, turning your smartphone into a seamless command center for your Dash Cam.`,
     image: "/homePageImages/featureAccordionImages/feature2.png",
     imageClass: "object-cover object-center", // 👈 different class
@@ -49,7 +49,7 @@ export default function FeatureAccordion() {
                 onClick={() => setActiveId(feature.id)}
               >
                 <div className="flex justify-between items-center text-lg font-medium">
-                  <Typography variant="section-card-heading" className="text-white font-bold">
+                  <Typography variant="section-card-heading" className="text-white font-bold w-[70%]">
                     {feature.title}
                   </Typography>
                   <span className="text-2xl">
@@ -83,7 +83,7 @@ export default function FeatureAccordion() {
                       className="mt-4"
                     >
                       {/* Text */}
-                      <p className="text-[#ABABAB] whitespace-pre-line text-[12px] lg2:text-[16px]">{feature.content}</p>
+                      <p className="text-[#ABABAB] whitespace-pre-line !text-[14px] lg2:text-[16px]">{feature.content}</p>
 
                       {/* Small Image only on mobile */}
                       {/* Small Image only on mobile */}
@@ -155,7 +155,7 @@ export default function FeatureAccordion() {
             )}
             {currentFeature?.id === "conditions" && (
               <div className="w-[100%] h-full flex  flex-row-reverse">
-                <div className="relative w-[80%] h-full overflow-hidden">
+                <div className="relative w-[100%] h-full overflow-hidden">
                   <Image src={currentFeature?.image || ""} alt={currentFeature?.title || ""} fill className="object-cover md:!h-80 md:!w-80 xl:!w-[90%] xl:!h-[100%] md:my-auto md:ml-auto object-left" />
                   <div className="absolute inset-0 bg-gradient-radial from-black/60 to-transparent z-10 pointer-events-none" />
                 </div>

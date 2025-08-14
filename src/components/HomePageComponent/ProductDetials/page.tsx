@@ -42,7 +42,7 @@ const contentMap = {
       imageClassName: "w-[60%] md:w-[100%] xl:w-[87%]",
     },
     overlay: {
-      image: "/homePageImages/productDetailsImage/z820dcImages/image2.png",
+      image: "/homePageImages/productDetailsImage/z820dcImages/image3.webp",
       title: `Blurry when \nspeeding?`,
       description: `Frustrated with blurry footage\nwhen it matters most?\nThis one records in true 4K, so\nnumber plates and road signs\nstay sharp, even when you're\ndriving fast.`,
     },
@@ -129,7 +129,7 @@ export default function ProductDetails() {
     <section className="relative min-h-screen py-12 md:px-4 text-white max-w-[90%] xl:max-w-[90%] md:mt-20  mx-auto">
       <Typography
         variant="section-heading"
-        className="!font-medium  text-center text-white  md:px-8"
+        className="!font-medium  text-center text-white px-12 md:px-8"
       >
         What Matters Most When You Drive?
       </Typography>
@@ -159,7 +159,7 @@ export default function ProductDetails() {
                   <Typography variant="slider-heading">{tab.label}</Typography>
                 </div>
                 <div
-                  className={`md:hidden block text-[12px] text-center font-bold ${
+                  className={`md:hidden block text-[12px] px-2 text-center font-bold ${
                     activeTab === tab.id ? "text-white" : "text-[#ABABAB]/80"
                   }`}
                 >

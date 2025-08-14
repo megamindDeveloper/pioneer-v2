@@ -44,12 +44,14 @@ const features = [
 
 export default function ProductComparisonTable() {
   return (
-    <section className="b text-white px-4  py-20 max-w-[90%]  xl:max-w-[90%] mx-auto md:mt-20">
+    <section className="b text-white md:px-4 px-0 pl-4 md:pl-0  py-20 max-w-[100%]  xl:max-w-[90%] md:mx-auto md:mt-20">
       <div className="max-w-7xl mx-auto text-center mb-20">
         <Typography variant="section-heading" className="!font-semibold ">
-        Pick Your Level of Performance
+          Pick Your Level of Performance
         </Typography>
-        <Typography variant="section-body"  className="text-[#ABABAB]/80 lg:pt-[0.8em] xl:pt-0  text-sm md:text-base px-12 md:px-0">See how each dashcam delivers on clarity, safety and control.</Typography>
+        <Typography variant="section-body" className="text-[#ABABAB]/80 lg:pt-[0.8em] xl:pt-0  text-sm md:text-base px-12 md:px-0">
+          See how each dashcam delivers on clarity, safety and control.
+        </Typography>
       </div>
 
       <div className="overflow-x-auto">
@@ -60,27 +62,26 @@ export default function ProductComparisonTable() {
             <div key={i} className="text-center space-y-4">
               <div className="relative w-32 lg2:w-40 h-28 mx-auto">
                 {/* Gradient Overlay */}
-            
 
                 {/* Product Image */}
-                {
-                  product.name === "VREC - H120SC" ? (
-                    <Image src={product.image} alt={product.name} fill className="object-contain md:!w-[80%] !w-[55%] mx-auto my-auto md:!h-[70%] relative z-0" />
-                  ):(
-                    <Image src={product.image} alt={product.name} fill className="object-contain w-full h-full relative z-0" />
-                  )
-                  
-                }
-              
+                {product.name === "VREC - H120SC" ? (
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    className="object-contain md:!w-[80%] !w-[55%] mx-auto my-auto md:!h-[70%] relative z-0"
+                  />
+                ) : (
+                  <Image src={product.image} alt={product.name} fill className="object-contain w-full h-full relative z-0" />
+                )}
               </div>
 
-              <Typography variant="comparison-grid-side-heading" className="font-bold">{product.name}</Typography>
+              <Typography variant="comparison-grid-side-heading" className="font-bold">
+                {product.name}
+              </Typography>
               <div className="flex flex-col items-center">
-              <Typography variant="comparison-grid-body" className="text-[#AD2239] cursor-pointer  mb-1 font-extrabold">
-                <Link href={product.link}>
-                
-                  Learn More &gt;
-                </Link>
+                <Typography variant="comparison-grid-body" className="text-[#AD2239] cursor-pointer  mb-1 font-extrabold">
+                  <Link href={product.link}>Learn More &gt;</Link>
                 </Typography>
                 <div className="my-6 w-[70%] h-[1px] bg-[#4B4B4B]/80" />
               </div>
@@ -89,13 +90,12 @@ export default function ProductComparisonTable() {
           {/* Feature Rows */}
           {features.map((feature, rowIndex) => (
             <React.Fragment key={feature}>
-               <Typography variant="comparison-grid-side-subheading" className="py-6  font-bold">{feature}</Typography>
+              <Typography variant="comparison-grid-side-subheading" className="py-6  font-bold">
+                {feature}
+              </Typography>
               {products.map((product, colIndex) => (
                 <div key={colIndex} className="py-6  text-center text-[#ABABAB] whitespace-pre-line">
-                   <Typography variant="comparison-grid-body">
-
-                  {product.features[rowIndex]}
-                   </Typography>
+                  <Typography variant="comparison-grid-body">{product.features[rowIndex]}</Typography>
                 </div>
               ))}
             </React.Fragment>

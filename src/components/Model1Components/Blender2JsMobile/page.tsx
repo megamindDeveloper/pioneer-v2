@@ -62,7 +62,7 @@ function HeroTextFade({ scrollProgress }: { scrollProgress: number }) {
         transition: "transform 0.2s ease-out, opacity 0.2s ease-out",
       }}
     >
-      <Typography variant="hero-section-heading" className=" !text-[40px]  font-bold text-white text-center px-4 max-w-2xl">
+      <Typography variant="hero-section-heading" className="   font-bold text-white text-center px-4 max-w-2xl">
         4K Clarity Meets AI Intelligence
       </Typography>
       <p className="text-[16px] text-[#ABABAB]  mt-2">VREC-Z820DC Keeps the Road on Record</p>
@@ -1013,7 +1013,7 @@ export default function Blender2JSPageModel1Mobile() {
           },
         });
         gsap.ticker.add(() => {
-          setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress, 0.07));
+          setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress, 0.03));
         });
 
         cleanup = () => {

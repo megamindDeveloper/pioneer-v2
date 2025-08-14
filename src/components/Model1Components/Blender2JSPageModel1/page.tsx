@@ -566,8 +566,8 @@ function Blender2JSScene({
     const imageFadeIn = 0.27;
     const imageMidpoint = 0.28;
     const imageFadeOut = 0.3;
-    const videoFadeIn = 0.3462;
-    const videoMidpoint = 0.36;
+    const videoFadeIn = 0.3208;
+    const videoMidpoint = 0.329;
     const videoFadeOut = 1;
 
     if (scrollProgress >= imageFadeIn && scrollProgress <= imageFadeOut) {
@@ -742,8 +742,8 @@ const closedShape = "polygon(49.75% 0%, 49.75% 0%, 49.75% 0%, 49.75% 0%, 50.41% 
 
 function getInterpolatedClip(scrollProgress: number) {
   const start = 0.66;
-  const mid = 0.742;
-  const end = 0.7946  ;
+  const mid = 0.7;
+  const end = 0.75  ;
 
   let blend;
   let shapeFrom, shapeTo;
@@ -973,11 +973,11 @@ export default function Blender2JSPageModel1() {
   const { active } = useProgress();
 
   // When all assets are loaded (useProgress active = false), mark ready
-  useEffect(() => {
-    if (!active) {
-      setModelIsReady(true);
-    }
-  }, [active]);
+  // useEffect(() => {
+  //   if (!active) {
+  //     setModelIsReady(true);
+  //   }
+  // }, [active]);
 
   // Prevent body scrolling while loading to reduce jank on mobile
   useEffect(() => {
@@ -1036,7 +1036,7 @@ export default function Blender2JSPageModel1() {
         </div>
       )}
       <div id="text-overlay-portal"></div>
-      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} />} */}
+      {modelIsReady && <Timeline scrollProgress={scrollProgress} />}
       {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}
       {modelIsReady && <Model1TextOverlay scrollProgress={scrollProgress} />}
       {modelIsReady && <FullscreenBlackOverlay scrollProgress={scrollProgress} />}

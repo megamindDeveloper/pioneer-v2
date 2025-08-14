@@ -199,14 +199,14 @@ export default function DashcamShowcase() {
               {
                 position: [-5.477, 20.381, 18.049],
                 hoveredPosition: [-23.118, 10.792, 4.712],
-                intensity: 1.5,
+                intensity: 0.5,
                 hoveredIntensity: 4,
                 color: "#ffffff",
               },
               {
                 position: [-2.758, 12.887, 34.355],
                 hoveredPosition: [-16.192, 10.811, 33.857],
-                intensity: 1.5,
+                intensity: 1,
                 hoveredIntensity: 4,
                 color: "#ffffff",
               },

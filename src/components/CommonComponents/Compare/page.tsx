@@ -176,10 +176,10 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
               key={index}
               onClick={() => setActiveTab(index)}
               className={cn(
-                "relative font-semibold text-[10px] cursor-pointer sm:text-sm md:text-base transition-all duration-300 text-center",
+                "relative font-semibold text-[14px] cursor-pointer sm:text-sm md:text-base transition-all duration-300 text-center",
                 activeTab === index
                   ? "text-white after:content-[''] after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-[-6px] after:w-[60px] sm:after:w-[100px] md:after:w-[120px] after:h-[2px] after:bg-white after:rounded-full"
-                  : "text-gray-400 hover:text-gray-600/40"
+                  : "text-gray-400 hover:text-[#AD2239]"
               )}
             >
               <h4 className="whitespace-nowrap">{tab.tabtitle}</h4>

@@ -124,8 +124,8 @@ export default function TextOverlay({ scrollProgress }: { scrollProgress: number
   // Define your text content and scroll ranges here
   const textSections = [
     {
-      start: 0.0485, // When the camera is looking at the dashcam
-      end: 0.087,
+      start: 0.048, // When the camera is looking at the dashcam
+      end: 0.08,
       top: "50%",
       left: "0%",
       highlightedText: "Sharp Footage in Low Light",
@@ -136,8 +136,8 @@ export default function TextOverlay({ scrollProgress }: { scrollProgress: number
       padding: "px-3",
     },
     {
-      start: 0.1168, // When the camera is high above the car
-      end: 0.1509,
+      start: 0.09, // When the camera is high above the car
+      end: 0.13,
       top: "53%",
       left: "0%",
       highlightedText: "Details Stay Intact",
@@ -222,14 +222,14 @@ export default function TextOverlay({ scrollProgress }: { scrollProgress: number
       subtitle: "Gives you a broader view of the road, capturing side lanes, nearby traffic, and details that narrower lenses might miss.",
     },
     {
-      start: 0.9067, // When the camera is high above the car
+      start: 0.9, // When the camera is high above the car
       end: 0.9599,
       top: "22%",
       left: "12%",
-      highlightedText: "Parked, Not Unwatched",
-      title: "Parking Mode",
-      subtitle: "The VREC-Z820DC stays active even when parked, recording any motion or impact to help keep your vehicle secure at all times.",
-      disclaimer: " This feature is available only with additional setup and components, sold separately.",
+      highlightedText: "Monitors While You’re Away",
+      title: "Optional Parking Mode",
+      subtitle: "Parking mode requires additional installation of an external Hardwire Kit, which enables power supply to the Dash Camera directly from the vehicle battery.",
+      disclaimer: "Parking mode requires additional installation of an external Hardwire Kit, which enables power supply to the Dash Camera directly from the vehicle battery.",
     },
     {
       start: 0.96, // When the camera is high above the car

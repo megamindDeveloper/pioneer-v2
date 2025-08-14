@@ -1258,7 +1258,7 @@ export default function Blender2JSPageModel2() {
           antialias: false,
           powerPreference: "high-performance",
         }}
-        dpr={[2, 2]}
+        dpr={[1, 2]}
         frameloop={modelIsReady ? "always" : "never"}
       >
         <AdaptiveDpr pixelated />
