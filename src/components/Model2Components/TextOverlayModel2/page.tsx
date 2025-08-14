@@ -290,6 +290,7 @@ export default function TextOverlay({
           alert1="Lane Departure Alert"
           alert2="Forward Collision Alert"
           alert3="Stop & Go Alert"
+      
         />
       ),
       start: 0.389, // When the camera is high above the car
@@ -333,7 +334,7 @@ export default function TextOverlay({
       start: 0.9375, // When the camera is high above the car
       end: 0.9468,
       top: "50%",
-      left: "50%",
+      left:'20%',
       content: (
         <OptionalParking
           style="flex flex-col items-center sm:items-start justify-center sm:justify-center"
@@ -345,10 +346,10 @@ export default function TextOverlay({
       ),
     },
     {
-      start: 0.9815, // When the camera is high above the car
-      end: 0.999,
+      start: 0.9641, // When the camera is high above the car
+      end: 0.989,
       top: "50%",
-      left: "20%",
+      left: "50%",
       content: (
         <GpsLogger
           highlightedText="Every Trip Logged"

@@ -35,12 +35,7 @@ export default function DriveAlertH520({
           width={40}
           height={40}
           className="mx-auto sm:w-[100px] sm:h-[100px]"
-        />{model !== "model3" && (
-            <div className="flex flex-col items-center space-y-2">
-              <Image src={alert3Image} alt="Stop and Go" width={40} height={40} className="sm:w-[60px] sm:h-[60px]" />
-              <p className="text-white font-medium text-[10px] sm:text-sm md:text-base">{alert3}</p>
-            </div>
-          )}
+        />
       </div>
 
       {/* Bottom Content */}
@@ -71,6 +66,12 @@ export default function DriveAlertH520({
             <Image src={alert2Image} alt="Forward Collision" width={40} height={40} className="sm:w-[60px] sm:h-[60px]" />
             <p className="text-white font-medium text-[10px] sm:text-sm md:text-base">{alert2}</p>
           </div>
+          {model !== "model3" && (
+            <div className="flex flex-col items-center space-y-2">
+              <Image src={alert3Image} alt="Stop and Go" width={40} height={40} className="sm:w-[60px] sm:h-[60px]" />
+              <p className="text-white font-medium text-[10px] sm:text-sm md:text-base">{alert3}</p>
+            </div>
+          )}
 
           {/* Stop & Go Alert */}
           
