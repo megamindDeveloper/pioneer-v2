@@ -8,6 +8,7 @@ import { SRGBColorSpace } from "three";
 import { Color } from "three";
 import { Typography } from "@/components/CommonComponents/Typography/page";
 import FadeLoader from "@/components/CommonComponents/Loader/page";
+import Model3textOverlay from "../TextOverlayModel3/page";
 useGLTF.preload("/models/car.glb");
 useGLTF.preload("/models/VREC_H320SC.glb");
 useTexture.preload("/modelImages/CommonModelImages/aiNight.png");
@@ -56,8 +57,8 @@ function HeroTextFade({ scrollProgress }: { scrollProgress: number }) {
         transition: "transform 0.2s ease-out, opacity 0.2s ease-out",
       }}
     >
-       <Typography variant="hero-section-heading" className=" font-bold text-white text-center px-4 max-w-6xl">
-       Every Drive Backed by Proof
+      <Typography variant="hero-section-heading" className=" font-bold text-white text-center px-4 max-w-6xl">
+        Every Drive Backed by Proof
       </Typography>
       <Typography variant="hero-body" className="text-[32px] text-[#ABABAB] mt-2">The VREC‑H320SC combines real-time driver alerts with built-in G Sensor for emergency recording.</Typography>
       <button className="bg-[#262626] px-2 pl-4 py-2 rounded-full text-white mt-12 flex text-[16px] font-medium items-center mx-auto">
@@ -440,7 +441,7 @@ function Blender2JSScene({
     const carScene = carGLTF.scene as THREE.Group;
     const dashcamScene = dashcamGLTF.scene as THREE.Group;
     setCarSceneRef(carScene);
-    
+
     carScene.traverse((node) => {
       if (node instanceof THREE.Mesh) {
         node.castShadow = true;
@@ -517,7 +518,7 @@ function Blender2JSScene({
       console.log("🎯 Display mount found:", displayMountRef.current);
       if (displayMountRef.current) {
         displayMountRef.current.add(plane);
-        plane.position.set(0., 0.002,-0.002); // Much further in front to be outside the model
+        plane.position.set(0., 0.002, -0.002); // Much further in front to be outside the model
         plane.visible = false; // Start hidden, controlled by scroll logic
         console.log("🎯 Plane added to display mount");
         console.log("🎯 Plane position:", plane.position);
@@ -535,7 +536,7 @@ function Blender2JSScene({
       video.playsInline = true;
       video.preload = "auto";
       video.load();
-      
+
       const videoTexture = new THREE.VideoTexture(video);
       videoTexture.minFilter = THREE.LinearFilter;
       videoTexture.magFilter = THREE.LinearFilter;
@@ -548,7 +549,7 @@ function Blender2JSScene({
     });
   }, [cameraNodes]);
   if (imagePlaneRef.current) {
-    if (scrollProgress >= 0.3543) {
+    if (scrollProgress >= 0.2987) {
       const { videoMap, videoEl } = imagePlaneRef.current.userData;
       if (videoMap) {
         const material = imagePlaneRef.current.material as THREE.MeshBasicMaterial;
@@ -562,7 +563,7 @@ function Blender2JSScene({
         // fallback: hide until video is ready
         imagePlaneRef.current.visible = false;
       }
-    } else if (scrollProgress >= 0.2755 && scrollProgress <= 0.2860) {
+    } else if (scrollProgress >= 0.2042 && scrollProgress <= 0.2376) {
       const { imageMap, videoEl } = imagePlaneRef.current.userData;
       const material = imagePlaneRef.current.material as THREE.MeshBasicMaterial;
       if (imageMap && material.map !== imageMap) {
@@ -582,17 +583,17 @@ function Blender2JSScene({
     const interpolated = getInterpolatedClip(scrollProgress);
     return clipPathToShape(interpolated, 10, 10);
   }, [scrollProgress]);
-  
+
   useFrame(() => {
     const highlightStart = 0.3546;
     const highlightEnd = 0.5221;
-    
+
     const blend = THREE.MathUtils.clamp(
       (scrollProgress - highlightStart) / (highlightEnd - highlightStart),
       0,
       1
     );
-    
+
     windshieldObjects.current.forEach((mesh) => {
       const mat = mesh.material as THREE.MeshStandardMaterial;
       mat.transparent = true;
@@ -600,7 +601,7 @@ function Blender2JSScene({
       mat.needsUpdate = true;
     });
   });
-  
+
 
   useFadeModelOpacity(fadeRef, scrollProgress);
   return (
@@ -621,11 +622,11 @@ function Blender2JSScene({
         </mesh>
       )}
 
-     
+
       {/* ✅ White platform under car model */}
       {scrollProgress >= 0.703 && scrollProgress <= 0.8423 && (
         <mesh geometry={geometry} rotation={[-Math.PI / 2, 0, Math.PI / 1]} position={[0, 0.1, 0]}>
- <meshBasicMaterial color="#313131" toneMapped={false} />
+          <meshBasicMaterial color="#313131" toneMapped={false} />
         </mesh>
       )}
 
@@ -682,7 +683,7 @@ const closedShape = "polygon(49.75% 0%, 49.75% 0%, 49.75% 0%, 49.75% 0%, 50.41% 
 function getInterpolatedClip(scrollProgress: number) {
   const start = 0.703;
   const mid = 0.792;
-  const end = 0.8813;
+  const end = 0.8422;
 
   let blend;
   let shapeFrom, shapeTo;
@@ -964,7 +965,7 @@ export default function Blender3JSPageModel1() {
   }, [modelIsReady]);
 
   return (
-    <div id="blender2js-scroll-container-model3" ref={containerRef} style={{ height: "3500vh", width:"100%"}}>
+    <div id="blender2js-scroll-container-model3" ref={containerRef} style={{ height: "3500vh", width: "100%" }}>
       {!modelIsReady && (
         <div className="fixed inset-0 z-[9999] bg-black flex items-center justify-center">
           <FadeLoader isModelReady={false} />
@@ -974,6 +975,8 @@ export default function Blender3JSPageModel1() {
       {modelIsReady && <Timeline scrollProgress={scrollProgress} />}
       {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}
       {modelIsReady && <FullscreenBlackOverlay scrollProgress={scrollProgress} />}
+      {modelIsReady && <Model3textOverlay scrollProgress={scrollProgress} />}
+
       <Canvas
         camera={{ position: [0, 5, 15], fov: 20, near: 0.01, far: 1000 }}
         style={{ background: "#ffff", height: "100vh", position: "sticky", top: 0 }}

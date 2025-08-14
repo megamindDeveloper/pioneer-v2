@@ -32,91 +32,6 @@ type TextSectionProps = {
 };
 
 // This component handles the fade-in/fade-out logic for a single text block
-function TextSection({
-  scrollProgress,
-  start,
-  end,
-  title,
-  subtitle,
-  highlightedText,
-  disclaimer,
-  icon3,
-  icon2,
-  icon1,
-  padding,
-  width = "300px",
-  top = "0%",
-  left = "0%",
-  bottom = "0%",
-  right = "0%",
-  descPostion,
-}: TextSectionProps) {
-  // Define a fade margin (e.g., 20% of the section's duration)
-  const fadeDuration = (end - start) * 0.2;
-  const fadeInEnd = start + fadeDuration;
-  const fadeOutStart = end - fadeDuration;
-
-  let opacity = 0;
-
-  if (scrollProgress >= start && scrollProgress <= end) {
-    if (scrollProgress < fadeInEnd) {
-      // Fade In
-      opacity = THREE.MathUtils.mapLinear(
-        scrollProgress,
-        start,
-        fadeInEnd,
-        0,
-        1
-      );
-    } else if (scrollProgress > fadeOutStart) {
-      // Fade Out
-      opacity = THREE.MathUtils.mapLinear(
-        scrollProgress,
-        fadeOutStart,
-        end,
-        1,
-        0
-      );
-    } else {
-      // Fully visible
-      opacity = 1;
-    }
-  }
-
-  return (
-    <div
-      style={{
-        opacity,
-        position: "absolute",
-        top, // Position the text block
-        left,
-        bottom,
-        right,
-        width,
-        transform: `translateY(-50%)`,
-        transition: "opacity 0.3s ease-out",
-      }}
-      className={`${padding}`}
-    >
-      <p className="mt-4 text-sm xl:text-xl text-center font-bold text-[#760000]">
-        {highlightedText}
-      </p>
-      <h2 className="text-3xl xl:text-5xl mt-4 text-center font-semibold text-white">
-        {title}
-      </h2>
-      <p
-        className={`mt-4 text-sm xl:text-lg ${padding}  text-center text-[#7f7a7a]`}
-      >
-        {subtitle}
-      </p>
-      <p
-        className={`mt-4 text-sm   text-center absolute ${descPostion} text-[#484848]`}
-      >
-        {disclaimer}
-      </p>
-    </div>
-  );
-}
 
 type SectionProps = {
   scrollProgress: number;
@@ -185,7 +100,7 @@ function OverlaySection({
 }
 
 // This is the main overlay component that holds all the sections
-export default function Model3textOverlay({
+export default function Model3textOverlayMobile({
   scrollProgress,
 }: {
   scrollProgress: number;
@@ -196,31 +111,44 @@ export default function Model3textOverlay({
       start: 0.032, // When the camera is looking at the dashcam
       end: 0.06,
       content: (
-        <FourKVideo
-          highlightedText="Precision in Motion"
-          heading="Full HD Recording"
-          subheading=" The front camera records in crisp 1080p, giving you sharp visuals for everyday drives, traffic incidents or unexpected moments."
-        />
+        <section className="relative min-h-screen text-white flex items-center justify-center px-12">
+          <div className="text-center min-w-xl  sm:min-w-3xl px-22 sm:mt-1 mt-16  space-y-3">
+            {/* Red Subheading */}
+            <p className="text-[#AD2239] font-bold text-[14px] sm:text-base md:text-lg mb-3">
+              Precision in Motion
+            </p>
+
+            {/* Main Heading */}
+            <h2 className="text-3xl sm:text-3xl md:text-[60px] lg:text-[50px] font-semibold leading-tight mb-1">
+              Full HD Recording
+            </h2>
+
+            {/* Description */}
+            <p className="text-[#ABABAB] text-[16px] sm:text-base md:text-md max-w-xs mx-auto  leading-relaxed">
+              The front camera records in crisp 1080p, giving you sharp visuals for everyday drives, traffic incidents or unexpected moments.
+            </p>
+          </div>
+        </section>
       ),
     },
     // {
     //   start: 0.122, // When the camera is high above the car
     //   end: 0.157,
     //   top: "30%",
-    //   left: "70%",
+    //   left: "50%",
     //   content: (
     //     <SharpVision
-    //       highlightedText="Automatic Event Recording"
+    //       highlightedText="STARVIS 2 Sensor"
     //       heading="Sharp Vision in Every Frame"
     //       subheading="Equipped with Sony’s STARVIS 2 sensor, the VREC-H520DC delivers clear, balanced video with improved contrast and visibility, especially in challenging lighting."
     //     />
     //   ),
     // },
     {
-      start: 0.1397, // When the camera is high above the car
+      start: 0.1237,
       end: 0.185,
-      top: "50%",
-      left: "70%",
+
+
 
       content: (
         <DynamicContent
@@ -231,31 +159,33 @@ export default function Model3textOverlay({
         />
       ),
     },
-      {
-        start: 0.2000, // When the camera is high above the car
-        end: 0.2377,
-        top: "50%",
-        left: "20%",
+    {
+      start: 0.2682, // When the camera is high above the car
+      end: 0.3078,
+      
+      
      content: (
         <DynamicContent
           style="flex-col items-center justify-end sm:items-start sm:justify-center"
           highlightedText="Clear View at a Glance"
-          heading="3″ IPS Display"
+          heading='3" IPS Display'
           subheading="The 7.6 cm screen lets you review footage, adjust settings, and see live video clearly right from the dash without needing your phone."
         />
       ),
-      },
+      
+    },
     {
-      start: 0.2971, // When the camera is high above the car
-      end: 0.3187,
-      top: "80%",
-      left: "50%",
+      start: 0.3410, // When the camera is high above the car
+      end: 0.3599,
+      
       content: (
+        
         <DynamicContent
-          style="flex-col items-center justify-end sm:items-start sm:justify-center"
+          style="flex-col  items-center justify-end sm:items-start sm:justify-center"
           highlightedText="Clarity in Changing Light"
           heading="Wide Dynamic Range (WDR)"
           subheading="From tunnels to tree cover, WDR balances bright and dark areas in real time so your footage stays detailed and easy to review."
+          Feat="WDR"
         />
       ),
     },
@@ -265,19 +195,19 @@ export default function Model3textOverlay({
     //   top: "80%",
     //   left: "50%",
     //   content: (
-    //     <>
-    //       <p className="text-[#AD2239] text-xl font-bold text-center">
+    //     <div className="space-y-2">
+    //       <p className="text-[#AD2239] text-xl font-bold text-center min-w-xs">
     //         Clear Control with a Wider Screen
     //       </p>
     //       <h2 className="lg:text-[32px] lg2:text-[50px] text-white text-center font-medium">
     //         3" IPS Display
     //       </h2>
-    //       <p className="text-pretty text-[#ABABAB] text-center max-w-xl mx-auto">
+    //       <p className="text-pretty text-[#ABABAB] text-center min-w-[18rem] lg:max-w-xl mx-auto">
     //         The built-in screen measures 7.6 cm across and offers a clear,
     //         responsive view for checking footage, adjusting settings or
     //         navigating menus without needing your phone.
     //       </p>
-    //     </>
+    //     </div>
     //   ),
     // },
 
@@ -297,23 +227,24 @@ export default function Model3textOverlay({
           model="model3"
         />
       ),
-      start: 0.3330, // When the camera is high above the car
-      end: 0.3776,
+      start: 0.3673, // When the camera is high above the car
+      end: 0.4000,
+
     },
     // {
-    //   start: 0.624, // When the camera is high above the car
-    //   end: 0.6569,
-    //   top: "15%",
+    //   start: 0.6792, // When the camera is high above the car
+    //   end: 0.75,
+    //   top: "20%",
     //   left: "50%",
     //   content: (
     //     <>
-    //       <p className="text-[#AD2239] text-xl font-bold text-center">
+    //       <p className="text-[#AD2239] lg:text-xl font-bold text-center">
     //         Dual Camera Setup
     //       </p>
     //       <h2 className="lg2:text-[56px] text-[32px] text-white text-center font-medium">
     //         Front and Rear in Focus
     //       </h2>
-    //       <p className="text-pretty text-[#ABABAB] text-center max-w-xl mx-auto">
+    //       <p className="text-pretty text-[#ABABAB] text-center min-w-xs max-w-xl mx-auto">
     //         The VREC‑H520DC captures your journey from both ends with 2K clarity
     //         in front and Full HD behind, giving you balanced, high-quality
     //         footage wherever the road takes you.
@@ -322,23 +253,28 @@ export default function Model3textOverlay({
     //   ),
     // },
     {
-      start: 0.7062, // When the camera is high above the car
-      end: 0.8422,
+      start: 0.7113, // When the camera is high above the car
+      end: 0.7911,
+      top: "20%",
       content: (
         <div className="">
-          <FieldOfVision
-            highlightedText="Wide Angle View"
-            heading="140° Field of Vision"
-            subheading="The lens captures more of what’s around you including lanes, nearby vehicles and surroundings so you get a complete view of every drive."
-          />
+          <p className="text-[#AD2239] lg:text-xl font-bold text-center">
+            See More Than Just the Lane Ahead
+          </p>
+          <h2 className="lg2:text-[56px] text-[32px] text-white text-center font-medium">
+            139° Wide-Angle Lens
+          </h2>
+          <p className="text-pretty text-[#ABABAB] text-center min-w-xs max-w-xl mx-auto">
+            Captures multiple lanes and surrounding details, giving you a broader view of every situation on the road.
+          </p>
         </div>
       ),
     },
     {
-      start: 0.9238, // When the camera is high above the car
-      end: 0.9354,
+      start: 0.8419, // When the camera is high above the car
+      end: 0.8626,
       top: "50%",
-      left: "20%",
+      left: "50%",
       content: (
         <OptionalParking
           style="flex flex-col items-center sm:items-start justify-center sm:justify-center"
@@ -350,8 +286,8 @@ export default function Model3textOverlay({
       ),
     },
     {
-      start: 0.9542, // When the camera is high above the car
-      end: 0.9929,
+      start: 0.9233, // When the camera is high above the car
+      end: 0.9888,
       top: "50%",
       left: "50%",
       content: (

@@ -8,6 +8,7 @@ import { SRGBColorSpace } from "three";
 import { Color } from "three";
 import { Typography } from "@/components/CommonComponents/Typography/page";
 import FadeLoader from "@/components/CommonComponents/Loader/page";
+import Model3textOverlayMobile from "../MobileTextOverlayModel3/Page";
 useGLTF.preload("/models/car.glb");
 useGLTF.preload("/models/VREC_H320SC.glb");
 useTexture.preload("/modelImages/CommonModelImages/aiNight.png");
@@ -63,7 +64,7 @@ function HeroTextFade({ scrollProgress }: { scrollProgress: number }) {
        <Typography variant="hero-section-heading" className=" font-bold text-white text-center px-4 max-w-6xl">
        Every Drive Backed by Proof
       </Typography>
-      <Typography variant="hero-body" className="text-[32px] text-[#ABABAB] mt-2">The VREC‑H320SC combines real-time driver alerts with built-in G Sensor for emergency recording.</Typography>
+      <Typography variant="hero-body" className=" text-[#ABABAB] mt-2 px-1">The VREC‑H320SC combines real-time driver alerts with built-in G Sensor for emergency recording.</Typography>
       <button className="bg-[#262626] px-2 pl-4 py-2 rounded-full text-white mt-12 flex text-[16px] font-medium items-center mx-auto">
         Scroll to explore
         <img src="/icons/chevDownCircle.svg" width={24} height={24} alt="Arrow Down" className="ml-3" />
@@ -552,7 +553,7 @@ function Blender2JSScene({
     });
   }, [cameraNodes]);
   if (imagePlaneRef.current) {
-    if (scrollProgress >= 0.3543) {
+    if (scrollProgress >= 0.3408) {
       const { videoMap, videoEl } = imagePlaneRef.current.userData;
       if (videoMap) {
         const material = imagePlaneRef.current.material as THREE.MeshBasicMaterial;
@@ -566,12 +567,13 @@ function Blender2JSScene({
         // fallback: hide until video is ready
         imagePlaneRef.current.visible = false;
       }
-    } else if (scrollProgress >= 0.2755 && scrollProgress <= 0.2860) {
+    } else if (scrollProgress >= 0.2755 && scrollProgress <= 0.3044) {
       const { imageMap, videoEl } = imagePlaneRef.current.userData;
       const material = imagePlaneRef.current.material as THREE.MeshBasicMaterial;
       if (imageMap && material.map !== imageMap) {
         material.map = imageMap;
         material.needsUpdate = true;
+      
       }
       if (videoEl && !videoEl.paused) videoEl.pause();
       imagePlaneRef.current.visible = true;
@@ -627,7 +629,7 @@ function Blender2JSScene({
 
      
       {/* ✅ White platform under car model */}
-      {scrollProgress >= 0.703 && scrollProgress <= 0.8423 && (
+      {scrollProgress >= 0.703 && scrollProgress <= 0.8023 && (
         <mesh geometry={geometry} rotation={[-Math.PI / 2, 0, Math.PI / 1]} position={[0, 0.1, 0]}>
  <meshBasicMaterial color="#313131" toneMapped={false} />
         </mesh>
@@ -685,8 +687,8 @@ const closedShape = "polygon(49.75% 0%, 49.75% 0%, 49.75% 0%, 49.75% 0%, 50.41% 
 
 function getInterpolatedClip(scrollProgress: number) {
   const start = 0.703;
-  const mid = 0.792;
-  const end = 0.8813;
+  const mid = 0.752;
+  const end = 0.8013;
 
   let blend;
   let shapeFrom, shapeTo;
@@ -968,7 +970,7 @@ export default function Blender3JSPageModel1() {
   }, [modelIsReady]);
 
   return (
-    <div id="blender2js-scroll-container-model3" ref={containerRef} style={{ height: "3500vh", width:"100%"}}>
+    <div id="blender2js-scroll-container-model3" ref={containerRef} style={{ height: "1500vh", width:"100%"}}>
       {!modelIsReady && (
         <div className="fixed inset-0 z-[9999] bg-black flex items-center justify-center">
           <FadeLoader isModelReady={false} />
@@ -978,6 +980,8 @@ export default function Blender3JSPageModel1() {
       {modelIsReady && <Timeline scrollProgress={scrollProgress} />}
       {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}
       {modelIsReady && <FullscreenBlackOverlay scrollProgress={scrollProgress} />}
+            {modelIsReady && <Model3textOverlayMobile scrollProgress={scrollProgress} />}
+
       <Canvas
         camera={{ position: [0, 5, 15], fov: 20, near: 0.01, far: 1000 }}
         style={{ background: "#ffff", height: "100vh", position: "sticky", top: 0 }}

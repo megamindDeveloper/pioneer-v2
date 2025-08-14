@@ -22,7 +22,7 @@ const page = () => {
         {isDesktop && <Blender2JSPageModel3 />}
       {!isDesktop && <Blender2JSPageModel3Mobile />}
 
-      <Model3textOverlay />
+      {/* <Model3textOverlay /> */}
       <Compare
         tabs={[
           {
