@@ -4,9 +4,10 @@ import Image from "next/image";
 
 export default function ZenVue() {
   return (
-    <section className="relative w-full min-h-screen bg-gradient-to-b from-[#00000] via-[#a82137] to-[#000000] text-white mt-32 xl:mt50">
+    <section className="relative w-full min-h-screen  text-white mt-32 ">
+      <div className="zen-vue-bg-grad absolute top-0 left-0 h-full w-full"/>
       {/* Main Content */}
-      <div className="relative z-10 max-w-[screen] mx-auto px-6 md:px-[5rem] py-12 md:py-20 flex flex-col lg:flex-row justify-between gap-20 items-center lg:items-start">
+      <div className="relative z-10 max-w-[screen] mx-auto px-6 md:px-[5rem] py-12 md:py-20 lg:py-56 flex flex-col lg:flex-row justify-center gap-20 lg:gap-80 items-center lg:items-start">
 
         {/* Mobile Header */}
         <div className="block lg:hidden text-center w-full mt-6">
@@ -26,10 +27,10 @@ export default function ZenVue() {
         </p>
 
         {/* Mobile Image */}
-        <div className="block lg:hidden flex justify-center mt-[-5rem]">
+        <div className="block lg:hidden  justify-center mt-[-5rem]">
           <div className="w-screen sm:w-[300px] md:w-[500px] h-auto">
             <Image
-              src="/homePageImages/featureAccordionImages/feature2.png"
+              src="/homePageImages/featureAccordionImages/test.png"
               alt="Mobile Device"
               width={1200}
               height={1200}
@@ -61,10 +62,10 @@ export default function ZenVue() {
         </div>
 
         {/* Left Content (Desktop) */}
-        <div className="flex-1 space-y-6 text-center lg:text-left order-3 lg:order-none hidden lg:block">
+        <div className=" space-y-6 text-center lg:text-left order-3 lg:order-none hidden lg:block">
           <p className="text-[16px] text-white/70 lg:mx-8">Control at Your Fingertips</p>
           <h1 className="tracking-wider text-[180px] leading-none mt-[-14px] ms-5 pl-2 font-bold text-white">Zen</h1>
-          <p className="text-white/80 text-[12px] max-w-md mx-auto lg:ml-9 mr-12 ">
+          <p className="text-white/80 text-[12px] max-w-[21rem] mx-auto lg:ml-9 mr-12 ">
             The Pioneer ZenVue Dash Camera App gives you instant access to your recordings,
             making it easy to view, download, and share footage on the go. With its intuitive,
             user-friendly interface, the experience is seamless from start to finish.
@@ -74,7 +75,7 @@ export default function ZenVue() {
         {/* Center Image for Desktop */}
         <div className="hidden lg:flex absolute top-1/2 left-1/2 transform -translate-x-[50%] -translate-y-[52%] z-20 w-auto h-[700px] items-center justify-center">
           <Image
-            src="/homePageImages/featureAccordionImages/feature2.png"
+            src="/homePageImages/featureAccordionImages/test.png"
             alt="Mobile Device"
             width={1000}
             height={1000}
@@ -83,7 +84,7 @@ export default function ZenVue() {
         </div>
 
         {/* Right Title & Store Buttons (Desktop) */}
-        <div className="hidden lg:flex flex-col items-end mt-[-3.5rem] flex-2 text-right space-y-4">
+        <div className="hidden lg:flex flex-col items-end mt-[-3.5rem]  text-right space-y-4">
           <h1 className="text-[180px] tracking-wider ml-5 mt-[5.3rem] leading-none font-bold text-white">Vue</h1>
           <p className="text-sm text-white/70 mr-6">Available on</p>
           <div className="flex gap-3 space-x-2 mt-0 mr-6">
