@@ -8,6 +8,7 @@ import { SRGBColorSpace } from "three";
 import { Color } from "three";
 import { Typography } from "@/components/CommonComponents/Typography/page";
 import FadeLoader from "@/components/CommonComponents/Loader/page";
+import TextOverlay from "../TextOverlayModel4/page";
 useGLTF.preload("/models/car.glb");
 useGLTF.preload("/models/VREC_H120SC.glb");
 useTexture.preload("/modelImages/CommonModelImages/aiNight.png");
@@ -21,7 +22,7 @@ const animationData = [
   },
   {
     time: 0.0,
-    position: [0.0014, 1.2215, 0.5],
+    position: [0.001, 1.2215, 0.5],
     quaternion: [0.0, 0.0, 0.0, 1.0],
     fov: 2,
   }, // close
@@ -85,10 +86,10 @@ function HeroTextFade({ scrollProgress }: { scrollProgress: number }) {
         transition: "transform 0.2s ease-out, opacity 0.2s ease-out",
       }}
     >
-      <Typography variant="hero-section-heading" className="text-xl !md:text-[62px] font-bold text-white text-center px-4 max-w-2xl">
-        4K Clarity Meets AI Intelligence
+      <Typography variant="hero-section-heading" className=" font-bold text-white text-center px-4 max-w-6xl">
+       Bilt to fix in,made to stand out
       </Typography>
-      <p className="text-[32px] text-[#ABABAB] mt-2">VREC-Z820DC Keeps the Road on Record</p>
+      <Typography variant="hero-body" className="text-[32px] text-[#ABABAB] mt-2">Compact,discreet, and always ready to capture your drive in stunning 1.5k</Typography>
       <button className="bg-[#262626] px-2 pl-4 py-2 rounded-full text-white mt-12 flex text-[16px] font-medium items-center mx-auto">
         Scroll to explore
         <img src="/icons/chevDownCircle.svg" width={24} height={24} alt="Arrow Down" className="ml-3" />
@@ -872,7 +873,7 @@ function IntroImageAnimation({ scrollProgress }: { scrollProgress: number }) {
   }, [scrollProgress]);
 
   return (
-    <mesh ref={imagePlaneRef} renderOrder={10} position={[0, 1.211, -4]} visible={true}>
+    <mesh ref={imagePlaneRef} renderOrder={10} position={[0, 1.23, -4]} visible={true}>
       <planeGeometry args={[1, 1]} />
       <meshBasicMaterial
         ref={materialRef}
@@ -1061,6 +1062,7 @@ export default function Blender2JSPageModel4() {
       {modelIsReady && <Timeline scrollProgress={scrollProgress} />}
       {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}
       {modelIsReady && <FullscreenBlackOverlay scrollProgress={scrollProgress} />}
+      {modelIsReady && <TextOverlay scrollProgress={scrollProgress} />}
       <Canvas
         camera={{ position: [0, 5, 15], fov: 20, near: 0.01, far: 1000 }}
         style={{ background: "#ffff", height: "100vh", position: "sticky", top: 0 }}

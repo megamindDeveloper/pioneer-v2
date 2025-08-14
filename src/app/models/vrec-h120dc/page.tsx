@@ -23,8 +23,6 @@ const page = () => {
      {isDesktop && <Blender2JSPageModel4/>}
       {!isDesktop && <Blender2JSPageModel4Mobile />}
 
-      
-      <Model4TextOverlay />
       <Compare
         tabs={[
           {

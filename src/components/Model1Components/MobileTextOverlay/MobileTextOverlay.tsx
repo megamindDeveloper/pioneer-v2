@@ -132,8 +132,8 @@ export default function TextOverlay({ scrollProgress }: { scrollProgress: number
       title: "AI Powered Night Vision",
       subtitle:
         "An 8MP sensor that captures sharp, detailed video with high sensitivity, preserving image quality even during night drives and low-light conditions.",
-      width: "400px",
-      padding: "px-6",
+      width: "",
+      padding: "px-3",
     },
     {
       start: 0.1168, // When the camera is high above the car
@@ -144,8 +144,8 @@ export default function TextOverlay({ scrollProgress }: { scrollProgress: number
       title: "4K Video Resolution",
       subtitle:
         "The VREC-Z820DC records in true 4K, producing sharp video that makes plates, signs, and unexpected moments easy to identify when needed.",
-      width: "400px",
-      padding: "px-6",
+      width: "",
+      padding: "px-3",
     },
     {
       start: 0.2468, // When the camera is high above the car

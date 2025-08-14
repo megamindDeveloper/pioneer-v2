@@ -62,10 +62,10 @@ function HeroTextFade({ scrollProgress }: { scrollProgress: number }) {
         transition: "transform 0.2s ease-out, opacity 0.2s ease-out",
       }}
     >
-      <Typography variant="hero-section-heading" className="text-xl !md:text-[62px] font-bold text-white text-center px-4 max-w-2xl">
+      <Typography variant="hero-section-heading" className=" !text-[40px]  font-bold text-white text-center px-4 max-w-2xl">
         4K Clarity Meets AI Intelligence
       </Typography>
-      <p className="text-[32px] text-[#ABABAB] mt-2">VREC-Z820DC Keeps the Road on Record</p>
+      <p className="text-[16px] text-[#ABABAB]  mt-2">VREC-Z820DC Keeps the Road on Record</p>
       <button className="bg-[#262626] px-2 pl-4 py-2 rounded-full text-white mt-12 flex text-[16px] font-medium items-center mx-auto">
         Scroll to explore
         <img src="/icons/chevDownCircle.svg" width={24} height={24} alt="Arrow Down" className="ml-3" />
@@ -973,11 +973,11 @@ export default function Blender2JSPageModel1Mobile() {
   const { active } = useProgress();
 
   // When all assets are loaded (useProgress active = false), mark ready
-  useEffect(() => {
-    if (!active) {
-      setModelIsReady(true);
-    }
-  }, [active]);
+  // useEffect(() => {
+  //   if (!active) {
+  //     setModelIsReady(true);
+  //   }
+  // }, [active]);
 
   // Prevent body scrolling while loading to reduce jank on mobile
   useEffect(() => {

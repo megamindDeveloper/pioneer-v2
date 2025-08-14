@@ -1,226 +1,281 @@
-"use client";
+/// You can create a new file for this, e.g., TextOverlay.tsx
 
-import { useEffect, useRef, useState } from "react";
-import ReactDOM from "react-dom";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import DriveAlert from "@/components/CommonComponents/TextComponents/DriveAlert";
-import OptionalParking from "@/components/CommonComponents/TextComponents/OptionalParking";
-import GpsLogger from "@/components/CommonComponents/TextComponents/GpsLogger";
-import FourKVideo from "@/components/CommonComponents/TextComponents/FourKVideo";
-import SharpVision from "@/components/CommonComponents/TextComponents/SharpVision";
-import DynamicContent from "@/components/CommonComponents/TextComponents/DynamicContent";
-import FieldOfVision from "@/components/CommonComponents/TextComponents/FieldOfVision";
-import RightFieldOfVision from "@/components/CommonComponents/TextComponents/RightFieldOfVision";
+import React from "react";
+import * as THREE from "three";
 
-// Register GSAP ScrollTrigger plugin
-gsap.registerPlugin(ScrollTrigger);
+// Define the structure for each text "slide"
+type TextSectionProps = {
+  scrollProgress: number;
+  start: number;
+  end: number;
+  title: string;
+  subtitle: string;
+  highlightedText: string;
+  disclaimer?: string;
+  top?: string;
+  left?: string;
+  icon1?: string;
+  icon2?: string;
+  icon3?: string;
+  icon4?: string;
+  width?: string;
+  padding?: string;
+};
 
-// Define stage type for TypeScript
-type Stage = "s1" | "s2" | "s3" | "s4" | "s5" | "s6" | "s7" | "s8" | "s9" | "s10" | null;
+// This component handles the fade-in/fade-out logic for a single text block
+function TextSection({
+  scrollProgress,
+  start,
+  end,
+  title,
+  subtitle,
+  highlightedText,
+  disclaimer,
+  icon3,
+  icon2,
+  icon1,
+  icon4,
+  padding,
+  width = "300px",
+  top = "50%",
+  left = "12%",
+}: TextSectionProps) {
+  // Define a fade margin (e.g., 20% of the section's duration)
+  const fadeDuration = (end - start) * 0.2;
+  const fadeInEnd = start + fadeDuration;
+  const fadeOutStart = end - fadeDuration;
 
-export default function Model4TextOverlay() {
-  // State to track the current stage
-  const [stage, setStage] = useState<Stage>(null);
-  // Reference to the overlay element
-  const overlayRef = useRef<HTMLDivElement | null>(null);
+  let opacity = 0;
 
-  // Set up ScrollTrigger to update stages based on scroll progress
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      ScrollTrigger.create({
-        trigger: "#blender2js-scroll-container-model4",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: true,
-        onUpdate: (self) => {
-          const p = self.progress;
-          console.log("Scroll Progress:", p.toFixed(3));
-
-          // Map scroll progress to stages
-          if (p === 0) setStage(null);
-          else if (p >= 0.035 && p < 0.1) setStage("s1");
-          else if (p >= 0.0638 && p < 0.1554) setStage("s2");
-          else if (p >= 0.262 && p < 0.3079) setStage("s3");
-          else if (p >= 0.3547 && p < 0.4079) setStage("s4");
-          else if (p >= 0.5845 && p < 0.6901) setStage("s5");
-          else if (p >= 0.7544 && p < 0.8232) setStage("s7");
-          else if (p >= 0.8571 && p < 0.9293) setStage("s8");
-          else if (p >= 0.9776 && p < 1) setStage("s9");
-          else setStage(null);
-        },
-      });
-    });
-
-    // Cleanup GSAP context on component unmount
-    return () => ctx.revert();
-  }, []);
-
-  // Prevent server-side rendering
-  if (typeof window === "undefined") return null;
-
-  // Define overlay content for each stage
-  const overlays: Record<NonNullable<Stage>, JSX.Element> = {
-    // s1: (
-    //   <div>
-    //     <FourKVideo
-    //       highlightedText="Sharp Footage in Low Light"
-    //       heading="AI Powered Night Vision"
-    //       subheading="An 8MP sensor that captures sharp, detailed video with high sensitivity, preserving image quality even during night drives and low-light conditions."
-    //     />
-    //   </div>
-    // ),
-    s2: (
-      <div>
-        <FourKVideo
-          highlightedText="Sharper Footage in Any Light"
-          heading="1.5K Recording with WDR  "
-          subheading="The VREC-H120SC captures clear, steady video in all kinds of light, combining 1.5K resolution with smart brightness control for better visibility day and night.(Resolution can be enabled through the ZenVue app.)"
-        />
-      </div>
-    ),
-    s3: (
-      <div className="">
-        <SharpVision
-          highlightedText="Made to Fit Effortlessly"
-          heading="Compact By Design"
-          subheading="With its streamlined design, the VREC-H120SC fits neatly behind your rear-view mirror, keeping your dash tidy while capturing the road ahead with clarity."
-        />
-      </div>
-    ),
-    // s4: (
-    //   <div>
-    //     <DynamicContent
-    //       style="flex-col items-center justify-end sm:items-start sm:justify-center"
-    //       highlightedText="Sharp On-Screen Clarity"
-    //       heading='3.2" IPS Display'
-    //       subheading="The 8.1 cm built-in screen lets you review footage and adjust settings with sharp detail, all without taking up space on your dash."
-    //     />
-    //   </div>
-    // ),
-    s5: (
-      <div className="w-[100%] z-[-1]">
-        <RightFieldOfVision
-          highlightedText="A minimal build that delivers maximum road coverage"
-          heading="120° Field of View"
-          subheading="Whether a bike cuts in from the side or something happens just outside your lane, this lens captures it. Designed to record the bigger picture without needing a bulky setup."
-        />
-      </div>
-    ),
-    // s6: (
-    //   <div>
-    //     <DriveAlert
-    //       highlightedText="Timely Warnings When It Matters"
-    //       heading="ADAS Alerts"
-    //       subheading="Get audio cues for lane departure and forward collision so you can stay aware, avoid surprises and respond faster on busy roads."
-    //       alert1Image="/Images/svgs/laneIcon.svg"
-    //       alert2Image="/Images/svgs/collisionIcon.svg"
-    //       alert3Image="/Images/svgs/stopnGoIcon.svg"
-    //       alert1="Lane Departure Alert"
-    //       alert2="Forward Collision Alert"
-    //       alert3="Stop & Go Alert"
-    //     />
-    //   </div>
-    // ),
-    s7: (
-      <div className="w-[300px] md:w-500px">
-        <p className="text-[#AD2239] text-lg sm:text-xl md:text-lg font-bold text-center">Store More Footage with Ease</p>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white text-center font-medium">Supports up to 128GB microSD</h2>
-        <p className="text-pretty text-[#ABABAB] text-center max-w-xl mx-auto text-sm sm:text-base md:text-md">
-          Gives you the space to record and save more of your drives without worrying about running out of memory.
-        </p>
-      </div>
-    ),
-    s8: (
-      <div>
-        <SharpVision
-          highlightedText="Automatic Event Recording"
-          heading="Built-in G-Sensor"
-          subheading="Stay protected with built-in G-sensor technology that automatically locks important footage during emergencies."
-        />
-      </div>
-    ),
-    s9: (
-      <div className="w-md md:w-[100%] z-[-1]">
-        {/* <FieldOfVision
-          highlightedText="Stay Secure While Parked"
-          heading="Optional Parking Mode"
-          subheading="When hardwired, the VREC‑H120SC stays on standby and begins recording the moment it detects an impact, giving you subtle protection even when you’re away."
-        /> */}
-         <OptionalParking
-          style="flex flex-col items-center sm:items-start justify-center sm:justify-center"
-          highlightedText="Stay Secure While Parked"
-          heading="Optional Parking Mode"
-          subheading="When hardwired, the VREC‑H120SC stays on standby and begins recording the moment it detects an impact, giving you subtle protection even when you’re away."
-          description="*Disclaimer: Parking mode requires additional installation of an external Hardwire Kit, which enables power supply to the Dash Camera directly from the vehicle battery."
-        />
-      </div>
-    ),
-    // s10: (
-    //   <div>
-    //     <GpsLogger
-    //       highlightedText="Every Trip Logged"
-    //       heading="GPS Logger"
-    //       subheading="Automatically record your driving routes with GPS logging, making it easy to revisit past trips whenever needed."
-    //       description="*Disclaimer: Route tracking is available only for footage downloaded to the user’s mobile device via the app. An active internet connection is required to display route details on the map."
-    //     />
-    //   </div>
-    // ),
-  };
-
-  // Define overlay positions for each stage
-  const overlayPosition: Record<NonNullable<Stage> | "default", string> = {
-    default: "top-1/2 left-1/2 z-[100] -translate-x-1/2 -translate-y-1/2",
-    s1: "inset-0 flex  items-center justify-center z-[100] w-[100vw] h-[100%]",
-    s2: "top-1/2 left-1/2 z-[100] -translate-x-1/2 -translate-y-1/2",
-    s3: "md:bottom-[18rem] md:right-32 bottom-[2rem] right-[-4rem] z-[100]",
-    s4: "top-1/2 left-1/4 z-[100] -translate-x-1/2 -translate-y-1/2",
-    s5: "md:top-1/2 md:right-1 top-1/2 right-[-13rem] z-[100] -translate-x-1/2 -translate-y-1/2",
-    s6: "top-1/2 left-1/2 z-[100] -translate-x-1/2 -translate-y-1/2",
-    s7: "md:top-1/2 md:left-1/5 bottom-1 left-1/2 z-[100] -translate-x-1/2 -translate-y-1/2",
-    s8: "  left-1/2 top-[200px] z-[100] -translate-x-1/2 -translate-y-1/2",
-    s9: "md:top-1/2 md:left-[72vw] bottom-1 left-[49vw] z-[100] -translate-x-1/2 -translate-y-1/2",
-    s10: "top-1 right-1 z-[100] -translate-x-1/2 -translate-y-1/2",
-  };
-
-  // Get the current overlay content based on stage
-  const currentOverlay = stage ? overlays[stage] : null;
-
-  // Use GSAP to animate overlay transitions with fade-in/fade-out
-  useEffect(() => {
-    if (overlayRef.current) {
-      const tl = gsap.timeline();
-      if (currentOverlay) {
-        // Fade in new overlay at fixed position
-        tl.fromTo(
-          overlayRef.current,
-          { opacity: 0 },
-          {
-            opacity: 1,
-            duration: 1,
-            ease: "power2.inOut",
-          }
-        );
-      } else {
-        // Fade out when no overlay is active
-        tl.to(overlayRef.current, {
-          opacity: 0,
-          duration: 2,
-          ease: "power2.inOut",
-        });
-      }
+  if (scrollProgress >= start && scrollProgress <= end) {
+    if (scrollProgress < fadeInEnd) {
+      // Fade In
+      opacity = THREE.MathUtils.mapLinear(scrollProgress, start, fadeInEnd, 0, 1);
+    } else if (scrollProgress > fadeOutStart) {
+      // Fade Out
+      opacity = THREE.MathUtils.mapLinear(scrollProgress, fadeOutStart, end, 1, 0);
+    } else {
+      // Fully visible
+      opacity = 1;
     }
-  }, [stage, currentOverlay]);
+  }
+  const isSpecialSection = start === 0.4635 && end === 0.5301;
+  return (
+    <div
+      style={{
+        opacity,
+        position: "absolute",
+        top,
+        left,
+        width,
+        transform: `translateY(-50%)`,
+        transition: "opacity 0.3s ease-out",
+      }}
+      className={`${padding}`}
+    >
+      {isSpecialSection ? (
+        /* Special Layout with 3 icons */
+        <div className="flex flex-col items-center px-6  text-white ">
+          {/* Danger Icon */}
+          <div className="animate-fastpulse mb-23 mt-11">
+            <img src={icon4} alt="Warning Icon" className="w-[60px] h-[60px]" />
+          </div>
 
-  // Render the overlay using React Portal
-  return ReactDOM.createPortal(
-    <>
-      {currentOverlay && (
-        <div ref={overlayRef} className={`fixed ${overlayPosition[stage || "default"]} pointer-events-none`}>
-          {currentOverlay}
+          {/* Highlighted Text */}
+          <p className="text-sm  tracking-wide font-bold text-[#AD2239] mb-2">{highlightedText}</p>
+
+          {/* Title */}
+          <h2 className="text-[28px] leading-tight text-center font-bold text-white mb-3">{title}</h2>
+
+          {/* Subtitle */}
+          <p className="text-sm max-w-[320px] text-center text-[#7f7a7a] mb-1">{subtitle}</p>
+
+          {/* Feature Icons Row */}
+          <div className="flex gap-[50px]">
+            <div className="flex flex-col items-center">
+              <img src={icon1} alt="Lane Departure" className="w-[40px] h-[40px] mb-2" />
+              <span className="text-[12px] text-center">Lane Departure Alert</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <img src={icon2} alt="Forward Collision" className="w-[40px] h-[40px] mb-2" />
+              <span className="text-[12px] text-center">Forward Collision Alert</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <img src={icon3} alt="Stop & Go" className="w-[40px] h-[40px] mb-2" />
+              <span className="text-[12px] text-center">Stop & Go Alert</span>
+            </div>
+          </div>
         </div>
+      ) : (
+        /* Default Layout */
+        <>
+          <p className="mt-4 text-sm text-center font-bold text-[#AD2239]">{highlightedText}</p>
+          <h2 className="text-[26px] text-center font-bold text-white">{title}</h2>
+          <p className={`mt-4 text-sm ${padding} text-center text-[#7f7a7a]`}>{subtitle}</p>
+          {disclaimer && <p className="mt-4 text-sm text-center text-[#484848] absolute top-135">{disclaimer}</p>}
+        </>
       )}
-    </>,
-    document.body
+    </div>
+  );
+}
+
+// This is the main overlay component that holds all the sections
+export default function TextOverlay({ scrollProgress }: { scrollProgress: number }) {
+  // Define your text content and scroll ranges here
+  const textSections = [
+    {
+      start: 0.0450, // When the camera is looking at the dashcam
+      end: 0.087,
+      top: "50%",
+      left: "0%",
+      highlightedText: "Sharper Footage in Any Light",
+      title: "1.5K Recording with WDR",
+      subtitle:
+        "The VREC-H120SC captures clear, steady video in all kinds of light, combining 1.5K resolution with smart brightness control for better visibility day and night.(Resolution can be enabled through the ZenVue app.)",
+      width: "",
+      padding: "px-3",
+    },
+    {
+      start: 0.1168, // When the camera is high above the car
+      end: 0.1509,
+      top: "53%",
+      left: "0%",
+      highlightedText: "Details Stay Intact",
+      title: "4K Video Resolution",
+      subtitle:
+        "The VREC-Z820DC records in true 4K, producing sharp video that makes plates, signs, and unexpected moments easy to identify when needed.",
+      width: "",
+      padding: "px-3",
+    },
+    {
+      start: 0.2468, // When the camera is high above the car
+      end: 0.2958,
+      top: "82%",
+      left: "",
+      highlightedText: "Clarity That Goes Further",
+      title: "High-Performance Imaging",
+      subtitle:
+        "The VREC-Z820DC uses a Sony STARVIS IMX415 sensor, an f/1.8 aperture, and a 7-layer glass lens. Together, they capture sharp, bright footage with accurate detail even in low or uneven lighting.",
+      width: "",
+      padding: "px-3",
+    },
+    {
+      start: 0.3506, // When the camera is high above the car
+      end: 0.3867,
+      top: "82%",
+      left: "",
+      highlightedText: "Sharp On-Screen Clarity",
+      title: '3.2" IPS Display',
+      subtitle: "The 8.1 cm built-in screen lets you review footage and adjust settings with sharp detail, all without taking up space on your dash.",
+      width: "",
+      padding: "px-3",
+    },
+    {
+      start: 0.4387, // When the camera is high above the car
+      end: 0.4678,
+      top: "82%",
+      left: "",
+      highlightedText: "Adapts to Any Light",
+      title: "WDR & HDR Recording",
+      subtitle:
+        "It adjusts exposure in real time, preserving visibility and fine detail, so footage stays clear in both bright and low-light conditions.",
+      width: "",
+      padding: "px-3",
+    },
+    {
+      start: 0.4679, // When the camera is high above the car
+      end: 0.5301,
+      top: "62%",
+      left: "0%",
+      highlightedText: "Built to Notice Before You Do",
+      title: "Advanced Driving Alerts",
+      subtitle: "The VREC-Z820DC monitors lane position, vehicle distance, and traffic flow to deliver timely alerts and help you stay in control.",
+      icon1: "/productPageImages/driveAlertIcons/laneIcon.svg",
+      icon2: "/productPageImages/driveAlertIcons/stopnGoIcon.svg",
+      icon3: "/productPageImages/driveAlertIcons/collisionIcon.svg",
+      icon4: "/productPageImages/driveAlertIcons/dangerIcon.svg",
+      width: "",
+      padding:"px-3"
+    },
+
+    {
+      start: 0.7036, // When the camera is high above the car
+      end: 0.7652,
+      top: "16%",
+      width: "",
+      left: "",
+      padding:"px-3",
+      highlightedText: "Every Angle Matters",
+      title: "Dual Camera Set-up",
+      subtitle:
+        "The VREC-Z820DC pairs a 4K front and HD rear camera to record both directions at once, delivering clearer evidence and wider coverage.",
+    },
+    {
+      start: 0.8692, // When the camera is high above the car
+      end: 0.8909,
+      top: "20%",
+      left: "",
+      width:"",
+      padding:"pc-3",
+      highlightedText: "Comprehensive Coverage",
+      title: "137° Wide-Angle Lens",
+      subtitle: "Gives you a broader view of the road, capturing side lanes, nearby traffic, and details that narrower lenses might miss.",
+    },
+    {
+      start: 0.9067, // When the camera is high above the car
+      end: 0.9599,
+      top: "22%",
+      left: "12%",
+      highlightedText: "Parked, Not Unwatched",
+      title: "Parking Mode",
+      subtitle: "The VREC-Z820DC stays active even when parked, recording any motion or impact to help keep your vehicle secure at all times.",
+      disclaimer: " This feature is available only with additional setup and components, sold separately.",
+    },
+    {
+      start: 0.96, // When the camera is high above the car
+      end: 0.9999,
+      top: "62%",
+      left: "12%",
+      highlightedText: "Every Trip Logged",
+      title: "Built-in GPS",
+      subtitle: "Accurate location and speed data are added to every video so you know exactly where and how incidents happened.",
+    },
+
+    // Add as many sections as you need
+  ];
+
+  return (
+    <div
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        zIndex: 40, // Ensure it's above the canvas but below any top-level UI
+        pointerEvents: "none", // Allows clicking/scrolling "through" the overlay
+      }}
+    >
+      {textSections.map((section, index) => (
+        <TextSection
+          key={index}
+          scrollProgress={scrollProgress}
+          start={section.start}
+          end={section.end}
+          highlightedText={section.highlightedText}
+          title={section.title}
+          subtitle={section.subtitle}
+          disclaimer={section.disclaimer}
+          top={section.top}
+          left={section.left}
+          width={section.width}
+          padding={section.padding}
+          icon1={section.icon1}
+          icon2={section.icon2}
+          icon3={section.icon3}
+          icon4={section.icon4}
+        />
+      ))}
+    </div>
   );
 }
