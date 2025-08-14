@@ -12,9 +12,9 @@ import {
 const variantClasses: Record<string, string> = {
   // Hero Section
   "hero-section-heading":
-    "text-[32px] leading-[33.0px] md:text-[33.1px] md:leading-[39.7px] lg:text-[44.1px] lg:leading-[52.9px] lg2:text-[52px] lg2:leading-[61.9px] xl:text-[68.0px] xl:leading-[81.6px] 2xl:text-[86.1px] 2xl:leading-[103.3px]",
+    "text-[26.5px] leading-[33.0px] md:text-[33.1px] md:leading-[39.7px] lg:text-[44.1px] lg:leading-[52.9px] lg2:text-[52px] lg2:leading-[61.9px] xl:text-[68.0px] xl:leading-[81.6px] 2xl:text-[86.1px] 2xl:leading-[103.3px]",
   "hero-body":
-    "text-[14px] leading-auto md:text-[13.6px] md:leading-auto lg:text-[18.1px] lg:leading-auto lg2:text-[21.3px] lg2:leading-auto xl:text-[28.0px] xl:leading-auto 2xl:text-[35.4px] 2xl:leading-auto",
+    "text-[17px] leading-auto md:text-[13.6px] md:leading-auto lg:text-[18.1px] lg:leading-auto lg2:text-[21.3px] lg2:leading-auto xl:text-[28.0px] xl:leading-auto 2xl:text-[35.4px] 2xl:leading-auto",
   "button":
     "text-[14.6px] leading-auto md:text-[17.5px] md:leading-auto lg:text-[23.3px] lg:leading-auto lg2:text-[27.3px] lg2:leading-auto xl:text-[36.0px] xl:leading-auto 2xl:text-[45.6px] 2xl:leading-auto",
 
