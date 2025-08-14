@@ -13,32 +13,15 @@ useGLTF.preload("/models/VREC_H120SC.glb");
 useTexture.preload("/modelImages/CommonModelImages/aiNight.png");
 
 const animationData = [
-  {
-    time: 0.0,
-    position: [0.0012, 1.2215, 0.4],
-    quaternion: [0.0, 0.0, 0.0, 1.0],
-    fov: 4,
-  },
-
-  {
-    time: 0.0417,
-    position: [-0.1, 1.22, 0.45],
-    quaternion: [0.0, -0.43, -0, 0.9276399],
-    fov: 20,
-  }, // LEFT lens explode
-//   {
-//     time: 0.0417,
-//     position: [-0.07, 1.223, 0.3812],
-//     quaternion: [0.0, -0.7, 0, 0.6781],
-//     fov: 20,
-//   }, // DC IN
-
-  {
-    time: 0.122,
-    position: [-0.05, 1.22, 0.29],
-    quaternion: [-0.06, -0.90010577, 0.00000004, 0.3567151],
-    fov: 20,
-  }, // right HDR
+    { time: 0.0, position: [0.0011, 1.2214, 0.38], quaternion: [0.0, 0.0, 0.0, 1.0], fov: 20 },
+    { time: 0.0, position: [0.0, 1.2212, 0.40], quaternion: [0.0, 0.0, 0.0, 1.0], fov: 30 },
+  
+    // { time: 0.0, position: [0.0081, 1.2133, 0.4968], quaternion: [0.0, 0.0, 0.0, 1.0], fov: 20 },
+    { time: 0.041, position: [-0.09, 1.213, 0.48], quaternion: [0.02902204, -0.34, -0, 0.9276399], fov: 30 },
+    // { time: 0.0417, position: [-0.1, 1.213, 0.48], quaternion: [0.02902204, -0.4, -0.0781377, 0.9276399], fov: 20 },
+    { time: 0.1, position: [-0.1, 1.216, 0.32], quaternion: [-0.0, -0.83, 0.0000004, 0.61231], fov: 30 },
+    // { time: 0.122, position: [-0.08, 1.216, 0.275], quaternion: [-0.0, -0.90010577, 0.00000004, 0.43567151], fov: 20 },
+    { time: 0.1667, position: [-0.001, 1.2099, 0.292], quaternion: [0, 1.0, 0.0, 0.0], fov: 40 },
 
 //   {
 //     time: 0.2083,
@@ -51,13 +34,13 @@ const animationData = [
     time: 0.2083,
     position: [-0.002, 1.217, 0.25],
     quaternion: [0.0, 1.0, 0.0, 0.0],
-    fov: 20,
+    fov: 40,
   }, // behind
   {
     time: 0.2083,
     position: [-0.002, 1.217, 0.025],
     quaternion: [0.0, 1.0, 0.0, 0.0],
-    fov: 20,
+    fov: 40,
   }, // behind
   // {
   //   time: 0.205,
@@ -65,7 +48,7 @@ const animationData = [
   //   quaternion: [0.0, 0.9, -0.019, 0.44],
   //   fov: 8,
   // }, // left
-  { time: 0.25, position: [-0.00, 1.1809, -2.2], quaternion: [0.00000002, 0.99999607, 0.00280268, 0.00000016], fov: 30 },
+  { time: 0.25, position: [-0.00, 1.1809, -2.2], quaternion: [0.00000002, 0.99999607, 0.00280268, 0.00000016], fov: 40 },
   { time: 0.3333, position: [-0.0093, 5.6768, 2.038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
   { time: 0.3333, position: [-0.0093, 5.6768, 2.038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
   { time: 0.3333, position: [-0.0093, 5.6768, -2.038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
@@ -649,50 +632,9 @@ function Blender2JSScene({
       )}
 
       {/* DEBUG: HTML overlay showing positions */}
-      <Html position={[0, 3, 0]}>
-        <div
-          style={{
-            background: "rgba(0,0,0,0.8)",
-            color: "white",
-            padding: "10px",
-            borderRadius: "5px",
-            fontSize: "12px",
-            whiteSpace: "pre-wrap",
-          }}
-        >
-          {`Camera: ${scrollProgress.toFixed(3)}
- DISPLAY World: ${
-   displayMountRef.current
-     ? displayMountRef.current
-         .getWorldPosition(new THREE.Vector3())
-         .toArray()
-         .map((v) => v.toFixed(3))
-         .join(", ")
-     : "N/A"
- }
- Plane World: ${
-   imagePlaneRef.current
-     ? imagePlaneRef.current
-         .getWorldPosition(new THREE.Vector3())
-         .toArray()
-         .map((v) => v.toFixed(3))
-         .join(", ")
-     : "N/A"
- }
- Dashcam World: ${
-   dashcamGroupRef.current
-     ? dashcamGroupRef.current
-         .getWorldPosition(new THREE.Vector3())
-         .toArray()
-         .map((v) => v.toFixed(3))
-         .join(", ")
-     : "N/A"
- }
-     LookAt Active: ${scrollProgress >= 0.0417 && scrollProgress <= 0.0833 ? "YES" : "NO"}`}
-        </div>
-      </Html>
+      
       {/* ✅ White platform under car model */}
-      {scrollProgress >= 0.703 && scrollProgress <= 0.8423 && (
+      {scrollProgress >= 0.74 && scrollProgress <= 0.82 && (
         <mesh
           geometry={backdropGeometry}
           rotation={[-Math.PI / 2, 0, Math.PI]} // match orientation
