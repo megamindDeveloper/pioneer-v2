@@ -111,13 +111,13 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
                 draggable={false}
               />
               {/* Before Image Text */}
-              {currentTab.beforeImageText && (
+              {/* {currentTab.beforeImageText && (
                 <div
                   className="absolute top-4 left-4 z-30 text-white text-sm md:text-base font-semibold bg-black/50 px-2 py-1 rounded"
                 >
                   {currentTab.beforeImageText}
                 </div>
-              )}
+              )} */}
             </motion.div>
 
             {/* After Image */}
@@ -129,14 +129,14 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
               draggable={false}
             />
             {/* After Image Text */}
-            {currentTab.afterImageText && (
+            {/* {currentTab.afterImageText && (
               <div
                 className="absolute top-4 right-4 z-30 text-white text-sm md:text-base  font-normal bg-black/50 px-2 py-1 rounded"
             
               >
                 {currentTab.afterImageText}
               </div>
-            )}
+            )} */}
 
             {/* Gradient Overlay */}
             <div className="absolute bottom-0 left-0 w-full h-[40%] bg-gradient-to-t from-black/70 via-black/40 to-transparent z-30 pointer-events-none" />

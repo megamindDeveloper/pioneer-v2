@@ -1,9 +1,6 @@
 "use client";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-
-
-
 import FadeLoader from "@/components/CommonComponents/Loader/page";
 import Footer from "@/components/CommonComponents/Footer/page";
 import DashcamShowcaseMobile from "@/components/HomePageComponent/DashcamShowcase/DashcamShowcaseMobile";
