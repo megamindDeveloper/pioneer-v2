@@ -59,7 +59,7 @@ function TextSection({
       opacity = 1;
     }
   }
-  const isSpecialSection = start === 0.4635 && end === 0.5301;
+  const isSpecialSection = start === 0.4679 && end === 0.5301;
   return (
     <div
       style={{
@@ -77,7 +77,7 @@ function TextSection({
         /* Special Layout with 3 icons */
         <div className="flex flex-col items-center px-6  text-white ">
           {/* Danger Icon */}
-          <div className="animate-fastpulse mb-23 mt-11">
+          <div className="animate-fastpulse mb-21 mt-14">
             <img src={icon4} alt="Warning Icon" className="w-[60px] h-[60px]" />
           </div>
 

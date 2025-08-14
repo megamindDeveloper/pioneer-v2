@@ -59,8 +59,10 @@ const page = () => {
         ]}
       />
       <ZenVue />
-      <ProductFeatureTable products={defaultProducts} priorityProductIndex={2} />
-      <EverythingNeedToKnow faqData={faqData.set3} />
+      <ProductFeatureTable
+      //  products={defaultProducts} 
+      priorityProductIndex={2} />
+      <EverythingNeedToKnow   collectionName="faq_detailed_specs_H320SC" />
       <div className='bg-black'>
 
       <DriveSmarter

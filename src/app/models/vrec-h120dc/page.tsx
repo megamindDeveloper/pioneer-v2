@@ -60,9 +60,12 @@ const page = () => {
       />
       <ZenVue />
       <section className="bg-black">
-        <ProductFeatureTable products={defaultProducts} priorityProductIndex={3} />
+        <ProductFeatureTable
+        //  products={defaultProducts}
+          priorityProductIndex={3} />
       </section>
-      <EverythingNeedToKnow faqData={faqData.set3} />
+      <EverythingNeedToKnow
+          collectionName="faq_detailed_specs_H120DC" />
       <DriveSmarter
         subText="Drive with confidence, capture every moment, & stay protected. Explore what the Z820DC brings to every drive."
         image="/homePageImages/productDetailsImage/h120scImages/0057 3 (3).png"

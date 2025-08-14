@@ -68,8 +68,10 @@ const page = () => {
         ]}
       />
       <ZenVue />
-      <ProductFeatureTable products={defaultProducts} priorityProductIndex={1} />
-      <EverythingNeedToKnow faqData={faqData.set2} />
+      <ProductFeatureTable
+      //  products={defaultProducts}
+        priorityProductIndex={1} />
+      <EverythingNeedToKnow    collectionName="faq_detailed_specs_H520DC" />
       <DriveSmarter
         subText="Drive with confidence, capture every moment, & stay protected. Explore what the H520DC brings to every drive."
            image="/productPageImages/driveSmarterImages/h520dc.webp"
