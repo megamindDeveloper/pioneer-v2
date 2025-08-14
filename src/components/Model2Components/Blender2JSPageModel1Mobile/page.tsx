@@ -8,7 +8,7 @@ import { SRGBColorSpace } from "three";
 import { Color } from "three";
 import { Typography } from "@/components/CommonComponents/Typography/page";
 import FadeLoader from "@/components/CommonComponents/Loader/page";
-import TextOverlay from "../TextOverlayModel2/page";
+import TextOverlayMobile from "../MobileTextOverlay/page";
 useGLTF.preload("/models/car.glb");
 useGLTF.preload("/models/VREC_H520DC.glb");
 useTexture.preload("/modelImages/CommonModelImages/aiNight.png");
@@ -1005,10 +1005,10 @@ export default function Blender2JSPageModel2() {
         </div>
       )}
       <div id="text-overlay-portal"></div>
-      {modelIsReady && <Timeline scrollProgress={scrollProgress} />}
+      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} />} */}
       {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}
       {modelIsReady && <FullscreenBlackOverlay scrollProgress={scrollProgress} />}
-      {modelIsReady && <TextOverlay scrollProgress={scrollProgress} />}
+      {modelIsReady && <TextOverlayMobile scrollProgress={scrollProgress} />}
       <Canvas
         camera={{ position: [0, 5, 15], fov: 20, near: 0.01, far: 1000 }}
         style={{ background: "#ffff", height: "100vh", position: "sticky", top: 0 }}

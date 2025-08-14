@@ -127,10 +127,16 @@ export default function ProductDetails() {
 
   return (
     <section className="relative min-h-screen py-12 md:px-4 text-white max-w-[90%] xl:max-w-[90%] md:mt-20  mx-auto">
-      <Typography variant="section-heading" className="!font-medium  text-center text-white  md:px-8">
+      <Typography
+        variant="section-heading"
+        className="!font-medium  text-center text-white  md:px-8"
+      >
         What Matters Most When You Drive?
       </Typography>
-      <Typography variant="section-body" className="text-[#ABABAB] lg:pt-[0.8em] xl:pt-0 text-center !font-normal mb-10">
+      <Typography
+        variant="section-body"
+        className="text-[#ABABAB] lg:pt-[0.8em] xl:pt-0 text-center !font-normal mb-10"
+      >
         Choose features for your drive
       </Typography>
 
@@ -152,7 +158,11 @@ export default function ProductDetails() {
                   {" "}
                   <Typography variant="slider-heading">{tab.label}</Typography>
                 </div>
-                <div className={`md:hidden block text-[12px] text-center font-bold ${activeTab === tab.id ? "text-white" : "text-[#ABABAB]/80"}`}>
+                <div
+                  className={`md:hidden block text-[12px] text-center font-bold ${
+                    activeTab === tab.id ? "text-white" : "text-[#ABABAB]/80"
+                  }`}
+                >
                   {tab.model}
                 </div>
 
@@ -167,7 +177,7 @@ export default function ProductDetails() {
                       className="text-sm text-[#ABABAB]/80 xl:mt-1 mt-2 hidden md:block"
                     >
                       {tab.model}
-                    </motion.div> 
+                    </motion.div>
                   )}
                 </AnimatePresence>
               </div>
@@ -228,23 +238,42 @@ export default function ProductDetails() {
       </div>
       <AnimatePresence>
         {isInView && (
-          <motion.a
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 100, opacity: 0 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="fixed bottom-8 left-1/2 md:w-auto px-auto  flex items-center gap-5 transform -translate-x-1/2 z-50 bg-[#262626] text-white font-medium pl-[24px] pr-4 py-[15px] rounded-full shadow-xl  transition-all text-[12px] md:text-base lg:text-[14px] xl:text-[17px]"
-           
+          <Link
+            href={currentContent.banner.buttonLink}
+            className="whitespace-nowrap w-fit"
           >
-            <Link  href={currentContent.banner.buttonLink} className="whitespace-nowrap">
-            
-            Explore the {tabs.find((t) => t.id === activeTab)?.model} Now{" "}
-            </Link>
-            <svg width="30" height="30" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="0.1875" y="0.317383" width="42.6269" height="42.4082" rx="21.2041" fill="#4F4C4C" />
-              <path d="M19.1875 26.7256L23.8145 21.5215L19.1875 16.3174" stroke="white" strokeWidth="4" strokeLinecap="round" />
-            </svg>
-          </motion.a>
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 100, opacity: 0 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="fixed bottom-8 left-1/2 md:w-auto px-auto  flex items-center gap-5 transform -translate-x-1/2 z-50 bg-[#262626] text-white font-medium pl-[24px] pr-4 py-[15px] rounded-full shadow-xl  transition-all text-[12px] md:text-base lg:text-[14px] xl:text-[17px]"
+            >
+              Explore the {tabs.find((t) => t.id === activeTab)?.model} Now{" "}
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 43 43"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  x="0.1875"
+                  y="0.317383"
+                  width="42.6269"
+                  height="42.4082"
+                  rx="21.2041"
+                  fill="#4F4C4C"
+                />
+                <path
+                  d="M19.1875 26.7256L23.8145 21.5215L19.1875 16.3174"
+                  stroke="white"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </motion.div>
+          </Link>
         )}
       </AnimatePresence>
     </section>

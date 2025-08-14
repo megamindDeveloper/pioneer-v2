@@ -12,7 +12,7 @@ import { useBreakpoint } from "@/app/hooks/useBreakPoints";
 const degToRad = (deg: number) => deg * (Math.PI / 180);
 
 function CameraModel({ onModelReady, onIntroComplete }: { onModelReady: () => void; onIntroComplete: () => void }) {
-  const { scene } = useGLTF("/models/VREC-Z820DC.glb");
+  const { scene } = useGLTF("/models/VREC-Z820DC-2.glb");
   const groupRef = useRef<THREE.Group>(null);
   const breakpoint = useBreakpoint();
   const hasPlayedRef = useRef<boolean>(false);
@@ -120,7 +120,13 @@ export default function CameraScene({ onModelReady }: { onModelReady: () => void
   
     function updateScrollLock() {
       const rect = section?.getBoundingClientRect();
-      const isVisible = rect && rect.top < window.innerHeight && rect.bottom > 0;
+      // Consider the section "visible" only if some part of its UPPER half is in the viewport.
+      // This means the top of the section is above the viewport bottom
+      // AND the midpoint of the section has not yet scrolled past the top of the viewport.
+      const isVisible =
+        !!rect &&
+        rect.top < window.innerHeight &&
+        rect.top + rect.height / 2 > 0;
   
       // Lock only if intro is not at least half complete
       if (isVisible && !introComplete && !halfComplete) {
