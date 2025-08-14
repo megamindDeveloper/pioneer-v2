@@ -71,7 +71,7 @@ function TextSection({ scrollProgress, start, end, title, subtitle, highlightedT
   </div>
 
   {/* Highlighted Text */}
-  <p className="text-sm  tracking-wide font-bold text-[#760000] mb-2">
+  <p className="text-sm  tracking-wide font-bold text-[#AD2239] mb-2">
     {highlightedText}
   </p>
 
@@ -105,7 +105,7 @@ function TextSection({ scrollProgress, start, end, title, subtitle, highlightedT
       ) : (
         /* Default Layout */
         <>
-          <p className="mt-4 text-sm text-center font-bold text-[#760000]">{highlightedText}</p>
+          <p className="mt-4 text-sm text-center font-bold text-[#AD2239]">{highlightedText}</p>
           <h2 className="text-[28px] text-center font-bold text-white">{title}</h2>
           <p className={`mt-4 text-sm ${padding} text-center text-[#7f7a7a]`}>{subtitle}</p>
           {disclaimer && (

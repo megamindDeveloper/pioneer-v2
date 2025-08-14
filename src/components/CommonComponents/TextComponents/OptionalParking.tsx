@@ -16,7 +16,7 @@ export default function OptionalParking({ highlightedText, heading, subheading, 
           <p className="text-[#AD2239]  max-w-[500px] text-[13  px] text-center font-bold  mb-2 sm:mb-4">{highlightedText}</p>
 
           {/* Heading */}
-          <h1 className="sm:text-3xl md:text-4xl lg2:text-5xl max-w-[500px] font-semibold leading-tight  sm:leading-[56px] text-white mb-4">
+          <h1 className="sm:text-3xl md:text-4xl lg2:text-[50px] max-w-[500px] font-semibold leading-tight  sm:leading-[56px] text-white mb-4">
             {heading}
             <span className="text-[#313131]">*</span>
           </h1>
