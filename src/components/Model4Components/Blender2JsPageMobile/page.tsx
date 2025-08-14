@@ -8,13 +8,14 @@ import { SRGBColorSpace } from "three";
 import { Color } from "three";
 import { Typography } from "@/components/CommonComponents/Typography/page";
 import FadeLoader from "@/components/CommonComponents/Loader/page";
+import Model4textOverlayMobile from "../MobileTextOverlayModel4/page";
 useGLTF.preload("/models/car.glb");
 useGLTF.preload("/models/VREC_H120SC.glb");
 useTexture.preload("/modelImages/CommonModelImages/aiNight.png");
 
 const animationData = [
     { time: 0.0, position: [0.0011, 1.2214, 0.38], quaternion: [0.0, 0.0, 0.0, 1.0], fov: 20 },
-    { time: 0.0, position: [0.0, 1.2212, 0.40], quaternion: [0.0, 0.0, 0.0, 1.0], fov: 30 },
+   
   
     // { time: 0.0, position: [0.0081, 1.2133, 0.4968], quaternion: [0.0, 0.0, 0.0, 1.0], fov: 20 },
     { time: 0.041, position: [-0.09, 1.213, 0.48], quaternion: [0.02902204, -0.34, -0, 0.9276399], fov: 30 },
@@ -82,10 +83,10 @@ function HeroTextFade({ scrollProgress }: { scrollProgress: number }) {
         transition: "transform 0.2s ease-out, opacity 0.2s ease-out",
       }}
     >
-    <Typography variant="hero-section-heading" className="!text-[40px] font-bold text-white text-center px-4 max-w-6xl">
+    <Typography variant="hero-section-heading" className=" font-bold text-white text-center px-4 max-w-6xl">
        Every Drive Backed by Proof
       </Typography>
-      <Typography variant="hero-body" className="!text-[16px] px-6 text-[#ABABAB] mt-2">The VREC‑H320SC combines real-time driver alerts with built-in G Sensor for emergency recording.</Typography>
+      <Typography variant="hero-body" className=" px-6 text-[#ABABAB] mt-2">The VREC‑H320SC combines real-time driver alerts with built-in G Sensor for emergency recording.</Typography>
       <button className="bg-[#262626] px-2 pl-4 py-2 rounded-full text-white mt-12 flex text-[16px] font-medium items-center mx-auto">
         Scroll to explore
         <img src="/icons/chevDownCircle.svg" width={24} height={24} alt="Arrow Down" className="ml-3" />
@@ -634,7 +635,7 @@ function Blender2JSScene({
       {/* DEBUG: HTML overlay showing positions */}
       
       {/* ✅ White platform under car model */}
-      {scrollProgress >= 0.74 && scrollProgress <= 0.82 && (
+      {scrollProgress >= 0.71 && scrollProgress <= 0.82 && (
         <mesh
           geometry={backdropGeometry}
           rotation={[-Math.PI / 2, 0, Math.PI]} // match orientation
@@ -716,10 +717,10 @@ function interpolateClipShape(from: string, to: string, t: number): string {
 }
 
 function getInterpolatedClip(scrollProgress: number): string {
-  const openStart = 0.58;
-  const openEnd = 0.62;
-  const closeStart = 0.64;
-  const closeEnd = 0.71;
+  const openStart = 0.71;
+  const openEnd = 0.75;
+  const closeStart = 0.76;
+  const closeEnd = 0.8;
 
   if (scrollProgress >= openStart && scrollProgress <= openEnd) {
     const t = (scrollProgress - openStart) / (openEnd - openStart);
@@ -979,16 +980,19 @@ export default function Blender2JSPageModel4() {
   }, [modelIsReady]);
 
   return (
-    <div id="blender2js-scroll-container-model4" ref={containerRef} style={{ height: "3500vh", width: "100%" }}>
+    <div id="blender2js-scroll-container-model4" ref={containerRef} style={{ height: "1500vh", width: "100%" }}>
       {!modelIsReady && (
         <div className="fixed inset-0 z-[9999] bg-black flex items-center justify-center">
           <FadeLoader isModelReady={false} />
         </div>
       )}
       {/* <div id="text-overlay-portal"></div> */}
-      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} />} */}
+      {modelIsReady && <Timeline scrollProgress={scrollProgress} />}
       {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}
       {modelIsReady && <FullscreenBlackOverlay scrollProgress={scrollProgress} />}
+            {modelIsReady && <Model4textOverlayMobile scrollProgress={scrollProgress} />}
+
+      {/* Model4textOverlayMobile */}
       <Canvas
         camera={{ position: [0, 5, 15], fov: 20, near: 0.01, far: 1000 }}
         style={{ background: "#ffff", height: "100vh", position: "sticky", top: 0 }}
