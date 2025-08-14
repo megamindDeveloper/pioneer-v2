@@ -477,7 +477,7 @@ function Blender2JSScene({
         }
       }
     });
-    if (scrollProgress > 0.5) {
+    if (scrollProgress > 0.4051) {
       setCarVisible(true);
     } else {
       setCarVisible(false);
@@ -684,7 +684,7 @@ function Blender2JSScene({
         </mesh>
       )}
 
-      {scrollProgress >= 0.703 && scrollProgress <= 0.8813 && (
+      {scrollProgress >= 0.66 && scrollProgress <= 0.8813 && (
         <mesh geometry={clipMaskGeometry} rotation={[-Math.PI / 2, 0, Math.PI / 1]} position={[0, 0.1, 0]}>
           <meshBasicMaterial color="#313131" toneMapped={false} />
         </mesh>
@@ -741,9 +741,9 @@ const openShape = "polygon(-15% 34%, 0 0, 100% 0, 115% 34%, 50% 44%)";
 const closedShape = "polygon(49.75% 0%, 49.75% 0%, 49.75% 0%, 49.75% 0%, 50.41% 66.01%)";
 
 function getInterpolatedClip(scrollProgress: number) {
-  const start = 0.703;
-  const mid = 0.792;
-  const end = 0.8813;
+  const start = 0.66;
+  const mid = 0.742;
+  const end = 0.7946  ;
 
   let blend;
   let shapeFrom, shapeTo;
@@ -1036,7 +1036,7 @@ export default function Blender2JSPageModel1() {
         </div>
       )}
       <div id="text-overlay-portal"></div>
-      {modelIsReady && <Timeline scrollProgress={scrollProgress} />}
+      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} />} */}
       {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}
       {modelIsReady && <Model1TextOverlay scrollProgress={scrollProgress} />}
       {modelIsReady && <FullscreenBlackOverlay scrollProgress={scrollProgress} />}
