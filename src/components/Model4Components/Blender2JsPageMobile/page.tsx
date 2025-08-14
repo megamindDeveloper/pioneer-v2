@@ -986,7 +986,7 @@ export default function Blender2JSPageModel4() {
         </div>
       )}
       {/* <div id="text-overlay-portal"></div> */}
-      {modelIsReady && <Timeline scrollProgress={scrollProgress} />}
+      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} />} */}
       {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}
       {modelIsReady && <FullscreenBlackOverlay scrollProgress={scrollProgress} />}
       <Canvas
