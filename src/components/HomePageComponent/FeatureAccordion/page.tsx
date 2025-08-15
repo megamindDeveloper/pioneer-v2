@@ -156,7 +156,7 @@ export default function FeatureAccordion() {
             {currentFeature?.id === "conditions" && (
               <div className="w-[100%] h-full flex  flex-row-reverse">
                 <div className="relative w-[100%] h-full overflow-hidden">
-                  <Image src={currentFeature?.image || ""} alt={currentFeature?.title || ""} fill className="object-cover md:!h-80 md:!w-80 xl:!w-[90%] xl:!h-[100%] md:my-auto md:ml-auto object-left" />
+                  <Image  src={currentFeature?.image || ""} alt={currentFeature?.title || ""} fill className="object-cover md:!h-80 md:!w-80 xl:!w-[90%] xl:!h-[100%] md:my-auto md:ml-auto object-left" />
                   <div className="absolute inset-0 bg-gradient-radial from-black/60 to-transparent z-10 pointer-events-none" />
                 </div>
               </div>
