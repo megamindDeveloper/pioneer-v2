@@ -87,9 +87,9 @@ function HeroTextFade({ scrollProgress }: { scrollProgress: number }) {
       }}
     >
       <Typography variant="hero-section-heading" className=" font-bold text-white text-center px-4 max-w-6xl">
-       Bilt to fix in,made to stand out
+      Built to fit in, made to stand out
       </Typography>
-      <Typography variant="hero-body" className="text-[32px] text-[#ABABAB] mt-2">Compact,discreet, and always ready to capture your drive in stunning 1.5k</Typography>
+      <p className="text-[16px] text-[#ABABAB]  mt-2"> Compact, discreet, and always ready to capture your drive in stunning 1.5K</p>
       <button className="bg-[#262626] px-2 pl-4 py-2 rounded-full text-white mt-12 flex text-[16px] font-medium items-center mx-auto">
         Scroll to explore
         <img src="/icons/chevDownCircle.svg" width={24} height={24} alt="Arrow Down" className="ml-3" />
