@@ -30,7 +30,7 @@ const DarkBanner: React.FC<DarkBannerProps> = ({
   imageClassName = "w-[100%]",
 }) => {
   return (
-    <section className="w-full relative flex items-end overflow-clip h-[430px] lg:h-[350px] lg2:h-[500px]">
+    <section className="w-full relative flex items-end overflow-clip h-[430px] lg:h-[350px] lg2:h-[600px]">
       <div
         className={`relative z-10 grid grid-cols-1 md:grid-cols-2 items-center w-full bg-black text-white rounded-xl py-8 lg2:py-12 xl:py-16 px-8 xl:px-16 gap-8
  lg2:h-[380px] h-[250px]  ${className}`}
@@ -98,7 +98,7 @@ const DarkBanner: React.FC<DarkBannerProps> = ({
         transition={{ duration: 0.4 }}
         className="absolute md:-bottom-14 top-0 flex justify-center  z-20 md:left-[50%] "
       >
-        <Image src={imageSrc} alt={imageAlt} className={`object-co h-full mx md:w-[100%] w-[100%]`} />
+        <Image src={imageSrc} alt={imageAlt} placeholder="blur" className={` h-full mx md:w-[100%] w-[100%]`} />
       </motion.div>
     </section>
   );

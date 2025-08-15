@@ -43,6 +43,7 @@ const contentMap = {
     },
     overlay: {
       image: "/homePageImages/productDetailsImage/z820dcImages/image3.webp",
+      mobileImage: "/homePageImages/productDetailsImage/z820dcImages/820.webp",
       title: `Blurry when \nspeeding?`,
       description: `Frustrated with blurry footage\nwhen it matters most?\nThis one records in true 4K, so\nnumber plates and road signs\nstay sharp, even when you're\ndriving fast.`,
     },
@@ -65,6 +66,7 @@ const contentMap = {
     overlay: {
       image: "/homePageImages/productDetailsImage/h520dcImages/image2.png",
       title: `Feel like you're not\n seeing enough?`,
+      mobileImage: "/homePageImages/productDetailsImage/z820dcImages/820.webp",
       description: `A wider field of vision paired with a \nlarge screen makes it easy to see\n  more of everydrive.`,
     },
     sideCard: {
@@ -87,6 +89,7 @@ const contentMap = {
       image: "/homePageImages/productDetailsImage/h320scImages/image2.png",
       title: `Dealing with\n sudden light\n changes while\n driving?`,
       description: `WDR automatically adjusts\n exposure in tunnels, shadows\n and bright sunlight.`,
+      mobileImage: "/homePageImages/productDetailsImage/z820dcImages/820.webp",
     },
     sideCard: {
       image: "/homePageImages/productDetailsImage/h320scImages/image3.png",
@@ -126,7 +129,7 @@ export default function ProductDetails() {
   const isInView = useInView(sectionRef, { margin: "-10px", once: false });
 
   return (
-    <section className="relative min-h-screen py-12 md:px-4 text-white max-w-[90%] xl:max-w-[90%] md:mt-20  mx-auto">
+    <section className="relative  min-h-screen py-12 md:px-4 text-white max-w-[90%] xl:max-w-[90%] md:mt-20  mx-auto">
       <Typography
         variant="section-heading"
         className="!font-medium  text-center text-white px-12 md:px-8"

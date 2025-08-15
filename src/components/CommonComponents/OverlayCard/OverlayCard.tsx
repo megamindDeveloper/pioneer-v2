@@ -8,6 +8,7 @@ interface OverlayCardProps {
   image: string;
   title: string;
   description: string;
+  mobileImage:string;
 }
 
 export const OverlayCard: React.FC<OverlayCardProps> = ({ image, title, description }) => {
@@ -20,8 +21,8 @@ export const OverlayCard: React.FC<OverlayCardProps> = ({ image, title, descript
       transition={{ duration: 0.4 }}
       className="relative overflow-hidden h-[300px] xl:h-[380px] rounded-xl bg-gray-900 shadow-2xl group cursor-pointer transition-transform"
     >
-      <div className="absolute inset-0">
-        <Image src={image} alt={title} fill className="object-cover transition-transform translate-x-16  md:translate-x-0" />
+      <div className="absolute inset-0 ">
+        <Image src={image} alt={title} fill className="object-cover transition-transform translate-x-8  md:translate-x-0" />
       </div>
 
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/0 z-10 w-[45%]" />
