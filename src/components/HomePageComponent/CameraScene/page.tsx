@@ -12,7 +12,7 @@ import { useBreakpoint } from "@/app/hooks/useBreakPoints";
 const degToRad = (deg: number) => deg * (Math.PI / 180);
 
 function CameraModel({ onModelReady, onIntroComplete }: { onModelReady: () => void; onIntroComplete: () => void }) {
-  const { scene } = useGLTF("/models/VREC-Z820DC-2.glb");
+  const { scene } = useGLTF("/models/VREC-Z820DC_LOW POLY.glb");
   const groupRef = useRef<THREE.Group>(null);
   const breakpoint = useBreakpoint();
   const hasPlayedRef = useRef<boolean>(false);
