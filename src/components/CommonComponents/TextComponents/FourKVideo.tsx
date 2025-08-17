@@ -15,7 +15,7 @@ export default function FourKVideo({ highlightedText, heading, subheading }: Fou
     </p>
 
     {/* Main Heading */}
-    <h2 className="text-2xl sm:text-3xl md:text-[60px] lg:text-[50px] font-semibold leading-tight mb-1">
+    <h2 className="text-2xl sm:text-3xl md:text-[60px] lg:text-[50px] font-medium leading-tight mb-2">
       {heading}
     </h2>
 

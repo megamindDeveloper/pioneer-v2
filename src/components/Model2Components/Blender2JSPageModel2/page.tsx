@@ -107,7 +107,7 @@ const animationData = [
   },
   {
     time: 0.3333,
-    position: [-0.0093, 6.6768, 0.0038],
+    position: [-0.00, 6.6768, 0.0038],
     quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003],
     fov: 43.6028,
   },
@@ -153,14 +153,14 @@ function HeroTextFade({ scrollProgress }: { scrollProgress: number }) {
     >
       <Typography
         variant="hero-section-heading"
-        className="text-xl !md:text-[62px] font-medium text-white text-center px-4"
+        className="text-xl lg:text-[62px] lg2:text-[72px] xl:text-[92px] font-medium text-white text-center px-4"
       >
         When Detail Matters the Most
       </Typography>
-      <p className="text-[32px] xl:text-[40px] leading-tight text-[#ABABAB] mt-2 max-w-3xl">
+      <p className="text-xl lg:text-[36px] xl:text-[40px] leading-tight text-[#ABABAB] mt-2 max-w-3xl">
         VREC‑H520DC captures sharp 2K video, even in low light and on the move.
       </p>
-      <button className="bg-[#262626] px-2 pl-4 py-2 rounded-full text-white mt-8 flex text-[16px] xl:text-[24px] font-medium items-center mx-auto">
+      <button className="bg-[#262626] px-2 pl-4 py-2 rounded-full text-white mt-8 flex lg:text-xl xl:text-[24px] font-medium items-center mx-auto">
         Explore the features
         <img
           src="/icons/chevDownCircle.svg"

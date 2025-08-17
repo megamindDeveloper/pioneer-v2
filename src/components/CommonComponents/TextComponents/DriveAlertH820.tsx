@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-type DriveAlertH320Props = {
+type DriveAlertH820Props = {
   highlightedText?: string;
   heading: string;
   subheading: string;
@@ -13,7 +13,7 @@ type DriveAlertH320Props = {
   model?: string;
 };
 
-export default function DriveAlertH320({
+export default function DriveAlertH820({
   highlightedText,
   heading,
   subheading,
@@ -24,11 +24,11 @@ export default function DriveAlertH320({
   alert2Image,
   alert3Image,
   model,
-}: DriveAlertH320Props) {
+}: DriveAlertH820Props) {
   return (
     <section className="min-h-screen text-white flex flex-col justify-between px-4 sm:px-6 py-12 text-center">
       {/* Top Icon */}
-      <div className="pt-75 sm:pt-52 md:mb-[-3.5rem] mb-[-8.5rem]  animate-fastpulse">
+      <div className="pt-64 sm:pt-52 md:mb-[-3.5rem] mb-[-8.5rem]  animate-fastpulse">
         <Image
           src="/productPageImages/driveAlertIcons/dangerIcon.svg"
           alt="Warning Icon"
@@ -48,13 +48,13 @@ export default function DriveAlertH320({
           <h2 className="font-medium leading-tight sm:leading-none mb-2 text-3xl sm:text-4xl md:text-[42px]">
             {heading}
           </h2>
-          <p className="text-[#ABABAB] mx-auto leading-snug sm:leading-relaxed text-sm sm:text-base md:text-md max-w-lg">
+          <p className="text-[#ABABAB] mx-auto leading-snug sm:leading-relaxed text-sm sm:text-base md:text-md">
             {subheading}
           </p>
         </div>
 
         {/* Alert Features */}
-        <div className="flex flex-row sm:flex-row justify-center items-center gap-8 sm:gap-23 mt-6 sm:mt-0">
+        <div className="flex flex-row sm:flex-row justify-center items-center gap-8 sm:gap-23 mt-2 sm:mt-0">
           {/* Lane Departure Alert */}
           <div className="flex flex-col items-center space-y-2">
             <Image
@@ -84,18 +84,10 @@ export default function DriveAlertH320({
           </div>
 
           {/* Stop & Go Alert */}
-          {/* <div className="flex flex-col items-center space-y-2">
-            <Image
-              src={alert3Image}
-              alt="Stop and Go"
-              width={40}
-              height={40}
-              className="sm:w-[60px] sm:h-[60px]"
-            />
-            <p className="text-white font-medium text-[10px] sm:text-sm md:text-base">
-              {alert3}
-            </p>
-          </div> */}
+           <div className="flex flex-col items-center space-y-2">
+              <Image src={alert3Image} alt="Stop and Go" width={40} height={40} className="sm:w-[60px] sm:h-[60px]" />
+              <p className="text-white font-medium text-[10px] sm:text-sm md:text-base">{alert3}</p>
+            </div>
         </div>
       </div>
     </section>

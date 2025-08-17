@@ -1,8 +1,13 @@
 /// You can create a new file for this, e.g., TextOverlay.tsx
 
-import React from "react";
+import { cn } from "@/app/lib/utils";
+import React, { JSX } from "react";
 import * as THREE from "three";
-
+import ReactDOM from "react-dom";
+import DriveAlertH520 from "@/components/CommonComponents/TextComponents/DriveAlertH520";
+import DriveAlertH820 from "@/components/CommonComponents/TextComponents/DriveAlertH820";
+import OptionalParking from "@/components/CommonComponents/TextComponents/OptionalParking";
+import GpsLogger from "@/components/CommonComponents/TextComponents/GpsLogger";
 // Define the structure for each text "slide"
 type TextSectionProps = {
   scrollProgress: number;
@@ -50,10 +55,22 @@ function TextSection({
   if (scrollProgress >= start && scrollProgress <= end) {
     if (scrollProgress < fadeInEnd) {
       // Fade In
-      opacity = THREE.MathUtils.mapLinear(scrollProgress, start, fadeInEnd, 0, 1);
+      opacity = THREE.MathUtils.mapLinear(
+        scrollProgress,
+        start,
+        fadeInEnd,
+        0,
+        1
+      );
     } else if (scrollProgress > fadeOutStart) {
       // Fade Out
-      opacity = THREE.MathUtils.mapLinear(scrollProgress, fadeOutStart, end, 1, 0);
+      opacity = THREE.MathUtils.mapLinear(
+        scrollProgress,
+        fadeOutStart,
+        end,
+        1,
+        0
+      );
     } else {
       // Fully visible
       opacity = 1;
@@ -82,26 +99,48 @@ function TextSection({
           </div>
 
           {/* Highlighted Text */}
-          <p className="text-sm  tracking-wide font-bold text-[#AD2239] mb-2">{highlightedText}</p>
+          <p className="text-sm  tracking-wide font-bold text-[#AD2239] mb-2">
+            {highlightedText}
+          </p>
 
           {/* Title */}
-          <h2 className="text-[28px] leading-tight text-center font-bold text-white mb-3">{title}</h2>
+          <h2 className="text-[28px] leading-tight text-center font-bold text-white mb-3">
+            {title}
+          </h2>
 
           {/* Subtitle */}
-          <p className="text-sm max-w-[320px] text-center text-[#7f7a7a] mb-1">{subtitle}</p>
+          <p className="text-sm max-w-[320px] text-center text-[#7f7a7a] mb-1">
+            {subtitle}
+          </p>
 
           {/* Feature Icons Row */}
           <div className="flex gap-[50px]">
             <div className="flex flex-col items-center">
-              <img src={icon1} alt="Lane Departure" className="w-[40px] h-[40px] mb-2" />
-              <span className="text-[12px] text-center">Lane Departure Alert</span>
+              <img
+                src={icon1}
+                alt="Lane Departure"
+                className="w-[40px] h-[40px] mb-2"
+              />
+              <span className="text-[12px] text-center">
+                Lane Departure Alert
+              </span>
             </div>
             <div className="flex flex-col items-center">
-              <img src={icon2} alt="Forward Collision" className="w-[40px] h-[40px] mb-2" />
-              <span className="text-[12px] text-center">Forward Collision Alert</span>
+              <img
+                src={icon2}
+                alt="Forward Collision"
+                className="w-[40px] h-[40px] mb-2"
+              />
+              <span className="text-[12px] text-center">
+                Forward Collision Alert
+              </span>
             </div>
             <div className="flex flex-col items-center">
-              <img src={icon3} alt="Stop & Go" className="w-[40px] h-[40px] mb-2" />
+              <img
+                src={icon3}
+                alt="Stop & Go"
+                className="w-[40px] h-[40px] mb-2"
+              />
               <span className="text-[12px] text-center">Stop & Go Alert</span>
             </div>
           </div>
@@ -109,10 +148,20 @@ function TextSection({
       ) : (
         /* Default Layout */
         <>
-          <p className="mt-4 text-sm text-center font-bold text-[#AD2239]">{highlightedText}</p>
-          <h2 className="text-[26px] text-center font-bold text-white">{title}</h2>
-          <p className={`mt-4 text-sm ${padding} text-center text-[#7f7a7a]`}>{subtitle}</p>
-          {disclaimer && <p className="mt-4 text-sm text-center text-[#484848] absolute top-135">{disclaimer}</p>}
+          <p className="mt-4 text-sm text-center font-bold text-[#AD2239]">
+            {highlightedText}
+          </p>
+          <h2 className="text-[26px] text-center font-bold text-white">
+            {title}
+          </h2>
+          <p className={`mt-4 text-sm ${padding} text-center text-[#7f7a7a]`}>
+            {subtitle}
+          </p>
+          {disclaimer && (
+            <p className="mt-4 text-sm text-center text-[#484848] absolute top-135">
+              {disclaimer}
+            </p>
+          )}
         </>
       )}
     </div>
@@ -120,131 +169,175 @@ function TextSection({
 }
 
 // This is the main overlay component that holds all the sections
-export default function TextOverlay({ scrollProgress }: { scrollProgress: number }) {
+export default function TextOverlay({
+  scrollProgress,
+}: {
+  scrollProgress: number;
+}) {
   // Define your text content and scroll ranges here
+  const middle = "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2";
+  const bottom = "left-1/2 transform -translate-x-1/2 bottom-[60px]";
+  const top = "top-[60px] left-[50%] transform -translate-x-1/2";
   const textSections = [
     {
       start: 0.0485, // When the camera is looking at the dashcam
       end: 0.087,
-      top: "50%",
-      left: "0%",
-      highlightedText: "Sharp Footage in Low Light",
-      title: "AI Powered Night Vision",
-      subtitle:
-        "An 8MP sensor that captures sharp, detailed video with high sensitivity, preserving image quality even during night drives and low-light conditions.",
-      width: "",
-      padding: "px-3",
+      position: middle,
+      content: (
+        <TextDisplay
+          titleMinWidth="min-w-[20rem]"
+          className=""
+          superScript="Sharp Footage in Low Light"
+          title="AI Powered Night Vision"
+          descriptionWidth="max-w-[19rem]"
+          description="An 8MP sensor that captures sharp, detailed video with high sensitivity, preserving image quality even during night drives and low-light conditions."
+        />
+      ),
     },
     {
       start: 0.1168, // When the camera is high above the car
       end: 0.1509,
-      top: "53%",
-      left: "0%",
-      highlightedText: "Details Stay Intact",
-      title: "4K Video Resolution",
-      subtitle:
-        "The VREC-Z820DC records in true 4K, producing sharp video that makes plates, signs, and unexpected moments easy to identify when needed.",
-      width: "",
-      padding: "px-3",
+      position: middle,
+      content: (
+        <TextDisplay
+          titleMinWidth="min-w-[20rem]"
+          className=""
+          superScript="Details Stay Intact"
+          title="4K Video Resolution"
+          descriptionWidth="max-w-[20rem]"
+          description="The VREC-Z820DC records in true 4K, producing sharp video that makes plates, signs, and unexpected moments easy to identify when needed."
+        />
+      ),
     },
     {
       start: 0.2468, // When the camera is high above the car
       end: 0.2958,
-      top: "82%",
-      left: "",
-      highlightedText: "Clarity That Goes Further",
-      title: "High-Performance Imaging",
-      subtitle:
-        "The VREC-Z820DC uses a Sony STARVIS IMX415 sensor, an f/1.8 aperture, and a 7-layer glass lens. Together, they capture sharp, bright footage with accurate detail even in low or uneven lighting.",
-      width: "",
-      padding: "px-3",
+      position: bottom,
+      content: (
+        <TextDisplay
+          titleMinWidth="min-w-[20rem]"
+          className=""
+          superScript="Clarity That Goes Further"
+          title="High-Performance Imaging"
+          descriptionWidth="max-w-[20rem]"
+          description="The VREC-Z820DC uses a Sony STARVIS IMX415 sensor, an f/1.8 aperture, and a 7-layer glass lens. Together, they capture sharp, bright footage with accurate detail even in low or uneven lighting."
+        />
+      ),
     },
     {
       start: 0.3506, // When the camera is high above the car
       end: 0.3867,
-      top: "82%",
-      left: "",
-      highlightedText: "Sharp On-Screen Clarity",
-      title: '3.2" IPS Display',
-      subtitle: "The 8.1 cm built-in screen lets you review footage and adjust settings with sharp detail, all without taking up space on your dash.",
-      width: "",
-      padding: "px-3",
+      position: bottom,
+      content: (
+        <TextDisplay
+          titleMinWidth="min-w-[20rem]"
+          className=""
+          superScript="Sharp On-Screen Clarity"
+          title='3.2" IPS Display'
+          descriptionWidth="max-w-[20rem]"
+          description="The 8.1 cm built-in screen lets you review footage and adjust settings with sharp detail, all without taking up space on your dash."
+        />
+      ),
     },
     {
       start: 0.4387, // When the camera is high above the car
       end: 0.4678,
-      top: "82%",
-      left: "",
-      highlightedText: "Adapts to Any Light",
-      title: "WDR & HDR Recording",
-      subtitle:
-        "It adjusts exposure in real time, preserving visibility and fine detail, so footage stays clear in both bright and low-light conditions.",
-      width: "",
-      padding: "px-3",
+      position: bottom,
+      content: (
+        <TextDisplay
+          titleMinWidth="min-w-[20rem]"
+          className=""
+          superScript="Adapts to Any Light"
+          title="WDR & HDR Recording"
+          descriptionWidth="max-w-[20rem]"
+          description="It adjusts exposure in real time, preserving visibility and fine detail, so footage stays clear in both bright and low-light conditions."
+        />
+      ),
     },
     {
       start: 0.4679, // When the camera is high above the car
       end: 0.5301,
-      top: "62%",
-      left: "0%",
-      highlightedText: "Built to Notice Before You Do",
-      title: "Advanced Driving Alerts",
-      subtitle: "The VREC-Z820DC monitors lane position, vehicle distance, and traffic flow to deliver timely alerts and help you stay in control.",
-      icon1: "/productPageImages/driveAlertIcons/laneIcon.svg",
-      icon2: "/productPageImages/driveAlertIcons/stopnGoIcon.svg",
-      icon3: "/productPageImages/driveAlertIcons/collisionIcon.svg",
-      icon4: "/productPageImages/driveAlertIcons/dangerIcon.svg",
-      width: "",
-      padding:"px-3"
+      position: middle,
+      content: (
+        <DriveAlertH820
+          highlightedText="Built to Notice Before You Do "
+          heading="ADAS  Alerts"
+          subheading="The VREC-Z820DC monitors lane position, vehicle distance and traffic flow to deliver timely alerts and help you stay in control."
+          alert1Image="/productPageImages/driveAlertIcons/laneIcon.svg"
+          alert2Image="/productPageImages/driveAlertIcons/stopnGoIcon.svg"
+          alert3Image="/productPageImages/driveAlertIcons/collisionIcon.svg"
+          alert1="Lane Departure Alert"
+          alert2="Forward Collision Alert"
+          alert3="Stop & Go Alert"
+        />
+      ),
     },
 
     {
       start: 0.7036, // When the camera is high above the car
       end: 0.7652,
-      top: "16%",
-      width: "",
-      left: "",
-      padding:"px-3",
-      highlightedText: "Every Angle Matters",
-      title: "Dual Camera Set-up",
-      subtitle:
-        "The VREC-Z820DC pairs a 4K front and HD rear camera to record both directions at once, delivering clearer evidence and wider coverage.",
+      position: top,
+      content: (
+        <TextDisplay
+          titleMinWidth="min-w-[20rem]"
+          className=""
+          descriptionWidth="max-w-[20rem]"
+          superScript="Every Angle Matters"
+          title="Dual Camera Set-up"
+          description="The VREC-Z820DC pairs a 4K front and HD rear camera to record both directions at once, delivering clearer evidence and wider coverage."
+        />
+      ),
     },
     {
       start: 0.8692, // When the camera is high above the car
       end: 0.8909,
-      top: "20%",
-      left: "",
-      width:"",
-      padding:"pc-3",
-      highlightedText: "Comprehensive Coverage",
-      title: "137° Wide-Angle Lens",
-      subtitle: "Gives you a broader view of the road, capturing side lanes, nearby traffic, and details that narrower lenses might miss.",
+      position: top,
+      content: (
+        <TextDisplay
+          titleMinWidth="min-w-[20rem]"
+          className=""
+          superScript="Comprehensive Coverage"
+          title="137° Wide-Angle Lens"
+          descriptionWidth="max-w-[20rem]"
+          description="Gives you a broader view of the road, capturing side lanes, nearby traffic, and details that narrower lenses might miss"
+        />
+      ),
     },
     {
       start: 0.9067, // When the camera is high above the car
       end: 0.9599,
-      top: "22%",
-      left: "12%",
-      highlightedText: "Parked, Not Unwatched",
-      title: "Parking Mode",
-      subtitle: "The VREC-Z820DC stays active even when parked, recording any motion or impact to help keep your vehicle secure at all times.",
-      disclaimer: " This feature is available only with additional setup and components, sold separately.",
+      position:
+        "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[50%]",
+      content: (
+        <OptionalParking
+          style="flex flex-col items-center sm:items-start justify-center sm:justify-center max-w-[20rem]"
+          highlightedText="Stay Secure While Parked"
+          heading="Optional Parking Mode"
+          subheading="Parking mode requires additional installation of an external Hardwire Kit, which enables power supply to the Dash Camera directly from the vehicle battery."
+          description="*Disclaimer: Parking mode requires additional installation of an external Hardwire Kit, which enables power supply to the Dash Camera directly from the vehicle battery."
+        />
+      ),
     },
     {
       start: 0.96, // When the camera is high above the car
       end: 0.9999,
-      top: "62%",
-      left: "12%",
-      highlightedText: "Every Trip Logged",
-      title: "Built-in GPS",
-      subtitle: "Accurate location and speed data are added to every video so you know exactly where and how incidents happened.",
+      position:
+        "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[55%]",
+      content: (
+        <GpsLogger
+          style="flex flex-col items-center sm:items-start justify-center sm:justify-center max-w-[20rem]"
+          highlightedText="Every Trip Logged"
+          heading="GPS Logger"
+          subheading="Automatically record your driving routes with GPS logging, making it easy to revisit past trips whenever needed."
+          description="*Disclaimer: Route tracking is available only for footage downloaded to the user’s mobile device via the app. An active internet connection is required to display route details on the map."
+        />
+      ),
     },
 
     // Add as many sections as you need
   ];
 
-  return (
+  return ReactDOM.createPortal(
     <div
       style={{
         position: "fixed",
@@ -252,30 +345,126 @@ export default function TextOverlay({ scrollProgress }: { scrollProgress: number
         left: 0,
         width: "100%",
         height: "100%",
-        zIndex: 40, // Ensure it's above the canvas but below any top-level UI
-        pointerEvents: "none", // Allows clicking/scrolling "through" the overlay
+        zIndex: 100,
+        pointerEvents: "none",
       }}
     >
-      {textSections.map((section, index) => (
-        <TextSection
-          key={index}
+      {textSections.map((sec, i) => (
+        <OverlaySection
+          key={i}
           scrollProgress={scrollProgress}
-          start={section.start}
-          end={section.end}
-          highlightedText={section.highlightedText}
-          title={section.title}
-          subtitle={section.subtitle}
-          disclaimer={section.disclaimer}
-          top={section.top}
-          left={section.left}
-          width={section.width}
-          padding={section.padding}
-          icon1={section.icon1}
-          icon2={section.icon2}
-          icon3={section.icon3}
-          icon4={section.icon4}
+          start={sec.start}
+          end={sec.end}
+          width={sec.width}
+          content={sec.content}
+          position={sec.position}
         />
       ))}
+    </div>,
+    document.body
+  );
+}
+
+type SectionProps = {
+  scrollProgress: number;
+  start: number;
+  end: number;
+  top?: string;
+  left?: string;
+  width?: string;
+  content: JSX.Element;
+  position?: string; // This can be used to set the position of the section
+};
+
+function OverlaySection({
+  scrollProgress,
+  start,
+  end,
+  width = "auto",
+  content,
+  position,
+}: SectionProps) {
+  const fadeDuration = (end - start) * 0.2;
+  const fadeInEnd = start + fadeDuration;
+  const fadeOutStart = end - fadeDuration;
+
+  let opacity = 0;
+  if (scrollProgress >= start && scrollProgress <= end) {
+    if (scrollProgress < fadeInEnd) {
+      opacity = THREE.MathUtils.mapLinear(
+        scrollProgress,
+        start,
+        fadeInEnd,
+        0,
+        1
+      );
+    } else if (scrollProgress > fadeOutStart) {
+      opacity = THREE.MathUtils.mapLinear(
+        scrollProgress,
+        fadeOutStart,
+        end,
+        1,
+        0
+      );
+    } else {
+      opacity = 1;
+    }
+  }
+
+  const isSpecialSection = start === 0.4635 && end === 0.5301;
+
+  return (
+    <div
+      className={cn(position)}
+      style={{
+        position: "absolute",
+        width,
+        opacity,
+        transition: "opacity 0.3s ease-out",
+        pointerEvents: "none",
+      }}
+    >
+      {content}
+    </div>
+  );
+}
+
+function TextDisplay({
+  superScript,
+  title,
+  description,
+  descriptionWidth = "max-w-xl",
+  titleMinWidth = "",
+  className = "",
+}: {
+  superScript: string;
+  title: string;
+  description: string;
+  descriptionWidth?: string;
+  className?: string;
+  titleMinWidth?: string;
+}) {
+  return (
+    <div className={cn("text-center ", className)}>
+      <p className="text-[#AD2239] font-bold text-sm sm:text-base md:text-lg ">
+        {superScript}
+      </p>
+      <h2
+        className={cn(
+          "lg2:text-[56px] lg:text-[46px] leading-tight text-[32px]  lg2:min-w-max text-white text-center font-medium mt-2 ",
+          titleMinWidth
+        )}
+      >
+        {title}
+      </h2>
+      <p
+        className={cn(
+          "text-[#ABABAB]/80 text-center lg:text-lg mx-auto mt-2 leading-snug",
+          descriptionWidth
+        )}
+      >
+        {description}
+      </p>
     </div>
   );
 }

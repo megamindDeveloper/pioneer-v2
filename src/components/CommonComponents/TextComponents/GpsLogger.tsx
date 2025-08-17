@@ -3,34 +3,45 @@ type GpsLoggerProps = {
   heading: string;
   subheading: string;
   description: string;
+  style?: string;
 };
 
-export default function GpsLogger({ highlightedText, heading, subheading, description }: GpsLoggerProps) {
+export default function GpsLogger({
+  highlightedText,
+  heading,
+  subheading,
+  description,
+  style = '',
+}: GpsLoggerProps) {
   return (
     <>
-<main className="flex flex-col justify-between w-sm md:w-xl min-h-screen px-4 text-center pt-10 sm:pt-0">
-  {/* Top (Mobile: top center, Desktop: center) */}
-  <div className="flex flex-col justify-start sm:justify-center items-center flex-grow space-y-4 sm:space-y-6">
-    <p className="text-[#AD2239] font-bold tracking-wide text-sm sm:text-base md:text-lg">
-      {highlightedText}
-    </p>
-    <h1 className="text-[#FFFFFF] font-medium text-3xl md:text-[50px] lg2:text-[50px] ">
-      {heading}
-      <span className="text-[#313131]">*</span>
-    </h1>
-    <p className="text-[#ABABAB]/80 max-w-lg mx-auto text-sm sm:text-base md:text-lg">
-      {subheading}
-    </p>
-  </div>
+      <main
+        className={`min-h-screen  text-white relative ${style} text-center sm:text-left`}
+      >
+        {/* Top Content Block */}
+        <div className="w-full max-w-[400px] sm:mt-1 mt-[-28rem] text-center sm:max-w-[600px] sm:ml-[6%]">
+          {/* Red Label */}
+          <p className="text-[#AD2239] font-bold text-sm sm:text-base md:text-lg max-w-[500px]  text-center  mb-2 sm:mb-3">
+            {highlightedText}
+          </p>
 
-  {/* Bottom Section (Always bottom) */}
-  <div className="pb-8 sm:pb-12">
-    <p className="text-[#313131] max-w-4xl mx-auto text-sm sm:text-base md:text-md">
-      {description}
-    </p>
-  </div>
-</main>
+          {/* Heading */}
+          <h1 className="lg2:text-[56px] lg:text-[46px] leading-tight text-[32px]   text-white text-center font-medium mt-2  max-w-[300px] mx-auto left-full lg:max-w-[400px] lg2:max-w-[500px] mb-4">
+            {heading}
+            <span className="text-[#313131]">*</span>
+          </h1>
 
+          {/* Subheading */}
+          <p className="text-[#ABABAB]/80 w-[450px] ms-5 text-[14px] leading-snug max-w-[90%] sm:max-w-[500px] mx-auto sm:mx-0">
+            {subheading}
+          </p>
+        </div>
+
+        {/* Disclaimer (Bottom Center on all screens) */}
+        <p className="absolute bottom-6 sm:bottom-14 ms-6 text-[13px] text-[#313131] max-w-[320px] sm:max-w-[800px] text-center px-4">
+          {description}
+        </p>
+      </main>
     </>
   );
 }

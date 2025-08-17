@@ -64,7 +64,7 @@ export default function ZenVue() {
         {/* Left Content (Desktop) */}
         <div className=" space-y-6 text-center lg:text-left order-3 lg:order-none hidden lg:block">
           <p className="text-[16px] text-white/70 lg:mx-8">Control at Your Fingertips</p>
-          <h1 className="tracking-wider text-[180px] leading-none mt-[-14px] ms-5 pl-2 font-bold text-white">Zen</h1>
+          <h1 className="tracking-wider text-[160px] lg2:text-[180px] leading-none mt-[-14px] ms-5 pl-2 font-bold text-white">Zen</h1>
           <p className="text-white/80 text-[12px] max-w-[21rem] mx-auto lg:ml-9 mr-12 ">
             The Pioneer ZenVue Dash Camera App gives you instant access to your recordings,
             making it easy to view, download, and share footage on the go. With its intuitive,
@@ -85,7 +85,7 @@ export default function ZenVue() {
 
         {/* Right Title & Store Buttons (Desktop) */}
         <div className="hidden lg:flex flex-col items-end mt-[-3.5rem]  text-right space-y-4">
-          <h1 className="text-[180px] tracking-wider ml-5 mt-[5.3rem] leading-none font-bold text-white">Vue</h1>
+          <h1 className="text-[160px] lg2:text-[180px] tracking-wider ml-5 mt-[5.3rem] leading-none font-bold text-white">Vue</h1>
           <p className="text-sm text-white/70 mr-6">Available on</p>
           <div className="flex gap-3 space-x-2 mt-0 mr-6">
             <Image

@@ -10,6 +10,8 @@ import DynamicContent from "@/components/CommonComponents/TextComponents/Dynamic
 import FieldOfVision from "@/components/CommonComponents/TextComponents/FieldOfVision";
 import OptionalParking from "@/components/CommonComponents/TextComponents/OptionalParking";
 import GpsLogger from "@/components/CommonComponents/TextComponents/GpsLogger";
+import { cn } from "@/app/lib/utils";
+import DriveAlertH320 from "@/components/CommonComponents/TextComponents/DriveAlertH320";
 // Define the structure for each text "slide"
 type TextSectionProps = {
   scrollProgress: number;
@@ -41,14 +43,14 @@ type SectionProps = {
   left?: string;
   width?: string;
   content: JSX.Element;
+  position?: string;
 };
 // Section renderer with fade logic
 function OverlaySection({
   scrollProgress,
   start,
   end,
-  top = "50%",
-  left = "50%",
+  position,
   width = "auto",
   content,
 }: SectionProps) {
@@ -85,14 +87,12 @@ function OverlaySection({
     <div
       style={{
         position: "absolute",
-        top,
-        left,
         width,
-        transform: "translate(-50%, -50%)",
         opacity,
         transition: "opacity 0.3s ease-out",
         pointerEvents: "none",
       }}
+      className={position}
     >
       {content}
     </div>
@@ -106,29 +106,21 @@ export default function Model3textOverlayMobile({
   scrollProgress: number;
 }) {
   // Define your text content and scroll ranges here
+  const middle = "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2";
+  const bottom = "left-1/2 transform -translate-x-1/2 bottom-[60px]";
+  const top = "top-[60px] left-[50%] transform -translate-x-1/2";
   const textSections = [
     {
       start: 0.032, // When the camera is looking at the dashcam
       end: 0.06,
+      position: middle,
       content: (
-        <section className="relative min-h-screen text-white flex items-center justify-center px-12">
-          <div className="text-center min-w-xl  sm:min-w-3xl px-22 sm:mt-1 mt-16  space-y-3">
-            {/* Red Subheading */}
-            <p className="text-[#AD2239] font-bold text-[14px] sm:text-base md:text-lg mb-3">
-              Precision in Motion
-            </p>
-
-            {/* Main Heading */}
-            <h2 className="text-3xl sm:text-3xl md:text-[60px] lg:text-[50px] font-semibold leading-tight mb-1">
-              Full HD Recording
-            </h2>
-
-            {/* Description */}
-            <p className="text-[#ABABAB] text-[16px] sm:text-base md:text-md max-w-xs mx-auto  leading-relaxed">
-              The front camera records in crisp 1080p, giving you sharp visuals for everyday drives, traffic incidents or unexpected moments.
-            </p>
-          </div>
-        </section>
+        <TextDisplay
+          superScript="Precision in Motion"
+          title="Full HD Recording"
+          description="The front camera records in crisp 1080p, giving you sharp visuals
+              for everyday drives, traffic incidents or unexpected moments."
+        />
       ),
     },
     // {
@@ -147,45 +139,36 @@ export default function Model3textOverlayMobile({
     {
       start: 0.1237,
       end: 0.185,
-
-
-
+      position: bottom,
       content: (
-        <DynamicContent
-          style="flex-col items-center justify-end sm:items-start sm:justify-center"
-          highlightedText="Automatic Event Recording"
-          heading="Built-in G-Sensor"
-          subheading="Stay protected with built-in G-sensor technology that automatically locks important footage during emergencies."
+        <TextDisplay
+          superScript="Automatic Event Recording"
+          title="Built-in G-Sensor"
+          description="Stay protected with built-in G-sensor technology that automatically locks important footage during emergencies."
         />
       ),
     },
     {
       start: 0.2682, // When the camera is high above the car
       end: 0.3078,
-      
-      
-     content: (
-        <DynamicContent
-          style="flex-col items-center justify-end sm:items-start sm:justify-center"
-          highlightedText="Clear View at a Glance"
-          heading='3" IPS Display'
-          subheading="The 7.6 cm screen lets you review footage, adjust settings, and see live video clearly right from the dash without needing your phone."
+      position: bottom,
+      content: (
+        <TextDisplay
+          superScript="Clear View at a Glance"
+          title='3" IPS Display'
+          description="The 7.6 cm screen lets you review footage, adjust settings, and see live video clearly right from the dash without needing your phone."
         />
       ),
-      
     },
     {
-      start: 0.3410, // When the camera is high above the car
+      start: 0.341, // When the camera is high above the car
       end: 0.3599,
-      
+      position: bottom,
       content: (
-        
-        <DynamicContent
-          style="flex-col  items-center justify-end sm:items-start sm:justify-center"
-          highlightedText="Clarity in Changing Light"
-          heading="Wide Dynamic Range (WDR)"
-          subheading="From tunnels to tree cover, WDR balances bright and dark areas in real time so your footage stays detailed and easy to review."
-          Feat="WDR"
+        <TextDisplay
+          superScript="Clarity in Changing Light"
+          title="Wide Dynamic Range (WDR)"
+          description="From tunnels to tree cover, WDR balances bright and dark areas in real time so your footage stays detailed and easy to review."
         />
       ),
     },
@@ -212,12 +195,12 @@ export default function Model3textOverlayMobile({
     // },
 
     {
-      dynamic: true,
+      position: middle,
       content: (
-        <DriveAlertH520
-          highlightedText="ADAS Enabled"
-          heading="Smart Alerts for Safer Driving"
-          subheading="Get audio alerts for lane departure, forward collision and stop-and-go alert so you stay aware of your surroundings and respond faster to sudden changes on the road."
+        <DriveAlertH320
+          highlightedText="Timely Warnings When It Matters"
+          heading="ADAS Alerts"
+          subheading="Get audio cues for lane departure and forward collision so you can stay aware, avoid surprises and respond faster on busy roads."
           alert1Image="/productPageImages/driveAlertIcons/laneIcon.svg"
           alert2Image="/productPageImages/driveAlertIcons/stopnGoIcon.svg"
           alert3Image="/productPageImages/driveAlertIcons/collisionIcon.svg"
@@ -228,8 +211,7 @@ export default function Model3textOverlayMobile({
         />
       ),
       start: 0.3673, // When the camera is high above the car
-      end: 0.4000,
-
+      end: 0.4,
     },
     // {
     //   start: 0.6792, // When the camera is high above the car
@@ -255,26 +237,20 @@ export default function Model3textOverlayMobile({
     {
       start: 0.7113, // When the camera is high above the car
       end: 0.7911,
-      top: "20%",
+      position: top,
       content: (
-        <div className="">
-          <p className="text-[#AD2239] lg:text-xl font-bold text-center">
-            See More Than Just the Lane Ahead
-          </p>
-          <h2 className="lg2:text-[56px] text-[32px] text-white text-center font-medium">
-            139° Wide-Angle Lens
-          </h2>
-          <p className="text-pretty text-[#ABABAB] text-center min-w-xs max-w-xl mx-auto">
-            Captures multiple lanes and surrounding details, giving you a broader view of every situation on the road.
-          </p>
-        </div>
+        <TextDisplay
+          superScript="Wide-Angle Clarity"
+          title="139° Wide-Angle Lens"
+          description="The 139° lens captures multiple lanes and surrounding details, giving you a broader view of every situation on the road."
+        />
       ),
     },
     {
       start: 0.8419, // When the camera is high above the car
       end: 0.8626,
-      top: "50%",
-      left: "50%",
+      position:
+        "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[55%]",
       content: (
         <OptionalParking
           style="flex flex-col items-center sm:items-start justify-center sm:justify-center"
@@ -288,10 +264,11 @@ export default function Model3textOverlayMobile({
     {
       start: 0.9233, // When the camera is high above the car
       end: 0.9888,
-      top: "50%",
-      left: "50%",
+      position:
+        "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[55%]",
       content: (
         <GpsLogger
+          style="flex flex-col items-center sm:items-start justify-center sm:justify-center"
           highlightedText="Every Trip Logged"
           heading="GPS Logger"
           subheading="Automatically record your driving routes with GPS logging, making it easy to revisit past trips whenever needed."
@@ -321,13 +298,52 @@ export default function Model3textOverlayMobile({
           scrollProgress={scrollProgress}
           start={sec.start}
           end={sec.end}
-          top={sec.top}
-          left={sec.left}
           width={sec.width}
           content={sec.content}
+          position={sec.position}
         />
       ))}
     </div>,
     document.body
+  );
+}
+
+function TextDisplay({
+  superScript,
+  title,
+  description,
+  descriptionWidth = "max-w-[20rem]",
+  titleMinWidth = "min-w-[20rem]",
+  className = "",
+}: {
+  superScript: string;
+  title: string;
+  description: string;
+  descriptionWidth?: string;
+  className?: string;
+  titleMinWidth?: string;
+}) {
+  return (
+    <div className={cn("text-center ", className)}>
+      <p className="text-[#AD2239] font-bold text-sm sm:text-base md:text-lg ">
+        {superScript}
+      </p>
+      <h2
+        className={cn(
+          "lg2:text-[56px] lg:text-[46px] leading-tight text-[32px]  lg2:min-w-max text-white text-center font-medium mt-2 ",
+          titleMinWidth
+        )}
+      >
+        {title}
+      </h2>
+      <p
+        className={cn(
+          "text-[#ABABAB]/80 text-center lg:text-lg mx-auto mt-2 leading-snug",
+          descriptionWidth
+        )}
+      >
+        {description}
+      </p>
+    </div>
   );
 }

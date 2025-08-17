@@ -9,20 +9,20 @@ type OptionalParkingProps = {
 export default function OptionalParking({ highlightedText, heading, subheading, description, style }: OptionalParkingProps) {
   return (
     <>
-      <main className={`min-h-screen  text-white px-4 sm:px-12 relative ${style} text-center sm:text-left`}>
+      <main className={`min-h-screen  text-white relative ${style} text-center sm:text-left`}>
         {/* Top Content Block */}
         <div className="w-full max-w-[400px] sm:mt-1 mt-[-28rem] text-center sm:max-w-[600px] sm:ml-[6%]">
           {/* Red Label */}
-          <p className="text-[#AD2239]  max-w-[500px] text-[13  px] text-center font-bold  mb-2 sm:mb-4">{highlightedText}</p>
+          <p className="text-[#AD2239] font-bold text-sm sm:text-base md:text-lg max-w-[500px]  text-center  mb-2 sm:mb-3">{highlightedText}</p>
 
           {/* Heading */}
-          <h1 className="text-3xl md:text-4xl lg2:text-[50px] max-w-[500px] font-semibold leading-tight  sm:leading-[56px] text-white mb-4">
+          <h1 className="lg2:text-[56px] lg:text-[46px] leading-tight text-[32px]   text-white text-center font-medium mt-2  max-w-[300px] mx-auto left-full lg:max-w-[400px] lg2:max-w-[500px] mb-4">
             {heading}
             <span className="text-[#313131]">*</span>
           </h1>
 
           {/* Subheading */}
-          <p className="text-[#ABABAB] w-[450px] ms-5 text-[14px] leading-[22px] sm:leading-[24px] max-w-[90%] sm:max-w-[500px] mx-auto sm:mx-0">
+          <p className="text-[#ABABAB]/80 w-[450px] ms-5 text-[14px] leading-snug max-w-[90%] sm:max-w-[500px] mx-auto sm:mx-0">
             {subheading}
           </p>
         </div>
