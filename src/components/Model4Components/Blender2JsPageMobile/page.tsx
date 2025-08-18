@@ -83,10 +83,10 @@ function HeroTextFade({ scrollProgress }: { scrollProgress: number }) {
         transition: "transform 0.2s ease-out, opacity 0.2s ease-out",
       }}
     >
-    <Typography variant="hero-section-heading" className=" font-bold text-white text-center px-4 max-w-6xl">
-       Every Drive Backed by Proof
+      <Typography variant="hero-section-heading" className="font-bold text-white text-center px-4 max-w-2xl">
+      Built to fit in, made to stand out
       </Typography>
-      <Typography variant="hero-body" className=" px-6 text-[#ABABAB] mt-2">The VREC‑H320SC combines real-time driver alerts with built-in G Sensor for emergency recording.</Typography>
+      <p className="text-[16px] text-[#ABABAB] mt-2"> Compact, discreet, and always ready to capture your drive in stunning 1.5K</p>
       <button className="bg-[#262626] px-2 pl-4 py-2 rounded-full text-white mt-12 flex text-[16px] font-medium items-center mx-auto">
         Scroll to explore
         <img src="/icons/chevDownCircle.svg" width={24} height={24} alt="Arrow Down" className="ml-3" />
@@ -987,7 +987,7 @@ export default function Blender2JSPageModel4() {
         </div>
       )}
       {/* <div id="text-overlay-portal"></div> */}
-      {modelIsReady && <Timeline scrollProgress={scrollProgress} />}
+      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} />} */}
       {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}
       {modelIsReady && <FullscreenBlackOverlay scrollProgress={scrollProgress} />}
             {modelIsReady && <Model4textOverlayMobile scrollProgress={scrollProgress} />}

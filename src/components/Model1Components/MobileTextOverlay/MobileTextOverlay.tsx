@@ -208,6 +208,7 @@ export default function TextOverlay({
           description="The VREC-Z820DC records in true 4K, producing sharp video that makes plates, signs, and unexpected moments easy to identify when needed."
         />
       ),
+
     },
     {
       start: 0.2468, // When the camera is high above the car
@@ -304,7 +305,7 @@ export default function TextOverlay({
       ),
     },
     {
-      start: 0.9067, // When the camera is high above the car
+      start: 0.9, // When the camera is high above the car
       end: 0.9599,
       position:
         "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[50%]",

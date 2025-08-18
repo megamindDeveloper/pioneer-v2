@@ -49,72 +49,17 @@ const animationData = [
     fov: 20,
   },
   // { time: 0.122, position: [-0.08, 1.216, 0.275], quaternion: [-0.0, -0.90010577, 0.00000004, 0.43567151], fov: 20 },
-  {
-    time: 0.1667,
-    position: [-0.0, 1.21, 0.292],
-    quaternion: [0, 1.0, 0.0, 0.0],
-    fov: 20,
-  },
-  {
-    time: 0.1667,
-    position: [-0.0, 1.205, 0.26],
-    quaternion: [0, 1.0, 0, 0],
-    fov: 20,
-  },
-  {
-    time: 0.2083,
-    position: [-0.0, 1.2136, 0.1],
-    quaternion: [0.0, 1.0, -0.00000004, 0.00000004],
-    fov: 20,
-  },
-  {
-    time: 0.25,
-    position: [-0.0093, 1.2509, -2.2],
-    quaternion: [0.00000002, 0.99999607, 0.00280268, 0.00000016],
-    fov: 20,
-  },
-  {
-    time: 0.2917,
-    position: [-0.0093, 3.9288, -3.2975],
-    quaternion: [0.00000007, 0.9208445, 0.38993004, 0.00000008],
-    fov: 35,
-  },
-  {
-    time: 0.3333,
-    position: [-0.0093, 6.6768, 0.0038],
-    quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003],
-    fov: 40,
-  },
-  {
-    time: 0.3333,
-    position: [-0.0093, 6.6768, 0.0038],
-    quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003],
-    fov: 40,
-  },
-  {
-    time: 0.3333,
-    position: [-0.0093, 6.6768, 0.0038],
-    quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003],
-    fov: 40,
-  },
-  {
-    time: 0.375,
-    position: [-0.0093, 6.6768, 2.0115],
-    quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883],
-    fov: 20,
-  },
-  {
-    time: 0.375,
-    position: [-0.0092, 6.6768, -9],
-    quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883],
-    fov: 20,
-  },
-  {
-    time: 0.375,
-    position: [-0.0092, 6.6768, -9],
-    quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883],
-    fov: 20,
-  },
+  { time: 0.1667, position: [-0.0, 1.21, 0.292], quaternion: [0, 1.0, 0.0, 0.0], fov: 20 },
+  { time: 0.1667, position: [-0.001, 1.205, 0.26], quaternion: [0, 1.0, 0, 0], fov: 20 },
+  { time: 0.2083, position: [-0.001, 1.2136, 0.1], quaternion: [0.0, 1.0, -0.00000004, 0.00000004], fov: 20 },
+  { time: 0.25, position: [-0.0093, 1.2509, -2.2], quaternion: [0.00000002, 0.99999607, 0.00280268, 0.00000016], fov: 20 },
+  { time: 0.2917, position: [-0.0093, 3.9288, -3.2975], quaternion: [0.00000007, 0.9208445, 0.38993004, 0.00000008], fov: 35 },
+  { time: 0.3333, position: [-0.0093, 6.6768, 0.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
+  { time: 0.3333, position: [-0.0093, 6.6768, 0.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
+  { time: 0.3333, position: [-0.0093, 6.6768, 0.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
+  { time: 0.375, position: [-0.0093, 6.6768, 2.0115], quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883], fov: 20 },
+  { time: 0.375, position: [-0.0092, 6.6768, -9], quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883], fov: 20 },
+  { time: 0.375, position: [-0.0092, 6.6768, -9], quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883], fov: 20 },
   // { time: 0.375, position: [-0.0092, 6.6768, -9], quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883], fov: 20},
 ];
 
@@ -739,8 +684,8 @@ function Blender2JSScene({
     const imageFadeIn = 0.27;
     const imageMidpoint = 0.28;
     const imageFadeOut = 0.3;
-    const videoFadeIn = 0.3462;
-    const videoMidpoint = 0.36;
+    const videoFadeIn = 0.3208;
+    const videoMidpoint = 0.329;
     const videoFadeOut = 1;
 
     if (scrollProgress >= imageFadeIn && scrollProgress <= imageFadeOut) {
@@ -958,8 +903,10 @@ const closedShape =
 
 function getInterpolatedClip(scrollProgress: number) {
   const start = 0.66;
-  const mid = 0.742;
-  const end = 0.7946;
+
+  const mid = 0.7;
+  const end = 0.75  ;
+
 
   let blend;
   let shapeFrom, shapeTo;
@@ -1213,11 +1160,11 @@ export default function Blender2JSPageModel1() {
   const { active } = useProgress();
 
   // When all assets are loaded (useProgress active = false), mark ready
-  useEffect(() => {
-    if (!active) {
-      setModelIsReady(true);
-    }
-  }, [active]);
+  // useEffect(() => {
+  //   if (!active) {
+  //     setModelIsReady(true);
+  //   }
+  // }, [active]);
 
   // Prevent body scrolling while loading to reduce jank on mobile
   useEffect(() => {

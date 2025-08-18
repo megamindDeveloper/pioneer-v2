@@ -33,72 +33,18 @@ const animationData = [
     fov: 20,
   },
   // { time: 0.0417, position: [-0.1, 1.213, 0.48], quaternion: [0., -0.4, -0.0781377, 0.9276399], fov: 20 },
-  {
-    time: 0.122,
-    position: [-0.08, 1.22, 0.275],
-    quaternion: [0, -0.90010577, 0.00000004, 0.43567151],
-    fov: 20,
-  },
-  {
-    time: 0.1667,
-    position: [-0.0, 1.216, 0.3],
-    quaternion: [0, 1.0, 0.0, 0.0],
-    fov: 30,
-  },
-  {
-    time: 0.1667,
-    position: [-0.0, 1.216, 0.3],
-    quaternion: [0, 1.0, 0.0, 0.0],
-    fov: 35,
-  },
-  {
-    time: 0.2083,
-    position: [-0.0094, 1.2136, 0.0113],
-    quaternion: [0.0, 1.0, -0.00000004, 0.00000004],
-    fov: 26.9915,
-  },
-  {
-    time: 0.25,
-    position: [-0.0093, 1.1809, -2.2],
-    quaternion: [0.00000002, 0.99999607, 0.00280268, 0.00000016],
-    fov: 30,
-  },
-  {
-    time: 0.2917,
-    position: [-0.0093, 3.9288, -3.2975],
-    quaternion: [0.00000007, 0.9208445, 0.38993004, 0.00000008],
-    fov: 26.9915,
-  },
-  {
-    time: 0.3333,
-    position: [-0.0093, 6.6768, 0.0038],
-    quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003],
-    fov: 43.6028,
-  },
-  {
-    time: 0.3333,
-    position: [-0.0093, 6.6768, 0.0038],
-    quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003],
-    fov: 43.6028,
-  },
-  {
-    time: 0.3333,
-    position: [-0.0093, 6.6768, 0.0038],
-    quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003],
-    fov: 43.6028,
-  },
-  {
-    time: 0.375,
-    position: [-0.0093, 6.6768, 3.1115],
-    quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883],
-    fov: 28.6028,
-  },
-  {
-    time: 0.375,
-    position: [-0.0093, 6.6768, -9],
-    quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883],
-    fov: 28.6028,
-  },
+
+  { time: 0.122, position: [-0.08, 1.22, 0.275], quaternion: [0, -0.90010577, 0.00000004, 0.43567151], fov: 20 },
+  { time: 0.1667, position: [-0.0, 1.216, 0.3], quaternion: [0, 1.0, 0.0, 0.0], fov: 30 },
+  { time: 0.1667, position: [-0.0, 1.216, 0.3], quaternion: [0, 1.0, 0.0, 0.0], fov: 35 },
+  { time: 0.2083, position: [-0.0094, 1.2136, 0.0113], quaternion: [0.0, 1.0, -0.00000004, 0.00000004], fov: 30 },
+  { time: 0.25, position: [-0.0093, 1.1809, -2.2], quaternion: [0.00000002, 0.99999607, 0.00280268, 0.00000016], fov: 30 },
+  { time: 0.2917, position: [-0.0093, 3.9288, -3.2975], quaternion: [0.00000007, 0.9208445, 0.38993004, 0.00000008], fov: 26.9915 },
+  { time: 0.3333, position: [-0.0093, 6.6768, 0.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
+  { time: 0.3333, position: [-0.0093, 6.6768, 0.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
+  { time: 0.3333, position: [-0.0093, 6.6768, 0.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
+  { time: 0.375, position: [-0.0093, 6.6768, 3.1115], quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883], fov: 28.6028 },
+  { time: 0.375, position: [-0.0093, 6.6768, -9], quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883], fov: 28.6028 },
 ];
 
 function HeroTextFade({ scrollProgress }: { scrollProgress: number }) {
@@ -761,7 +707,7 @@ function Blender2JSScene({
     windshieldObjects.current.forEach((mesh) => {
       const mat = mesh.material as THREE.MeshStandardMaterial;
       mat.transparent = true;
-      mat.opacity = THREE.MathUtils.lerp(0, 0.5, blend);
+      mat.opacity = THREE.MathUtils.lerp(0, 1, blend);
       mat.needsUpdate = true;
     });
   });

@@ -1234,9 +1234,7 @@ export default function Blender2JSPageModel1Mobile() {
           },
         });
         gsap.ticker.add(() => {
-          setScrollProgress((prev) =>
-            THREE.MathUtils.lerp(prev, targetProgress, 0.07)
-          );
+          setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress, 0.03));
         });
 
         cleanup = () => {

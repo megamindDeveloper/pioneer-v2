@@ -16,7 +16,7 @@ function CameraModel({ onModelReady, onIntroComplete }: { onModelReady: () => vo
   const groupRef = useRef<THREE.Group>(null);
   const breakpoint = useBreakpoint();
   const hasPlayedRef = useRef<boolean>(false);
-
+  const [visible, setVisible] = useState(false);
   const getModelTransformByBreakpoint = (bp: string) => {
     switch (bp) {
       case "sm":
@@ -39,6 +39,7 @@ function CameraModel({ onModelReady, onIntroComplete }: { onModelReady: () => vo
   useEffect(() => {
     if (!scene || !groupRef.current) return;
     if (hasPlayedRef.current) return; // prevent re-run after first play
+    setVisible(true);
 
     groupRef.current.visible = true;
 
@@ -97,7 +98,7 @@ function CameraModel({ onModelReady, onIntroComplete }: { onModelReady: () => vo
   }, [scene, onModelReady, onIntroComplete, breakpoint]);
 
   return (
-    <group ref={groupRef} visible={false}>
+    <group ref={groupRef} visible={visible}>
       <primitive object={scene} />
     </group>
   );

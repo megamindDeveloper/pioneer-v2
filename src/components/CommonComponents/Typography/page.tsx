@@ -12,7 +12,7 @@ import {
 const variantClasses: Record<string, string> = {
   // Hero Section
   "hero-section-heading":
-    "text-[26.5px] leading-[33.0px] md:text-[33.1px] md:leading-[39.7px] lg:text-[44.1px] lg:leading-[52.9px] lg2:text-[52px] lg2:leading-[61.9px] xl:text-[68.0px] xl:leading-[81.6px] 2xl:text-[86.1px] 2xl:leading-[103.3px]",
+    "text-[28px] leading-[33.0px] md:text-[33.1px] md:leading-[39.7px] lg:text-[44.1px] lg:leading-[52.9px] lg2:text-[52px] lg2:leading-[61.9px] xl:text-[68.0px] xl:leading-[81.6px] 2xl:text-[86.1px] 2xl:leading-[103.3px]",
   "hero-body":
     "text-[17px] leading-auto md:text-[13.6px] md:leading-auto lg:text-[18.1px] lg:leading-auto lg2:text-[21.3px] lg2:leading-auto xl:text-[28.0px] xl:leading-auto 2xl:text-[35.4px] 2xl:leading-auto",
   "button":
@@ -26,7 +26,7 @@ const variantClasses: Record<string, string> = {
     "section-card-heading":
     "text-[20px] lg2:text-3xl !font-medium xl:text-4xl mb-3 whitespace-pre-line",
     "section-card-body":
-    "text-[12px] leading-auto md:text-[13.6px] md:leading-auto lg:text-[14px] lg:leading-auto lg2:text-[16px] lg2:leading-auto xl:text-[16.0px] xl:leading-auto 2xl:text-[35.4px] 2xl:leading-auto",
+    "text-[14px] leading-auto md:text-[13.6px] md:leading-auto lg:text-[14px] lg:leading-auto lg2:text-[16px] lg2:leading-auto xl:text-[16.0px] xl:leading-auto 2xl:text-[35.4px] 2xl:leading-auto",
 
   // Grid View
   "grid-view-heading":
@@ -54,7 +54,7 @@ const variantClasses: Record<string, string> = {
     "comparison-grid-side-subheading":
     "text-[14px]  leading-[10.0px] md:text-[10.0px] md:leading-[12.0px] lg:text-[13.3px] lg:leading-[16.0px] lg2:text-[15.6px] lg2:leading-[18.7px] xl:text-[20px] xl:leading-[24.6px] 2xl:text-[26.0px] 2xl:leading-[31.2px]",
   "comparison-grid-body":
-    "text-[10px] leading-auto md:text-[9.7px] md:leading-auto lg:text-[13.0px] lg:leading-auto lg2:text-[15.2px] lg2:leading-auto xl:text-[16px] xl:leading-auto 2xl:text-[25.3px] 2xl:leading-auto",
+    "text-[12px] leading-auto md:text-[12px] md:leading-auto lg:text-[13.0px] lg:leading-auto lg2:text-[15.2px] lg2:leading-auto xl:text-[16px] xl:leading-auto 2xl:text-[25.3px] 2xl:leading-auto",
 
   // Footer
   "footer-navigation":

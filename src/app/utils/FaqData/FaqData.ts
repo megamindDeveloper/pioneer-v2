@@ -40,17 +40,17 @@ export const faqData = {
 
   set2: [
     {
-      question: "What resolution does the VREC-H120SC record in?",
+      question: "What resolution does the VREC-H520SC record in?",
       answer: "It records in high-resolution 1.5K (1296P), capturing clear and detailed footage of your drive.",
     },
     {
-      question: "Is the VREC-H120SC easy to install?",
+      question: "Is the VREC-H520SC easy to install?",
       answer: "Yes, its compact design and simple adhesive mount make installation quick and unobtrusive—ideal for first-time dashcam users.",
     },
     {
       question: "Does it support Parking Mode?",
       answer:
-        "Yes, the VREC-H120SC includes Parking Mode for motion and impact detection while parked.Disclaimer: This feature is available only with additional setup and components.",
+        "Yes, the VREC-H520SC includes Parking Mode for motion andimpact detection while parked.",
       disclaimer: "This feature is available only with additional setup and components.",
     },
     {
@@ -63,7 +63,7 @@ export const faqData = {
     },
     {
       question: "Is this a single or dual camera setup?",
-      answer: "The VREC-H120SC is a single front-facing camera, optimized for simplicity, clarity, and compact installation.",
+      answer: "The VREC-H520SC is a single front-facing camera, optimized for simplicity, clarity, and compact installation.",
     },
   ],
 
