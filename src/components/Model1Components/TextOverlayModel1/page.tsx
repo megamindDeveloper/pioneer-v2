@@ -227,10 +227,6 @@
 //   );
 // }
 
-
-
-
-
 "use client";
 
 import React from "react";
@@ -244,6 +240,7 @@ import SharpVision from "@/components/CommonComponents/TextComponents/SharpVisio
 import DynamicContent from "@/components/CommonComponents/TextComponents/DynamicContent";
 import FieldOfVision from "@/components/CommonComponents/TextComponents/FieldOfVision";
 import FourKVideo from "@/components/CommonComponents/TextComponents/FourKVideo";
+import { cn } from "@/app/lib/utils";
 
 // Props for each section
 type SectionProps = {
@@ -254,7 +251,7 @@ type SectionProps = {
   left?: string;
   width?: string;
   content: JSX.Element;
-  
+  position?: string;
 };
 
 // Section renderer with fade logic
@@ -262,9 +259,8 @@ function OverlaySection({
   scrollProgress,
   start,
   end,
-  top = "50%",
-  left = "50%",
   width = "auto",
+  position,
   content,
 }: SectionProps) {
   const fadeDuration = (end - start) * 0.2;
@@ -274,25 +270,34 @@ function OverlaySection({
   let opacity = 0;
   if (scrollProgress >= start && scrollProgress <= end) {
     if (scrollProgress < fadeInEnd) {
-      opacity = THREE.MathUtils.mapLinear(scrollProgress, start, fadeInEnd, 0, 1);
+      opacity = THREE.MathUtils.mapLinear(
+        scrollProgress,
+        start,
+        fadeInEnd,
+        0,
+        1
+      );
     } else if (scrollProgress > fadeOutStart) {
-      opacity = THREE.MathUtils.mapLinear(scrollProgress, fadeOutStart, end, 1, 0);
+      opacity = THREE.MathUtils.mapLinear(
+        scrollProgress,
+        fadeOutStart,
+        end,
+        1,
+        0
+      );
     } else {
       opacity = 1;
     }
   }
 
-    const isSpecialSection = start === 0.4635 && end === 0.5301;
-
+  const isSpecialSection = start === 0.4635 && end === 0.5301;
 
   return (
     <div
+      className={cn(position)}
       style={{
         position: "absolute",
-        top,
-        left,
         width,
-        transform: "translate(-50%, -50%)",
         opacity,
         transition: "opacity 0.3s ease-out",
         pointerEvents: "none",
@@ -304,87 +309,83 @@ function OverlaySection({
 }
 
 // Main overlay component
-export default function Model1TextOverlay({ scrollProgress }: { scrollProgress: number }) {
-
-
-
+export default function Model1TextOverlay({
+  scrollProgress,
+}: {
+  scrollProgress: number;
+}) {
+  const middle = "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2";
   const sections = [
     {
       start: 0.042,
       end: 0.063,
+      position: middle,
       content: (
-        <FourKVideo
-          highlightedText="Sharp Footage in Low Light"
-          heading="AI Powered Night Vision"
-          subheading="An 8MP sensor that captures sharp, detailed video with high sensitivity, preserving image quality even during night drives and low-light conditions."
+        <TextDisplay
+          superScript="Sharp Footage in Low Light"
+          title="AI Powered Night Vision"
+          description="An 8MP sensor that captures sharp, detailed video with high sensitivity, preserving image quality even during night drives and low-light conditions."
         />
       ),
     },
     {
       start: 0.079,
       end: 0.107,
+      position: middle,
       content: (
-        <FourKVideo
-          highlightedText="Details Stay Intact"
-          heading="4K Video Resolution"
-          subheading="The VREC-Z820DC records in true 4K, producing sharp video that makes plates, signs and unexpected moments easy to identify when needed."
+        <TextDisplay
+          superScript="Details Stay Intact"
+          title="4K Video Resolution"
+          description="The VREC-Z820DC records in true 4K, producing sharp video that makes plates, signs and unexpected moments easy to identify when needed."
         />
       ),
     },
     {
       start: 0.1956,
       end: 0.2286,
-      top: "30%",
-      left: "70%",
+      position: "right-[80px] bottom-[100px] ",
       content: (
-        <SharpVision
-          highlightedText="Clarity That Goes Further"
-          heading="High-Performance Imaging"
-          subheading="The VREC-Z820DC uses a Sony STARVIS IMX415 sensor, an f/1.8 aperture and a 7-layer glass lens. Together, they capture sharp, bright footage with accurate detail even in low or uneven lighting."
-
+        <TextDisplay
+          superScript="Clarity That Goes Further"
+          title="High-Performance Imaging"
+          description="The VREC-Z820DC uses a Sony STARVIS IMX415 sensor, an f/1.8 aperture and a 7-layer glass lens. Together, they capture sharp, bright footage with accurate detail even in low or uneven lighting."
         />
       ),
     },
     {
-      start: 0.2680,
-      end: 0.2769,
-      top: "50%",
-      left: "20%",
+      start: 0.268,
+      end: 0.2857,
+      position:
+        "top-1/2 left-[20px] lg:left-[40px] lg2:left-[100px] xl:left-[128px] transform  -translate-y-1/2",
       content: (
-        <DynamicContent
-          style="flex-col items-center justify-end sm:items-start sm:justify-center"
-          highlightedText="Sharp On-Screen Clarity"
-          heading='3.2" IPS Display'
-          subheading="The 8.1 cm built-in screen lets you review footage and adjust settings with sharp detail, all without taking up space on your dash."
+        <TextDisplay
+          superScript="Sharp On-Screen Clarity"
+          title='3.2" IPS Display'
+          description="The 8.1 cm built-in screen lets you review footage and adjust settings with sharp detail, all without taking up space on your dash."
         />
       ),
     },
     {
       start: 0.3162,
       end: 0.34,
-      top: "80%",
-      left: "50%",
+      position: "bottom-[70px] left-1/2 transform -translate-x-1/2 ",
       content: (
-        <>
-          <p className="text-[#AD2239] text-xl font-bold text-center">Adapts to Any Light</p>
-          <h2 className="lg:text-[32px] lg2:text-[50px] text-white text-center font-medium">
-            WDR & HDR Recording
-          </h2>
-          <p className="text-pretty text-[#ABABAB] text-center max-w-xl mx-auto">
-            It adjusts exposure in real time, preserving visibility and fine detail, so footage
-            stays clear in both bright and low-light conditions.
-          </p>
-        </>
+        <TextDisplay
+          superScript="Adapts to Any Light"
+          title="WDR & HDR Recording"
+          description="It adjusts exposure in real time, preserving visibility and fine detail, so footage stays clear in both bright and low-light conditions."
+        />
       ),
     },
     {
       start: 0.3447,
       end: 0.382,
+      position: middle,
       content: (
         <DriveAlert
-          highlightedText="Timely Warnings When It Matters"
+          highlightedText="Built to Notice Before You Do"
           heading="ADAS Alerts"
-          subheading="Get audio cues for lane departure and forward collision so you can stay aware, avoid surprises and respond faster on busy roads."
+          subheading="The VREC-Z820DC monitors lane position, vehicle distance and traffic flow to deliver timely alerts and help you stay in control."
           alert1Image="/productPageImages/driveAlertIcons/laneIcon.svg"
           alert2Image="/productPageImages/driveAlertIcons/collisionIcon.svg"
           alert3Image="/productPageImages/driveAlertIcons/stopnGoIcon.svg"
@@ -397,41 +398,35 @@ export default function Model1TextOverlay({ scrollProgress }: { scrollProgress: 
     {
       start: 0.5236,
       end: 0.5539,
-      top: "15%",
-      left: "50%",
+      position: "top-[80px] left-[50%] transform -translate-x-1/2 ",
       content: (
-        <>
-          <p className="text-[#AD2239] text-xl font-bold text-center">Every Angle Matters</p>
-          <h2 className="lg2:text-[56px] text-[32px] text-white text-center font-medium">
-            Dual Camera setup
-          </h2>
-          <p className="text-pretty text-[#ABABAB] text-center max-w-xl mx-auto">
-            The VREC-Z820DC pairs a 4K front and HD rear camera to record both directions at once,
-            delivering clearer evidence and wider coverage.
-          </p>
-        </>
+        <TextDisplay
+          superScript="Every Angle Matters"
+          title="Dual Camera setup"
+          description=" The VREC-Z820DC pairs a 4K front and HD rear camera to record both directions at once, delivering clearer evidence and wider coverage."
+        />
       ),
     },
     {
       start: 0.6674,
-      end: 0.751,
-      
+      end: 0.8003,
+      position:
+        "top-1/2 left-1/2 transform -translate-x-[50%] -translate-y-1/2",
       content: (
         <div className="">
-                  <FieldOfVision
-          highlightedText="Comprehensive Coverage"
-          heading="137° Wide-Angle View"
-          subheading="Gives you a broader view of the road, capturing side lanes, nearby traffic and details that other cameras might miss."
-        />
+          <FieldOfVision
+            highlightedText="Comprehensive Coverage"
+            heading="137° Wide-Angle View"
+            subheading="Gives you a broader view of the road, capturing side lanes, nearby traffic and details that other cameras might miss."
+          />
         </div>
-
       ),
     },
     {
       start: 0.8573,
       end: 0.8709,
-        top: "50%",
-      left: "16%",
+      position:
+        "top-[50%] left-[40px] lg2:left-[80px] transform  -translate-y-[55%]",
       content: (
         <OptionalParking
           style="flex flex-col items-center sm:items-start justify-center sm:justify-center"
@@ -445,10 +440,10 @@ export default function Model1TextOverlay({ scrollProgress }: { scrollProgress: 
     {
       start: 0.8899,
       end: 0.9877,
-        top: "50%",
-      left: "50%",
+      position: middle,
       content: (
         <GpsLogger
+          style="flex flex-col items-center sm:items-start justify-center sm:justify-center"
           highlightedText="Every Trip Logged"
           heading="GPS Logger"
           subheading="Automatically record your driving routes with GPS logging, making it easy to revisit past trips whenever needed."
@@ -479,10 +474,51 @@ export default function Model1TextOverlay({ scrollProgress }: { scrollProgress: 
           top={sec.top}
           left={sec.left}
           width={sec.width}
+          position={sec.position}
           content={sec.content}
         />
       ))}
     </div>,
     document.body
+  );
+}
+
+function TextDisplay({
+  superScript,
+  title,
+  description,
+  descriptionWidth = "max-w-xl",
+  titleMinWidth = "",
+  className = "",
+}: {
+  superScript: string;
+  title: string;
+  description: string;
+  descriptionWidth?: string;
+  className?: string;
+  titleMinWidth?: string;
+}) {
+  return (
+    <div className={cn("text-center", className)}>
+      <p className="text-[#AD2239] font-bold text-sm sm:text-base md:text-lg ">
+        {superScript}
+      </p>
+      <h2
+        className={cn(
+          "lg2:text-[56px] lg:text-[46px] leading-tight text-[32px] min-w-lg lg2:min-w-max text-white text-center font-medium mt-2",
+          titleMinWidth
+        )}
+      >
+        {title}
+      </h2>
+      <p
+        className={cn(
+          "text-[#ABABAB]/80 text-center lg:text-lg mx-auto mt-2 leading-snug",
+          descriptionWidth
+        )}
+      >
+        {description}
+      </p>
+    </div>
   );
 }

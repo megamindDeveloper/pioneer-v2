@@ -10,6 +10,7 @@ import DynamicContent from "@/components/CommonComponents/TextComponents/Dynamic
 import FieldOfVision from "@/components/CommonComponents/TextComponents/FieldOfVision";
 import OptionalParking from "@/components/CommonComponents/TextComponents/OptionalParking";
 import GpsLogger from "@/components/CommonComponents/TextComponents/GpsLogger";
+import { cn } from "@/app/lib/utils";
 // Define the structure for each text "slide"
 type TextSectionProps = {
   scrollProgress: number;
@@ -126,16 +127,24 @@ type SectionProps = {
   left?: string;
   width?: string;
   content: JSX.Element;
+  positions?: {
+    top?: string;
+    left?: string;
+    right?: string;
+    bottom?: string;
+    transform?: string;
+  };
+  position?: string;
 };
 // Section renderer with fade logic
 function OverlaySection({
   scrollProgress,
   start,
   end,
-  top = "50%",
-  left = "50%",
   width = "auto",
   content,
+  positions,
+  position,
 }: SectionProps) {
   const fadeDuration = (end - start) * 0.2;
   const fadeInEnd = start + fadeDuration;
@@ -168,12 +177,10 @@ function OverlaySection({
 
   return (
     <div
+      className={cn(position)}
       style={{
         position: "absolute",
-        top,
-        left,
         width,
-        transform: "translate(-50%, -50%)",
         opacity,
         transition: "opacity 0.3s ease-out",
         pointerEvents: "none",
@@ -191,43 +198,44 @@ export default function TextOverlay({
   scrollProgress: number;
 }) {
   // Define your text content and scroll ranges here
+  const middle = "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2";
   const textSections = [
     {
       start: 0.032, // When the camera is looking at the dashcam
       end: 0.06,
+      position: middle,
       content: (
-        <FourKVideo
-          highlightedText="See the Road in High Definition"
-          heading="2K Video Resolution"
-          subheading=" From morning commutes to late-night returns, the front camera records in sharp 2K while the rear captures in Full HD. Whether it’s a close call or a scenic stretch, you’ll have a clear, reliable record from both angles."
+        <TextDisplay
+          className="-translate-x-8"
+          superScript="See the Road in High Definition"
+          title="2K Video Resolution"
+          description=" From morning commutes to late-night returns, the front camera records in sharp 2K while the rear captures in Full HD. Whether it’s a close call or a scenic stretch, you’ll have a clear, reliable record from both angles."
         />
       ),
     },
     {
       start: 0.122, // When the camera is high above the car
       end: 0.157,
-      top: "30%",
-      left: "70%",
+      position: "right-[80px] bottom-[100px] ",
       content: (
-        <SharpVision
-          highlightedText="STARVIS 2 Sensor"
-          heading="Sharp Vision in Every Frame"
-          subheading="Equipped with Sony’s STARVIS 2 sensor, the VREC-H520DC delivers clear, balanced video with improved contrast and visibility, especially in challenging lighting."
+        <TextDisplay
+          superScript="STARVIS 2 Sensor"
+          title="Sharp Vision in Every Frame"
+          description="Equipped with Sony’s STARVIS 2 sensor, the VREC-H520DC delivers clear, balanced video with improved contrast and visibility, especially in challenging lighting."
         />
       ),
     },
     {
       start: 0.159, // When the camera is high above the car
       end: 0.185,
-      top: "50%",
-      left: "70%",
-
+      position:
+        "top-1/2 transform -translate-y-1/2 right-[60px] lg:right-[120px] xl:right-[220px]",
       content: (
-        <DynamicContent
-          style="flex-col items-center justify-end sm:items-start sm:justify-center"
-          highlightedText="Automatic Event Recording"
-          heading="Built-in G-Sensor"
-          subheading="Stay protected with built-in G-sensor technology that automatically locks important footage during emergencies."
+        <TextDisplay
+          descriptionWidth="max-w-lg"
+          superScript="Automatic Event Recording"
+          title="Built-in G-Sensor"
+          description="Stay protected with built-in G-sensor technology that automatically locks important footage during emergencies."
         />
       ),
     },
@@ -244,41 +252,33 @@ export default function TextOverlay({
     {
       start: 0.245, // When the camera is high above the car
       end: 0.3034,
-      top: "50%",
-      left: "23%",
+      position:
+        "top-1/2 left-[20px] lg:left-[40px] lg2:left-[100px] xl:left-[128px] transform  -translate-y-1/2",
       content: (
-        <DynamicContent
-          style="flex-col items-center justify-end sm:items-start sm:justify-center"
-          highlightedText="Consistent Clarity in Any Light"
-          heading="High Dynamic Range"
-          subheading="HDR keeps exposure balanced so footage stays sharp and detailed whether you're driving under bright sunlight, through shadows or into low-light conditions."
+        <TextDisplay
+          descriptionWidth="max-w-[28rem]"
+          superScript="Consistent Clarity in Any Light"
+          title="High Dynamic Range"
+          description="HDR keeps exposure balanced so footage stays sharp and detailed whether you're driving under bright sunlight, through shadows or into low-light conditions."
         />
       ),
     },
     {
       start: 0.373, // When the camera is high above the car
       end: 0.3875,
-      top: "80%",
-      left: "50%",
+      position: "bottom-[70px] left-1/2 transform -translate-x-1/2 ",
       content: (
-        <>
-          <p className="text-[#AD2239] text-xl font-bold text-center">
-            Clear Control with a Wider Screen
-          </p>
-          <h2 className="lg:text-[32px] lg2:text-[50px] text-white text-center font-medium">
-            3" IPS Display
-          </h2>
-          <p className="text-pretty text-[#ABABAB] text-center max-w-xl mx-auto">
-            The built-in screen measures 7.6 cm across and offers a clear,
-            responsive view for checking footage, adjusting settings or
-            navigating menus without needing your phone.
-          </p>
-        </>
+        <TextDisplay
+          descriptionWidth="w-[36rem] lg:w-[40rem]"
+          superScript="Clear Control with a Wider Screen"
+          title={`3" IPS Display`}
+          description="The built-in screen measures 7.6 cm across and offers a clear, responsive view for checking footage, adjusting settings or navigating menus without needing your phone."
+        />
       ),
     },
 
     {
-      dynamic: true,
+      position: middle,
       content: (
         <DriveAlertH520
           highlightedText="ADAS Enabled"
@@ -298,27 +298,20 @@ export default function TextOverlay({
     {
       start: 0.624, // When the camera is high above the car
       end: 0.6569,
-      top: "15%",
-      left: "50%",
+      position: "top-[80px] left-[50%] transform -translate-x-1/2 ",
       content: (
-        <>
-          <p className="text-[#AD2239] text-xl font-bold text-center">
-            Dual Camera Setup
-          </p>
-          <h2 className="lg2:text-[56px] text-[32px] text-white text-center font-medium">
-            Front and Rear in Focus
-          </h2>
-          <p className="text-pretty text-[#ABABAB] text-center max-w-xl mx-auto">
-            The VREC‑H520DC captures your journey from both ends with 2K clarity
-            in front and Full HD behind, giving you balanced, high-quality
-            footage wherever the road takes you.
-          </p>
-        </>
+        <TextDisplay
+          superScript="Dual Camera Setup"
+          title="Front and Rear in Focus"
+          description="The VREC‑H520DC captures your journey from both ends with 2K clarity in front and Full HD behind, giving you balanced, high-quality footage wherever the road takes you."
+        />
       ),
     },
     {
       start: 0.75, // When the camera is high above the car
       end: 0.882,
+      position:
+        "top-1/2 left-1/2 transform -translate-x-[50%] -translate-y-1/2",
       content: (
         <div className="">
           <FieldOfVision
@@ -332,8 +325,8 @@ export default function TextOverlay({
     {
       start: 0.9375, // When the camera is high above the car
       end: 0.9468,
-      top: "50%",
-      left: "50%",
+      position:
+        "top-[50%] left-[40px] lg2:left-[80px] transform  -translate-y-[55%]",
       content: (
         <OptionalParking
           style="flex flex-col items-center sm:items-start justify-center sm:justify-center"
@@ -347,10 +340,11 @@ export default function TextOverlay({
     {
       start: 0.9815, // When the camera is high above the car
       end: 0.999,
-      top: "50%",
-      left: "20%",
+      position:
+        "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
       content: (
         <GpsLogger
+          style="flex flex-col items-center sm:items-start justify-center sm:justify-center"
           highlightedText="Every Trip Logged"
           heading="GPS Logger"
           subheading="Automatically record your driving routes with GPS logging, making it easy to revisit past trips whenever needed."
@@ -380,13 +374,52 @@ export default function TextOverlay({
           scrollProgress={scrollProgress}
           start={sec.start}
           end={sec.end}
-          top={sec.top}
-          left={sec.left}
           width={sec.width}
           content={sec.content}
+          position={sec.position}
         />
       ))}
     </div>,
     document.body
+  );
+}
+
+function TextDisplay({
+  superScript,
+  title,
+  description,
+  descriptionWidth = "max-w-xl",
+  titleMinWidth = "",
+  className = "",
+}: {
+  superScript: string;
+  title: string;
+  description: string;
+  descriptionWidth?: string;
+  className?: string;
+  titleMinWidth?: string;
+}) {
+  return (
+    <div className={cn("text-center", className)}>
+      <p className="text-[#AD2239] font-bold text-sm sm:text-base md:text-lg ">
+        {superScript}
+      </p>
+      <h2
+        className={cn(
+          "lg2:text-[56px] lg:text-[46px] leading-tight text-[32px] min-w-lg lg2:min-w-max text-white text-center font-medium mt-2",
+          titleMinWidth
+        )}
+      >
+        {title}
+      </h2>
+      <p
+        className={cn(
+          "text-[#ABABAB]/80 text-center lg:text-lg mx-auto mt-2 leading-snug",
+          descriptionWidth
+        )}
+      >
+        {description}
+      </p>
+    </div>
   );
 }
