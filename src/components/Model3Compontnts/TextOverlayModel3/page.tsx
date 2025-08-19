@@ -1,15 +1,12 @@
 /// You can create a new file for this, e.g., TextOverlay.tsx
 
-import DriveAlertH520 from "@/components/CommonComponents/TextComponents/DriveAlertH520";
-import FourKVideo from "@/components/CommonComponents/TextComponents/FourKVideo";
-import React from "react";
-import * as THREE from "three";
-import ReactDOM from "react-dom";
-import SharpVision from "@/components/CommonComponents/TextComponents/SharpVision";
-import DynamicContent from "@/components/CommonComponents/TextComponents/DynamicContent";
+import { cn } from "@/app/lib/utils";
+import DriveAlertH320 from "@/components/CommonComponents/TextComponents/DriveAlertH320";
 import FieldOfVision from "@/components/CommonComponents/TextComponents/FieldOfVision";
-import OptionalParking from "@/components/CommonComponents/TextComponents/OptionalParking";
 import GpsLogger from "@/components/CommonComponents/TextComponents/GpsLogger";
+import OptionalParking from "@/components/CommonComponents/TextComponents/OptionalParking";
+import ReactDOM from "react-dom";
+import * as THREE from "three";
 // Define the structure for each text "slide"
 type TextSectionProps = {
   scrollProgress: number;
@@ -126,14 +123,14 @@ type SectionProps = {
   left?: string;
   width?: string;
   content: JSX.Element;
+  position?: string;
 };
 // Section renderer with fade logic
 function OverlaySection({
   scrollProgress,
   start,
   end,
-  top = "50%",
-  left = "50%",
+  position,
   width = "auto",
   content,
 }: SectionProps) {
@@ -168,12 +165,10 @@ function OverlaySection({
 
   return (
     <div
+      className={position}
       style={{
         position: "absolute",
-        top,
-        left,
         width,
-        transform: "translate(-50%, -50%)",
         opacity,
         transition: "opacity 0.3s ease-out",
         pointerEvents: "none",
@@ -191,15 +186,18 @@ export default function Model3textOverlay({
   scrollProgress: number;
 }) {
   // Define your text content and scroll ranges here
+  const middle = "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2";
   const textSections = [
     {
       start: 0.032, // When the camera is looking at the dashcam
       end: 0.06,
+      position:
+        "top-1/2 left-1/2 transform -translate-x-[45%] -translate-y-[10%]",
       content: (
-        <FourKVideo
-          highlightedText="Precision in Motion"
-          heading="Full HD Recording"
-          subheading=" The front camera records in crisp 1080p, giving you sharp visuals for everyday drives, traffic incidents or unexpected moments."
+        <TextDisplay
+          superScript="Precision in Motion"
+          title="Full HD Recording"
+          description=" The front camera records in crisp 1080p, giving you sharp visuals for everyday drives, traffic incidents or unexpected moments."
         />
       ),
     },
@@ -219,43 +217,39 @@ export default function Model3textOverlay({
     {
       start: 0.1397, // When the camera is high above the car
       end: 0.185,
-      top: "50%",
-      left: "70%",
+      position:
+        "top-1/2 transform -translate-y-1/2 right-[60px] lg:right-[120px] xl:right-[220px]",
 
       content: (
-        <DynamicContent
-          style="flex-col items-center justify-end sm:items-start sm:justify-center"
-          highlightedText="Automatic Event Recording"
-          heading="Built-in G-Sensor"
-          subheading="Stay protected with built-in G-sensor technology that automatically locks important footage during emergencies."
+        <TextDisplay
+          superScript="Automatic Event Recording"
+          title="Built-in G-Sensor"
+          description="Stay protected with built-in G-sensor technology that automatically locks important footage during emergencies."
         />
       ),
     },
-      {
-        start: 0.2000, // When the camera is high above the car
-        end: 0.2377,
-        top: "50%",
-        left: "20%",
-     content: (
-        <DynamicContent
-          style="flex-col items-center justify-end sm:items-start sm:justify-center"
-          highlightedText="Clear View at a Glance"
-          heading="3″ IPS Display"
-          subheading="The 7.6 cm screen lets you review footage, adjust settings, and see live video clearly right from the dash without needing your phone."
+    {
+      start: 0.2, // When the camera is high above the car
+      end: 0.2377,
+      position:
+        "top-1/2 left-[20px] lg:left-[40px] lg2:left-[100px] xl:left-[128px] transform  -translate-y-1/2",
+      content: (
+        <TextDisplay
+          superScript="Clear View at a Glance"
+          title="3″ IPS Display"
+          description="The 7.6 cm screen lets you review footage, adjust settings, and see live video clearly right from the dash without needing your phone."
         />
       ),
-      },
+    },
     {
       start: 0.2971, // When the camera is high above the car
       end: 0.3187,
-      top: "80%",
-      left: "50%",
+      position: "bottom-[70px] left-1/2 transform -translate-x-1/2 ",
       content: (
-        <DynamicContent
-          style="flex-col items-center justify-end sm:items-start sm:justify-center"
-          highlightedText="Clarity in Changing Light"
-          heading="Wide Dynamic Range (WDR)"
-          subheading="From tunnels to tree cover, WDR balances bright and dark areas in real time so your footage stays detailed and easy to review."
+        <TextDisplay
+          superScript="Clarity in Changing Light"
+          title="Wide Dynamic Range (WDR)"
+          description="From tunnels to tree cover, WDR balances bright and dark areas in real time so your footage stays detailed and easy to review."
         />
       ),
     },
@@ -282,12 +276,12 @@ export default function Model3textOverlay({
     // },
 
     {
-      dynamic: true,
+      position: middle,
       content: (
-        <DriveAlertH520
-          highlightedText="ADAS Enabled"
-          heading="Smart Alerts for Safer Driving"
-          subheading="Get audio alerts for lane departure, forward collision and stop-and-go alert so you stay aware of your surroundings and respond faster to sudden changes on the road."
+        <DriveAlertH320
+          highlightedText="Timely Warnings When It Matters"
+          heading="ADAS Alerts"
+          subheading="Get audio cues for lane departure and forward collision so you can stay aware, avoid surprises and respond faster on busy roads."
           alert1Image="/productPageImages/driveAlertIcons/laneIcon.svg"
           alert2Image="/productPageImages/driveAlertIcons/stopnGoIcon.svg"
           alert3Image="/productPageImages/driveAlertIcons/collisionIcon.svg"
@@ -297,7 +291,7 @@ export default function Model3textOverlay({
           model="model3"
         />
       ),
-      start: 0.3330, // When the camera is high above the car
+      start: 0.333, // When the camera is high above the car
       end: 0.3776,
     },
     // {
@@ -324,6 +318,7 @@ export default function Model3textOverlay({
     {
       start: 0.7062, // When the camera is high above the car
       end: 0.8422,
+      position: middle,
       content: (
         <div className="">
           <FieldOfVision
@@ -339,6 +334,8 @@ export default function Model3textOverlay({
       end: 0.9354,
       top: "50%",
       left: "20%",
+      position:
+        "top-[50%] left-[40px] lg2:left-[80px] transform  -translate-y-[55%]",
       content: (
         <OptionalParking
           style="flex flex-col items-center sm:items-start justify-center sm:justify-center"
@@ -352,10 +349,10 @@ export default function Model3textOverlay({
     {
       start: 0.9542, // When the camera is high above the car
       end: 0.9929,
-      top: "50%",
-      left: "50%",
+      position: middle,
       content: (
         <GpsLogger
+          style="flex flex-col items-center sm:items-start justify-center sm:justify-center"
           highlightedText="Every Trip Logged"
           heading="GPS Logger"
           subheading="Automatically record your driving routes with GPS logging, making it easy to revisit past trips whenever needed."
@@ -388,10 +385,51 @@ export default function Model3textOverlay({
           top={sec.top}
           left={sec.left}
           width={sec.width}
+          position={sec.position}
           content={sec.content}
         />
       ))}
     </div>,
     document.body
+  );
+}
+
+function TextDisplay({
+  superScript,
+  title,
+  description,
+  descriptionWidth = "max-w-xl",
+  titleMinWidth = "",
+  className = "",
+}: {
+  superScript: string;
+  title: string;
+  description: string;
+  descriptionWidth?: string;
+  className?: string;
+  titleMinWidth?: string;
+}) {
+  return (
+    <div className={cn("text-center", className)}>
+      <p className="text-[#AD2239] font-bold text-sm sm:text-base md:text-lg ">
+        {superScript}
+      </p>
+      <h2
+        className={cn(
+          "lg2:text-[56px] lg:text-[46px] leading-tight text-[32px] min-w-lg lg2:min-w-max text-white text-center font-medium mt-2",
+          titleMinWidth
+        )}
+      >
+        {title}
+      </h2>
+      <p
+        className={cn(
+          "text-[#ABABAB]/80 text-center lg:text-lg mx-auto mt-2 leading-snug",
+          descriptionWidth
+        )}
+      >
+        {description}
+      </p>
+    </div>
   );
 }
