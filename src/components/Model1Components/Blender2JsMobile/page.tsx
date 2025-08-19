@@ -1553,7 +1553,16 @@ export default function Blender2JSPageModel1Mobile() {
   // ADD THIS LINE
   const animationProgress = useRef(0);
   // --- MODIFIED: Use the new stickyZones array ---
-  const stickyZones = [[0.06, 0.1]];
+    const stickyZones = [
+    // First pause
+    [0.1, 0.14], // Second pause
+    [0.205, 0.24],
+    [0.3, 0.34],
+    [0.331, 0.38],
+    [0.60, 0.64],
+    [0.82, 0.85],
+  ];
+
 
   useEffect(() => {
     if (!modelIsReady) {
