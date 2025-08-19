@@ -23,6 +23,9 @@ const page = () => {
       
       {isDesktop && <Blender2JSPageModel1Mobile />}
       {!isDesktop && <Blender2JSPageModel1Mobile />}
+      <div className="h-[100vh] ">
+gps
+      </div>
       <Compare
         tabs={[
           {
