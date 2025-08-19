@@ -263,7 +263,7 @@ function OverlaySection({
   position,
   content,
 }: SectionProps) {
-  const fadeDuration = (end - start) * 0.2;
+  const fadeDuration = (end - start) * 0.1;
   const fadeInEnd = start + fadeDuration;
   const fadeOutStart = end - fadeDuration;
 
@@ -341,7 +341,7 @@ export default function Model1TextOverlay({
       ),
     },
     {
-      start: 0.1956,
+      start: 0.184,
       end: 0.2286,
       position: "right-[80px] bottom-[100px] ",
       content: (
@@ -354,7 +354,7 @@ export default function Model1TextOverlay({
     },
     {
       start: 0.268,
-      end: 0.2857,
+      end: 0.2765,
       position:
         "top-1/2 left-[20px] lg:left-[40px] lg2:left-[100px] xl:left-[128px] transform  -translate-y-1/2",
       content: (
@@ -367,7 +367,7 @@ export default function Model1TextOverlay({
     },
     {
       start: 0.3162,
-      end: 0.34,
+      end: 0.3325,
       position: "bottom-[70px] left-1/2 transform -translate-x-1/2 ",
       content: (
         <TextDisplay
@@ -378,8 +378,8 @@ export default function Model1TextOverlay({
       ),
     },
     {
-      start: 0.3447,
-      end: 0.382,
+      start: 0.3327,
+      end: 0.34,
       position: middle,
       content: (
         <DriveAlert
@@ -396,8 +396,8 @@ export default function Model1TextOverlay({
       ),
     },
     {
-      start: 0.5236,
-      end: 0.5539,
+      start: 0.52,
+      end: 0.53,
       position: "top-[80px] left-[50%] transform -translate-x-1/2 ",
       content: (
         <TextDisplay

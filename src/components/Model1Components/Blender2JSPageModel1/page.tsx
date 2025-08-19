@@ -1211,8 +1211,8 @@ export default function Blender2JSPageModel1() {
   }, [modelIsReady]);
   const stickyZones = [
     // First pause
-    [0.14, 0.19], // Second pause
-    [0.24, 0.30],
+    [0.13, 0.19], // Second pause
+    [0.245, 0.30],
     [0.34, 0.38],
     [0.381, 0.43],
     [0.56, 0.61],
