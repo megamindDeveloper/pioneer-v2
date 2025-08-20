@@ -7,6 +7,7 @@ import { Compare } from '@/components/CommonComponents/Compare/page'
 import DriveSmarter from '@/components/CommonComponents/DriveSmarter/page'
 import EverythingNeedToKnow from '@/components/CommonComponents/EverythingNeedToKnow/page'
 import Footer from '@/components/CommonComponents/Footer/page'
+import HomeButton from '@/components/CommonComponents/HomeButton/page';
 import ProductFeatureTable from '@/components/CommonComponents/ProductFeatureTable/page'
 import ZenVue from '@/components/CommonComponents/ZenVue/page'
 import Blender2JSPageModel2Mobile from '@/components/Model2Components/Blender2JSPageModel1Mobile/page';
@@ -20,7 +21,7 @@ const page = () => {
 
   return (
     <div className='bg-black'>
-      
+      <HomeButton/>
       {isDesktop && <Blender2JSPageModel2 />}
       {!isDesktop && <Blender2JSPageModel2Mobile />}
       {/* <Model2textOverlay /> */}

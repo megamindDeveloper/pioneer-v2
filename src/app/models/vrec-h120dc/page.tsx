@@ -13,6 +13,7 @@ import DriveSmarter from '@/components/CommonComponents/DriveSmarter/page';
 import Footer from '@/components/CommonComponents/Footer/page';
 import { useMediaQuery } from '@/app/hooks/useMediaQuery';
 import Blender2JSPageModel4Mobile from '@/components/Model4Components/Blender2JsPageMobile/page';
+import HomeButton from '@/components/CommonComponents/HomeButton/page';
 
 
 
@@ -20,6 +21,7 @@ const page = () => {
   const isDesktop = useMediaQuery('(min-width: 768px)');
   return (
     <div className='bg-black'>
+      <HomeButton/>
      {isDesktop && <Blender2JSPageModel4/>}
       {!isDesktop && <Blender2JSPageModel4Mobile />}
 
