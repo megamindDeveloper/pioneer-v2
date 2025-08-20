@@ -122,13 +122,13 @@ export default function TextOverlayMobile({
       ),
     },
     {
-      start: 0.1735, // When the camera is high above the car
-      end: 0.1988,
+      start: 0.1272, // When the camera is high above the car
+      end: 0.1472,
       position: "left-1/2 transform -translate-x-1/2 bottom-[60px]",
       content: (
         <TextDisplay
-          descriptionWidth="max-w-[20rem]"
-          titleMinWidth="min-w-[20rem]"
+          descriptionWidth="max-w-[22rem]"
+          titleMinWidth="min-w-[23.5rem]"
           superScript="STARVIS 2 Sensor"
           title="Sharp Vision in Every Frame"
           description="Equipped with Sony’s STARVIS 2 sensor, the VREC-H520DC delivers clear, balanced video with improved contrast and visibility, especially in challenging lighting."
@@ -136,8 +136,8 @@ export default function TextOverlayMobile({
       ),
     },
     {
-      start: 0.2, // When the camera is high above the car
-      end: 0.2163,
+      start: 0.1697, // When the camera is high above the car
+      end: 0.1776,
       position: " transform -translate-x-1/2 left-1/2 bottom-[60px]",
       content: (
         <TextDisplay
@@ -160,8 +160,8 @@ export default function TextOverlayMobile({
     //  width:"350px"
     //   },
     {
-      start: 0.302, // When the camera is high above the car
-      end: 0.35,
+      start: 0.2678, // When the camera is high above the car
+      end: 0.3000,
       position: "left-1/2 transform -translate-x-1/2 bottom-[60px]",
       content: (
         <TextDisplay
@@ -174,8 +174,8 @@ export default function TextOverlayMobile({
       ),
     },
     {
-      start: 0.413, // When the camera is high above the car
-      end: 0.4529,
+      start: 0.2482, // When the camera is high above the car
+      end: 0.2600,
       position: "bottom-[60px] left-1/2 transform -translate-x-1/2 ",
       content: (
         <TextDisplay
@@ -203,12 +203,12 @@ export default function TextOverlayMobile({
           alert3="Stop & Go Alert"
         />
       ),
-      start: 0.4562, // When the camera is high above the car
-      end: 0.47,
+      start: 0.3004, // When the camera is high above the car
+      end: 0.3161,
     },
     {
-      start: 0.6898, // When the camera is high above the car
-      end: 0.7134,
+      start: 0.5074, // When the camera is high above the car
+      end: 0.5871,
       position: "top-[60px] left-[50%] transform -translate-x-1/2 ",
       content: (
         <TextDisplay
@@ -221,8 +221,8 @@ export default function TextOverlayMobile({
       ),
     },
     {
-      start: 0.8172, // When the camera is high above the car
-      end: 0.8601,
+      start: 0.7356, // When the camera is high above the car
+      end: 0.7936,
       position:
         "left-1/2 transform -translate-x-1/2 top-[60px]",
       content: (
@@ -236,8 +236,8 @@ export default function TextOverlayMobile({
       ),
     },
     {
-      start: 0.9375, // When the camera is high above the car
-      end: 0.9468,
+      start: 0.8156, // When the camera is high above the car
+      end: 0.8375,
       position:
         "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[55%]",
       content: (
@@ -251,7 +251,7 @@ export default function TextOverlayMobile({
       ),
     },
     {
-      start: 0.9815, // When the camera is high above the car
+      start: 0.8974, // When the camera is high above the car
       end: 0.999,
        position:
         "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[55%]",
@@ -300,7 +300,7 @@ function TextDisplay({
   superScript,
   title,
   description,
-  descriptionWidth = "max-w-xl",
+  descriptionWidth = "max-w-2xl",
   titleMinWidth = "",
   className = "",
 }: {
@@ -318,7 +318,7 @@ function TextDisplay({
       </p>
       <h2
         className={cn(
-          "lg2:text-[56px] lg:text-[46px] leading-tight text-[32px]  lg2:min-w-max text-white text-center font-medium mt-2 ",
+          "lg2:text-[56px] lg:text-[46px] leading-tight text-[28px]  lg2:min-w-max text-white text-center font-medium mt-2 ",
           titleMinWidth
         )}
       >
@@ -326,7 +326,7 @@ function TextDisplay({
       </h2>
       <p
         className={cn(
-          "text-[#ABABAB]/80 text-center lg:text-lg mx-auto mt-2 leading-snug",
+          "text-[#ABABAB]/80 text-sm text-center lg:text-lg mx-auto mt-2 leading-snug",
           descriptionWidth
         )}
       >

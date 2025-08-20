@@ -1392,9 +1392,8 @@ export default function Blender2JSPageModel1Mobile() {
     [0.16, 0.20],
     [0.26, 0.3],
     [0.36, 0.4],
-    [0.401, 0.44],
-    [0.61, 0.65],
-   
+    [0.401,0.44],
+    [0.61, 0.65],    
     [0.95, 0.99],
   ];
 // Replace your handleDotClick function with this one
