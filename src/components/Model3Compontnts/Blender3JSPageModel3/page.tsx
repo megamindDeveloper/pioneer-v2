@@ -1109,12 +1109,13 @@ export default function Blender3JSPageModel1() {
   const { active } = useProgress();
   const stickyZones = [
     // First pause
-    [0.103, 0.143], // Second pause
-    [0.245, 0.30],
-    [0.34, 0.38],
-    [0.381, 0.43],
-    [0.56, 0.61],
-    [0.842, 0.91],
+    [0.035, 0.075], // Second pause
+    [0.167, 0.207],
+    [0.265, 0.305],
+    [0.367, 0.420],
+    // [0.542, 0.582],
+    [0.896, 0.936],
+    
   ];
   // When all assets are loaded (useProgress active = false), mark ready
   useEffect(() => {
@@ -1184,7 +1185,7 @@ export default function Blender3JSPageModel1() {
     <div
       id="blender2js-scroll-container-model3"
       ref={containerRef}
-      style={{ height: "3500vh", width: "100%" }}
+      style={{ height: "2000vh", width: "100%" }}
     >
       {!modelIsReady && (
         <div className="fixed inset-0 z-[9999] bg-black flex items-center justify-center">

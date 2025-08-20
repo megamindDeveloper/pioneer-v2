@@ -137,8 +137,8 @@ export default function Model3textOverlayMobile({
     //   ),
     // },
     {
-      start: 0.1237,
-      end: 0.185,
+      start: 0.1176,
+      end: 0.1283,
       position: bottom,
       content: (
         <TextDisplay
@@ -149,8 +149,8 @@ export default function Model3textOverlayMobile({
       ),
     },
     {
-      start: 0.2682, // When the camera is high above the car
-      end: 0.3078,
+      start: 0.225, // When the camera is high above the car
+      end: 0.2438,
       position: bottom,
       content: (
         <TextDisplay
@@ -161,8 +161,8 @@ export default function Model3textOverlayMobile({
       ),
     },
     {
-      start: 0.341, // When the camera is high above the car
-      end: 0.3599,
+      start: 0.2556, // When the camera is high above the car
+      end: 0.285,
       position: bottom,
       content: (
         <TextDisplay
@@ -210,8 +210,8 @@ export default function Model3textOverlayMobile({
           model="model3"
         />
       ),
-      start: 0.3673, // When the camera is high above the car
-      end: 0.4,
+      start: 0.2847, // When the camera is high above the car
+      end: 0.3078,
     },
     // {
     //   start: 0.6792, // When the camera is high above the car
@@ -247,7 +247,7 @@ export default function Model3textOverlayMobile({
       ),
     },
     {
-      start: 0.8419, // When the camera is high above the car
+      start: 0.8204, // When the camera is high above the car
       end: 0.8626,
       position:
         "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[55%]",
@@ -262,7 +262,7 @@ export default function Model3textOverlayMobile({
       ),
     },
     {
-      start: 0.9233, // When the camera is high above the car
+      start: 0.8946, // When the camera is high above the car
       end: 0.9888,
       position:
         "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[55%]",
@@ -313,7 +313,7 @@ function TextDisplay({
   title,
   description,
   descriptionWidth = "max-w-[20rem]",
-  titleMinWidth = "min-w-[20rem]",
+  titleMinWidth = "min-w-[24rem]",
   className = "",
 }: {
   superScript: string;
@@ -330,7 +330,7 @@ function TextDisplay({
       </p>
       <h2
         className={cn(
-          "lg2:text-[56px] lg:text-[46px] leading-tight text-[32px]  lg2:min-w-max text-white text-center font-medium mt-2 ",
+          "lg2:text-[56px] lg:text-[46px] leading-tight text-[28px]  lg2:min-w-max text-white text-center font-medium mt-2 ",
           titleMinWidth
         )}
       >
@@ -338,7 +338,7 @@ function TextDisplay({
       </h2>
       <p
         className={cn(
-          "text-[#ABABAB]/80 text-center lg:text-lg mx-auto mt-2 leading-snug",
+          "text-[#ABABAB]/80 text-sm text-center lg:text-lg mx-auto mt-2 leading-snug",
           descriptionWidth
         )}
       >

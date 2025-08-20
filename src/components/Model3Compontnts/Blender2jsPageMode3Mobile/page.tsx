@@ -18,6 +18,7 @@ import FadeLoader from "@/components/CommonComponents/Loader/page";
 
 import Image from "next/image";
 import TextOverlayMobile from "@/components/Model2Components/MobileTextOverlay/page";
+import Model3textOverlayMobile from "../MobileTextOverlayModel3/Page";
 
 
 useGLTF.preload("/models/car.glb");
@@ -1387,14 +1388,14 @@ export default function Blender2JSPageModel1Mobile() {
 
     const stickyZones = [
     // First pause
-    [0.02, 0.06],
-    [0.0735, 0.1], 
-    [0.16, 0.20],
-    [0.26, 0.3],
-    [0.36, 0.4],
-    [0.401,0.44],
-    [0.61, 0.65],    
-    [0.95, 0.99],
+    [0.04, 0.08],
+    // [0.0735, 0.1], 
+    [0.134, 0.174],
+    [0.26, 0.30],
+    [0.345, 0.385],
+    [0.788,0.828],
+    [0.95, 0.99],    
+    // [0.95, 0.99],
   ];
 // Replace your handleDotClick function with this one
 
@@ -1511,10 +1512,10 @@ useEffect(() => {
       {modelIsReady && <StickyNav stickyZones={stickyZones} rawScrollProgress={rawScrollProgress} onDotClick={handleDotClick} />}
 
       {/* Pass both raw and mapped progress to your debug timeline to see the effect */}
-      {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />}
+      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />} */}
       {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}HeroImageFade
       {modelIsReady && <HeroImageFade scrollProgress={scrollProgress} />}
-      {modelIsReady && <TextOverlayMobile scrollProgress={scrollProgress} />}
+      {modelIsReady && <Model3textOverlayMobile scrollProgress={scrollProgress} />}
       <FullscreenBlackOverlay scrollProgress={scrollProgress} />
       <Canvas
         camera={{ position: [0, 5, 15], fov: 20, near: 0.01, far: 1000 }}
