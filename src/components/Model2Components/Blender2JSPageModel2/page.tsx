@@ -15,6 +15,7 @@ import { Color } from "three";
 import { Typography } from "@/components/CommonComponents/Typography/page";
 import FadeLoader from "@/components/CommonComponents/Loader/page";
 import TextOverlay from "../TextOverlayModel2/page";
+import FadingHeroContent from "@/components/ModelHelperComponents/ScrollFadeAndScale";
 useGLTF.preload("/models/car.glb");
 useGLTF.preload("/models/VREC_H520DC.glb");
 useTexture.preload("/modelImages/CommonModelImages/aiNight.png");
@@ -1247,7 +1248,15 @@ export default function Blender2JSPageModel2() {
       )}
       <div id="text-overlay-portal"></div>
       {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} />} */}
-      {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}
+      {/* {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />} */}
+      {modelIsReady && (
+        <FadingHeroContent
+          scrollProgress={scrollProgress}
+          heading="When Detail Matters the Most"
+          subtitle="VREC‑H520DC captures sharp 2K video, even in low light and on the move."
+          buttonText="Scroll to explore"
+        />
+      )}
       {modelIsReady && (
         <FullscreenBlackOverlay scrollProgress={scrollProgress} />
       )}

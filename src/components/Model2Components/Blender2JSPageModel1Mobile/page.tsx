@@ -18,6 +18,7 @@ import FadeLoader from "@/components/CommonComponents/Loader/page";
 
 import Image from "next/image";
 import TextOverlayMobile from "../MobileTextOverlay/page";
+import FadingHeroContent from "@/components/ModelHelperComponents/ScrollFadeAndScale";
 
 useGLTF.preload("/models/car.glb");
 
@@ -1685,7 +1686,14 @@ useEffect(() => {
 
       {/* Pass both raw and mapped progress to your debug timeline to see the effect */}
       {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />} */}
-      {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}HeroImageFade
+      {modelIsReady && (
+        <FadingHeroContent
+          scrollProgress={scrollProgress}
+          heading="When Detail Matters the Most"
+          subtitle="VREC‑H520DC captures sharp 2K video, even in low light and on the move."
+          buttonText="Scroll to explore"
+        />
+      )}
       {modelIsReady && <HeroImageFade scrollProgress={scrollProgress} />}
       {modelIsReady && <TextOverlayMobile scrollProgress={scrollProgress} />}
       <FullscreenBlackOverlay scrollProgress={scrollProgress} />

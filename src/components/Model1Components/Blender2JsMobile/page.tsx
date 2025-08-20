@@ -88,7 +88,7 @@ const dashcamKeyframes = [
 
 function HeroImageFade({ scrollProgress }: { scrollProgress: number }) {
   const animationStart = 0.02;
-  const animationDuration = 0.038;
+  const animationDuration = 0.03;
 
   // This check correctly makes the component appear and disappear at the right times
   if (scrollProgress < animationStart || scrollProgress > animationStart + animationDuration) {
@@ -1669,6 +1669,9 @@ useEffect(() => {
           subtitle="VREC-Z820DC Keeps the Road on Record"
           buttonText="Scroll to explore"
         />
+      )}
+       {modelIsReady && (
+        <FullscreenBlackOverlay scrollProgress={scrollProgress} />
       )}
       {modelIsReady && <HeroImageFade scrollProgress={scrollProgress} />}
       {modelIsReady && <TextOverlay scrollProgress={scrollProgress} />}

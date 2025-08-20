@@ -11,6 +11,7 @@ import FieldOfVision from "@/components/CommonComponents/TextComponents/FieldOfV
 import OptionalParking from "@/components/CommonComponents/TextComponents/OptionalParking";
 import GpsLogger from "@/components/CommonComponents/TextComponents/GpsLogger";
 import { cn } from "@/app/lib/utils";
+import { Typography } from "@/components/CommonComponents/Typography/page";
 // Define the structure for each text "slide"
 type TextSectionProps = {
   scrollProgress: number;
@@ -401,25 +402,15 @@ function TextDisplay({
 }) {
   return (
     <div className={cn("text-center", className)}>
-      <p className="text-[#AD2239] font-bold text-sm sm:text-base md:text-lg ">
+      <Typography variant="slider-heading" className="text-[#AD2239]  font-bold">
         {superScript}
-      </p>
-      <h2
-        className={cn(
-          "lg2:text-[56px] lg:text-[46px] leading-tight text-[32px] min-w-lg lg2:min-w-max text-white text-center font-medium mt-2",
-          titleMinWidth
-        )}
-      >
+      </Typography>
+      <Typography variant="section-heading" className={cn("font-medium  text-center text-white px-12 md:px-8", titleMinWidth)}>
         {title}
-      </h2>
-      <p
-        className={cn(
-          "text-[#ABABAB]/80 text-center lg:text-lg mx-auto mt-2 leading-snug",
-          descriptionWidth
-        )}
-      >
+      </Typography>
+      <Typography variant="section-card-body" className={cn(" text-[#ABABAB]/80 mx-auto", descriptionWidth)}>
         {description}
-      </p>
+      </Typography>
     </div>
   );
 }

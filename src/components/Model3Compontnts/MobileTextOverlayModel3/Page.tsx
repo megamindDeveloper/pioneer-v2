@@ -250,10 +250,10 @@ export default function Model3textOverlayMobile({
       start: 0.8204, // When the camera is high above the car
       end: 0.8626,
       position:
-        "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[55%]",
+      "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[50%] !w-[100%]",
       content: (
         <OptionalParking
-          style="flex flex-col items-center sm:items-start justify-center sm:justify-center"
+          style="flex flex-col items-center sm:items-start justify-center sm:justify-center !w-[100%]"
           highlightedText="Stay Secure While Parked"
           heading="Optional Parking Mode"
           subheading="Parking mode requires additional installation of an external Hardwire Kit, which enables power supply to the Dash Camera directly from the vehicle battery."

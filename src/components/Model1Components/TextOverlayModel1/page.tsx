@@ -241,6 +241,7 @@ import DynamicContent from "@/components/CommonComponents/TextComponents/Dynamic
 import FieldOfVision from "@/components/CommonComponents/TextComponents/FieldOfVision";
 import FourKVideo from "@/components/CommonComponents/TextComponents/FourKVideo";
 import { cn } from "@/app/lib/utils";
+import { Typography } from "@/components/CommonComponents/Typography/page";
 
 // Props for each section
 type SectionProps = {
@@ -255,14 +256,7 @@ type SectionProps = {
 };
 
 // Section renderer with fade logic
-function OverlaySection({
-  scrollProgress,
-  start,
-  end,
-  width = "auto",
-  position,
-  content,
-}: SectionProps) {
+function OverlaySection({ scrollProgress, start, end, width = "auto", position, content }: SectionProps) {
   const fadeDuration = (end - start) * 0.1;
   const fadeInEnd = start + fadeDuration;
   const fadeOutStart = end - fadeDuration;
@@ -270,21 +264,9 @@ function OverlaySection({
   let opacity = 0;
   if (scrollProgress >= start && scrollProgress <= end) {
     if (scrollProgress < fadeInEnd) {
-      opacity = THREE.MathUtils.mapLinear(
-        scrollProgress,
-        start,
-        fadeInEnd,
-        0,
-        1
-      );
+      opacity = THREE.MathUtils.mapLinear(scrollProgress, start, fadeInEnd, 0, 1);
     } else if (scrollProgress > fadeOutStart) {
-      opacity = THREE.MathUtils.mapLinear(
-        scrollProgress,
-        fadeOutStart,
-        end,
-        1,
-        0
-      );
+      opacity = THREE.MathUtils.mapLinear(scrollProgress, fadeOutStart, end, 1, 0);
     } else {
       opacity = 1;
     }
@@ -309,21 +291,19 @@ function OverlaySection({
 }
 
 // Main overlay component
-export default function Model1TextOverlay({
-  scrollProgress,
-}: {
-  scrollProgress: number;
-}) {
+export default function Model1TextOverlay({ scrollProgress }: { scrollProgress: number }) {
   const middle = "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2";
+  const centeredFlex = "w-full h-screen flex items-center justify-center !w-[100%]";
   const sections = [
     {
       start: 0.042,
       end: 0.063,
-      position: middle,
+      position: centeredFlex,
       content: (
         <TextDisplay
           superScript="Sharp Footage in Low Light"
           title="AI Powered Night Vision"
+          className="w-[100%]"
           description="An 8MP sensor that captures sharp, detailed video with high sensitivity, preserving image quality even during night drives and low-light conditions."
         />
       ),
@@ -343,7 +323,7 @@ export default function Model1TextOverlay({
     {
       start: 0.184,
       end: 0.2286,
-      position: "right-[80px] bottom-[100px] ",
+      position: "w-full h-screen flex items-end justify-end bottom-[10%] right-[0%] xl:bottom-[10%] xl:right-[10%] !w-[100%]",
       content: (
         <TextDisplay
           superScript="Clarity That Goes Further"
@@ -355,8 +335,7 @@ export default function Model1TextOverlay({
     {
       start: 0.268,
       end: 0.2765,
-      position:
-        "top-1/2 left-[20px] lg:left-[40px] lg2:left-[100px] xl:left-[128px] transform  -translate-y-1/2",
+      position: "w-full h-screen flex items-center justify-center !w-[50%] px-12",
       content: (
         <TextDisplay
           superScript="Sharp On-Screen Clarity"
@@ -366,9 +345,9 @@ export default function Model1TextOverlay({
       ),
     },
     {
-      start: 0.3220,
+      start: 0.322,
       end: 0.3325,
-      position: "bottom-[70px] left-1/2 transform -translate-x-1/2 ",
+      position: "w-full h-screen flex items-end justify-center !w-[100%] px-12 bottom-[8%]",
       content: (
         <TextDisplay
           superScript="Adapts to Any Light"
@@ -410,10 +389,9 @@ export default function Model1TextOverlay({
     {
       start: 0.6674,
       end: 0.8003,
-      position:
-        "top-1/2 left-1/2 transform -translate-x-[55%] -translate-y-1/2",
+      position: " h-screen flex items-center   !w-[100%]",
       content: (
-        <div className="">
+        <div className="w-[100%]">
           <FieldOfVision
             highlightedText="Comprehensive Coverage"
             heading="137° Wide-Angle View"
@@ -425,11 +403,10 @@ export default function Model1TextOverlay({
     {
       start: 0.8573,
       end: 0.8709,
-      position:
-        "top-[50%] left-[40px] lg2:left-[80px] transform  -translate-y-[55%]",
+      position: "w-full h-screen flex items-center   !w-[50%]",
       content: (
         <OptionalParking
-          style="flex flex-col items-center sm:items-start justify-center sm:justify-center"
+          style="flex flex-col w-[100%] items-center sm:items-start justify-center sm:justify-center"
           highlightedText="Stay Secure While Parked"
           heading="Optional Parking Mode"
           subheading="Parking mode requires additional installation of an external Hardwire Kit, which enables power supply to the Dash Camera directly from the vehicle battery."
@@ -499,26 +476,18 @@ function TextDisplay({
   titleMinWidth?: string;
 }) {
   return (
-    <div className={cn("text-center", className)}>
-      <p className="text-[#AD2239] font-bold text-sm sm:text-base md:text-lg ">
+    <div className={cn("text-center ", className)}>
+      {/* <p className="text-[#AD2239] font-bold text-sm sm:text-base md:text-lg ">{superScript}</p> */}
+      <Typography variant="slider-heading" className="text-[#AD2239]  font-bold">
         {superScript}
-      </p>
-      <h2
-        className={cn(
-          "lg2:text-[56px] lg:text-[46px] leading-tight text-[32px] min-w-lg lg2:min-w-max text-white text-center font-medium ",
-          titleMinWidth
-        )}
-      >
+      </Typography>
+      <Typography variant="section-heading" className={cn("font-medium  text-center text-white px-12 md:px-8", titleMinWidth)}>
         {title}
-      </h2>
-      <p
-        className={cn(
-          "text-[#ABABAB]/80 text-center lg:text-lg mx-auto mt-2 leading-snug",
-          descriptionWidth
-        )}
-      >
+      </Typography>
+      <Typography variant="section-card-body" className={cn(" text-[#ABABAB]/80 mx-auto", descriptionWidth)}>
         {description}
-      </p>
+      </Typography>
+      {/* <p className={cn("text-[#ABABAB]/80 text-center lg:text-lg mx-auto mt-2 leading-snug", descriptionWidth)}>{description}</p> */}
     </div>
   );
 }

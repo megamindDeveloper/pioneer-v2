@@ -19,6 +19,7 @@ import FadeLoader from "@/components/CommonComponents/Loader/page";
 import Image from "next/image";
 import TextOverlayMobile from "@/components/Model2Components/MobileTextOverlay/page";
 import Model3textOverlayMobile from "../MobileTextOverlayModel3/Page";
+import FadingHeroContent from "@/components/ModelHelperComponents/ScrollFadeAndScale";
 
 
 useGLTF.preload("/models/car.glb");
@@ -1513,7 +1514,16 @@ useEffect(() => {
 
       {/* Pass both raw and mapped progress to your debug timeline to see the effect */}
       {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />} */}
-      {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}HeroImageFade
+      {/* {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}HeroImageFade */}
+      {modelIsReady && (
+        <FadingHeroContent
+          scrollProgress={scrollProgress}
+          heading="Every Drive Backed by Proof"
+          subtitle="The VREC‑H320SC combines real-time driver alerts with built-in G Sensor
+        for emergency recording."
+          buttonText="Scroll to explore"
+        />
+      )}
       {modelIsReady && <HeroImageFade scrollProgress={scrollProgress} />}
       {modelIsReady && <Model3textOverlayMobile scrollProgress={scrollProgress} />}
       <FullscreenBlackOverlay scrollProgress={scrollProgress} />
