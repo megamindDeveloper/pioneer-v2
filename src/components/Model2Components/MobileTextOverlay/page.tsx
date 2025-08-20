@@ -107,7 +107,7 @@ export default function TextOverlayMobile({
   const middle = "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2";
   const textSections = [
     {
-      start: 0.040, // When the camera is looking at the dashcam
+      start: 0.032, // When the camera is looking at the dashcam
       end: 0.06,
       position: middle,
       content: (
@@ -115,15 +115,15 @@ export default function TextOverlayMobile({
           titleMinWidth="min-w-[20rem]"
           className=""
           superScript="See the Road in High Definition"
-          title="2K Video Resolutions"
+          title="2K Video Resolution"
           descriptionWidth="max-w-[19rem]"
           description=" From morning commutes to late-night returns, the front camera records in sharp 2K while the rear captures in Full HD. Whether it’s a close call or a scenic stretch, you’ll have a clear, reliable record from both angles."
         />
       ),
     },
     {
-      start: 0.1305, // When the camera is high above the car
-      end: 0.1563,
+      start: 0.1735, // When the camera is high above the car
+      end: 0.1988,
       position: "left-1/2 transform -translate-x-1/2 bottom-[60px]",
       content: (
         <TextDisplay
@@ -136,8 +136,8 @@ export default function TextOverlayMobile({
       ),
     },
     {
-      start: 0.1895, // When the camera is high above the car
-      end: 0.2239,
+      start: 0.2, // When the camera is high above the car
+      end: 0.2163,
       position: " transform -translate-x-1/2 left-1/2 bottom-[60px]",
       content: (
         <TextDisplay
@@ -160,8 +160,22 @@ export default function TextOverlayMobile({
     //  width:"350px"
     //   },
     {
-      start: 0.2241, // When the camera is high above the car
-      end: 0.2563,
+      start: 0.302, // When the camera is high above the car
+      end: 0.35,
+      position: "left-1/2 transform -translate-x-1/2 bottom-[60px]",
+      content: (
+        <TextDisplay
+          descriptionWidth="max-w-[20rem]"
+          titleMinWidth="min-w-[20rem]"
+          superScript="Consistent Clarity in Any Light"
+          title="High Dynamic Range"
+          description="HDR keeps exposure balanced so footage stays sharp and detailed whether you're driving under bright sunlight, through shadows or into low-light conditions."
+        />
+      ),
+    },
+    {
+      start: 0.413, // When the camera is high above the car
+      end: 0.4529,
       position: "bottom-[60px] left-1/2 transform -translate-x-1/2 ",
       content: (
         <TextDisplay
@@ -174,22 +188,6 @@ export default function TextOverlayMobile({
       ),
     },
 
-    
-    {
-      start: 0.2638, // When the camera is high above the car
-      end: 0.3000,
-      position: "left-1/2 transform -translate-x-1/2 bottom-[60px]",
-      content: (
-        <TextDisplay
-          descriptionWidth="max-w-[20rem]"
-          titleMinWidth="min-w-[20rem]"
-          superScript="Consistent Clarity in Any Light"
-          title="High Dynamic Range"
-          description="HDR keeps exposure balanced so footage stays sharp and detailed whether you're driving under bright sunlight, through shadows or into low-light conditions."
-        />
-      ),
-    },
-    
     {
       position: middle,
       content: (
@@ -205,17 +203,17 @@ export default function TextOverlayMobile({
           alert3="Stop & Go Alert"
         />
       ),
-      start: 0.3002, // When the camera is high above the car
-      end: 0.3110,
+      start: 0.4562, // When the camera is high above the car
+      end: 0.47,
     },
     {
-      start: 0.5024, // When the camera is high above the car
-      end: 0.5429,
+      start: 0.6898, // When the camera is high above the car
+      end: 0.7134,
       position: "top-[60px] left-[50%] transform -translate-x-1/2 ",
       content: (
         <TextDisplay
-          descriptionWidth="max-w-[22rem]"
-          titleMinWidth="min-w-[23rem]"
+          descriptionWidth="max-w-[20rem]"
+          titleMinWidth="min-w-[20rem]"
           superScript="Dual Camera Setup"
           title="Front and Rear in Focus"
           description="The VREC‑H520DC captures your journey from both ends with 2K clarity in front and Full HD behind, giving you balanced, high-quality footage wherever the road takes you."
@@ -223,8 +221,8 @@ export default function TextOverlayMobile({
       ),
     },
     {
-      start: 0.7143, // When the camera is high above the car
-      end: 0.7931,
+      start: 0.8172, // When the camera is high above the car
+      end: 0.8601,
       position:
         "left-1/2 transform -translate-x-1/2 top-[60px]",
       content: (
@@ -238,8 +236,8 @@ export default function TextOverlayMobile({
       ),
     },
     {
-      start: 0.8236, // When the camera is high above the car
-      end: 0.8510,
+      start: 0.9375, // When the camera is high above the car
+      end: 0.9468,
       position:
         "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[55%]",
       content: (
@@ -253,8 +251,8 @@ export default function TextOverlayMobile({
       ),
     },
     {
-      start: 0.8948, // When the camera is high above the car
-      end: 0.9856,
+      start: 0.9815, // When the camera is high above the car
+      end: 0.999,
        position:
         "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[55%]",
       content: (
