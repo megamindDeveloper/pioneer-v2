@@ -9,6 +9,7 @@ import { Color } from "three";
 import { Typography } from "@/components/CommonComponents/Typography/page";
 import FadeLoader from "@/components/CommonComponents/Loader/page";
 import Model4textOverlayMobile from "../MobileTextOverlayModel4/page";
+import FadingHeroContent from "@/components/ModelHelperComponents/ScrollFadeAndScale";
 useGLTF.preload("/models/car.glb");
 useGLTF.preload("/models/VREC_H120dSC.glb");
 useTexture.preload("/modelImages/CommonModelImages/aiNight.png");
@@ -1264,7 +1265,15 @@ export default function Blender2JSPageModel4() {
           {modelIsReady && <StickyNav stickyZones={stickyZones} rawScrollProgress={rawScrollProgress} onDotClick={handleDotClick} />}
       {/* <div id="text-overlay-portal"></div> */}
       {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress}/>} */}
-      {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}
+      {/* {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />} */}
+      {modelIsReady && (
+        <FadingHeroContent
+          scrollProgress={scrollProgress}
+          heading="Built to fit in, made to stand out"
+          subtitle=" Compact, discreet, and always ready to capture your drive in stunning 1.5K"
+          buttonText="Scroll to explore"
+        />
+      )}
       {modelIsReady && <FullscreenBlackOverlay scrollProgress={scrollProgress} />}
             {modelIsReady && <Model4textOverlayMobile scrollProgress={scrollProgress} />}
 
