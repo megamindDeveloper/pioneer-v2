@@ -366,7 +366,7 @@ export default function Model1TextOverlay({
       ),
     },
     {
-      start: 0.3162,
+      start: 0.3220,
       end: 0.3325,
       position: "bottom-[70px] left-1/2 transform -translate-x-1/2 ",
       content: (
