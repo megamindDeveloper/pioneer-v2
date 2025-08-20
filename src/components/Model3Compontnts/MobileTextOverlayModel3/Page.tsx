@@ -313,7 +313,7 @@ function TextDisplay({
   title,
   description,
   descriptionWidth = "max-w-[20rem]",
-  titleMinWidth = "min-w-[20rem]",
+  titleMinWidth = "min-w-[24rem]",
   className = "",
 }: {
   superScript: string;
@@ -330,7 +330,7 @@ function TextDisplay({
       </p>
       <h2
         className={cn(
-          "lg2:text-[56px] lg:text-[46px] leading-tight text-[32px]  lg2:min-w-max text-white text-center font-medium mt-2 ",
+          "lg2:text-[56px] lg:text-[46px] leading-tight text-[28px]  lg2:min-w-max text-white text-center font-medium mt-2 ",
           titleMinWidth
         )}
       >
@@ -338,7 +338,7 @@ function TextDisplay({
       </h2>
       <p
         className={cn(
-          "text-[#ABABAB]/80 text-center lg:text-lg mx-auto mt-2 leading-snug",
+          "text-[#ABABAB]/80 text-sm text-center lg:text-lg mx-auto mt-2 leading-snug",
           descriptionWidth
         )}
       >
