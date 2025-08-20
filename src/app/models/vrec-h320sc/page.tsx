@@ -14,7 +14,6 @@ import Blender2JSPageModel3 from '@/components/Model3Compontnts/Blender3JSPageMo
 import Model3textOverlay from '@/components/Model3Compontnts/TextOverlayModel3/page'
 import React from 'react'
 
-
 const page = () => {
   const isDesktop = useMediaQuery('(min-width: 768px)');
   return (
