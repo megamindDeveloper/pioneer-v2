@@ -107,7 +107,7 @@ export default function TextOverlayMobile({
   const middle = "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2";
   const textSections = [
     {
-      start: 0.040, // When the camera is looking at the dashcam
+      start: 0.032, // When the camera is looking at the dashcam
       end: 0.06,
       position: middle,
       content: (
@@ -115,20 +115,20 @@ export default function TextOverlayMobile({
           titleMinWidth="min-w-[20rem]"
           className=""
           superScript="See the Road in High Definition"
-          title="2K Video Resolutions"
+          title="2K Video Resolution"
           descriptionWidth="max-w-[19rem]"
           description=" From morning commutes to late-night returns, the front camera records in sharp 2K while the rear captures in Full HD. Whether it’s a close call or a scenic stretch, you’ll have a clear, reliable record from both angles."
         />
       ),
     },
     {
-      start: 0.1305, // When the camera is high above the car
-      end: 0.1563,
+      start: 0.1272, // When the camera is high above the car
+      end: 0.1472,
       position: "left-1/2 transform -translate-x-1/2 bottom-[60px]",
       content: (
         <TextDisplay
-          descriptionWidth="max-w-[20rem]"
-          titleMinWidth="min-w-[20rem]"
+          descriptionWidth="max-w-[22rem]"
+          titleMinWidth="min-w-[23.5rem]"
           superScript="STARVIS 2 Sensor"
           title="Sharp Vision in Every Frame"
           description="Equipped with Sony’s STARVIS 2 sensor, the VREC-H520DC delivers clear, balanced video with improved contrast and visibility, especially in challenging lighting."
@@ -136,8 +136,8 @@ export default function TextOverlayMobile({
       ),
     },
     {
-      start: 0.1895, // When the camera is high above the car
-      end: 0.2239,
+      start: 0.1697, // When the camera is high above the car
+      end: 0.1776,
       position: " transform -translate-x-1/2 left-1/2 bottom-[60px]",
       content: (
         <TextDisplay
@@ -160,23 +160,7 @@ export default function TextOverlayMobile({
     //  width:"350px"
     //   },
     {
-      start: 0.2241, // When the camera is high above the car
-      end: 0.2563,
-      position: "bottom-[60px] left-1/2 transform -translate-x-1/2 ",
-      content: (
-        <TextDisplay
-          descriptionWidth="max-w-[20rem]"
-          titleMinWidth="min-w-[20rem]"
-          superScript="Clear Control with a Wider Screen"
-          title={`3" IPS Display`}
-          description="The built-in screen measures 7.6 cm across and offers a clear, responsive view for checking footage, adjusting settings or navigating menus without needing your phone."
-        />
-      ),
-    },
-
-    
-    {
-      start: 0.2638, // When the camera is high above the car
+      start: 0.2678, // When the camera is high above the car
       end: 0.3000,
       position: "left-1/2 transform -translate-x-1/2 bottom-[60px]",
       content: (
@@ -189,7 +173,21 @@ export default function TextOverlayMobile({
         />
       ),
     },
-    
+    {
+      start: 0.2482, // When the camera is high above the car
+      end: 0.2600,
+      position: "bottom-[60px] left-1/2 transform -translate-x-1/2 ",
+      content: (
+        <TextDisplay
+          descriptionWidth="max-w-[20rem]"
+          titleMinWidth="min-w-[20rem]"
+          superScript="Clear Control with a Wider Screen"
+          title={`3" IPS Display`}
+          description="The built-in screen measures 7.6 cm across and offers a clear, responsive view for checking footage, adjusting settings or navigating menus without needing your phone."
+        />
+      ),
+    },
+
     {
       position: middle,
       content: (
@@ -205,17 +203,17 @@ export default function TextOverlayMobile({
           alert3="Stop & Go Alert"
         />
       ),
-      start: 0.3002, // When the camera is high above the car
-      end: 0.3110,
+      start: 0.3004, // When the camera is high above the car
+      end: 0.3161,
     },
     {
-      start: 0.5024, // When the camera is high above the car
-      end: 0.5429,
+      start: 0.5074, // When the camera is high above the car
+      end: 0.5871,
       position: "top-[60px] left-[50%] transform -translate-x-1/2 ",
       content: (
         <TextDisplay
-          descriptionWidth="max-w-[22rem]"
-          titleMinWidth="min-w-[23rem]"
+          descriptionWidth="max-w-[20rem]"
+          titleMinWidth="min-w-[20rem]"
           superScript="Dual Camera Setup"
           title="Front and Rear in Focus"
           description="The VREC‑H520DC captures your journey from both ends with 2K clarity in front and Full HD behind, giving you balanced, high-quality footage wherever the road takes you."
@@ -223,8 +221,8 @@ export default function TextOverlayMobile({
       ),
     },
     {
-      start: 0.7143, // When the camera is high above the car
-      end: 0.7931,
+      start: 0.7356, // When the camera is high above the car
+      end: 0.7936,
       position:
         "left-1/2 transform -translate-x-1/2 top-[60px]",
       content: (
@@ -238,8 +236,8 @@ export default function TextOverlayMobile({
       ),
     },
     {
-      start: 0.8236, // When the camera is high above the car
-      end: 0.8510,
+      start: 0.8156, // When the camera is high above the car
+      end: 0.8375,
       position:
         "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[55%]",
       content: (
@@ -253,8 +251,8 @@ export default function TextOverlayMobile({
       ),
     },
     {
-      start: 0.8948, // When the camera is high above the car
-      end: 0.9856,
+      start: 0.8974, // When the camera is high above the car
+      end: 0.999,
        position:
         "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[55%]",
       content: (
@@ -302,7 +300,7 @@ function TextDisplay({
   superScript,
   title,
   description,
-  descriptionWidth = "max-w-xl",
+  descriptionWidth = "max-w-2xl",
   titleMinWidth = "",
   className = "",
 }: {
@@ -320,7 +318,7 @@ function TextDisplay({
       </p>
       <h2
         className={cn(
-          "lg2:text-[56px] lg:text-[46px] leading-tight text-[32px]  lg2:min-w-max text-white text-center font-medium mt-2 ",
+          "lg2:text-[56px] lg:text-[46px] leading-tight text-[28px]  lg2:min-w-max text-white text-center font-medium mt-2 ",
           titleMinWidth
         )}
       >
@@ -328,7 +326,7 @@ function TextDisplay({
       </h2>
       <p
         className={cn(
-          "text-[#ABABAB]/80 text-center lg:text-lg mx-auto mt-2 leading-snug",
+          "text-[#ABABAB]/80 text-sm text-center lg:text-lg mx-auto mt-2 leading-snug",
           descriptionWidth
         )}
       >

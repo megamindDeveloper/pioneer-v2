@@ -1560,10 +1560,10 @@ export default function Blender2JSPageModel1Mobile() {
     // First pause
     [0.035, 0.075],
     [0.0735, 0.1], 
-    [0.16, 0.20],
-    [0.24, 0.28],
-    [0.30, 0.34],
-    [0.38, 0.43],
+    [0.152, 0.192],
+    [0.22, 0.26],
+    [0.31, 0.35],
+    [0.384, 0.424],
     [0.58, 0.62],
     [0.806, 0.846],
    
@@ -1684,7 +1684,7 @@ useEffect(() => {
       {modelIsReady && <StickyNav stickyZones={stickyZones} rawScrollProgress={rawScrollProgress} onDotClick={handleDotClick} />}
 
       {/* Pass both raw and mapped progress to your debug timeline to see the effect */}
-      {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />}
+      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />} */}
       {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}HeroImageFade
       {modelIsReady && <HeroImageFade scrollProgress={scrollProgress} />}
       {modelIsReady && <TextOverlayMobile scrollProgress={scrollProgress} />}
