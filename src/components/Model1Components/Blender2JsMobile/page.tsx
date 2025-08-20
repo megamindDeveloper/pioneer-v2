@@ -1719,7 +1719,7 @@ useEffect(() => {
 
   // The rest of your component's JSX remains the same...
   return (
-    <div id="blender2js-scroll-container-model1" ref={containerRef} style={{ height: "500vh", width: "100%" }}>
+    <div id="blender2js-scroll-container-model1" ref={containerRef} style={{ height: "1000vh", width: "100%" }}>
       {!modelIsReady && (
         <div className="fixed inset-0 z-[9999] bg-black flex items-center justify-center">
           <FadeLoader isModelReady={false} />

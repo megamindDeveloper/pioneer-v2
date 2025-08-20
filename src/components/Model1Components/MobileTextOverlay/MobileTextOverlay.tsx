@@ -180,8 +180,8 @@ export default function TextOverlay({
   const top = "top-[60px] left-[50%] transform -translate-x-1/2";
   const textSections = [
     {
-      start: 0.0485, // When the camera is looking at the dashcam
-      end: 0.087,
+      start: 0.0270, // When the camera is looking at the dashcam
+      end: 0.0415,
       position: middle,
       content: (
         <TextDisplay
@@ -195,8 +195,8 @@ export default function TextOverlay({
       ),
     },
     {
-      start: 0.1168, // When the camera is high above the car
-      end: 0.1509,
+      start: 0.0418, // When the camera is high above the car
+      end: 0.0607,
       position: middle,
       content: (
         <TextDisplay
@@ -211,23 +211,23 @@ export default function TextOverlay({
 
     },
     {
-      start: 0.2468, // When the camera is high above the car
-      end: 0.2958,
+      start: 0.1292, // When the camera is high above the car
+      end: 0.1448,
       position: bottom,
       content: (
         <TextDisplay
-          titleMinWidth="min-w-[20rem]"
+          titleMinWidth="min-w-[22rem]"
           className=""
           superScript="Clarity That Goes Further"
           title="High-Performance Imaging"
-          descriptionWidth="max-w-[20rem]"
+          descriptionWidth="max-w-[24rem]"
           description="The VREC-Z820DC uses a Sony STARVIS IMX415 sensor, an f/1.8 aperture, and a 7-layer glass lens. Together, they capture sharp, bright footage with accurate detail even in low or uneven lighting."
         />
       ),
     },
     {
-      start: 0.3506, // When the camera is high above the car
-      end: 0.3867,
+      start: 0.2136, // When the camera is high above the car
+      end: 0.2384,
       position: bottom,
       content: (
         <TextDisplay
@@ -241,8 +241,8 @@ export default function TextOverlay({
       ),
     },
     {
-      start: 0.4387, // When the camera is high above the car
-      end: 0.4678,
+      start: 0.3053, // When the camera is high above the car
+      end: 0.3079,
       position: bottom,
       content: (
         <TextDisplay
@@ -256,8 +256,8 @@ export default function TextOverlay({
       ),
     },
     {
-      start: 0.4679, // When the camera is high above the car
-      end: 0.5301,
+      start: 0.3081, // When the camera is high above the car
+      end: 0.3184,
       position: middle,
       content: (
         <DriveAlertH820
@@ -275,8 +275,8 @@ export default function TextOverlay({
     },
 
     {
-      start: 0.7036, // When the camera is high above the car
-      end: 0.7652,
+      start: 0.5437, // When the camera is high above the car
+      end: 0.5866,
       position: top,
       content: (
         <TextDisplay
@@ -290,8 +290,8 @@ export default function TextOverlay({
       ),
     },
     {
-      start: 0.8692, // When the camera is high above the car
-      end: 0.8909,
+      start: 0.7337, // When the camera is high above the car
+      end: 0.7582,
       position: top,
       content: (
         <TextDisplay
@@ -305,8 +305,8 @@ export default function TextOverlay({
       ),
     },
     {
-      start: 0.9, // When the camera is high above the car
-      end: 0.9599,
+      start: 0.7793, // When the camera is high above the car
+      end: 0.8111,
       position:
         "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[50%]",
       content: (
@@ -320,8 +320,8 @@ export default function TextOverlay({
       ),
     },
     {
-      start: 0.96, // When the camera is high above the car
-      end: 0.9999,
+      start: 0.8290, // When the camera is high above the car
+      end: 0.9800,
       position:
         "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[55%]",
       content: (
@@ -452,7 +452,7 @@ function TextDisplay({
       </p>
       <h2
         className={cn(
-          "lg2:text-[56px] lg:text-[46px] leading-tight text-[32px]  lg2:min-w-max text-white text-center font-medium mt-2 ",
+          "lg2:text-[56px] lg:text-[46px] leading-tight text-[24px]  lg2:min-w-max text-white text-center font-medium mt-2 ",
           titleMinWidth
         )}
       >
@@ -460,7 +460,7 @@ function TextDisplay({
       </h2>
       <p
         className={cn(
-          "text-[#ABABAB]/80 text-center lg:text-lg mx-auto mt-2 leading-snug",
+          "text-[#ABABAB]/80 text-center lg:text-lg mx-auto mt-2 text-[12px] leading-snug",
           descriptionWidth
         )}
       >
