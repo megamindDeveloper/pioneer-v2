@@ -18,6 +18,7 @@ import FadeLoader from "@/components/CommonComponents/Loader/page";
 
 import TextOverlay from "../MobileTextOverlay/MobileTextOverlay";
 import Image from "next/image";
+import FadingHeroContent from "@/components/ModelHelperComponents/ScrollFadeAndScale";
 
 useGLTF.preload("/models/car.glb");
 
@@ -83,62 +84,6 @@ const dashcamKeyframes = [
 
 // --- REPLACE your old function with this new version ---
 
-function HeroTextFade({ scrollProgress }: { scrollProgress: number }) {
-  const progress = THREE.MathUtils.clamp(scrollProgress / 0.028, 0, 1);
-
-  const scale = THREE.MathUtils.lerp(1, 2.6, progress);
-
-  const opacity = THREE.MathUtils.lerp(1, 0, progress);
-
-  return (
-    <div
-      style={{
-        position: "fixed",
-
-        top: 0,
-
-        left: 0,
-
-        width: "100%",
-
-        height: "100%",
-
-        background: "black",
-
-        zIndex: 30,
-
-        pointerEvents: "none",
-
-        display: "flex",
-
-        alignItems: "center",
-
-        justifyContent: "center",
-
-        flexDirection: "column",
-
-        textAlign: "center",
-
-        transform: `scale(${scale})`,
-
-        opacity,
-
-        transition: "transform 0.2s ease-out, opacity 0.2s ease-out",
-      }}
-    >
-      <Typography variant="hero-section-heading" className="font-bold text-white text-center px-4 max-w-2xl">
-        4K Clarity Meets AI Intelligence
-      </Typography>
-
-      <p className="text-[16px] text-[#ABABAB] mt-2">VREC-Z820DC Keeps the Road on Record</p>
-
-      <button className="bg-[#262626] px-2 pl-4 py-2 rounded-full text-white mt-12 flex text-[16px] font-medium items-center mx-auto">
-        Scroll to explore
-        <img src="/icons/chevDownCircle.svg" width={24} height={24} alt="Arrow Down" className="ml-3" />
-      </button>
-    </div>
-  );
-}
 
 
 function HeroImageFade({ scrollProgress }: { scrollProgress: number }) {
@@ -1717,7 +1662,14 @@ useEffect(() => {
 
       {/* Pass both raw and mapped progress to your debug timeline to see the effect */}
       {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />} */}
-      {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}HeroImageFade
+      {modelIsReady && (
+        <FadingHeroContent
+          scrollProgress={scrollProgress}
+          heading="4K Clarity Meets AI Intelligence"
+          subtitle="VREC-Z820DC Keeps the Road on Record"
+          buttonText="Scroll to explore"
+        />
+      )}
       {modelIsReady && <HeroImageFade scrollProgress={scrollProgress} />}
       {modelIsReady && <TextOverlay scrollProgress={scrollProgress} />}
       <FullscreenBlackOverlay scrollProgress={scrollProgress} />

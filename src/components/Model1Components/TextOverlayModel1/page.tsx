@@ -439,7 +439,7 @@ export default function Model1TextOverlay({
     },
     {
       start: 0.8899,
-      end: 0.9877,
+      end: 1,
       position: middle,
       content: (
         <GpsLogger

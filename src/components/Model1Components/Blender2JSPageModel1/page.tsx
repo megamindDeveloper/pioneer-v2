@@ -16,6 +16,7 @@ import { Color } from "three";
 import { Typography } from "@/components/CommonComponents/Typography/page";
 import FadeLoader from "@/components/CommonComponents/Loader/page";
 import Model1TextOverlay from "../TextOverlayModel1/page";
+import FadingHeroContent from "@/components/ModelHelperComponents/ScrollFadeAndScale";
 useGLTF.preload("/models/car.glb");
 useGLTF.preload("/models/VREC-Z820DC.glb");
 useTexture.preload("/modelImages/CommonModelImages/aiNight.png");
@@ -53,54 +54,7 @@ const animationData = [
   // { time: 0.375, position: [-0.0092, 6.6768, -9], quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883], fov: 20},
 ];
 
-function HeroTextFade({ scrollProgress }: { scrollProgress: number }) {
-  const progress = THREE.MathUtils.clamp(scrollProgress / 0.028, 0, 1);
-  const scale = THREE.MathUtils.lerp(1, 2.6, progress);
-  const opacity = THREE.MathUtils.lerp(1, 0, progress);
 
-  return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        background: "black",
-        zIndex: 30,
-        pointerEvents: "none",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-        textAlign: "center",
-        transform: `scale(${scale})`,
-        opacity,
-        transition: "transform 0.2s ease-out, opacity 0.2s ease-out",
-      }}
-    >
-      <Typography
-        variant="hero-section-heading"
-        className="text-xl lg:text-[62px] lg2:text-[72px] xl:text-[92px] font-medium text-white text-center px-4"
-      >
-        4K Clarity Meets AI Intelligence
-      </Typography>
-      <p className="text-xl lg:text-[36px] xl:text-[40px] leading-tight text-[#ABABAB] mt-2 ">
-        VREC-Z820DC Keeps the Road on Record
-      </p>
-      <button className="bg-[#262626] px-2 pl-4 py-2 rounded-full text-white mt-8 flex lg:text-xl xl:text-[24px] font-medium items-center mx-auto">
-        Scroll to explore
-        <img
-          src="/icons/chevDownCircle.svg"
-          width={24}
-          height={24}
-          alt="Arrow Down"
-          className="ml-3"
-        />
-      </button>
-    </div>
-  );
-}
 
 function FullscreenBlackOverlay({
   scrollProgress,
@@ -1274,7 +1228,14 @@ export default function Blender2JSPageModel1() {
       )}
       <div id="text-overlay-portal"></div>
       {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />} */}
-      {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}
+      {modelIsReady && (
+        <FadingHeroContent
+          scrollProgress={scrollProgress}
+          heading="4K Clarity Meets AI Intelligence"
+          subtitle="VREC-Z820DC Keeps the Road on Record"
+          buttonText="Scroll to explore"
+        />
+      )}
       {modelIsReady && <Model1TextOverlay scrollProgress={scrollProgress} />}
       {modelIsReady && (
         <FullscreenBlackOverlay scrollProgress={scrollProgress} />
