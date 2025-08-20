@@ -7,6 +7,7 @@ import { Compare } from "@/components/CommonComponents/Compare/page";
 import DriveSmarter from "@/components/CommonComponents/DriveSmarter/page";
 import EverythingNeedToKnow from "@/components/CommonComponents/EverythingNeedToKnow/page";
 import Footer from "@/components/CommonComponents/Footer/page";
+import HomeButton from "@/components/CommonComponents/HomeButton/page";
 import ProductFeatureTable from "@/components/CommonComponents/ProductFeatureTable/page";
 import ZenVue from "@/components/CommonComponents/ZenVue/page";
 import Blender2JSPageModel1Mobile from "@/components/Model1Components/Blender2JsMobile/page";
@@ -20,7 +21,7 @@ const page = () => {
   const isDesktop = useMediaQuery('(min-width: 768px)');
   return (
     <div className="bg-black">
-      
+      <HomeButton/>
       {isDesktop && <Blender2JSPageModel1 />}
       {!isDesktop && <Blender2JSPageModel1Mobile />}
       <Compare

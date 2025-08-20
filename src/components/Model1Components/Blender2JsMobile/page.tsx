@@ -51,7 +51,7 @@ const dashcamKeyframes = [
   {
     time: 0.3, // Start of the animation
 
-    position: [0.05, -0.03, 0],
+    position: [0.05, -0.01, 0],
 
     rotation: [10, 230, 20], // Starts rotated 180 degrees
 
@@ -892,15 +892,15 @@ function Blender2JSScene({
 
     let targetOpacity = 0;
 
-    const imageFadeIn = 0.3666;
+    const imageFadeIn = 0.221;
 
-    const imageMidpoint = 0.37;
+    const imageMidpoint = 0.222;
 
-    const imageFadeOut = 0.4;
+    const imageFadeOut = 0.244;
 
-    const videoFadeIn = 0.436;
+    const videoFadeIn = 0.2625;
 
-    const videoMidpoint = 0.44;
+    const videoMidpoint = 0.27;
 
     const videoFadeOut = 1;
 
@@ -1611,9 +1611,9 @@ export default function Blender2JSPageModel1Mobile() {
     [0.26, 0.3],
     [0.36, 0.4],
     [0.401, 0.44],
-    [0.63, 0.67],
+    [0.61, 0.65],
    
-    [0.82, 0.86],
+    [0.95, 0.99],
   ];
 // Replace your handleDotClick function with this one
 
@@ -1753,6 +1753,9 @@ useEffect(() => {
         <Suspense fallback={null}>
           <IntroImageAnimation scrollProgress={scrollProgress} />
           {modelIsReady && <Environment files="/hdri/111.hdr" background={false} />}
+          {
+            scrollProgress > 0.06 
+          }
           <Blender2JSScene
             scrollProgress={scrollProgress}
             onLoadComplete={() => setModelIsReady(true)}
