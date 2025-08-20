@@ -143,7 +143,7 @@ function HeroTextFade({ scrollProgress }: { scrollProgress: number }) {
 
 function HeroImageFade({ scrollProgress }: { scrollProgress: number }) {
   const animationStart = 0.02;
-  const animationDuration = 0.028;
+  const animationDuration = 0.038;
 
   // This check correctly makes the component appear and disappear at the right times
   if (scrollProgress < animationStart || scrollProgress > animationStart + animationDuration) {
@@ -173,7 +173,7 @@ function HeroImageFade({ scrollProgress }: { scrollProgress: number }) {
   // --- END OF NEW LOGIC ---
 
   // The scale animation will continue to grow during the whole duration
-  const scale = THREE.MathUtils.lerp(2.6, 1, progress);
+  const scale = THREE.MathUtils.lerp(2.6, 1.8, progress);
 
   return (
     <div
@@ -414,7 +414,7 @@ function useCameraAnimationSync(
   const cameraMountWorldMatrix = new THREE.Matrix4();
 
   useFrame(() => {
-    const inExplodeRange = scrollProgress >= 0.255 && scrollProgress < 0.28;
+    const inExplodeRange = scrollProgress >= 0.13 && scrollProgress < 0.14;
 
     if (inExplodeRange && !explodedRef.current) {
       console.log("🎯 Scroll in range → EXPLODE");
@@ -1221,7 +1221,7 @@ function IntroImageAnimation({ scrollProgress }: { scrollProgress: number }) {
     const progress = THREE.MathUtils.clamp(scrollProgress / end, 0, 1);
 
     // Scale: from 5 to 1
-    const scale = THREE.MathUtils.lerp(3, 5.4, progress);
+    const scale = THREE.MathUtils.lerp(3, 3, progress);
     imagePlaneRef.current.scale.set(scale, scale, 1);
 
     // Rotation: 0 to 2π
@@ -1393,96 +1393,81 @@ function BackgroundFade({ scrollProgress }: { scrollProgress: number }) {
 
 function useDashcamIntroAnimation(scrollProgress: number, dashcamOffsetGroupRef: React.RefObject<THREE.Group | null>) {
   const preAnimationStart = 0.06;
-
-  const preAnimationEnd = 0.3; // Animation still runs in the first 50% of scroll
-
-  // Memoize vectors for performance
+  const preAnimationEnd = 0.3;
 
   const vec3 = useMemo(() => new THREE.Vector3(), []);
-
   const quat = useMemo(() => new THREE.Quaternion(), []);
-
   const euler = useMemo(() => new THREE.Euler(), []);
 
   useFrame(() => {
     if (!dashcamOffsetGroupRef.current) return;
 
-    if (scrollProgress >= preAnimationStart && scrollProgress <= preAnimationEnd) {
+    // --- NEW CONDITION ADDED ---
+    // If the scroll is before the animation starts, lock the model to the first keyframe.
+    if (scrollProgress < preAnimationStart) {
+      const firstKeyframe = dashcamKeyframes[0];
+      dashcamOffsetGroupRef.current.position.set(...firstKeyframe.position);
+      dashcamOffsetGroupRef.current.scale.set(...firstKeyframe.scale);
+      const rot = firstKeyframe.rotation;
+      dashcamOffsetGroupRef.current.rotation.set(
+        THREE.MathUtils.degToRad(rot[0]),
+        THREE.MathUtils.degToRad(rot[1]),
+        THREE.MathUtils.degToRad(rot[2])
+      );
+    } 
+    // --- The existing "if" is now an "else if" ---
+    else if (scrollProgress >= preAnimationStart && scrollProgress <= preAnimationEnd) {
       const phaseProgress = (scrollProgress - preAnimationStart) / (preAnimationEnd - preAnimationStart);
 
-      // Find the two keyframes to interpolate between
-
       let keyframe1 = dashcamKeyframes[0];
-
       let keyframe2 = dashcamKeyframes[0];
 
       for (let i = 0; i < dashcamKeyframes.length; i++) {
         if (phaseProgress >= dashcamKeyframes[i].time) {
           keyframe1 = dashcamKeyframes[i];
-
-          // Ensure keyframe2 is the next one, or the last one if we're at the end
-
           keyframe2 = dashcamKeyframes[Math.min(i + 1, dashcamKeyframes.length - 1)];
         } else {
           break;
         }
       }
 
-      // Calculate the interpolation factor 't' between the two keyframes
-
       const segmentDuration = keyframe2.time - keyframe1.time;
-
       const t = segmentDuration === 0 ? 1 : (phaseProgress - keyframe1.time) / segmentDuration;
 
-      // --- Interpolate Position, Rotation, and Scale ---
-
-      // Position (lerp)
-
+      // Interpolate Position
       const pos1 = vec3.set(...keyframe1.position);
-
       const pos2 = new THREE.Vector3().set(...keyframe2.position);
-
       dashcamOffsetGroupRef.current.position.lerpVectors(pos1, pos2, t);
 
-      // Rotation (slerp for smooth rotation)
-
+      // Interpolate Rotation
       const rot1Deg = keyframe1.rotation;
-
       const rot2Deg = keyframe2.rotation;
-
-      const quat1 = quat.setFromEuler(
-        euler.set(THREE.MathUtils.degToRad(rot1Deg[0]), THREE.MathUtils.degToRad(rot1Deg[1]), THREE.MathUtils.degToRad(rot1Deg[2]))
-      );
-
-      const quat2 = new THREE.Quaternion().setFromEuler(
-        euler.set(THREE.MathUtils.degToRad(rot2Deg[0]), THREE.MathUtils.degToRad(rot2Deg[1]), THREE.MathUtils.degToRad(rot2Deg[2]))
-      );
-
+      const quat1 = quat.setFromEuler(euler.set(
+        THREE.MathUtils.degToRad(rot1Deg[0]), 
+        THREE.MathUtils.degToRad(rot1Deg[1]), 
+        THREE.MathUtils.degToRad(rot1Deg[2])
+      ));
+      const quat2 = new THREE.Quaternion().setFromEuler(euler.set(
+        THREE.MathUtils.degToRad(rot2Deg[0]), 
+        THREE.MathUtils.degToRad(rot2Deg[1]), 
+        THREE.MathUtils.degToRad(rot2Deg[2])
+      ));
       dashcamOffsetGroupRef.current.quaternion.slerpQuaternions(quat1, quat2, t);
 
-      // Scale (lerp)
-
+      // Interpolate Scale
       const scale1 = vec3.set(...keyframe1.scale);
-
       const scale2 = new THREE.Vector3().set(...keyframe2.scale);
-
       dashcamOffsetGroupRef.current.scale.lerpVectors(scale1, scale2, t);
-    } else if (scrollProgress > preAnimationEnd) {
-      // After 50% scroll, lock the camera to the final keyframe's state
-
+    } 
+    else if (scrollProgress > preAnimationEnd) {
+      // This part remains the same, locking to the last keyframe after the animation.
       const lastKeyframe = dashcamKeyframes[dashcamKeyframes.length - 1];
-
       dashcamOffsetGroupRef.current.position.set(...lastKeyframe.position);
-
       dashcamOffsetGroupRef.current.scale.set(...lastKeyframe.scale);
-
       const lastRotDeg = lastKeyframe.rotation;
-
       dashcamOffsetGroupRef.current.rotation.set(
         THREE.MathUtils.degToRad(lastRotDeg[0]),
-
         THREE.MathUtils.degToRad(lastRotDeg[1]),
-
         THREE.MathUtils.degToRad(lastRotDeg[2])
       );
     }
@@ -1536,6 +1521,8 @@ function DashcamIntroAnimation({
 }
 // Add this new component to your file
 
+// Replace your entire StickyNav component with this one
+
 function StickyNav({
   stickyZones,
   rawScrollProgress,
@@ -1545,27 +1532,31 @@ function StickyNav({
   rawScrollProgress: number;
   onDotClick: (index: number) => void;
 }) {
-  console.log(rawScrollProgress - 0.001)
+  // --- THIS IS THE CORRECTED PART ---
+  // Define the base style for the container
+  const containerStyle: React.CSSProperties = {
+    position: "fixed",
+    right: "20px",
+    top: "50%",
+    transform: "translateY(-50%)",
+    display: "flex",
+    flexDirection: "column",
+    gap: "24px",
+    zIndex: 100,
+    transition: "opacity 0.3s ease", // Add a smooth fade transition
+    // Conditionally set the opacity to hide the component
+    opacity: rawScrollProgress >= 0.98 ? 0 : 1,
+    // Prevent mouse events when hidden
+    pointerEvents: rawScrollProgress >= 1 ? "none" : "auto",
+  };
+  // --- END OF CORRECTION ---
+console.log("dededwdew",rawScrollProgress)
   return (
-    <div
-      style={{
-        position: "fixed",
-        right: "20px",
-        top: "50%",
-        transform: "translateY(-50%)",
-        display: "flex",
-        flexDirection: "column",
-        gap: "24px",
-        zIndex: 100,
-      }}
-    >
+    <div style={containerStyle}> {/* Use the new style object here */}
       {stickyZones.map((zone, index) => {
         const [start, end] = zone;
-        console.log("start",start,"end",end)
-        // Check if the current raw scroll progress is within this zone's range
-        const isActive = rawScrollProgress  + 0.001 >= start  && rawScrollProgress <= end;
+        const isActive = rawScrollProgress + 0.001 >= start && rawScrollProgress <= end;
 
-        // Define styles for the dots
         const dotStyle: React.CSSProperties = {
           width: "8px",
           height: "8px",
@@ -1573,20 +1564,15 @@ function StickyNav({
           backgroundColor: isActive ? "white" : "rgba(255, 255, 255, 0.3)",
           transform: isActive ? "scale(1.5)" : "scale(1)",
           transition: "all 0.3s ease",
-          cursor: "pointer", // Add a pointer cursor to show it's clickable
+          cursor: "pointer",
         };
 
-        return (
-          <div
-            key={index}
-            style={dotStyle}
-            onClick={() => onDotClick(index)} // Add the onClick handler
-          />
-        );
+        return <div key={index} style={dotStyle} onClick={() => onDotClick(index)} />;
       })}
     </div>
   );
 }
+
 export default function Blender2JSPageModel1Mobile() {
   const [modelIsReady, setModelIsReady] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -1753,9 +1739,6 @@ useEffect(() => {
         <Suspense fallback={null}>
           <IntroImageAnimation scrollProgress={scrollProgress} />
           {modelIsReady && <Environment files="/hdri/111.hdr" background={false} />}
-          {
-            scrollProgress > 0.06 
-          }
           <Blender2JSScene
             scrollProgress={scrollProgress}
             onLoadComplete={() => setModelIsReady(true)}

@@ -135,6 +135,7 @@ export const SpecsModal: React.FC<SpecsModalProps> = ({ isOpen, onClose, specs }
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          data-lenis-prevent 
         >
           <motion.div
             className="bg-[#0D0D0D] border-white/20 border-[0.5px] text-white rounded-2xl w-full max-w-3xl h-[90vh] relative overflow-hidden"
