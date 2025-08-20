@@ -35,8 +35,8 @@ const animationData = [
   // { time: 0.0417, position: [-0.1, 1.213, 0.48], quaternion: [0., -0.4, -0.0781377, 0.9276399], fov: 20 },
 
   { time: 0.122, position: [-0.08, 1.22, 0.275], quaternion: [0, -0.90010577, 0.00000004, 0.43567151], fov: 20 },
-  { time: 0.1667, position: [-0.0, 1.216, 0.3], quaternion: [0, 1.0, 0.0, 0.0], fov: 30 },
-  { time: 0.1667, position: [-0.0, 1.216, 0.3], quaternion: [0, 1.0, 0.0, 0.0], fov: 35 },
+  { time: 0.1667, position: [-0.0, 1.216, 0.275], quaternion: [0, 1.0, 0.0, 0.0], fov: 20 },
+  // { time: 0.1667, position: [-0.0, 1.216, 0.3], quaternion: [0, 1.0, 0.0, 0.0], fov: 35 },
   { time: 0.2083, position: [-0.0094, 1.2136, 0.0113], quaternion: [0.0, 1.0, -0.00000004, 0.00000004], fov: 30 },
   { time: 0.25, position: [-0.0093, 1.1809, -2.2], quaternion: [0.00000002, 0.99999607, 0.00280268, 0.00000016], fov: 30 },
   { time: 0.2917, position: [-0.0093, 3.9288, -3.2975], quaternion: [0.00000007, 0.9208445, 0.38993004, 0.00000008], fov: 26.9915 },
@@ -339,7 +339,7 @@ function useCameraAnimationSync(
   });
 }
 
-function Timeline({ scrollProgress }: { scrollProgress: number }) {
+function Timeline({ scrollProgress, rawProgress }: { scrollProgress: number; rawProgress?: number }) {
   const totalFrames = animationData.length + 1;
   const frameIndex = scrollProgress * (totalFrames - 1);
   const frame1 = Math.floor(frameIndex);
@@ -363,19 +363,11 @@ function Timeline({ scrollProgress }: { scrollProgress: number }) {
         minWidth: "120px",
       }}
     >
-      <div
-        style={{
-          marginBottom: "10px",
-          fontWeight: "bold",
-          textAlign: "center",
-        }}
-      >
-        Timeline
-      </div>
+      <div style={{ marginBottom: "10px", fontWeight: "bold", textAlign: "center" }}>Timeline</div>
+
       {animationData.map((keyframe, index) => {
         const isActive = index === frame1;
         const keyframeTime = index / (totalFrames - 1);
-
         return (
           <div
             key={index}
@@ -418,6 +410,7 @@ function Timeline({ scrollProgress }: { scrollProgress: number }) {
         );
       })}
 
+      {/* Display for Mapped Animation Progress */}
       <div
         style={{
           marginTop: "15px",
@@ -427,11 +420,25 @@ function Timeline({ scrollProgress }: { scrollProgress: number }) {
           textAlign: "center",
         }}
       >
-        <div style={{ fontSize: "14px", fontWeight: "bold" }}>
-          {scrollProgress.toFixed(4)}
-        </div>
-        <div style={{ fontSize: "10px", color: "#aaa" }}>Progress</div>
+        <div style={{ fontSize: "14px", fontWeight: "bold" }}>{scrollProgress.toFixed(4)}</div>
+        <div style={{ fontSize: "10px", color: "#aaa" }}>Mapped Progress</div>
       </div>
+
+      {/* NEW: Display for Raw Scroll Progress */}
+      {rawProgress !== undefined && (
+        <div
+          style={{
+            marginTop: "10px",
+            padding: "8px",
+            background: "rgba(150, 150, 255, 0.15)", // Different color for distinction
+            borderRadius: "4px",
+            textAlign: "center",
+          }}
+        >
+          <div style={{ fontSize: "14px", fontWeight: "bold", color: "#aaccff" }}>{rawProgress.toFixed(4)}</div>
+          <div style={{ fontSize: "10px", color: "#aaa" }}>Raw Scroll</div>
+        </div>
+      )}
 
       <div
         style={{
@@ -570,7 +577,7 @@ function Blender2JSScene({
         }
       }
     });
-    if (scrollProgress > 0.352) {
+    if (scrollProgress > 0.3) {
       setCarVisible(true);
     } else {
       setCarVisible(false);
@@ -1050,17 +1057,65 @@ function BackgroundFade({ scrollProgress }: { scrollProgress: number }) {
 
   return null;
 }
+function getAdjustedProgress(rawProgress: number, zones: [number, number][]): number {
+  // 1. Calculate the total duration of all pauses.
+  const totalPauseDuration = zones.reduce((acc, [start, end]) => acc + (end - start), 0);
+  const totalAnimationDuration = 1.0 - totalPauseDuration;
 
+  // Edge case: If pauses take up the entire timeline, the animation is always at its end.
+  if (totalAnimationDuration <= 0) return 1;
+
+  let accumulatedPauseDuration = 0;
+
+  // 2. Iterate through each defined sticky zone.
+  for (const [start, end] of zones) {
+    // If the scroll is INSIDE the current sticky zone...
+    if (rawProgress >= start && rawProgress <= end) {
+      // The animation progress should be frozen at the value it had right when it ENTERED this zone.
+      // This value is the zone's start time, adjusted for any PREVIOUS pauses.
+      const effectiveProgress = start - accumulatedPauseDuration;
+      // Scale the result to the available animation time and return.
+      return THREE.MathUtils.clamp(effectiveProgress / totalAnimationDuration, 0, 1);
+    }
+
+    // If the scroll is BEFORE the current sticky zone...
+    if (rawProgress < start) {
+      // We haven't reached this pause yet. The animation progress is simply the raw
+      // scroll progress, adjusted for the pauses we've already passed.
+      const effectiveProgress = rawProgress - accumulatedPauseDuration;
+      // Scale and return.
+      return THREE.MathUtils.clamp(effectiveProgress / totalAnimationDuration, 0, 1);
+    }
+
+    // If we reach here, it means the scroll is AFTER the current zone.
+    // Add this zone's duration to our accumulator and check the next zone.
+    accumulatedPauseDuration += end - start;
+  }
+
+  // 3. If the loop completes, it means the raw scroll is past ALL sticky zones.
+  // The animation progress is the raw progress minus the total duration of all pauses.
+  const effectiveProgress = rawProgress - accumulatedPauseDuration;
+  return THREE.MathUtils.clamp(effectiveProgress / totalAnimationDuration, 0, 1);
+}
 export default function Blender3JSPageModel1() {
   const [modelIsReady, setModelIsReady] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [rawScrollProgress, setRawScrollProgress] = useState(0);
   const [carScene, setCarScene] = useState<THREE.Group | null>(null);
   const [lensAnimation, setLensAnimation] = useState(false);
   const dashcamGroupRef = useRef<THREE.Group>(null);
   const containerRef = useRef(null);
   const dashcamOffsetGroupRef = useRef<THREE.Group>(null);
   const { active } = useProgress();
-
+  const stickyZones = [
+    // First pause
+    [0.13, 0.19], // Second pause
+    [0.245, 0.30],
+    [0.34, 0.38],
+    [0.381, 0.43],
+    [0.56, 0.61],
+    [0.842, 0.91],
+  ];
   // When all assets are loaded (useProgress active = false), mark ready
   useEffect(() => {
     if (!active) {
@@ -1083,7 +1138,8 @@ export default function Blender3JSPageModel1() {
     if (!modelIsReady) return; // Defer ScrollTrigger init until models are ready
     if (typeof window === "undefined") return;
     let cleanup: (() => void) | undefined;
-    let targetProgress = 0;
+    const targetProgress = { value: 0 };
+    const rawTargetProgress = { value: 0 };
     const initGSAP = async () => {
       try {
         const { gsap } = await import("gsap");
@@ -1097,14 +1153,19 @@ export default function Blender3JSPageModel1() {
             end: "bottom bottom",
             scrub: 0,
             onUpdate: (self) => {
-              targetProgress = self.progress;
+              const rawProgress = self.progress;
+
+              // --- MODIFIED: Call the new function with the zones array ---
+              const mappedProgress = getAdjustedProgress(rawProgress, stickyZones);
+
+              targetProgress.value = mappedProgress;
+              rawTargetProgress.value = rawProgress;
             },
           },
         });
         gsap.ticker.add(() => {
-          setScrollProgress((prev) =>
-            THREE.MathUtils.lerp(prev, targetProgress, 0.03)
-          );
+          setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress.value, 0.04));
+          setRawScrollProgress((prev) => THREE.MathUtils.lerp(prev, rawTargetProgress.value, 0.04));
         });
 
         cleanup = () => {
@@ -1131,7 +1192,7 @@ export default function Blender3JSPageModel1() {
         </div>
       )}
       {/* <div id="text-overlay-portal"></div> */}
-      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} />} */}
+      {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />}
       {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}
       {modelIsReady && (
         <FullscreenBlackOverlay scrollProgress={scrollProgress} />

@@ -14,25 +14,65 @@ useGLTF.preload("/models/VREC_H320SC.glb");
 useTexture.preload("/modelImages/CommonModelImages/aiNight.png");
 
 const animationData = [
-  { time: 0.0, position: [-0.00079, 1.22144, 0.4968], quaternion: [0.0, 0.0, 0.0, 1.0], fov: 2 },
-  { time: 0.0417, position: [-0.1033, 1.213, 0.48], quaternion: [0.0, -0.35, 0.0, 0.9276399], fov: 20 },
-  // { time: 0.0417, position: [-0.1, 1.213, 0.48], quaternion: [0., -0.4, -0.0781377, 0.9276399], fov: 20 },
-  { time: 0.122, position: [-0.083, 1.22, 0.275], quaternion: [0, -0.90010577, 0.00000004, 0.43567151], fov: 29 },
-  { time: 0.1667, position: [-0.0008, 1.216, 0.276], quaternion: [0, 1.0, 0.0, 0.0], fov: 30 },
-  { time: 0.1667, position: [-0.0, 1.216, 0.176], quaternion: [0, 1.0, 0.0, 0.0], fov: 30 },
-  { time: 0.2083, position: [-0.00, 1.2136, -1], quaternion: [0.0, 1.0, -0.00000004, 0.00000004], fov: 20},
-  { time: 0.25, position: [-0.00, 1.1809, -2.2], quaternion: [0.00000002, 0.99999607, 0.00280268, 0.00000016], fov: 30 },
-  { time: 0.3333, position: [-0.0093, 5.6768, 2.038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
-  { time: 0.3333, position: [-0.0093, 5.6768, 2.038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
-  { time: 0.3333, position: [-0.0093, 5.6768, -2.038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
-  { time: 0.3333, position: [-0.0093, 5.6768, -2.038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
-  // { time: 0.2917, position: [-0.0093, 3.9288, -3.2975], quaternion: [0.00000007, 0.9208445, 0.38993004, 0.00000008], fov: 26.9915 },
-  // { time: 0.3333, position: [-0.0093, 6.6768, 0.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
-  // { time: 0.3333, position: [-0.0093, 6.6768, 0.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
-  // { time: 0.3333, position: [-0.0093, 6.6768, 0.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 43.6028 },
-  // { time: 0.375, position: [-0.0093, 6.6768, 3.1115], quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883], fov: 28.6028 },
-  // { time: 0.375, position: [-0.0093, 6.6768, -9], quaternion: [-0.50217175, 0.49781877, 0.50217175, 0.49781883], fov: 28.6028 },
+  { time: 0.1667, position: [-0.001, 1.2099, 0.292], quaternion: [0, 1.0, 0, 0], fov: 40 },
+  { time: 0.2083, position: [-0.0, 1.2136, 0.16], quaternion: [0.0, 1.0, -0.00000004, 0.00000004], fov: 40 },
+  // { time: 0.2083, position: [-0.0, 1.2136, 0.15], quaternion: [0.0, 1.0, -0.00000004, 0.00000004], fov: 40 },
+  { time: 0.25, position: [-0.0093, 1.2509, -2.7], quaternion: [0.00000002, 0.99999607, 0.00280268, 0.0000004], fov: 40 },
+  { time: 0.2917, position: [-0.0093, 3.9288, -3.2975], quaternion: [0.00000007, 0.9208445, 0.38993004, 0.00000008], fov: 40 },
+  { time: 0.3333, position: [-0.0, 5.6768, 1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
+  { time: 0.3333, position: [-0.0, 5.6768, -1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
+  // { time: 0.3333, position: [-0.0, 5.6768, -1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
+  { time: 0.3333, position: [-0.0, 5.6768, -1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
+];
 
+const dashcamKeyframes = [
+  {
+    time: 0.0, // Start of the animation
+
+    position: [0.0, -0.04, 0],
+
+    rotation: [0, 180, 0], // Starts rotated 180 degrees
+
+    scale: [3, 3, 3],
+  },
+
+  {
+    time: 0.25, // Start of the animation
+
+    position: [0.04, -0.034, 0],
+
+    rotation: [0, 230, 0], // Starts rotated 180 degrees
+
+    scale: [1, 1, 1],
+  },
+  {
+    time: 0.5, // Start of the animation
+
+    position: [-0.01, -0.034, 0],
+
+    rotation: [0, 210, 0], // Starts rotated 180 degrees
+
+    scale: [1, 1, 1],
+  },
+  {
+    time: 0.75, // 60% of the way through
+
+    position: [-0, -0.034, 0],
+
+    rotation: [0, 310, 0], // Fully rotated to face forward
+
+    scale: [1, 1, 1],
+  },
+
+  {
+    time: 1.0, // End of the animation
+
+    position: [0, -0.01, 0], // Settles in the final, neutral position
+
+    rotation: [0, 0, 0],
+
+    scale: [1, 1, 1], // Settles at the final, neutral scale
+  },
 ];
 
 function HeroTextFade({ scrollProgress }: { scrollProgress: number }) {
@@ -267,7 +307,101 @@ function useCameraAnimationSync(
     }
   });
 }
+function DashcamIntroAnimation({
+  scrollProgress,
 
+  dashcamOffsetGroupRef,
+}: {
+  scrollProgress: number;
+
+  dashcamOffsetGroupRef: React.RefObject<THREE.Group | null>;
+}) {
+  useDashcamIntroAnimation(scrollProgress, dashcamOffsetGroupRef);
+
+  return null; // This component doesn't render anything itself
+}
+function useDashcamIntroAnimation(scrollProgress: number, dashcamOffsetGroupRef: React.RefObject<THREE.Group | null>) {
+  const preAnimationStart = 0.06;
+  const preAnimationEnd = 0.3;
+
+  const vec3 = useMemo(() => new THREE.Vector3(), []);
+  const quat = useMemo(() => new THREE.Quaternion(), []);
+  const euler = useMemo(() => new THREE.Euler(), []);
+
+  useFrame(() => {
+    if (!dashcamOffsetGroupRef.current) return;
+
+    // --- NEW CONDITION ADDED ---
+    // If the scroll is before the animation starts, lock the model to the first keyframe.
+    if (scrollProgress < preAnimationStart) {
+      const firstKeyframe = dashcamKeyframes[0];
+      dashcamOffsetGroupRef.current.position.set(...firstKeyframe.position);
+      dashcamOffsetGroupRef.current.scale.set(...firstKeyframe.scale);
+      const rot = firstKeyframe.rotation;
+      dashcamOffsetGroupRef.current.rotation.set(
+        THREE.MathUtils.degToRad(rot[0]),
+        THREE.MathUtils.degToRad(rot[1]),
+        THREE.MathUtils.degToRad(rot[2])
+      );
+    } 
+    // --- The existing "if" is now an "else if" ---
+    else if (scrollProgress >= preAnimationStart && scrollProgress <= preAnimationEnd) {
+      const phaseProgress = (scrollProgress - preAnimationStart) / (preAnimationEnd - preAnimationStart);
+
+      let keyframe1 = dashcamKeyframes[0];
+      let keyframe2 = dashcamKeyframes[0];
+
+      for (let i = 0; i < dashcamKeyframes.length; i++) {
+        if (phaseProgress >= dashcamKeyframes[i].time) {
+          keyframe1 = dashcamKeyframes[i];
+          keyframe2 = dashcamKeyframes[Math.min(i + 1, dashcamKeyframes.length - 1)];
+        } else {
+          break;
+        }
+      }
+
+      const segmentDuration = keyframe2.time - keyframe1.time;
+      const t = segmentDuration === 0 ? 1 : (phaseProgress - keyframe1.time) / segmentDuration;
+
+      // Interpolate Position
+      const pos1 = vec3.set(...keyframe1.position);
+      const pos2 = new THREE.Vector3().set(...keyframe2.position);
+      dashcamOffsetGroupRef.current.position.lerpVectors(pos1, pos2, t);
+
+      // Interpolate Rotation
+      const rot1Deg = keyframe1.rotation;
+      const rot2Deg = keyframe2.rotation;
+      const quat1 = quat.setFromEuler(euler.set(
+        THREE.MathUtils.degToRad(rot1Deg[0]), 
+        THREE.MathUtils.degToRad(rot1Deg[1]), 
+        THREE.MathUtils.degToRad(rot1Deg[2])
+      ));
+      const quat2 = new THREE.Quaternion().setFromEuler(euler.set(
+        THREE.MathUtils.degToRad(rot2Deg[0]), 
+        THREE.MathUtils.degToRad(rot2Deg[1]), 
+        THREE.MathUtils.degToRad(rot2Deg[2])
+      ));
+      dashcamOffsetGroupRef.current.quaternion.slerpQuaternions(quat1, quat2, t);
+
+      // Interpolate Scale
+      const scale1 = vec3.set(...keyframe1.scale);
+      const scale2 = new THREE.Vector3().set(...keyframe2.scale);
+      dashcamOffsetGroupRef.current.scale.lerpVectors(scale1, scale2, t);
+    } 
+    else if (scrollProgress > preAnimationEnd) {
+      // This part remains the same, locking to the last keyframe after the animation.
+      const lastKeyframe = dashcamKeyframes[dashcamKeyframes.length - 1];
+      dashcamOffsetGroupRef.current.position.set(...lastKeyframe.position);
+      dashcamOffsetGroupRef.current.scale.set(...lastKeyframe.scale);
+      const lastRotDeg = lastKeyframe.rotation;
+      dashcamOffsetGroupRef.current.rotation.set(
+        THREE.MathUtils.degToRad(lastRotDeg[0]),
+        THREE.MathUtils.degToRad(lastRotDeg[1]),
+        THREE.MathUtils.degToRad(lastRotDeg[2])
+      );
+    }
+  });
+}
 function Timeline({ scrollProgress }: { scrollProgress: number }) {
   const totalFrames = animationData.length + 1;
   const frameIndex = scrollProgress * (totalFrames - 1);
@@ -977,7 +1111,7 @@ export default function Blender3JSPageModel1() {
         </div>
       )}
       {/* <div id="text-overlay-portal"></div> */}
-      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} />} */}
+      {modelIsReady && <Timeline scrollProgress={scrollProgress} />}
       {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}
       {modelIsReady && <FullscreenBlackOverlay scrollProgress={scrollProgress} />}
             {modelIsReady && <Model3textOverlayMobile scrollProgress={scrollProgress} />}
@@ -1011,6 +1145,7 @@ export default function Blender3JSPageModel1() {
           />
           <LensAnimation isAnimating={lensAnimation} dashcamGroupRef={dashcamGroupRef} />
         </Suspense>
+        {carScene && <DashcamIntroAnimation scrollProgress={scrollProgress} dashcamOffsetGroupRef={dashcamOffsetGroupRef} />}
         {carScene && (
           <CameraAnimation
             scrollProgress={scrollProgress}
