@@ -714,8 +714,8 @@ function Blender2JSScene({
     const { imageMap, videoMap, videoEl } = imagePlaneRef.current.userData;
     let targetOpacity = 0;
 
-    const imageFadeIn = 0.27;
-    const imageMidpoint = 0.28;
+    const imageFadeIn = 0.25;
+    const imageMidpoint = 0.26;
     const imageFadeOut = 0.3;
     const videoFadeIn = 0.3208;
     const videoMidpoint = 0.329;
