@@ -28,7 +28,7 @@ export default function DriveAlert({
   return (
     <section className="min-h-screen  text-white flex flex-col justify-between px-4 sm:px-6 py-7 text-center">
       {/* Top Icon */}
-      <div className="pt-53 sm:pt-33  animate-pulse">
+      <div className="pt-53 sm:pt-42  animate-pulse">
         <Image
           src="/productPageImages/driveAlertIcons/dangerIcon.svg"
           alt="Warning Icon"
@@ -39,7 +39,7 @@ export default function DriveAlert({
       </div>
 
       {/* Bottom Content */}
-      <div className="flex flex-col items-center lg2:space-y-13 lg2:pb-8">
+      <div className="flex flex-col items-center lg2:space-y-7 ">
         {/* Headings */}
         <div>
           <p className="text-[#AD2239] text-[16px]  font-bold mb-2 ">{highlightedText}</p>

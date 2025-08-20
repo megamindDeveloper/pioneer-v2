@@ -241,7 +241,7 @@ export default function TextOverlay({
       ),
     },
     {
-      start: 0.2733, // When the camera is high above the car
+      start: 0.2612, // When the camera is high above the car
       end: 0.3064,
       position: bottom,
       content: (
@@ -275,7 +275,7 @@ export default function TextOverlay({
     },
 
     {
-      start: 0.5437, // When the camera is high above the car
+      start: 0.5599, // When the camera is high above the car
       end: 0.5866,
       position: top,
       content: (
@@ -290,8 +290,8 @@ export default function TextOverlay({
       ),
     },
     {
-      start: 0.7337, // When the camera is high above the car
-      end: 0.7582,
+      start: 0.7361, // When the camera is high above the car
+      end: 0.7952,
       position: top,
       content: (
         <TextDisplay
@@ -305,8 +305,8 @@ export default function TextOverlay({
       ),
     },
     {
-      start: 0.7793, // When the camera is high above the car
-      end: 0.8111,
+      start: 0.8080, // When the camera is high above the car
+      end: 0.8871,
       position:
         "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[50%]",
       content: (
@@ -320,8 +320,8 @@ export default function TextOverlay({
       ),
     },
     {
-      start: 0.8290, // When the camera is high above the car
-      end: 0.9800,
+      start: 0.8985, // When the camera is high above the car
+      end: 0.9987,
       position:
         "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[55%]",
       content: (
