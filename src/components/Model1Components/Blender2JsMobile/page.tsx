@@ -34,6 +34,7 @@ const animationData = [
   { time: 0.3333, position: [-0.0, 5.6768, 1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
   { time: 0.3333, position: [-0.0, 5.6768, -1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
   { time: 0.3333, position: [-0.0, 5.6768, -1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
+  { time: 0.3333, position: [-0.0, 5.6768, -1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
 ];
 
 const dashcamKeyframes = [
@@ -1533,14 +1534,59 @@ function DashcamIntroAnimation({
 
   return null; // This component doesn't render anything itself
 }
-function remapProgress(progress, start) {
-  // Calculates how far we are past the new start point
-  const remapped = (progress - start) / (1.0 - start);
-  // Clamps the value to ensure it's never below 0 or above 1
-  return THREE.MathUtils.clamp(remapped, 0, 1);
-}
-// --- REPLACE your old Blender2JSPageModel1Mobile component with this new version ---
+// Add this new component to your file
 
+function StickyNav({
+  stickyZones,
+  rawScrollProgress,
+  onDotClick,
+}: {
+  stickyZones: [number, number][];
+  rawScrollProgress: number;
+  onDotClick: (index: number) => void;
+}) {
+  console.log(rawScrollProgress - 0.001)
+  return (
+    <div
+      style={{
+        position: "fixed",
+        right: "20px",
+        top: "50%",
+        transform: "translateY(-50%)",
+        display: "flex",
+        flexDirection: "column",
+        gap: "24px",
+        zIndex: 100,
+      }}
+    >
+      {stickyZones.map((zone, index) => {
+        const [start, end] = zone;
+        console.log("start",start,"end",end)
+        // Check if the current raw scroll progress is within this zone's range
+        const isActive = rawScrollProgress  + 0.001 >= start  && rawScrollProgress <= end;
+
+        // Define styles for the dots
+        const dotStyle: React.CSSProperties = {
+          width: "8px",
+          height: "8px",
+          borderRadius: "50%",
+          backgroundColor: isActive ? "white" : "rgba(255, 255, 255, 0.3)",
+          transform: isActive ? "scale(1.5)" : "scale(1)",
+          transition: "all 0.3s ease",
+          cursor: "pointer", // Add a pointer cursor to show it's clickable
+        };
+
+        return (
+          <div
+            key={index}
+            style={dotStyle}
+            onClick={() => onDotClick(index)} // Add the onClick handler
+          />
+        );
+      })}
+    </div>
+  );
+}
 export default function Blender2JSPageModel1Mobile() {
   const [modelIsReady, setModelIsReady] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -1553,16 +1599,55 @@ export default function Blender2JSPageModel1Mobile() {
   // ADD THIS LINE
   const animationProgress = useRef(0);
   // --- MODIFIED: Use the new stickyZones array ---
+  // --- WITH THESE useRef declarations ---
+  const gsapRef = useRef<typeof import("gsap").gsap>();
+  const stRef = useRef<typeof import("gsap/ScrollTrigger").ScrollTrigger>();
+
     const stickyZones = [
     // First pause
-    [0.1, 0.14], // Second pause
-    [0.205, 0.24],
-    [0.3, 0.34],
-    [0.331, 0.38],
-    [0.60, 0.64],
-    [0.82, 0.85],
+    [0.02, 0.06],
+    [0.0735, 0.1], 
+    [0.16, 0.20],
+    [0.26, 0.3],
+    [0.36, 0.4],
+    [0.401, 0.44],
+    [0.63, 0.67],
+   
+    [0.82, 0.86],
   ];
+// Replace your handleDotClick function with this one
 
+const handleDotClick = (zoneIndex: number) => {
+  // --- THIS IS THE CORRECTED PART ---
+  // Access ScrollTrigger and gsap from their refs' .current property
+  const ScrollTrigger = stRef.current;
+  const gsap = gsapRef.current;
+
+  // Safety check to ensure GSAP has loaded before we try to use it
+  if (!ScrollTrigger || !gsap) {
+    console.error("GSAP instances not available yet.");
+    return;
+  }
+  // --- END OF CORRECTION ---
+
+  const mainScrollTrigger = ScrollTrigger.getById("main-scroll");
+  if (!mainScrollTrigger) {
+    console.error("ScrollTrigger instance not found!");
+    return;
+  }
+
+  const targetProgress = stickyZones[zoneIndex][0];
+  const scrollAmount = mainScrollTrigger.start + (mainScrollTrigger.end - mainScrollTrigger.start) * targetProgress;
+
+  gsap.to(window, {
+    scrollTo: {
+      y: scrollAmount,
+      autoKill: false,
+    },
+    duration: 1.5,
+    ease: "power2.inOut",
+  });
+};
 
   useEffect(() => {
     if (!modelIsReady) {
@@ -1573,55 +1658,64 @@ export default function Blender2JSPageModel1Mobile() {
     }
   }, [modelIsReady]);
 
-  useEffect(() => {
-    if (!modelIsReady || typeof window === "undefined") return;
+  // Replace your entire GSAP useEffect with this one
 
-    let cleanup: (() => void) | undefined;
-    const targetProgress = { value: 0 };
-    const rawTargetProgress = { value: 0 };
+useEffect(() => {
+  if (!modelIsReady || typeof window === "undefined") return;
 
-    const initGSAP = async () => {
-      try {
-        const { gsap } = await import("gsap");
-        const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-        gsap.registerPlugin(ScrollTrigger);
+  let cleanup: (() => void) | undefined;
+  const targetProgress = { value: 0 };
+  const rawTargetProgress = { value: 0 };
 
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: "#blender2js-scroll-container-model1",
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 0.1, // A little scrub can feel smoother
-            onUpdate: (self) => {
-              const rawProgress = self.progress;
+  const initGSAP = async () => {
+    try {
+      const gsapModule = await import("gsap");
+      const stModule = await import("gsap/ScrollTrigger");
+      const { ScrollToPlugin } = await import("gsap/ScrollToPlugin");
 
-              // --- MODIFIED: Call the new function with the zones array ---
-              const mappedProgress = getAdjustedProgress(rawProgress, stickyZones);
+      // --- Assign the modules to the .current property of the refs ---
+      gsapRef.current = gsapModule.gsap;
+      stRef.current = stModule.ScrollTrigger;
+      
+      // Now use the refs to register plugins
+      gsapRef.current.registerPlugin(stRef.current, ScrollToPlugin);
 
-              targetProgress.value = mappedProgress;
-              rawTargetProgress.value = rawProgress;
-            },
+
+      gsapRef.current.timeline({
+        scrollTrigger: {
+          // I also fixed a syntax error here by removing a misplaced comment
+          id: "main-scroll",
+          trigger: "#blender2js-scroll-container-model1",
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 0.1,
+          onUpdate: (self) => {
+            const rawProgress = self.progress;
+            const mappedProgress = getAdjustedProgress(rawProgress, stickyZones);
+            targetProgress.value = mappedProgress;
+            rawTargetProgress.value = rawProgress;
           },
-        });
+        },
+      });
 
-        gsap.ticker.add(() => {
-          setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress.value, 0.075));
-          setRawScrollProgress((prev) => THREE.MathUtils.lerp(prev, rawTargetProgress.value, 0.075));
-          animationProgress.current = targetProgress.value;
-        });
+      gsapRef.current.ticker.add(() => {
+        setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress.value, 0.075));
+        setRawScrollProgress((prev) => THREE.MathUtils.lerp(prev, rawTargetProgress.value, 0.075));
+        animationProgress.current = targetProgress.value;
+      });
 
-        cleanup = () => {
-          ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-          gsap.ticker.remove(() => {});
-        };
-      } catch (err) {
-        console.error("Failed to load GSAP:", err);
-      }
-    };
+      cleanup = () => {
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+        gsapRef.current.ticker.remove(() => {});
+      };
+    } catch (err) {
+      console.error("Failed to load GSAP:", err);
+    }
+  };
 
-    initGSAP();
-    return () => cleanup?.();
-  }, [modelIsReady]); // Dependency on modelIsReady is correct
+  initGSAP();
+  return () => cleanup?.();
+}, [modelIsReady]);
 
   // The rest of your component's JSX remains the same...
   return (
@@ -1632,6 +1726,9 @@ export default function Blender2JSPageModel1Mobile() {
         </div>
       )}
       <div id="text-overlay-portal"></div>
+      {/* --- ADD THIS NEW LINE --- */}
+      {modelIsReady && <StickyNav stickyZones={stickyZones} rawScrollProgress={rawScrollProgress} onDotClick={handleDotClick} />}
+
       {/* Pass both raw and mapped progress to your debug timeline to see the effect */}
       {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />}
       {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}HeroImageFade
