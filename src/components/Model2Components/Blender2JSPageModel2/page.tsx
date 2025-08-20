@@ -1166,6 +1166,15 @@ export default function Blender2JSPageModel2() {
   const containerRef = useRef(null);
   const dashcamOffsetGroupRef = useRef<THREE.Group>(null);
   const { active } = useProgress();
+  const stickyZones = [
+    // First pause
+    [0.13, 0.19], // Second pause
+    [0.245, 0.30],
+    [0.34, 0.38],
+    [0.381, 0.43],
+    [0.56, 0.61],
+    [0.842, 0.91],
+  ];
 
   // When all assets are loaded (useProgress active = false), mark ready
   useEffect(() => {
