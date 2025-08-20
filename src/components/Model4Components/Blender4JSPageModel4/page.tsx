@@ -1069,12 +1069,11 @@ export default function Blender2JSPageModel4() {
   const { active } = useProgress();
   const stickyZones = [
     // First pause
-    [0.13, 0.19], // Second pause
-    [0.245, 0.30],
-    [0.34, 0.38],
-    [0.381, 0.43],
-    [0.56, 0.61],
-    [0.842, 0.91],
+    [0.063, 0.10], // Second pause
+    [0.422, 0.462],
+    [0.692, 0.732],
+    [0.834, 0.874],
+     [0.918, 0.958],
   ];
   // When all assets are loaded (useProgress active = false), mark ready
   useEffect(() => {
@@ -1141,7 +1140,7 @@ export default function Blender2JSPageModel4() {
   }, [modelIsReady]);
 
   return (
-    <div id="blender2js-scroll-container-model4" ref={containerRef} style={{ height: "1500vh", width: "100%" }}>
+    <div id="blender2js-scroll-container-model4" ref={containerRef} style={{ height: "2000vh", width: "100%" }}>
       {!modelIsReady && (
         <div className="fixed inset-0 z-[9999] bg-black flex items-center justify-center">
           <FadeLoader isModelReady={false} />
