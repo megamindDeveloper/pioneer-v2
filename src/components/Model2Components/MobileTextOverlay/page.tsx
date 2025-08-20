@@ -122,8 +122,8 @@ export default function TextOverlayMobile({
       ),
     },
     {
-      start: 0.1272, // When the camera is high above the car
-      end: 0.1472,
+      start: 0.1200, // When the camera is high above the car
+      end: 0.1254,
       position: "left-1/2 transform -translate-x-1/2 bottom-[60px]",
       content: (
         <TextDisplay
@@ -136,7 +136,7 @@ export default function TextOverlayMobile({
       ),
     },
     {
-      start: 0.1697, // When the camera is high above the car
+      start: 0.2240, // When the camera is high above the car
       end: 0.1776,
       position: " transform -translate-x-1/2 left-1/2 bottom-[60px]",
       content: (
