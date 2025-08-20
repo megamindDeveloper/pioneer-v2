@@ -398,7 +398,7 @@ export default function Model1TextOverlay({
     {
       start: 0.52,
       end: 0.53,
-      position: "top-[80px] left-[50%] transform -translate-x-1/2 ",
+      position: "xl:top-[80px] top-[10px] left-[50%] transform -translate-x-1/2 ",
       content: (
         <TextDisplay
           superScript="Every Angle Matters"
@@ -411,7 +411,7 @@ export default function Model1TextOverlay({
       start: 0.6674,
       end: 0.8003,
       position:
-        "top-1/2 left-1/2 transform -translate-x-[50%] -translate-y-1/2",
+        "top-1/2 left-1/2 transform -translate-x-[55%] -translate-y-1/2",
       content: (
         <div className="">
           <FieldOfVision
@@ -487,7 +487,7 @@ function TextDisplay({
   superScript,
   title,
   description,
-  descriptionWidth = "max-w-xl",
+  descriptionWidth = "max-w-2xl",
   titleMinWidth = "",
   className = "",
 }: {
@@ -505,7 +505,7 @@ function TextDisplay({
       </p>
       <h2
         className={cn(
-          "lg2:text-[56px] lg:text-[46px] leading-tight text-[32px] min-w-lg lg2:min-w-max text-white text-center font-medium mt-2",
+          "lg2:text-[56px] lg:text-[46px] leading-tight text-[32px] min-w-lg lg2:min-w-max text-white text-center font-medium ",
           titleMinWidth
         )}
       >

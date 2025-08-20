@@ -32,8 +32,8 @@ const animationData = [
   { time: 0.25, position: [-0.0093, 1.2509, -2.7], quaternion: [0.00000002, 0.99999607, 0.00280268, 0.0000004], fov: 40 },
   { time: 0.2917, position: [-0.0093, 3.9288, -3.2975], quaternion: [0.00000007, 0.9208445, 0.38993004, 0.00000008], fov: 40 },
   { time: 0.3333, position: [-0.0, 5.6768, 1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
-  { time: 0.3333, position: [-0.0, 5.6768, 1.038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
-  { time: 0.3333, position: [-0.0, 5.6768, 2.0], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
+  { time: 0.3333, position: [-0.0, 5.6768, -1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
+  // { time: 0.3333, position: [-0.0, 5.6768, -1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
   { time: 0.3333, position: [-0.0, 5.6768, -1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
 ];
 
@@ -1047,7 +1047,7 @@ function Blender2JSScene({
         </mesh>
       )}
 
-      {scrollProgress >= 0.703 && scrollProgress <= 0.9001 && (
+      {scrollProgress >= 0.73 && scrollProgress <= 0.800 && (
         <mesh geometry={clipMaskGeometry} rotation={[-Math.PI / 2, 0, Math.PI / 1]} position={[0, 0.1, 0]}>
           <meshBasicMaterial color="#313131" toneMapped={false} />
         </mesh>
@@ -1123,11 +1123,11 @@ const openShape = "polygon(-15% 34%, 0 0, 100% 0, 115% 34%, 50% 44%)";
 const closedShape = "polygon(49.75% 0%, 49.75% 0%, 49.75% 0%, 49.75% 0%, 50.41% 66.01%)";
 
 function getInterpolatedClip(scrollProgress: number) {
-  const start = 0.82;
+  const start = 0.73;
 
-  const mid = 0.86;
+  const mid = 0.77;
 
-  const end = 0.9;
+  const end = 0.8;
 
   let blend;
 
