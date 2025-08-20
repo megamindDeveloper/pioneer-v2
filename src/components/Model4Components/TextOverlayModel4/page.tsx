@@ -126,7 +126,7 @@ export default function TextOverlay({
     },
     {
       start: 0.7612, // When the camera is high above the car
-      end: 0.7942,
+      end: 0.7704,
       position:
         "top-1/2 left-[20px] lg:left-[40px] lg2:left-[100px] xl:left-[128px] transform -translate-y-1/2",
       content: (
@@ -151,8 +151,8 @@ export default function TextOverlay({
       ),
     },
     {
-      start: 0.9796, // When the camera is high above the car
-      end: 0.9968,
+      start: 0.940, // When the camera is high above the car
+      end: 0.9486,
       position:
         "top-[50%] right-[40px] lg2:right-[180px] transform  -translate-y-[55%]",
       content: (

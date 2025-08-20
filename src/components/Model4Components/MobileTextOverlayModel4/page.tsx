@@ -95,8 +95,8 @@ export default function TextOverlay({
     },
 
     {
-      start: 0.1756, // When the camera is high above the car
-      end: 0.2,
+      start: 0.1946, // When the camera is high above the car
+      end: 0.2127,
       position: bottom,
       content: (
         <TextDisplay
@@ -106,36 +106,10 @@ export default function TextOverlay({
         />
       ),
     },
-
     {
-      start: 0.2136, // When the camera is high above the car
-      end: 0.2731,
+      start: 0.28, // When the camera is high above the car
+      end: 0.3494,
       position: bottom,
-      content: (
-        <TextDisplay
-          superScript="Store More Footage with Ease"
-          title="Supports up to 128GB microSD"
-          description="Gives you the space to record and save more of your drives without worrying about running out of memory."
-        />
-      ),
-    },
-    {
-      start: 0.3623, // When the camera is high above the car
-      end: 0.4076,
-      position: bottom,
-      content: (
-        <TextDisplay
-          superScript="Automatic Event Recording"
-          title="Built-in G-Sensor"
-          description="Stay protected with built-in G-sensor technology that automatically locks important footage during emergencies."
-        />
-      ),
-    },
-
-    {
-      start: 0.713, // When the camera is high above the car
-      end: 0.7981,
-      position: top,
       content: (
         <TextDisplay
           superScript="A minimal build that delivers maximum road coverage"
@@ -146,17 +120,42 @@ export default function TextOverlay({
     },
 
     {
-      start: 0.8674, // When the camera is high above the car
-      end: 0.9879,
-      position:
-        "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[55%]",
+      start: 0.511, // When the camera is high above the car
+      end: 0.5324,
+      position: bottom,
       content: (
-        <OptionalParking
-          style="flex flex-col items-center sm:items-start justify-center sm:justify-center"
-          highlightedText="Parks Without Powering Down"
-          heading="Parking Mode"
-          subheading="When hardwired, the VREC‑H120SC stays on standby and begins recording the moment it detects an impact, giving you subtle protection even when you’re away."
-          description="**Disclaimer: This feature is available only with additional setup and components, sold separately."
+        <TextDisplay
+          superScript="Store More Footage with Ease"
+          title="Supports up to 128GB microSD"
+          description="Gives you the space to record and save more of your drives without worrying about running out of memory."
+        />
+      ),
+    },
+    {
+      start: 0.7506, // When the camera is high above the car
+      end: 0.7840,
+      position: bottom,
+      content: (
+        <TextDisplay
+          superScript="Automatic Event Recording"
+          title="Built-in G-Sensor"
+          description="Stay protected with built-in G-sensor technology that automatically locks important footage during emergencies."
+        />
+      ),
+    },
+
+
+
+    {
+      start: 0.8051, // When the camera is high above the car
+      end: 0.836,
+      position: bottom,
+      content: (
+        <TextDisplay
+          superScript="Stay Secure While Parked"
+          title="Optional Parking Mode"
+          description="When hardwired, the VREC‑H120SC stays on standby and begins recording the moment it detects an impact, giving you subtle protection even when you’re away."
+          disclaimer="*Disclaimer: Parking mode requires additional installation of an external Hardwire Kit, which enables power supply to the Dash Camera directly from the vehicle battery."
         />
       ),
     },
@@ -196,6 +195,7 @@ function TextDisplay({
   superScript,
   title,
   description,
+  disclaimer,
   descriptionWidth = "max-w-[20rem]",
   titleMinWidth = "min-w-[20rem]",
   className = "",
@@ -203,6 +203,7 @@ function TextDisplay({
   superScript: string;
   title: string;
   description: string;
+  disclaimer?: string;
   descriptionWidth?: string;
   className?: string;
   titleMinWidth?: string;
@@ -214,7 +215,7 @@ function TextDisplay({
       </p>
       <h2
         className={cn(
-          "lg2:text-[56px] lg:text-[46px] leading-tight text-[32px]  lg2:min-w-max text-white text-center font-medium mt-2 ",
+          "lg2:text-[56px] lg:text-[46px] leading-tight text-[28px]  lg2:min-w-max text-white text-center font-medium mt-2 ",
           titleMinWidth
         )}
       >
@@ -222,11 +223,19 @@ function TextDisplay({
       </h2>
       <p
         className={cn(
-          "text-[#ABABAB]/80 text-center lg:text-lg mx-auto mt-2 leading-snug",
+          "text-[#ABABAB]/80 text-sm text-center lg:text-lg mx-auto mt-2 leading-snug",
           descriptionWidth
         )}
       >
         {description}
+      </p>
+      <p
+        className={cn(
+          "text-[#313131] text-xs  text-center lg:text-lg mx-auto mt-2 leading-snug",
+          descriptionWidth
+        )}
+      >
+        {disclaimer}
       </p>
     </div>
   );
