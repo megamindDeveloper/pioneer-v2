@@ -28,8 +28,8 @@ const page = () => {
       <Compare
         tabs={[
           {
-            heading: "See What Most Cameras Miss",
-            subheading: "Real footage in real conditions. The VREC-Z820DC doesn’t just record, it gives you clarity and context.",
+            heading: "Designed to Keep Things Simple ",
+            subheading: "The VREC-H120SC is built for simplicity with a clean design, Full HD clarity and essential features that fit into any drive, without getting in the way.",
             compareHeading: "A Compact Fit for Every Drive",
             compareSubheading:
               "This model fits neatly into your windshield space without blocking your view. A clean look with no distractions, just smart recording.",
@@ -38,8 +38,8 @@ const page = () => {
             image2: "/productPageImages/comparisionImages/h120sc/120-Compact -1CARD.webp",
           },
           {
-            heading: "See What Most Cameras Miss",
-            subheading: "Real footage in real conditions. The VREC-Z820DC doesn’t just record, it gives you clarity and context.",
+            heading: "Designed to Keep Things Simple ",
+            subheading: "The VREC-H120SC is built for simplicity with a clean design, Full HD clarity and essential features that fit into any drive, without getting in the way.",
             compareHeading: "Built for Beginners",
             compareSubheading:
               "The VREC-H120SC keeps things simple with clear recording and no complicated setup, making it ideal if you're new to dashcams.",
@@ -48,8 +48,8 @@ const page = () => {
             image2: "/productPageImages/comparisionImages/h120sc/120-1st  (1).webp",
           },
           {
-            heading: "See What Most Cameras Miss",
-            subheading: "Real footage in real conditions. The VREC-Z820DC doesn’t just record, it gives you clarity and context.",
+            heading: "Designed to Keep Things Simple ",
+            subheading: "The VREC-H120SC is built for simplicity with a clean design, Full HD clarity and essential features that fit into any drive, without getting in the way.",
             compareHeading: "Clarity That Keeps Up With Your Commute",
             compareSubheading:
               "The VREC-H120SC records in 1296p with a 2MP sensor, giving you sharper footage that makes it easier to read plates, spot signs and review details when it matters.",
