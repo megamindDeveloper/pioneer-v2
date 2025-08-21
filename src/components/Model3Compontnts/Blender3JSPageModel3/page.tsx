@@ -972,8 +972,8 @@ export default function Blender3JSPageModel1() {
     [0.035, 0.075], // Second pause
     [0.167, 0.207],
     [0.265, 0.305],
-    [0.367, 0.42],
-    // [0.542, 0.582],
+    [0.367, 0.38],
+    [0.383, 0.42],
     [0.896, 0.936],
   ];
   // When all assets are loaded (useProgress active = false), mark ready
@@ -1048,7 +1048,7 @@ export default function Blender3JSPageModel1() {
         </div>
       )}
       {/* <div id="text-overlay-portal"></div> */}
-      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />} */}
+      {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />}
       {/* {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />} */}
       {modelIsReady && (
         <FadingHeroContent

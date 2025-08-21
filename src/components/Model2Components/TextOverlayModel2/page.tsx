@@ -251,8 +251,8 @@ export default function TextOverlay({
     //  width:"350px"
     //   },
     {
-      start: 0.245, // When the camera is high above the car
-      end: 0.3034,
+      start: 0.2204, // When the camera is high above the car
+      end: 0.2624,
       position:
         "top-1/2 left-[20px] lg:left-[40px] lg2:left-[100px] xl:left-[128px] transform  -translate-y-1/2",
       content: (
@@ -265,8 +265,8 @@ export default function TextOverlay({
       ),
     },
     {
-      start: 0.373, // When the camera is high above the car
-      end: 0.3875,
+      start: 0.3012, // When the camera is high above the car
+      end: 0.3158,
       position: "bottom-[70px] left-1/2 transform -translate-x-1/2 ",
       content: (
         <TextDisplay
@@ -293,13 +293,13 @@ export default function TextOverlay({
           alert3="Stop & Go Alert"
         />
       ),
-      start: 0.389, // When the camera is high above the car
-      end: 0.4365,
+      start: 0.3157, // When the camera is high above the car
+      end: 0.3165,
     },
     {
-      start: 0.624, // When the camera is high above the car
-      end: 0.6569,
-      position: "top-[80px] left-[50%] transform -translate-x-1/2 ",
+      start: 0.478, // When the camera is high above the car
+      end: 0.4890,
+      position: "top-[40px] left-[50%] transform -translate-x-1/2 ",
       content: (
         <TextDisplay
           superScript="Dual Camera Setup"
@@ -324,8 +324,8 @@ export default function TextOverlay({
       ),
     },
     {
-      start: 0.9375, // When the camera is high above the car
-      end: 0.9468,
+      start: 0.9083, // When the camera is high above the car
+      end: 0.9294,
       position:
         "top-[50%] left-[40px] lg2:left-[80px] transform  -translate-y-[55%]",
       content: (
@@ -339,7 +339,7 @@ export default function TextOverlay({
       ),
     },
     {
-      start: 0.9815, // When the camera is high above the car
+      start: 0.9522, // When the camera is high above the car
       end: 0.999,
       position:
         "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
