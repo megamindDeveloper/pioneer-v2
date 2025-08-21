@@ -1145,10 +1145,10 @@ export default function Blender2JSPageModel4() {
     [0.0435, 0.1], 
     [0.214, 0.254],
     // [0.2, 0.3],
-    [0.346, 0.386],
+    [0.353, 0.390],
     [0.55, 0.59],
     [0.748, 0.788],
-    [0.869, 0.901],
+    [0.849, 0.869],
    
   ];
   const handleDotClick = (zoneIndex: number) => {
@@ -1265,7 +1265,7 @@ export default function Blender2JSPageModel4() {
       )}
           {modelIsReady && <StickyNav stickyZones={stickyZones} rawScrollProgress={rawScrollProgress} onDotClick={handleDotClick} />}
       {/* <div id="text-overlay-portal"></div> */}
-      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress}/>} */}
+      {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress}/>}
       {/* {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />} */}
       {modelIsReady && (
         <FadingHeroContent

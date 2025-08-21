@@ -161,7 +161,7 @@ export default function TextOverlayMobile({
     //   },
     {
       start: 0.2678, // When the camera is high above the car
-      end: 0.3058,
+      end: 0.3085,
       position: "left-1/2 transform -translate-x-1/2 bottom-[60px]",
       content: (
         <TextDisplay
@@ -236,8 +236,8 @@ export default function TextOverlayMobile({
       ),
     },
     {
-      start: 0.8156, // When the camera is high above the car
-      end: 0.8375,
+      start: 0.858, // When the camera is high above the car
+      end: 0.883,
       position:
       "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[50%] !w-[100%]",
       content: (
@@ -251,7 +251,7 @@ export default function TextOverlayMobile({
       ),
     },
     {
-      start: 0.8974, // When the camera is high above the car
+      start: 0.9776, // When the camera is high above the car
       end: 0.999,
        position:
         "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[55%]",

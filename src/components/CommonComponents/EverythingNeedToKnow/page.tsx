@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 
-import {  IconMinus, IconPlus } from '@tabler/icons-react';
+import { IconMinus, IconPlus } from '@tabler/icons-react';
 
 
 
@@ -10,7 +10,7 @@ type Props = {
   faqData: {
     question: string;
     answer: string;
-    disclaimer?:string;
+    disclaimer?: string;
   }[];
 };
 export default function EverythingNeedToKnow({ faqData }: Props) {
@@ -41,30 +41,32 @@ export default function EverythingNeedToKnow({ faqData }: Props) {
                 <span className="text-[18px] md:text-[20px] font-semibold text-[#E2E2E2]">
                   {item.question}
                 </span>
-                <span className="ml-4">
-                  {openIndex === index ? (
-                    <IconMinus className="w-5 h-5 md:w-6 md:h-6 text-[#ABABAB]" />
-                  ) : (
-                    <IconPlus className="w-5 h-5 md:w-6 md:h-6 text-[#ABABAB]" />
-                  )}
+                <span className="ml-4 transition-transform duration-500 ease-in-out">
+                  <IconPlus
+                    className={`w-5 h-5 md:w-6 md:h-6 text-[#ABABAB] transform transition-transform duration-300 ease-in-out ${openIndex === index ? "rotate-180 opacity-0 absolute" : "rotate-0 opacity-100"
+                      }`}
+                  />
+                  <IconMinus
+                    className={`w-5 h-5 md:w-6 md:h-6 text-[#ABABAB] transform transition-transform duration-300 ease-in-out ${openIndex === index ? "rotate-0 opacity-100" : "rotate-180 opacity-0 absolute"
+                      }`}
+                  />
                 </span>
               </button>
 
               <div
-                className={`overflow-hidden transition-all duration-300 ${
-                  openIndex === index
+                className={`overflow-hidden transition-all duration-300 ${openIndex === index
                     ? 'max-h-96 opacity-100 mt-2'
                     : 'max-h-0 opacity-0'
-                }`}
+                  }`}
               >
                 <p className="text-[16px] mt-5 md:text-[18px] text-[#ABABAB]">
                   {item.answer}
                 </p>
                 {item.disclaimer && (
 
-                <p className="text-[12px] mt-5 md:text-[12px] text-[#ABABAB]/60">
-                 Disclaimer: {item.disclaimer}
-                </p>
+                  <p className="text-[12px] mt-5 md:text-[12px] text-[#ABABAB]/60">
+                    Disclaimer: {item.disclaimer}
+                  </p>
                 )}
               </div>
             </div>

@@ -79,20 +79,22 @@ const FadingHeroContent: React.FC<FadingHeroContentProps> = ({
       </Typography>
 
       {/* 3. Button (conditionally rendered) */}
-      {buttonText && (
-        <button className="bg-[#262626] px-2 pl-4 py-2 rounded-full text-white mt-8 flex lg:text-xl xl:text-[24px] font-medium items-center mx-auto">
-          {buttonText}
-          {buttonIconSrc && (
-            <img
-              src={buttonIconSrc}
-              width={24}
-              height={24}
-              alt="" // Decorative icon
-              className="ml-3"
-            />
-          )}
-        </button>
-      )}
+   <div className="absolute top-[65%] left-1/2 transform -translate-x-1/2">
+  <div className="w-8.5 h-14 border-2 border-white rounded-full flex items-start justify-center relative">
+    <div className="w-1 h-3.5 bg-white rounded-full animate-scroll"></div>
+  </div>
+</div>
+
+<style jsx>{`
+  @keyframes scroll {
+    0% { transform: translateY(6px); opacity: 1; }
+    50% { transform: translateY(12px); opacity: 0.5; }
+    100% { transform: translateY(6px); opacity: 1; }
+  }
+  .animate-scroll {
+    animation: scroll 1.3s ease-in-out infinite;
+  }
+`}</style>
     </div>
   );
 };

@@ -33,9 +33,11 @@ const animationData = [
   { time: 0.25, position: [-0.0093, 1.2509, -2.7], quaternion: [0.00000002, 0.99999607, 0.00280268, 0.0000004], fov: 40 },
   { time: 0.2917, position: [-0.0093, 3.9288, -3.2975], quaternion: [0.00000007, 0.9208445, 0.38993004, 0.00000008], fov: 40 },
   { time: 0.3333, position: [-0.0, 5.6768, 1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
-  { time: 0.3333, position: [-0.0, 5.6768, -1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
+  { time: 0.3333, position: [-0.0, 5.6768, 2.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
+
+
   // { time: 0.3333, position: [-0.0, 5.6768, -1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
-  { time: 0.3333, position: [-0.0, 5.6768, -1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
+  { time: 0.3333, position: [-0.0, 5.6768, -5.038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
 ];
 
 const dashcamKeyframes = [
@@ -1415,7 +1417,7 @@ function useDashcamIntroAnimation(scrollProgress: number, dashcamOffsetGroupRef:
         THREE.MathUtils.degToRad(rot[1]),
         THREE.MathUtils.degToRad(rot[2])
       );
-    } 
+    }
     // --- The existing "if" is now an "else if" ---
     else if (scrollProgress >= preAnimationStart && scrollProgress <= preAnimationEnd) {
       const phaseProgress = (scrollProgress - preAnimationStart) / (preAnimationEnd - preAnimationStart);
@@ -1444,13 +1446,13 @@ function useDashcamIntroAnimation(scrollProgress: number, dashcamOffsetGroupRef:
       const rot1Deg = keyframe1.rotation;
       const rot2Deg = keyframe2.rotation;
       const quat1 = quat.setFromEuler(euler.set(
-        THREE.MathUtils.degToRad(rot1Deg[0]), 
-        THREE.MathUtils.degToRad(rot1Deg[1]), 
+        THREE.MathUtils.degToRad(rot1Deg[0]),
+        THREE.MathUtils.degToRad(rot1Deg[1]),
         THREE.MathUtils.degToRad(rot1Deg[2])
       ));
       const quat2 = new THREE.Quaternion().setFromEuler(euler.set(
-        THREE.MathUtils.degToRad(rot2Deg[0]), 
-        THREE.MathUtils.degToRad(rot2Deg[1]), 
+        THREE.MathUtils.degToRad(rot2Deg[0]),
+        THREE.MathUtils.degToRad(rot2Deg[1]),
         THREE.MathUtils.degToRad(rot2Deg[2])
       ));
       dashcamOffsetGroupRef.current.quaternion.slerpQuaternions(quat1, quat2, t);
@@ -1459,7 +1461,7 @@ function useDashcamIntroAnimation(scrollProgress: number, dashcamOffsetGroupRef:
       const scale1 = vec3.set(...keyframe1.scale);
       const scale2 = new THREE.Vector3().set(...keyframe2.scale);
       dashcamOffsetGroupRef.current.scale.lerpVectors(scale1, scale2, t);
-    } 
+    }
     else if (scrollProgress > preAnimationEnd) {
       // This part remains the same, locking to the last keyframe after the animation.
       const lastKeyframe = dashcamKeyframes[dashcamKeyframes.length - 1];
@@ -1557,53 +1559,53 @@ export default function Blender2JSPageModel1Mobile() {
   const gsapRef = useRef<typeof import("gsap").gsap>();
   const stRef = useRef<typeof import("gsap/ScrollTrigger").ScrollTrigger>();
 
-    const stickyZones = [
+  const stickyZones = [
     // First pause
-    [0.035, 0.075],
-    [0.0735, 0.1], 
-    [0.152, 0.192],
-    [0.22, 0.26],
-    [0.31, 0.35],
-    [0.378, 0.404],
-      [0.410, 0.450],
-    [0.58, 0.62],
-    [0.806, 0.846],
-   
+    [0.025, 0.045],
+    // [0.0735, 0.1],
+    [0.105, 0.145],
+    [0.172, 0.212],
+    [0.262, 0.302],
+    [0.33, 0.36],
+    [0.367, 0.405],
+    [0.545, 0.595],
+    [0.735, 0.775],
+    [0.839, 0.876],
     [0.95, 0.99],
   ];
-// Replace your handleDotClick function with this one
+  // Replace your handleDotClick function with this one
 
-const handleDotClick = (zoneIndex: number) => {
-  // --- THIS IS THE CORRECTED PART ---
-  // Access ScrollTrigger and gsap from their refs' .current property
-  const ScrollTrigger = stRef.current;
-  const gsap = gsapRef.current;
+  const handleDotClick = (zoneIndex: number) => {
+    // --- THIS IS THE CORRECTED PART ---
+    // Access ScrollTrigger and gsap from their refs' .current property
+    const ScrollTrigger = stRef.current;
+    const gsap = gsapRef.current;
 
-  // Safety check to ensure GSAP has loaded before we try to use it
-  if (!ScrollTrigger || !gsap) {
-    console.error("GSAP instances not available yet.");
-    return;
-  }
-  // --- END OF CORRECTION ---
+    // Safety check to ensure GSAP has loaded before we try to use it
+    if (!ScrollTrigger || !gsap) {
+      console.error("GSAP instances not available yet.");
+      return;
+    }
+    // --- END OF CORRECTION ---
 
-  const mainScrollTrigger = ScrollTrigger.getById("main-scroll");
-  if (!mainScrollTrigger) {
-    console.error("ScrollTrigger instance not found!");
-    return;
-  }
+    const mainScrollTrigger = ScrollTrigger.getById("main-scroll");
+    if (!mainScrollTrigger) {
+      console.error("ScrollTrigger instance not found!");
+      return;
+    }
 
-  const targetProgress = stickyZones[zoneIndex][0];
-  const scrollAmount = mainScrollTrigger.start + (mainScrollTrigger.end - mainScrollTrigger.start) * targetProgress;
+    const targetProgress = stickyZones[zoneIndex][0];
+    const scrollAmount = mainScrollTrigger.start + (mainScrollTrigger.end - mainScrollTrigger.start) * targetProgress;
 
-  gsap.to(window, {
-    scrollTo: {
-      y: scrollAmount,
-      autoKill: false,
-    },
-    duration: 1.5,
-    ease: "power2.inOut",
-  });
-};
+    gsap.to(window, {
+      scrollTo: {
+        y: scrollAmount,
+        autoKill: false,
+      },
+      duration: 1.5,
+      ease: "power2.inOut",
+    });
+  };
 
   useEffect(() => {
     if (!modelIsReady) {
@@ -1616,62 +1618,62 @@ const handleDotClick = (zoneIndex: number) => {
 
   // Replace your entire GSAP useEffect with this one
 
-useEffect(() => {
-  if (!modelIsReady || typeof window === "undefined") return;
+  useEffect(() => {
+    if (!modelIsReady || typeof window === "undefined") return;
 
-  let cleanup: (() => void) | undefined;
-  const targetProgress = { value: 0 };
-  const rawTargetProgress = { value: 0 };
+    let cleanup: (() => void) | undefined;
+    const targetProgress = { value: 0 };
+    const rawTargetProgress = { value: 0 };
 
-  const initGSAP = async () => {
-    try {
-      const gsapModule = await import("gsap");
-      const stModule = await import("gsap/ScrollTrigger");
-      const { ScrollToPlugin } = await import("gsap/ScrollToPlugin");
+    const initGSAP = async () => {
+      try {
+        const gsapModule = await import("gsap");
+        const stModule = await import("gsap/ScrollTrigger");
+        const { ScrollToPlugin } = await import("gsap/ScrollToPlugin");
 
-      // --- Assign the modules to the .current property of the refs ---
-      gsapRef.current = gsapModule.gsap;
-      stRef.current = stModule.ScrollTrigger;
-      
-      // Now use the refs to register plugins
-      gsapRef.current.registerPlugin(stRef.current, ScrollToPlugin);
+        // --- Assign the modules to the .current property of the refs ---
+        gsapRef.current = gsapModule.gsap;
+        stRef.current = stModule.ScrollTrigger;
+
+        // Now use the refs to register plugins
+        gsapRef.current.registerPlugin(stRef.current, ScrollToPlugin);
 
 
-      gsapRef.current.timeline({
-        scrollTrigger: {
-          // I also fixed a syntax error here by removing a misplaced comment
-          id: "main-scroll",
-          trigger: "#blender2js-scroll-container-model1",
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 0.1,
-          onUpdate: (self) => {
-            const rawProgress = self.progress;
-            const mappedProgress = getAdjustedProgress(rawProgress, stickyZones);
-            targetProgress.value = mappedProgress;
-            rawTargetProgress.value = rawProgress;
+        gsapRef.current.timeline({
+          scrollTrigger: {
+            // I also fixed a syntax error here by removing a misplaced comment
+            id: "main-scroll",
+            trigger: "#blender2js-scroll-container-model1",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.1,
+            onUpdate: (self) => {
+              const rawProgress = self.progress;
+              const mappedProgress = getAdjustedProgress(rawProgress, stickyZones);
+              targetProgress.value = mappedProgress;
+              rawTargetProgress.value = rawProgress;
+            },
           },
-        },
-      });
+        });
 
-      gsapRef.current.ticker.add(() => {
-        setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress.value, 0.075));
-        setRawScrollProgress((prev) => THREE.MathUtils.lerp(prev, rawTargetProgress.value, 0.075));
-        animationProgress.current = targetProgress.value;
-      });
+        gsapRef.current.ticker.add(() => {
+          setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress.value, 0.075));
+          setRawScrollProgress((prev) => THREE.MathUtils.lerp(prev, rawTargetProgress.value, 0.075));
+          animationProgress.current = targetProgress.value;
+        });
 
-      cleanup = () => {
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-        gsapRef.current.ticker.remove(() => {});
-      };
-    } catch (err) {
-      console.error("Failed to load GSAP:", err);
-    }
-  };
+        cleanup = () => {
+          ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+          gsapRef.current.ticker.remove(() => { });
+        };
+      } catch (err) {
+        console.error("Failed to load GSAP:", err);
+      }
+    };
 
-  initGSAP();
-  return () => cleanup?.();
-}, [modelIsReady]);
+    initGSAP();
+    return () => cleanup?.();
+  }, [modelIsReady]);
 
   // The rest of your component's JSX remains the same...
   return (

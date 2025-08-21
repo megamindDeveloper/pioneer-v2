@@ -96,10 +96,8 @@
 // why does this code have type error?
 
 import Image from "next/image";
-import React, { useState } from "react";
-
-
-
+import React, { useEffect, useRef, useState} from "react";
+import gsap from "gsap";
 import { defaultProducts } from "@/app/utils/ProductData/ProductData";
 import { specsData } from "@/app/utils/specsData/specsData";
 import Link from "next/link";
@@ -136,6 +134,44 @@ export default function ProductFeatureTable({
   // Reorder products so priority product comes first
   const reorderedProducts = [products[safePriorityIndex], ...products.filter((_, i) => i !== safePriorityIndex)];
 
+ const scrollerRef = useRef<HTMLDivElement>(null);
+
+
+  useEffect(() => {
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    if (!isMobile) return;
+
+    const el = scrollerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // calculate max shift
+            const maxShift = Math.min(260, el.scrollWidth - el.clientWidth);
+            if (maxShift <= 0) return;
+
+            // play GSAP animation
+            gsap.timeline({ defaults: { ease: "power1.inOut" } })
+              .to(el, { scrollLeft: maxShift, duration: 1 })
+              .to(el, { scrollLeft: 0, duration: 1 }, "+=0");
+          } else {
+            // reset scroll if needed when leaving
+            gsap.set(el, { scrollLeft: 0 });
+          }
+        });
+      },
+      { threshold: 0.6 } // play when 60% of the element is visible
+    );
+
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <section className="text-white bg-black md:pl-0 pl-4 md:px-8 py-20 max-w-6xl xl:max-w-[80%] mx-auto ">
       <div className="max-w-7xl mx-auto text-center mb-16">
@@ -143,7 +179,7 @@ export default function ProductFeatureTable({
       <Typography variant="section-body" className="text-[#ABABAB]/80 lg:pt-[0.8em] xl:pt-0  text-sm md:text-base px-12 md:px-0">Compare the key features across each model</Typography>
       </div>
 
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto" ref={scrollerRef}>
         <div className="min-w-[800px] grid grid-cols-[200px_repeat(4,minmax(150px,1fr))] gap-x-6 text-left">
           {/* Product Columns */}
           <div />
@@ -191,7 +227,7 @@ export default function ProductFeatureTable({
       </div>
 
       {/* Modal Trigger */}
-      <SpecsModal isOpen={open} onClose={() => setOpen(false)} specs={currentSpecs} />
+      <SpecsModal  isOpen={open} onClose={() => setOpen(false)} specs={currentSpecs} />
 
       <div className="modal py-12 flex items-center justify-center">
         <button
