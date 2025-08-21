@@ -4,7 +4,7 @@ import { useState, useEffect, JSX } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Typography } from "@/components/CommonComponents/Typography/page";
-
+import { useRouter } from "next/navigation";
 // ✅ 3D Group wrapper to use useFrame inside Canvas
 
 const DashcamCardMobile = ({
@@ -29,6 +29,7 @@ const DashcamCardMobile = ({
   const [hovered, setHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
+  const router = useRouter();
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 1024); // lg: <1024px
@@ -52,6 +53,9 @@ const DashcamCardMobile = ({
       } overflow-hidden cursor-pointer  shadow-xl transition-all duration-300`}
       onMouseEnter={() => !isMobile && setHovered(true)}
       onMouseLeave={() => !isMobile && setHovered(false)}
+      onClick={() => {
+        if (link) router.push(link);
+      }}
     >
       {/* Corner borders - top left & top right only, visible on hover */}
       <motion.div

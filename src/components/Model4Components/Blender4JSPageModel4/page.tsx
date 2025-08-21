@@ -11,7 +11,7 @@ import FadeLoader from "@/components/CommonComponents/Loader/page";
 import TextOverlay from "../TextOverlayModel4/page";
 import FadingHeroContent from "@/components/ModelHelperComponents/ScrollFadeAndScale";
 useGLTF.preload("/models/car.glb");
-useGLTF.preload("/models/VREC_H120.glb");
+useGLTF.preload("/models/VREC_H120SC.glb");
 useTexture.preload("/modelImages/CommonModelImages/aiNight.png");
 
 const animationData = [
@@ -482,8 +482,8 @@ function Blender2JSScene({
   dashcamOffsetGroupRef: React.RefObject<THREE.Group | null>;
 }) {
   const carGLTF = useGLTF("/models/car.glb");
-  const dashcamGLTF = useGLTF("/models/VREC_H120.glb");
-  const { scene: cameraModelScene, nodes: cameraNodes } = useGLTF("/models/VREC_H120.glb");
+  const dashcamGLTF = useGLTF("/models/VREC_H120SC.glb");
+  const { scene: cameraModelScene, nodes: cameraNodes } = useGLTF("/models/VREC_H120SC.glb");
   const [carModelVisible, setCarModelVisible] = useState(false);
   const displayMountRef = useRef<THREE.Object3D | null>(null);
   const imagePlaneRef = useRef<THREE.Mesh | null>(null);
@@ -541,6 +541,16 @@ function Blender2JSScene({
 
     onLoadComplete();
   }, [carGLTF, dashcamGLTF, onLoadComplete, setCarSceneRef, scrollProgress]);
+  useEffect(() => {
+    if (dashcamGLTF.scene) {
+      // Recursively go through all parts of the model.
+      dashcamGLTF.scene.traverse((object) => {
+        // Disable frustum culling for this part.
+        object.frustumCulled = true;
+      });
+    }
+}, [dashcamGLTF.scene]);
+
   useEffect(() => {
     console.log("🎯 Searching for DISPLAY object in camera model...");
     const displayMount = cameraModelScene.getObjectByName("DISPLAY");
@@ -1161,7 +1171,7 @@ export default function Blender2JSPageModel4() {
       {modelIsReady && <FullscreenBlackOverlay scrollProgress={scrollProgress} />}
       {modelIsReady && <TextOverlay scrollProgress={scrollProgress} />}
       <Canvas
-        camera={{ position: [0, 5, 15], fov: 20, near: 0.01, far: 1000 }}
+        camera={{ position: [0, 5, 15], fov: 20, near: 0.1, far: 1000 }}
         style={{ background: "#ffff", height: "100vh", position: "sticky", top: 0 }}
         shadows
         gl={{

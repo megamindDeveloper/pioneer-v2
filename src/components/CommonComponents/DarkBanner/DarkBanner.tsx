@@ -96,9 +96,15 @@ const DarkBanner: React.FC<DarkBannerProps> = ({
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.4 }}
-        className="absolute md:-bottom-14 top-0 flex justify-center  z-20 md:left-[50%] "
+        className="absolute md:-bottom-14 top-0 flex justify-center  z-20 md:left-[52%] "
       >
-        <Image src={imageSrc} alt={imageAlt} placeholder="blur" className={` h-full mx md:w-[100%] w-[100%]`} />
+
+        {buttonLink === "/models/vrec-z820dc" ? (
+             <Image src={imageSrc} alt={imageAlt} placeholder="blur" className={` h-full mx md:w-[100%] w-[100%]`} />
+        ):(
+          <Image src={imageSrc} alt={imageAlt} placeholder="blur" className={` h-full p-12 md:w-[100%] w-[100%]`} />
+        )}
+  
       </motion.div>
     </section>
   );

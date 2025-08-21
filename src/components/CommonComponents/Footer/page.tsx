@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../../../../public/logo/image.png";
@@ -57,13 +57,28 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 mt-8">
             {/* Left Side */}
             <div className="flex flex-col md:flex-row md:items-center lg2:gap-12 gap-3">
-              <Image src={logo} alt="Pioneer" width={180} height={42} className="object-contain" />
-              <div className="flex lg2:gap-8 lg:gap-4 flex-wrap lg:text-[10px] lg2:text-[13px] text-white/80">
-                {bottomLinks.map((link, i) => (
-                  <Link key={i} href={link.href} className="hover:text-white transition" target="_blank">
-                    {link.label}
-                  </Link>
-                ))}
+              <Image src={logo} alt="Pioneer" width={180} height={42} className="w-[15%]  object-contain" />
+              <div className="flex items-center flex-wrap space-x-3 lg2:space-x-8 lg:text-[10px] lg2:text-[13px] text-white/80 pt-2">
+                {bottomLinks.map((link, i) => {
+                  // If it's the "Contact Us" link, wrap it with the separator
+                  if (link.label === "Contact Us") {
+                    return (
+                      <div key={i} className="flex items-center space-x-4 lg2:space-x-8">
+                        <Link href={link.href} className="hover:text-white transition" target="_blank">
+                          {link.label}
+                        </Link>
+                        {/* This separator is now inside the group */}
+                        <span className="select-none text-white/50">|</span>
+                      </div>
+                    );
+                  }
+                  // For all other links, return just the Link
+                  return (
+                    <Link key={i} href={link.href} className="hover:text-white transition" target="_blank">
+                      {link.label}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
 

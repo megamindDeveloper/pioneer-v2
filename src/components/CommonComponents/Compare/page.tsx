@@ -50,7 +50,7 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
   const isSliderNearBefore = sliderXPercent < 8; // Hide "Before" when slider is very close to left text
   const isSliderNearAfter = sliderXPercent > 92;
   return (
-    <section className="w-full h-[100vh] text-white flex flex-col items-center py-16 px-4 opacity-100 z-1000">
+    <section className="w-full h-[120vh] md:h-auto xl:h-[100vh] text-white flex flex-col items-center py-16 px-4 opacity-100 z-1000">
       {/* Heading */}
       <div className="text-center max-w-[90%] mb-1">
         <h2 className="text-3xl sm:whitespace-nowrap md:text-4xl font-semibold mb-4 font-['Helvetica_Neue','Helvetica','Arial','sans-serif']">
@@ -77,7 +77,7 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
           >
             <div
               className={cn(
-                "absolute top-4 left-4 z-50  text-white px-3 py-1 rounded-md text-[10px] md:text-sm font-medium backdrop-blur-sm transition-opacity duration-200",
+                "absolute top-4 md:left-4 z-50  text-white px-3 py-1 rounded-md text-[10px] md:text-sm font-medium backdrop-blur-sm transition-opacity duration-200",
                 isSliderNearBefore ? "opacity-0" : "opacity-100"
               )}
             >
@@ -86,7 +86,7 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
 
             <div
               className={cn(
-                "absolute top-4 right-4 z-50 bg-black/70 text-white px-3 py-1 rounded-md text-sm font-medium backdrop-blur-sm transition-opacity duration-200",
+                "absolute top-4 max-w-[30%] right-0 md:right-4 z-50 b text-white px-3 py-1 rounded-md text-[10px] md:text-sm font-medium backdrop-blur-sm transition-opacity duration-200",
                 isSliderNearAfter ? "opacity-0" : "opacity-100"
               )}
             >
@@ -175,7 +175,9 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
 
       {/* Tabs */}
       <div className="w-full flex justify-center mt-12">
-        <div className="flex justify-center gap-8 sm:gap-6 md:gap-27 flex-wrap sm:flex-nowrap max-w-full">
+        <div className="flex justify-center gap-8 sm:gap-6 md:gap-27 flex-wrap max-w-full">
+          {" "}
+          {/* ✨ sm:flex-nowrap removed */}
           {tabs.map((tab, index) => (
             <button
               type="button"

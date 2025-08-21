@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { Typography } from "@/components/CommonComponents/Typography/page";
 
-
 const features = [
   {
     id: "innovation",
@@ -89,11 +88,8 @@ export default function FeatureAccordion() {
                       {/* Small Image only on mobile */}
                       <div className="mt-4 md:hidden relative">
                         <Image
-                          src={
-                            feature.id === "conditions"
-                              ? "/homePageImages/featureAccordionImages/3.webp" // ✅ mobile-specific image
-                              : feature.image || ""
-                          }
+                        priority
+                          src={feature.id === "conditions" ? "/homePageImages/featureAccordionImages/3.webp" : feature.image || ""}
                           alt={feature.title || ""}
                           width={400}
                           height={250}
@@ -139,14 +135,14 @@ export default function FeatureAccordion() {
             {/* ✅ Wrapper to support conditional desktop image layouts */}
             {currentFeature?.id === "innovation" && (
               <div className="relative w-full h-full ">
-                <Image src={currentFeature?.image || ""} alt={currentFeature?.title || ""} fill className="object-contain object-center p-12" />
+                <Image src={currentFeature?.image || ""} priority alt={currentFeature?.title || ""} fill className="object-contain object-center p-12" />
                 {/* <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-10 pointer-events-none" /> */}
               </div>
             )}
 
             {currentFeature?.id === "control" && (
               <div className="relative w-full h-full">
-                <Image src={currentFeature?.image || ""} alt={currentFeature?.title || ""} fill className={currentFeature?.imageClass} />
+                <Image src={currentFeature?.image || ""} priority alt={currentFeature?.title || ""} fill className={currentFeature?.imageClass} />
 
                 {currentFeature?.id === "control" && (
                   <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-transparent to-transparent z-10 pointer-events-none" />
@@ -155,9 +151,17 @@ export default function FeatureAccordion() {
             )}
             {currentFeature?.id === "conditions" && (
               <div className="w-[100%] h-full flex  flex-row-reverse">
-                <div className="relative w-[100%] h-full overflow-hidden">
-                  <Image src={currentFeature?.image || ""} alt={currentFeature?.title || ""} fill className="object-cover md:!h-80 md:!w-80 xl:!w-[90%] xl:!h-[100%] md:my-auto md:ml-auto object-left" />
-                  <div className="absolute inset-0 bg-gradient-radial from-black/60 to-transparent z-10 pointer-events-none" />
+                <div className="relative w-full h-full overflow-hidden">
+                  <Image
+                    src={currentFeature?.image || ""}
+                    alt={currentFeature?.title || ""}
+                    fill
+                    priority
+                    className="object-cover md:!h-80 md:!w-80 xl:!w-[90%] xl:!h-[100%] md:my-auto md:ml-auto object-left"
+                  />
+
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-l from-black/70 to-transparent" />
                 </div>
               </div>
             )}
