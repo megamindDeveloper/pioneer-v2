@@ -56,6 +56,8 @@ const page = () => {
             tabtitle: "Want a simple setup?",
             image2: "/productPageImages/comparisionImages/h120sc/120 BEFORE.webp",
             image1: "/productPageImages/comparisionImages/h120sc/120 AFTER.webp",
+            afterImageText:"VREC-H120SC’s View",
+            beforeImageText:"Normal Dashcams",
             compare:true,
           },
         ]}

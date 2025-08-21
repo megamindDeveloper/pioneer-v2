@@ -11,7 +11,7 @@ import FadeLoader from "@/components/CommonComponents/Loader/page";
 import TextOverlay from "../TextOverlayModel4/page";
 import FadingHeroContent from "@/components/ModelHelperComponents/ScrollFadeAndScale";
 useGLTF.preload("/models/car.glb");
-useGLTF.preload("/models/VREC_H120SC.glb");
+useGLTF.preload("/models/VREC_H120.glb");
 useTexture.preload("/modelImages/CommonModelImages/aiNight.png");
 
 const animationData = [
@@ -482,8 +482,8 @@ function Blender2JSScene({
   dashcamOffsetGroupRef: React.RefObject<THREE.Group | null>;
 }) {
   const carGLTF = useGLTF("/models/car.glb");
-  const dashcamGLTF = useGLTF("/models/VREC_H120SC.glb");
-  const { scene: cameraModelScene, nodes: cameraNodes } = useGLTF("/models/VREC_H120SC.glb");
+  const dashcamGLTF = useGLTF("/models/VREC_H120.glb");
+  const { scene: cameraModelScene, nodes: cameraNodes } = useGLTF("/models/VREC_H120.glb");
   const [carModelVisible, setCarModelVisible] = useState(false);
   const displayMountRef = useRef<THREE.Object3D | null>(null);
   const imagePlaneRef = useRef<THREE.Mesh | null>(null);

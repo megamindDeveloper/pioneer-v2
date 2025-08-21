@@ -13,15 +13,14 @@ import ZenVue from "@/components/CommonComponents/ZenVue/page";
 import Blender2JSPageModel1Mobile from "@/components/Model1Components/Blender2JsMobile/page";
 import Blender2JSPageModel1 from "@/components/Model1Components/Blender2JSPageModel1/page";
 
-
 import Model1TextOverlay from "@/components/Model1Components/TextOverlayModel1/page";
 import React from "react";
 
 const page = () => {
-  const isDesktop = useMediaQuery('(min-width: 768px)');
+  const isDesktop = useMediaQuery("(min-width: 768px)");
   return (
     <div className="bg-black">
-      <HomeButton/>
+      <HomeButton />
       {isDesktop && <Blender2JSPageModel1 />}
       {!isDesktop && <Blender2JSPageModel1Mobile />}
       <Compare
@@ -64,18 +63,18 @@ const page = () => {
           },
         ]}
       />
-     
-      <ZenVue /> 
+
+      <ZenVue />
       <section className="bg-black">
         <ProductFeatureTable products={defaultProducts} priorityProductIndex={0} />
       </section>
-       
+
       <EverythingNeedToKnow faqData={faqData.set1} />
-     <DriveSmarter
+      <DriveSmarter
         subText="Drive with confidence, capture every moment, & stay protected. Explore what the Z820DC brings to every drive."
         image="/productPageImages/driveSmarterImages/z820dc.webp"
       />
-      <Footer /> 
+      <Footer />
     </div>
   );
 };

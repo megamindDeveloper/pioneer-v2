@@ -38,7 +38,9 @@ const page = () => {
               "With 2K HDR recording, the H520DC keeps your video sharp across bright sun, moving traffic, and fast-changing streets.",
             image1: "/productPageImages/comparisionImages/h520dc/GLOW_BEFORE.webp",
             image2: "/productPageImages/comparisionImages/h520dc/GLOW_AFTER.webp",
-            compare:true
+            compare:true,
+            afterImageText:"VREC-H520DC’s crisp 2K HDR",
+            beforeImageText:"Normal Dashcams"
           },
           {
             tabtitle: "Need Wider Visibility?",
@@ -52,8 +54,8 @@ const page = () => {
                image1: "/productPageImages/comparisionImages/h520dc/NOISE_BEFORE.webp",
             image2: "/productPageImages/comparisionImages/h520dc/NOICE_AFTER.webp",
             compare: true,
-            beforeImageText:"",
-            afterImageText:""
+            beforeImageText:"Normal Dashcams",
+            afterImageText:"VREC-H520DC’s wide angle lens"
           },
           {
             tabtitle: "Prefer Dual Coverage?",

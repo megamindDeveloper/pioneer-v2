@@ -629,7 +629,7 @@ function Blender2JSScene({
       console.log("🎯 Display mount found:", displayMountRef.current);
       if (displayMountRef.current) {
         displayMountRef.current.add(plane);
-        plane.position.set(0, 0, 0);
+        plane.position.set(0, 0, -0.1);
         console.log("🎯 Plane added to display mount");
         console.log("🎯 Plane position:", plane.position);
         console.log(

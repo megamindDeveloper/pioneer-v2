@@ -47,7 +47,8 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
   const handleClick = (index: number) => {
     setActiveTab(index);
   };
-
+  const isSliderNearBefore = sliderXPercent < 8; // Hide "Before" when slider is very close to left text
+  const isSliderNearAfter = sliderXPercent > 92;
   return (
     <section className="w-full h-[100vh] text-white flex flex-col items-center py-16 px-4 opacity-100 z-1000">
       {/* Heading */}
@@ -74,6 +75,23 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
             onTouchEnd={handleEnd}
             onTouchMove={(e) => handleMove(e.touches[0].clientX)}
           >
+            <div
+              className={cn(
+                "absolute top-4 left-4 z-50  text-white px-3 py-1 rounded-md text-[10px] md:text-sm font-medium backdrop-blur-sm transition-opacity duration-200",
+                isSliderNearBefore ? "opacity-0" : "opacity-100"
+              )}
+            >
+              {currentTab.beforeImageText}
+            </div>
+
+            <div
+              className={cn(
+                "absolute top-4 right-4 z-50 bg-black/70 text-white px-3 py-1 rounded-md text-sm font-medium backdrop-blur-sm transition-opacity duration-200",
+                isSliderNearAfter ? "opacity-0" : "opacity-100"
+              )}
+            >
+              {currentTab.afterImageText}
+            </div>
             {/* Handlebar */}
             <motion.div
               className="h-full w-px absolute top-0 z-30 bg-gradient-to-b from-transparent via-white to-transparent"
@@ -103,13 +121,7 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
               style={{ clipPath: `inset(0 ${100 - sliderXPercent}% 0 0)` }}
               transition={{ duration: 0 }}
             >
-              <Image
-                fill
-                src={currentTab.image1}
-                alt="Before"
-                className="object-cover w-full h-full select-none"
-                draggable={false}
-              />
+              <Image fill src={currentTab.image1} alt="Before" className="object-cover w-full h-full select-none" draggable={false} />
               {/* Before Image Text */}
               {/* {currentTab.beforeImageText && (
                 <div
@@ -149,13 +161,7 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
           </div>
         ) : (
           <div className="relative w-full h-full">
-            <Image
-              fill
-              src={currentTab.image2}
-              alt="Full"
-              className="absolute top-0 left-0 w-full h-full object-cover z-10"
-              draggable={false}
-            />
+            <Image fill src={currentTab.image2} alt="Full" className="absolute top-0 left-0 w-full h-full object-cover z-10" draggable={false} />
             {/* Gradient Overlay */}
             <div className="absolute bottom-0 left-0 w-full h-[40%] bg-gradient-to-t from-black/70 via-black/40 to-transparent z-30 pointer-events-none" />
 
