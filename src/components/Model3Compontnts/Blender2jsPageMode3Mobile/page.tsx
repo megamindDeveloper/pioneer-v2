@@ -35,9 +35,9 @@ const animationData = [
   { time: 0.25, position: [-0.0093, 1.2509, -2.7], quaternion: [0.00000002, 0.99999607, 0.00280268, 0.0000004], fov: 40 },
   { time: 0.2917, position: [-0.0093, 3.9288, -3.2975], quaternion: [0.00000007, 0.9208445, 0.38993004, 0.00000008], fov: 40 },
   { time: 0.3333, position: [-0.0, 5.6768, 1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
-  { time: 0.3333, position: [-0.0, 5.6768, -1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
+  { time: 0.3333, position: [-0.0, 5.6768, 2.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
   // { time: 0.3333, position: [-0.0, 5.6768, -1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
-  { time: 0.3333, position: [-0.0, 5.6768, -1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
+  { time: 0.3333, position: [-0.0, 5.6768, -5.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
 ];
 
 const dashcamKeyframes = [
@@ -1389,14 +1389,16 @@ export default function Blender2JSPageModel1Mobile() {
 
   const stickyZones = [
     // First pause
-    [0.04, 0.08],
+    [0.03, 0.07],
     // [0.0735, 0.1], 
-    [0.134, 0.174],
+    [0.13, 0.17],
     [0.26, 0.30],
-    [0.335, 0.375],
-    [0.385, 0.425],
+    [0.326, 0.362],
+    [0.368, 0.408],
+    [0.718, 0.748],
 
-    [0.788, 0.828],
+
+    [0.840, 0.88],
     [0.95, 0.99],
     // [0.95, 0.99],
   ];
@@ -1515,7 +1517,7 @@ export default function Blender2JSPageModel1Mobile() {
       {modelIsReady && <StickyNav stickyZones={stickyZones} rawScrollProgress={rawScrollProgress} onDotClick={handleDotClick} />}
 
       {/* Pass both raw and mapped progress to your debug timeline to see the effect */}
-      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />} */}
+      {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />}
       {/* {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}HeroImageFade */}
       {modelIsReady && (
         <FadingHeroContent

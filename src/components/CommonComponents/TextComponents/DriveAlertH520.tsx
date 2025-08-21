@@ -28,7 +28,7 @@ export default function DriveAlertH520({
   return (
     <section className="min-h-screen text-white flex flex-col justify-between px-4 sm:px-6 py-12 text-center">
       {/* Top Icon */}
-      <div className="pt-57 sm:pt-48  mb-[9rem]  animate-fastpulse">
+      <div className="pt-45 sm:pt-48  mb-[4rem]  animate-fastpulse">
         <Image
           src="/productPageImages/driveAlertIcons/dangerIcon.svg"
           alt="Warning Icon"
@@ -39,16 +39,16 @@ export default function DriveAlertH520({
       </div>
 
       {/* Bottom Content */}
-      <div className="flex flex-col w-[20rem] md:w-3xl items-center space-y-12 sm:space-y-6  pb-8">
+      <div className="flex flex-col w-[20rem] md:w-3xl items-center space-y-1 sm:space-y-6  pb-8">
         {/* Headings */}
         <div>
           <p className="text-[#AD2239] font-bold mb-2 text-sm sm:text-base md:text-lg">
             {highlightedText}
           </p>
-          <h2 className="font-medium leading-tight sm:leading-none mb-2 text-3xl sm:text-4xl md:text-[42px]">
+          <h2 className="font-medium leading-tight sm:leading-none mb-2 text-[26px] sm:text-4xl md:text-[38px]">
             {heading}
           </h2>
-          <p className="text-[#ABABAB] mx-auto leading-snug sm:leading-relaxed text-sm sm:text-base md:text-md">
+          <p className="text-[#ABABAB] mx-auto leading-snug sm:leading-relaxed text-[12px] sm:text-base md:text-md">
             {subheading}
           </p>
         </div>
