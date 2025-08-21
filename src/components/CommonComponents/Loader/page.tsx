@@ -2,49 +2,26 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { useProgress } from "@react-three/drei";
 import Image from "next/image";
-import image from '../../../../public/logo/image.png'
-export default function FadeLoader({ isModelReady }: { isModelReady: boolean }) {
+import image from '../../../../public/logo/image.png';
+
+// Define the component's props for TypeScript
+interface FadeLoaderProps {
+  progress: number;
+  active: boolean;
+}
+
+export default function FadeLoader({ progress, active }: FadeLoaderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const centerRef = useRef<HTMLDivElement>(null);
   const cornersRef = useRef<HTMLDivElement>(null);
   const cornerRef = useRef<HTMLDivElement>(null);
   const contentGroupRef = useRef<HTMLDivElement>(null);
 
-  const { progress, loaded, total } = useProgress();
-
   const [visible, setVisible] = useState(true);
-  const [showDot, setShowDot] = useState(true);
-  const [resolution, setResolution] = useState("0x0");
-  const [timer, setTimer] = useState("00:00:00");
-
   const [stage, setStage] = useState<"loading" | "contentOut" | "fadeOut">("loading");
 
-  // Blinking dot
-  useEffect(() => {
-    const interval = setInterval(() => setShowDot((prev) => !prev), 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const startTime = Date.now();
-  
-    const interval = setInterval(() => {
-      const elapsed = Math.floor((Date.now() - startTime) / 1000);
-      const hours = String(Math.floor(elapsed / 3600)).padStart(2, "0");
-      const minutes = String(Math.floor((elapsed % 3600) / 60)).padStart(2, "0");
-      const seconds = String(elapsed % 60).padStart(2, "0");
-  
-      setTimer(`${hours}:${minutes}:${seconds}`);
-    }, 1000);
-  
-    return () => clearInterval(interval);
-  }, []);
-  
-  
-
-  // Entrance animation
+  // Entrance animation - No changes needed here
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
     tl.fromTo(centerRef.current, { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 1 });
@@ -53,10 +30,10 @@ export default function FadeLoader({ isModelReady }: { isModelReady: boolean }) 
     return () => tl.kill();
   }, []);
 
-  // ✅ Fade out when assets + model are ready
+  // ✅ CORRECTED: Fade out when loading is finished
   useEffect(() => {
-    const assetsLoaded = loaded === total;
-    if (assetsLoaded && isModelReady && stage === "loading") {
+    // The `active` prop is false when all assets are loaded.
+    if (!active && stage === "loading") {
       setStage("contentOut");
 
       const tl = gsap.timeline();
@@ -75,7 +52,7 @@ export default function FadeLoader({ isModelReady }: { isModelReady: boolean }) 
         },
       });
     }
-  }, [loaded, total, isModelReady, stage]);
+  }, [active, stage]); // Dependency array is now correct
 
   if (!visible) return null;
 
@@ -85,18 +62,8 @@ export default function FadeLoader({ isModelReady }: { isModelReady: boolean }) 
       className="fixed inset-0 bg-[#0D0D0D] z-50 flex items-center justify-center text-white font-mono select-none transition-opacity"
     >
       <div ref={contentGroupRef} className="relative w-full h-full">
-        {/* Top Left Info */}
-        <div className="absolute top-24 left-16 text-gray-400 leading-tight">
-          <p>{resolution}</p>
-        </div>
         <div className="absolute top-16 left-16 text-gray-400 leading-tight">
          <Image src={image} alt="logo" className="w-32"/>
-        </div>
-
-        {/* Top Right Timer */}
-        <div className="absolute top-16 right-16 flex gap-2 items-center text-gray-400 leading-tight">
-          <div className={`w-3 h-3 rounded-full ${showDot ? "bg-[#AD2239]" : "bg-transparent"} transition`} />
-          <p>{timer}</p>
         </div>
 
         {/* Border Corners */}
