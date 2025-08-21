@@ -122,8 +122,8 @@ export default function TextOverlayMobile({
       ),
     },
     {
-      start: 0.1200, // When the camera is high above the car
-      end: 0.1254,
+      start: 0.1300, // When the camera is high above the car
+      end: 0.1402,
       position: "left-1/2 transform -translate-x-1/2 bottom-[60px]",
       content: (
         <TextDisplay
@@ -136,8 +136,8 @@ export default function TextOverlayMobile({
       ),
     },
     {
-      start: 0.2240, // When the camera is high above the car
-      end: 0.1776,
+      start: 0.1725, // When the camera is high above the car
+      end: 0.2060,
       position: " transform -translate-x-1/2 left-1/2 bottom-[60px]",
       content: (
         <TextDisplay
@@ -161,7 +161,7 @@ export default function TextOverlayMobile({
     //   },
     {
       start: 0.2678, // When the camera is high above the car
-      end: 0.3000,
+      end: 0.3058,
       position: "left-1/2 transform -translate-x-1/2 bottom-[60px]",
       content: (
         <TextDisplay
@@ -175,7 +175,7 @@ export default function TextOverlayMobile({
     },
     {
       start: 0.2482, // When the camera is high above the car
-      end: 0.2600,
+      end: 0.2615,
       position: "bottom-[60px] left-1/2 transform -translate-x-1/2 ",
       content: (
         <TextDisplay
@@ -203,7 +203,7 @@ export default function TextOverlayMobile({
           alert3="Stop & Go Alert"
         />
       ),
-      start: 0.3004, // When the camera is high above the car
+      start: 0.3083, // When the camera is high above the car
       end: 0.3161,
     },
     {
