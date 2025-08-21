@@ -58,7 +58,7 @@ export default function EverythingNeedToKnow({ faqData }: Props) {
                 }`}
               >
                 <p className="text-[16px] mt-5 md:text-[18px] text-[#ABABAB]">
-                  {item.answer}d
+                  {item.answer}
                 </p>
                 {item.disclaimer && (
 

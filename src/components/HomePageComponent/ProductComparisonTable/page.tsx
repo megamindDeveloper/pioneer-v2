@@ -44,7 +44,7 @@ const features = [
 
 export default function ProductComparisonTable() {
   return (
-    <section className="b text-white md:px-4 px-0 pl-4 md:pl-0  py-20 max-w-[100%]  xl:max-w-[90%] md:mx-auto md:mt-20">
+    <section className=" text-white md:px-4 px-0 pl-4 md:pl-0  py-20 max-w-[90%] xl:max-w-[90%] mx-auto md:mt-20">
       <div className="max-w-7xl mx-auto text-center mb-20">
         <Typography variant="section-heading" className="!font-semibold ">
           Pick Your Level of Performance

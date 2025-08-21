@@ -42,7 +42,7 @@ export const faqData = {
 
   // page2
 
-  set3: [
+  set2: [
     {
       question: "Can the VREC-H520DC record while parked?",
       answer:
