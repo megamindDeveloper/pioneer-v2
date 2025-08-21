@@ -20,7 +20,7 @@ export const defaultProducts = [
     {
       name: "VREC - H120SC",
       image: "/homePageImages/productComparisionTableImages/h120scImages/thumb.png", // Replace with actual image path
-      link: "/models/vrec-h120sc",
+      link: "/models/vrec-h120dc",
       features: ["1.5K", "-", "Front", "31.12mm x 28.8mm\n  x 37.33mm", "-", "Yes", "Ideal for First-Time\n  Users"],
     },
   ];
