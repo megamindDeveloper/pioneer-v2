@@ -1686,7 +1686,7 @@ useEffect(() => {
       {modelIsReady && <StickyNav stickyZones={stickyZones} rawScrollProgress={rawScrollProgress} onDotClick={handleDotClick} />}
 
       {/* Pass both raw and mapped progress to your debug timeline to see the effect */}
-      {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />}
+      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />} */}
       {modelIsReady && (
         <FadingHeroContent
           scrollProgress={scrollProgress}

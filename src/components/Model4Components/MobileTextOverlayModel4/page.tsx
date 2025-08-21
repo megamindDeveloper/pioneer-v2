@@ -107,7 +107,7 @@ export default function TextOverlay({
       ),
     },
     {
-      start: 0.28, // When the camera is high above the car
+      start: 0.325, // When the camera is high above the car
       end: 0.3494,
       position: bottom,
       content: (
@@ -120,8 +120,8 @@ export default function TextOverlay({
     },
 
     {
-      start: 0.511, // When the camera is high above the car
-      end: 0.5324,
+      start: 0.536, // When the camera is high above the car
+      end: 0.5514,
       position: bottom,
       content: (
         <TextDisplay
@@ -150,6 +150,7 @@ export default function TextOverlay({
       start: 0.8051, // When the camera is high above the car
       end: 0.836,
       position: bottom,
+      
       content: (
         <TextDisplay
           superScript="Stay Secure While Parked"
@@ -196,8 +197,8 @@ function TextDisplay({
   title,
   description,
   disclaimer,
-  descriptionWidth = "max-w-[20rem]",
-  titleMinWidth = "min-w-[20rem]",
+  descriptionWidth = "max-w-[22rem]",
+  titleMinWidth = "min-w-[22rem]",
   className = "",
 }: {
   superScript: string;

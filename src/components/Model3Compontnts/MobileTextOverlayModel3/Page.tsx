@@ -137,8 +137,8 @@ export default function Model3textOverlayMobile({
     //   ),
     // },
     {
-      start: 0.1176,
-      end: 0.1283,
+      start: 0.1253,
+      end: 0.1326,
       position: bottom,
       content: (
         <TextDisplay
@@ -149,8 +149,8 @@ export default function Model3textOverlayMobile({
       ),
     },
     {
-      start: 0.225, // When the camera is high above the car
-      end: 0.2438,
+      start: 0.2394, // When the camera is high above the car
+      end: 0.2528,
       position: bottom,
       content: (
         <TextDisplay
@@ -161,8 +161,8 @@ export default function Model3textOverlayMobile({
       ),
     },
     {
-      start: 0.2556, // When the camera is high above the car
-      end: 0.285,
+      start: 0.2832, // When the camera is high above the car
+      end: 0.3022,
       position: bottom,
       content: (
         <TextDisplay
@@ -210,8 +210,8 @@ export default function Model3textOverlayMobile({
           model="model3"
         />
       ),
-      start: 0.2847, // When the camera is high above the car
-      end: 0.3078,
+      start: 0.3055, // When the camera is high above the car
+      end: 0.3135,
     },
     // {
     //   start: 0.6792, // When the camera is high above the car
@@ -247,7 +247,7 @@ export default function Model3textOverlayMobile({
       ),
     },
     {
-      start: 0.8204, // When the camera is high above the car
+      start: 0.8037, // When the camera is high above the car
       end: 0.8626,
       position:
       "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[50%] !w-[100%]",

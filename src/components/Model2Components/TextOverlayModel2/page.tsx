@@ -266,7 +266,7 @@ export default function TextOverlay({
     },
     {
       start: 0.3012, // When the camera is high above the car
-      end: 0.3158,
+      end: 0.3146,
       position: "bottom-[70px] left-1/2 transform -translate-x-1/2 ",
       content: (
         <TextDisplay
@@ -293,7 +293,7 @@ export default function TextOverlay({
           alert3="Stop & Go Alert"
         />
       ),
-      start: 0.3157, // When the camera is high above the car
+      start: 0.3147, // When the camera is high above the car
       end: 0.3165,
     },
     {

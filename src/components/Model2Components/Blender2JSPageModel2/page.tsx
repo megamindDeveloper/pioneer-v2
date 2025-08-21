@@ -725,7 +725,7 @@ function Blender2JSScene({
 
   // This logic block now handles all 3 states for the screen
   if (imagePlaneRef.current) {
-    if (scrollProgress >= 0.3156) {
+    if (scrollProgress >= 0.3149) {
       const { videoMap, videoEl } = imagePlaneRef.current.userData;
       if (videoMap) {
         const material = imagePlaneRef.current
@@ -1203,10 +1203,10 @@ export default function Blender2JSPageModel2() {
     // First pause
     [0.027, 0.047], // Second pause
     [0.1195, 0.1595],
-    [0.178, 0.218],
+    [0.171, 0.218],
     [0.263, 0.303],
-    [0.361, 0.401],
-    [0.4012, 0.4412],
+    [0.365, 0.405],
+    [0.4072, 0.4412],
     [0.5604, 0.6004],
     [0.90, 0.94],
   ];
@@ -1280,7 +1280,7 @@ export default function Blender2JSPageModel2() {
     <div
       id="blender2js-scroll-container-model2"
       ref={containerRef}
-      style={{ height: "3500vh", width: "100%" }}
+      style={{ height: "2000vh", width: "100%" }}
     >
       {!modelIsReady && (
         <div className="fixed inset-0 z-[9999] bg-black flex items-center justify-center">
@@ -1288,7 +1288,7 @@ export default function Blender2JSPageModel2() {
         </div>
       )}
       <div id="text-overlay-portal"></div>
-      {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />}
+      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />} */}
       {/* {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />} */}
       {modelIsReady && (
         <FadingHeroContent
