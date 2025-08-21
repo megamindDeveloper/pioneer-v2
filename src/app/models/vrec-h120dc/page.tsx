@@ -53,9 +53,9 @@ const page = () => {
             compareHeading: "Clarity That Keeps Up With Your Commute",
             compareSubheading:
               "The VREC-H120SC records in 1296p with a 2MP sensor, giving you sharper footage that makes it easier to read plates, spot signs and review details when it matters.",
-            tabtitle: "Want a simple setup?",
-            image2: "/productPageImages/comparisionImages/h120sc/120 BEFORE.webp",
-            image1: "/productPageImages/comparisionImages/h120sc/120 AFTER.webp",
+            tabtitle: "Crystal Clear, Every Drive",
+            image2: "/productPageImages/comparisionImages/h120sc/120 AFTER.webp",
+            image1: "/productPageImages/comparisionImages/h120sc/120 BEFORE.webp",
             afterImageText:"VREC-H120SC’s View",
             beforeImageText:"Normal Dashcams",
             compare:true,
