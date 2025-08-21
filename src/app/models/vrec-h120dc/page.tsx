@@ -70,6 +70,7 @@ const page = () => {
       <DriveSmarter
         subText="Drive with confidence, capture every moment, & stay protected. Explore what the Z820DC brings to every drive."
         image="/homePageImages/productDetailsImage/h120scImages/0057 3 (3).png"
+        amazonLink='https://www.amazon.ae/Pioneer-VREC-H120SC-Resolution-Emergency-Recording/dp/B0F3P5TT8T/ref=sr_1_1?crid=3R4N0X0D03ADX&dib=eyJ2IjoiMSJ9.s-iSMezIPvu4bZM8oJxRfx52whbEZfwXiwZxGQyGJH5PgEHrPF-_7eXob3XB7-KGvWIfbOZmRpwKBL66cssjoA.a1SotwEmRrTfpKjy6hu9g8Sj_CLlQFYpfnNg87wsttA&dib_tag=se&keywords=vrec-h120sc&qid=1746093914&s=amazon-ereaders&sprefix=vrec-h120s%2Camazon-devices%2C208&sr=1-1'
       />
       <Footer />
     </div>
