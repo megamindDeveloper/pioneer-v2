@@ -131,7 +131,7 @@ export const SpecsModal: React.FC<SpecsModalProps> = ({ isOpen, onClose, specs }
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-50 bg-black/10 backdrop-blur-md border border-white/20 flex items-center justify-center px-4"
+          className="fixed inset-0 z-1000000 bg-black/10 backdrop-blur-md border border-white/20 flex items-center justify-center px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -147,7 +147,7 @@ export const SpecsModal: React.FC<SpecsModalProps> = ({ isOpen, onClose, specs }
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute  top-6 right-6 p-2 rounded-full cursor-pointer transition z-10"
+              className="absolute  top-2 right-2 p-2 rounded-full cursor-pointer transition "
               aria-label="Close"
             >
               <img src="/svgs/closeIcon.svg" className='w-10 h-12' alt="Close" />
