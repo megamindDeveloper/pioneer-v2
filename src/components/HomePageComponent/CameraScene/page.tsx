@@ -15,7 +15,7 @@ type ModelTransform = { scale: number; position: [number, number, number]; rotat
 
 // --- Constants and Helpers ---
 const MODEL_PATH = "/models/VREC-Z820DC-2.glb";
-useGLTF.preload(MODEL_PATH); // Preloading for faster initial appearance
+useGLTF.preload(MODEL_PATH);
 
 const getModelTransformByBreakpoint = (bp: Breakpoint): ModelTransform => {
   switch (bp) {
@@ -29,7 +29,7 @@ const getModelTransformByBreakpoint = (bp: Breakpoint): ModelTransform => {
   }
 };
 
-// --- Child Component: CameraModel (No changes needed here) ---
+// --- Child Component: CameraModel ---
 const CameraModel = memo(forwardRef<THREE.Group>((props, ref) => {
   const { scene } = useGLTF(MODEL_PATH);
   useLayoutEffect(() => {
@@ -53,9 +53,8 @@ CameraModel.displayName = "CameraModel";
 export default function CameraScene() {
   const breakpoint = useBreakpoint() as Breakpoint;
   const [canScroll, setCanScroll] = useState(false);
-  const { active, progress } = useProgress(); // Get loading progress
+  const { active, progress } = useProgress();
 
-  // --- Refs for Animation Targets ---
   const modelRef = useRef<THREE.Group>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const subheadingRef = useRef<HTMLParagraphElement>(null);
@@ -63,15 +62,12 @@ export default function CameraScene() {
   const canvasContainerRef = useRef<HTMLDivElement>(null);
   const loaderRef = useRef<HTMLDivElement>(null);
 
-  // --- Effect to Fade Out Loader ---
   useEffect(() => {
-    // When loading is finished (active becomes false), fade out the loader
     if (!active) {
       gsap.to(loaderRef.current, {
         opacity: 0,
         duration: 0.8,
         onComplete: () => {
-          // Optional: hide it completely after fading
           if (loaderRef.current) {
             loaderRef.current.style.display = "none";
           }
@@ -80,35 +76,35 @@ export default function CameraScene() {
     }
   }, [active]);
 
-  // --- Unified Animation Timeline ---
   useLayoutEffect(() => {
-    if (!modelRef.current || active) return; // Don't start animation until loading is done
+    // ✅ CORRECTED AND MORE ROBUST CHECK
+    // This ensures all animation targets exist before the timeline starts.
+    if (active || !modelRef.current || !canvasContainerRef.current || !navbarRef.current || !headingRef.current || !subheadingRef.current) {
+      return;
+    }
 
     const { scale, position, rotationZ = 0 } = getModelTransformByBreakpoint(breakpoint);
     
-    // Setup model's initial state
     modelRef.current.position.set(-2.88, -2.2, 12);
     modelRef.current.scale.setScalar(100);
     modelRef.current.rotation.set(THREE.MathUtils.degToRad(-90), 0, 0);
     
-    const masterTl = gsap.timeline(); // Master timeline for the entire intro sequence
+    const masterTl = gsap.timeline();
 
-    // Animate the 3D model and UI elements
     masterTl.to(modelRef.current.position, { x: position[0], y: position[1], z: position[2], duration: 4, ease: "power3.inOut" }, 0)
     .to(modelRef.current.scale, { x: scale, y: scale, z: scale, duration: 4, ease: "power3.inOut" }, 0)
     .to(modelRef.current.rotation, { x: THREE.MathUtils.degToRad(-15), y: THREE.MathUtils.degToRad(-30), z: THREE.MathUtils.degToRad(rotationZ), duration: 4, ease: "power3.inOut" }, 0)
     .call(() => setCanScroll(true), [], 1.5)
     .fromTo(canvasContainerRef.current, { opacity: 0 }, { opacity: 1, duration: 1.5, ease: "power2.out" }, 0)
-    .fromTo(navbarRef.current, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 1.2, ease: "power2.out" }, 0.5)
+    .fromTo(navbarRef.current, { opacity: 0 }, { opacity: 1, y: 0, duration: 1.2, ease: "power2.out" }, 0.5)
     .fromTo(headingRef.current, { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 2.5, ease: "power2.out" }, 1.2)
     .fromTo(subheadingRef.current, { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 1.5, ease: "power2.out" }, "<0.5");
 
     return () => {
-      masterTl.kill(); // Cleanup timeline
+      masterTl.kill();
     };
-  }, [breakpoint, active]); // Run effect when breakpoint changes or when loading completes
+  }, [breakpoint, active]);
 
-  // --- Simplified Scroll Lock Effect ---
   useLayoutEffect(() => {
     const originalOverflow = document.body.style.overflow;
     if (!canScroll) {
@@ -124,7 +120,7 @@ export default function CameraScene() {
   return (
     <div className="relative h-screen overflow-hidden bg-gradient-to-t from-[#0D0D0D] to-[#1a1a1a]">
        <div ref={loaderRef} className="fixed inset-0 z-[9999] bg-black flex items-center justify-center transition-opacity duration-300">
-          <FadeLoader progress={progress} />
+          <FadeLoader progress={progress} active={active} />
        </div>
 
       <div ref={navbarRef} className="opacity-0">
