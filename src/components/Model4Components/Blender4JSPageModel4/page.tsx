@@ -15,27 +15,39 @@ useGLTF.preload("/models/VREC_H120.glb");
 useTexture.preload("/modelImages/CommonModelImages/aiNight.png");
 
 const animationData = [
+  // {
+  //   time: 0.0,
+  //   position: [0.0012, 1.2215, 0.4],
+  //   quaternion: [0.0, 0.0, 0.0, 1.0],
+  //   fov: 1,
+  // },
+  // {
+  //   time: 0.0,
+  //   position: [0.001, 1.2215, 0.5],
+  //   quaternion: [0.0, 0.0, 0.0, 1.0],
+  //   fov: 2,
+  // }, // close
   {
     time: 0.0,
-    position: [0.0012, 1.2215, 0.4],
+    position: [0.001, 1.2215, 0.368],
     quaternion: [0.0, 0.0, 0.0, 1.0],
-    fov: 1,
-  },
+    fov: 40,
+  }, //extreme close
   {
-    time: 0.0,
-    position: [0.001, 1.2215, 0.5],
-    quaternion: [0.0, 0.0, 0.0, 1.0],
-    fov: 2,
-  }, // close
+      time: 0.0,
+      position: [0.001, 1.2215, 0.368],
+      quaternion: [0.0, 0.0, 0.0, 1.0],
+      fov: 40,
+    }, //extreme close
   {
     time: 0.0417,
-    position: [-0.1, 1.22, 0.45],
+    position: [-0.05, 1.22, 0.45],
     quaternion: [0.0, -0.3, -0, 0.99],
     fov: 20,
-  }, // LEFT lens explode
+  }, // LEFT compact by design
   {
     time: 0.0417,
-    position: [-0.07, 1.223, 0.3812],
+    position: [-0.1, 1.223, 0.3812],
     quaternion: [0.0, -0.7, 0, 0.6781],
     fov: 20,
   }, // DC IN
@@ -55,10 +67,11 @@ const animationData = [
   }, // behind
   {
     time: 0.205,
-    position: [0.07, 1.215, 0.25],
+    position: [0.086, 1.23, 0.25],
     quaternion: [0.0, 0.9, -0.019, 0.44],
     fov: 8,
   }, // left
+  
 ];
 
 function HeroTextFade({ scrollProgress }: { scrollProgress: number }) {
@@ -1148,7 +1161,7 @@ export default function Blender2JSPageModel4() {
         </div>
       )}
       {/* <div id="text-overlay-portal"></div> */}
-      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress}/>} */}
+      {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress}/>}
       {/* {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />} */}
       {modelIsReady && (
         <FadingHeroContent
@@ -1161,7 +1174,7 @@ export default function Blender2JSPageModel4() {
       {modelIsReady && <FullscreenBlackOverlay scrollProgress={scrollProgress} />}
       {modelIsReady && <TextOverlay scrollProgress={scrollProgress} />}
       <Canvas
-        camera={{ position: [0, 5, 15], fov: 20, near: 0.01, far: 1000 }}
+        camera={{ position: [0, 5, 15], fov: 20, near: 0.002, far: 1000 }}
         style={{ background: "#ffff", height: "100vh", position: "sticky", top: 0 }}
         shadows
         gl={{
