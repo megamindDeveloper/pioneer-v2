@@ -32,7 +32,7 @@ export default function OptionalParking({ highlightedText, heading, subheading, 
         </div>
 
         {/* Disclaimer (Bottom Center on all screens) */}
-        <div className=" lg:hidden block h-[110vh] absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none " />
+        <div className=" lg:hidden block h-[110vh] absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none " />
 
         {/* <p className="absolute bottom-6 sm:max-w-[550px]  max-w-[400px] sm:bottom-10 ms-6 text-[13px] text-[#4B4B4B] text-center px-4">
           {description}

@@ -34,7 +34,7 @@ export default function DriveAlertH320({
           alt="Warning Icon"
           width={40}
           height={40}
-          className="mx-auto sm:w-[150px] sm:h-[150px]"
+          className="mx-auto w-[60px] h-[60px] sm:w-[150px] sm:h-[150px]"
         />
       </div>
 

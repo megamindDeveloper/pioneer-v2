@@ -29,20 +29,20 @@ export default function FadeLoader({ isModelReady }: { isModelReady: boolean }) 
 
   useEffect(() => {
     const startTime = Date.now();
-  
+
     const interval = setInterval(() => {
       const elapsed = Math.floor((Date.now() - startTime) / 1000);
       const hours = String(Math.floor(elapsed / 3600)).padStart(2, "0");
       const minutes = String(Math.floor((elapsed % 3600) / 60)).padStart(2, "0");
       const seconds = String(elapsed % 60).padStart(2, "0");
-  
+
       setTimer(`${hours}:${minutes}:${seconds}`);
     }, 1000);
-  
+
     return () => clearInterval(interval);
   }, []);
-  
-  
+
+
 
   // Entrance animation
   useEffect(() => {
@@ -89,13 +89,25 @@ export default function FadeLoader({ isModelReady }: { isModelReady: boolean }) 
         {/* <div className="absolute top-24 left-16 text-gray-400 leading-tight">
           <p>{resolution}</p>
         </div> */}
-        <div className="absolute top-16 left-16 text-gray-400 leading-tight">
-         <Image src={image} alt="logo" className="w-32"/>
+        <div className="absolute top-16 left-0 w-full px-16 hidden lg:flex justify-between items-center text-gray-400 leading-tight">
+          {/* Logo */}
+          <div>
+            <Image src={image} alt="logo" className="w-32" />
+          </div>
+
+          {/* Timer */}
+          <div className="flex gap-2 items-center">
+            <p>{timer}</p>
+          </div>
         </div>
 
-        {/* Top Right Timer */}
-        <div className="absolute top-16 right-16 flex gap-2 items-center text-gray-400 leading-tight">
-          <div className={`w-3 h-3 rounded-full ${showDot ? "bg-[#AD2239]" : "bg-transparent"} transition`} />
+        {/* Mobile Logo (unchanged) */}
+        <div className="absolute bottom-12 left-32 text-gray-400 leading-tight lg:hidden">
+          <Image src={image} alt="logo" className="w-32" />
+        </div>
+
+        {/* Mobile Timer (unchanged) */}
+        <div className="absolute top-18 left-1/2 -translate-x-1/2 flex gap-2 items-center text-gray-400 leading-tight lg:hidden">
           <p>{timer}</p>
         </div>
 

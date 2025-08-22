@@ -266,11 +266,11 @@ export default function TextOverlay({
     },
     {
       start: 0.3012, // When the camera is high above the car
-      end: 0.3171,
+      end: 0.3175,
       position: "bottom-[70px] left-1/2 transform -translate-x-1/2 ",
       content: (
         <TextDisplay
-          descriptionWidth="w-[36rem] lg:w-[40rem]"
+          descriptionWidth="w-[36rem] lg:w-[34rem]"
           superScript="Clear Control with a Wider Screen"
           title={`3" IPS Display`}
           description="The built-in screen measures 7.6 cm across and offers a clear, responsive view for checking footage, adjusting settings or navigating menus without needing your phone."
@@ -293,7 +293,7 @@ export default function TextOverlay({
           alert3="Stop & Go Alert"
         />
       ),
-      start: 0.3167, // When the camera is high above the car
+      start: 0.3171, // When the camera is high above the car
       end: 0.3204,
     },
     {
