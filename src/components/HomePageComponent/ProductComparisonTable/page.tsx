@@ -84,7 +84,7 @@ export default function ProductComparisonTable() {
   }, []);
 
   return (
-    <section className=" text-white md:px-4 px-0 pl-14 md:pl-0  py-20  max-w-[100%] xl:max-w-[90%] mx-auto md:mt-20">
+    <section className=" text-white md:px-4 px-0  md:pl-0  py-20  max-w-[100%] xl:max-w-[90%] mx-auto md:mt-20">
       <div className="max-w-7xl mx-auto text-center mb-20">
         <Typography variant="section-heading" className="!font-semibold ">
           Pick Your Level of Performance
@@ -95,7 +95,7 @@ export default function ProductComparisonTable() {
       </div>
 
       <div className="overflow-x-auto" ref={scrollerRef}>
-        <div className="min-w-[800px] grid grid-cols-[200px_repeat(4,minmax(140px,1fr))] gap-x-6  text-left">
+        <div className="min-w-[800px] pl-12 grid grid-cols-[200px_repeat(4,minmax(140px,1fr))] gap-x-6  text-left">
           {/* Product Images and Links */}
           <div />
           {products.map((product, i) => (
