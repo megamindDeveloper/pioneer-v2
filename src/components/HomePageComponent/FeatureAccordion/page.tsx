@@ -51,21 +51,47 @@ export default function FeatureAccordion() {
                   <Typography variant="section-card-heading" className="text-white font-bold w-[70%]">
                     {feature.title}
                   </Typography>
-                  <span className="text-2xl">
-                    {isActive ? (
-                      <motion.span initial={{ rotate: 0 }} animate={{ rotate: 180 }} transition={{ duration: 0.3 }}>
+                  <span className="text-2xl" onClick={() => setActiveId(true)}>
+                    <motion.span
+                      initial={{ rotate: 0 }}
+                      animate={{ rotate: isActive ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="inline-block"
+                    >
+                      {isActive ? (
                         <svg width="31" height="4" viewBox="0 0 31 4" fill="none">
                           <g opacity="0.25">
-                            <line x1="30.7559" y1="2.43555" x2="0.755859" y2="2.43554" stroke="#E2E2E2" strokeWidth="3" />
+                            <line
+                              x1="30.7559"
+                              y1="2.43555"
+                              x2="0.755859"
+                              y2="2.43554"
+                              stroke="#E2E2E2"
+                              strokeWidth="3"
+                            />
                           </g>
                         </svg>
-                      </motion.span>
-                    ) : (
-                      <svg width="31" height="31" viewBox="0 0 31 31" fill="none">
-                        <line x1="15.8203" y1="0.380859" x2="15.8203" y2="30.3809" stroke="#E2E2E2" strokeWidth="3" />
-                        <line x1="30.5703" y1="15.6309" x2="0.570312" y2="15.6309" stroke="#E2E2E2" strokeWidth="3" />
-                      </svg>
-                    )}
+                      ) : (
+                        <svg width="31" height="31" viewBox="0 0 31 31" fill="none">
+                          <line
+                            x1="15.8203"
+                            y1="0.380859"
+                            x2="15.8203"
+                            y2="30.3809"
+                            stroke="#E2E2E2"
+                            strokeWidth="3"
+                          />
+                          <line
+                            x1="30.5703"
+                            y1="15.6309"
+                            x2="0.570312"
+                            y2="15.6309"
+                            stroke="#E2E2E2"
+                            strokeWidth="3"
+                          />
+                        </svg>
+                      )}
+                    </motion.span>
                   </span>
                 </div>
 
@@ -88,7 +114,7 @@ export default function FeatureAccordion() {
                       {/* Small Image only on mobile */}
                       <div className="mt-4 md:hidden relative">
                         <Image
-                        priority
+                          priority
                           src={feature.id === "conditions" ? "/homePageImages/featureAccordionImages/3.webp" : feature.image || ""}
                           alt={feature.title || ""}
                           width={400}

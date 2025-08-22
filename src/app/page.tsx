@@ -33,7 +33,7 @@ export default function Home() {
           <FadeLoader isModelReady={false} />
         </div>
       )}
-      <div className="w-full h-full bg-gradient-to-b ">
+      <div className="w-full h-full px-0  bg-gradient-to-b ">
         <CameraScene onModelReady={() => setModelReady(true)} />
         {isMobile ? <DashcamShowcaseMobile /> : <DashcamShowcase />}
         <ProductDetails />
