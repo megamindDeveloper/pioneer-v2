@@ -1,9 +1,10 @@
 "use client";
 
 import { Typography } from "@/components/CommonComponents/Typography/page";
+import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 const products = [
   {
@@ -43,8 +44,47 @@ const features = [
 ];
 
 export default function ProductComparisonTable() {
+
+ const scrollerRef = useRef<HTMLDivElement>(null);
+
+
+   useEffect(() => {
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    if (!isMobile) return;
+
+    const el = scrollerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // calculate max shift
+            const maxShift = Math.min(260, el.scrollWidth - el.clientWidth);
+            if (maxShift <= 0) return;
+
+            // play GSAP animation
+            gsap.timeline({ defaults: { ease: "power1.inOut" } })
+              .to(el, { scrollLeft: maxShift, duration: 1 })
+              .to(el, { scrollLeft: 0, duration: 1 }, "+=0");
+          } else {
+            // reset scroll if needed when leaving
+            gsap.set(el, { scrollLeft: 0 });
+          }
+        });
+      },
+      { threshold: 0.6 } // play when 60% of the element is visible
+    );
+
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <section className=" text-white md:px-4 px-0 pl-4 md:pl-0  py-20 max-w-[90%] xl:max-w-[90%] mx-auto md:mt-20">
+    <section className=" text-white md:px-4 px-0 pl-14 md:pl-0  py-20  max-w-[100%] xl:max-w-[90%] mx-auto md:mt-20">
       <div className="max-w-7xl mx-auto text-center mb-20">
         <Typography variant="section-heading" className="!font-semibold ">
           Pick Your Level of Performance
@@ -54,8 +94,8 @@ export default function ProductComparisonTable() {
         </Typography>
       </div>
 
-      <div className="overflow-x-auto">
-        <div className="min-w-[800px] grid grid-cols-[200px_repeat(4,minmax(140px,1fr))] gap-x-6 text-left">
+      <div className="overflow-x-auto" ref={scrollerRef}>
+        <div className="min-w-[800px] grid grid-cols-[200px_repeat(4,minmax(140px,1fr))] gap-x-6  text-left">
           {/* Product Images and Links */}
           <div />
           {products.map((product, i) => (
@@ -69,7 +109,7 @@ export default function ProductComparisonTable() {
                     src={product.image}
                     alt={product.name}
                     fill
-                    className="object-contain md:!w-[80%] !w-[55%] mx-auto my-auto md:!h-[70%] relative z-0"
+                    className="object-contain md:!w-[80%] !w-[55%] lg:mx-auto my-auto md:!h-[70%] relative z-0"
                   />
                 ) : (
                   <Image src={product.image} alt={product.name} fill className="object-contain w-full h-full relative z-0" />
