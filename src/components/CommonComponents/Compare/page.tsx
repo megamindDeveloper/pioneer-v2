@@ -47,8 +47,8 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
   const handleClick = (index: number) => {
     setActiveTab(index);
   };
-  const isSliderNearBefore = sliderXPercent < 8; // Hide "Before" when slider is very close to left text
-  const isSliderNearAfter = sliderXPercent > 92;
+  const isSliderNearBefore = sliderXPercent < 15; // Hide "Before" when slider is very close to left text
+  const isSliderNearAfter = sliderXPercent > 79;
   return (
     <section className="w-full h-[120vh] md:h-auto xl:h-[100vh] text-white flex flex-col items-center py-16 px-4 opacity-100 z-1000">
       {/* Heading */}

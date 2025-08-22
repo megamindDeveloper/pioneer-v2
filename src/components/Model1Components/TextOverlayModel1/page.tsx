@@ -320,7 +320,7 @@ export default function Model1TextOverlay({ scrollProgress }: { scrollProgress: 
         />
       ),
     },
-    {
+    { 
       start: 0.184,
       end: 0.2286,
       position: "w-full h-screen flex items-end justify-end bottom-[10%] right-[0%] xl:bottom-[10%] xl:right-[10%] !w-[100%]",

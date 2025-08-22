@@ -725,7 +725,7 @@ function Blender2JSScene({
 
   // This logic block now handles all 3 states for the screen
   if (imagePlaneRef.current) {
-    if (scrollProgress >= 0.3149) {
+    if (scrollProgress >= 0.3168) {
       const { videoMap, videoEl } = imagePlaneRef.current.userData;
       if (videoMap) {
         const material = imagePlaneRef.current
@@ -739,7 +739,7 @@ function Blender2JSScene({
       } else {
         imagePlaneRef.current.visible = false;
       }
-    } else if (scrollProgress >= 0.302 && scrollProgress <= 0.3149) {
+    } else if (scrollProgress >= 0.302 && scrollProgress <= 0.3167) {
       const { imageMap, videoEl } = imagePlaneRef.current.userData;
       const material = imagePlaneRef.current
         .material as THREE.MeshBasicMaterial;
@@ -1202,11 +1202,11 @@ export default function Blender2JSPageModel2() {
   const stickyZones = [
     // First pause
     [0.027, 0.047], // Second pause
-    [0.1195, 0.1595],
+    [0.122, 0.1595],
     [0.171, 0.218],
     [0.263, 0.303],
-    [0.365, 0.405],
-    [0.4072, 0.4412],
+    [0.362, 0.3945],
+    [0.395, 0.4512],
     [0.5604, 0.6004],
     [0.90, 0.94],
   ];
