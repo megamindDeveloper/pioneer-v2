@@ -29,13 +29,13 @@ export default function DriveAlert({
   return (
     <section className="min-h-screen  text-white flex flex-col justify-between px-4 sm:px-6 py-7 text-center">
       {/* Top Icon */}
-      <div className="pt-28 xl:pt-40 x animate-pulse">
+      <div className="pt-28 lg:pt-40 xl:pt-40 x animate-pulse">
         <Image
           src="/productPageImages/driveAlertIcons/dangerIcon.svg"
           alt="Warning Icon"
           width={80} // smaller on mobile
           height={80}
-          className="mx-auto sm:w-[130px] sm:h-[100px]"
+          className="mx-auto sm:w-[130px] sm:h-[150px]"
         />
       </div>
 

@@ -11,7 +11,7 @@ type GpsLoggerProps = {
 export default function GpsLogger({ highlightedText, heading, subheading, description, style = "" }: GpsLoggerProps) {
   return (
     <>
-   <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center relative text-center">
+   <main className="min-h-screen  text-white flex flex-col items-center justify-center relative text-center">
   {/* Content */}
   <div className="w-full max-w-[660px] flex flex-col items-center  px-6justify-center">
     {/* Red Label */}
