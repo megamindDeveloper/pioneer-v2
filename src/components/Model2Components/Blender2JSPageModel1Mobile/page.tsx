@@ -32,8 +32,8 @@ const animationData = [
   // { time: 0.2083, position: [-0.0, 1.2136, 0.15], quaternion: [0.0, 1.0, -0.00000004, 0.00000004], fov: 40 },
   { time: 0.25, position: [-0.0093, 1.2509, -2.7], quaternion: [0.00000002, 0.99999607, 0.00280268, 0.0000004], fov: 40 },
   { time: 0.2917, position: [-0.0093, 3.9288, -3.2975], quaternion: [0.00000007, 0.9208445, 0.38993004, 0.00000008], fov: 40 },
-  { time: 0.3333, position: [-0.0, 5.6768, 1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
-  { time: 0.3333, position: [-0.0, 5.6768, 2.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
+  { time: 0.3333, position: [-0.0, 5.6768, 2.0038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
+  { time: 0.3333, position: [-0.0, 5.6768, 2.038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
 
 
   // { time: 0.3333, position: [-0.0, 5.6768, -1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
@@ -82,7 +82,7 @@ const dashcamKeyframes = [
   {
     time: 1.0, // End of the animation
 
-    position: [0, -0.01, 0], // Settles in the final, neutral position
+    position: [0, 0.0032, 0], // Settles in the final, neutral position
 
     rotation: [0, 0, 0],
 
@@ -1619,62 +1619,76 @@ export default function Blender2JSPageModel1Mobile() {
   // Replace your entire GSAP useEffect with this one
 
   useEffect(() => {
-    if (!modelIsReady || typeof window === "undefined") return;
+    if (!modelIsReady) return;
+    if (typeof window === "undefined") return;
+    const snapPoints = [
+      0,        // Start
+      0.039,    // First key view
+      0.1350,     // Wide angle view
+      0.1825,    // Top-down view
+      0.2978,     // Focus on screen
+      0.2582,     // Rear camera view
+      0.3130,
+      0.5254,
+      0.7456,
+      0.863,
+      0.9876
 
+    ];
     let cleanup: (() => void) | undefined;
-    const targetProgress = { value: 0 };
-    const rawTargetProgress = { value: 0 };
-
+    // This object will be directly manipulated by ScrollTrigger
+    const targetProgress = { value: 0 }; 
+  
     const initGSAP = async () => {
       try {
-        const gsapModule = await import("gsap");
-        const stModule = await import("gsap/ScrollTrigger");
-        const { ScrollToPlugin } = await import("gsap/ScrollToPlugin");
-
-        // --- Assign the modules to the .current property of the refs ---
-        gsapRef.current = gsapModule.gsap;
-        stRef.current = stModule.ScrollTrigger;
-
-        // Now use the refs to register plugins
-        gsapRef.current.registerPlugin(stRef.current, ScrollToPlugin);
-
-
-        gsapRef.current.timeline({
+        const { gsap } = await import("gsap");
+        const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+        gsap.registerPlugin(ScrollTrigger);
+  
+        // We create a GSAP timeline and link it to the ScrollTrigger
+        gsap.timeline({
           scrollTrigger: {
-            // I also fixed a syntax error here by removing a misplaced comment
-            id: "main-scroll",
             trigger: "#blender2js-scroll-container-model1",
             start: "top top",
             end: "bottom bottom",
-            scrub: 0.1,
+            scrub: 0.5,
+        
+            // ✅ NEW: ADD THE SNAP PROPERTY HERE
+            snap: {
+              snapTo: snapPoints, // The array of points to snap to
+              duration: 2.5, // How long the snap animation takes
+              ease: "power2.inOut", // Easing for a smooth start and end
+              delay: 0.2, // A small delay before snapping
+              directional: true,
+            },
+        
             onUpdate: (self) => {
-              const rawProgress = self.progress;
-              const mappedProgress = getAdjustedProgress(rawProgress, stickyZones);
-              targetProgress.value = mappedProgress;
-              rawTargetProgress.value = rawProgress;
+              targetProgress.value = self.progress;
             },
           },
         });
-
-        gsapRef.current.ticker.add(() => {
-          setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress.value, 0.075));
-          setRawScrollProgress((prev) => THREE.MathUtils.lerp(prev, rawTargetProgress.value, 0.075));
-          animationProgress.current = targetProgress.value;
+        
+  
+        // Your existing ticker for smoothly updating React state from the targetProgress object
+        gsap.ticker.add(() => {
+          // We no longer need two progress trackers. The main scrollProgress is all we need.
+          setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress.value, 0.07));
+          setRawScrollProgress(targetProgress.value); // Raw and mapped can now be the same
         });
-
+        
+        // Cleanup function
         cleanup = () => {
           ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-          gsapRef.current.ticker.remove(() => { });
         };
-      } catch (err) {
+      } catch (err)
+       {
         console.error("Failed to load GSAP:", err);
       }
     };
-
+  
     initGSAP();
     return () => cleanup?.();
   }, [modelIsReady]);
-
   // The rest of your component's JSX remains the same...
   return (
     <div id="blender2js-scroll-container-model1" ref={containerRef} style={{ height: "1000vh", width: "100%" }}>
@@ -1688,7 +1702,7 @@ export default function Blender2JSPageModel1Mobile() {
       {modelIsReady && <StickyNav stickyZones={stickyZones} rawScrollProgress={rawScrollProgress} onDotClick={handleDotClick} />}
 
       {/* Pass both raw and mapped progress to your debug timeline to see the effect */}
-      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />} */}
+      {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />}
       {modelIsReady && (
         <FadingHeroContent
           scrollProgress={scrollProgress}

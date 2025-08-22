@@ -4,6 +4,9 @@ import React from "react";
 import * as THREE from "three";
 // Make sure to import the Typography component used for the heading
 import { Typography } from "@/components/CommonComponents/Typography/page";
+import Lottie from "lottie-react";
+
+import handScroll from '../../../public/animations/scrollHand.json'
 
 // Define the props for this specific hero component
 interface FadingHeroContentProps {
@@ -63,6 +66,8 @@ const FadingHeroContent: React.FC<FadingHeroContentProps> = ({
         transition: "transform 0.2s ease-out, opacity 0.2s ease-out",
       }}
     >
+
+     
       {/* --- Built-in Content Structure --- */}
       
       {/* 1. Heading */}
@@ -80,10 +85,24 @@ const FadingHeroContent: React.FC<FadingHeroContentProps> = ({
 
       {/* 3. Button (conditionally rendered) */}
    <div className="absolute top-[65%] left-1/2 transform -translate-x-1/2">
-  <div className="w-8.5 h-14 border-2 border-white rounded-full flex items-start justify-center relative">
+  {/* Desktop Scroll Indicator */}
+  <div className="hidden md:flex w-8.5 h-14 border-2 border-white rounded-full items-start justify-center relative">
     <div className="w-1 h-3.5 bg-white rounded-full animate-scroll"></div>
   </div>
+
+  {/* Mobile Lottie Animation */}
+  <div className="flex md:hidden justify-center items-center mt-6">
+    <Lottie
+      animationData={handScroll}
+      loop={true}
+      autoplay={true}
+      style={{ width: 80, height: 80 }}
+    />
+  </div>
 </div>
+
+
+
 
 <style jsx>{`
   @keyframes scroll {

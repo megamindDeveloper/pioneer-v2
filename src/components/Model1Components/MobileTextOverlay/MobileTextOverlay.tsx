@@ -175,7 +175,7 @@ export default function TextOverlay({
   scrollProgress: number;
 }) {
   // Define your text content and scroll ranges here
-  const middle = "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2";
+  const middle = "top-1/2 left-1/2 transform -translate-x-1/2  -translate-y-1/2";
   const bottom = "left-1/2 transform -translate-x-1/2 bottom-[60px]";
   const top = "top-[60px] left-[50%] transform -translate-x-1/2";
   const textSections = [
@@ -258,9 +258,10 @@ export default function TextOverlay({
     {
       start: 0.3069, // When the camera is high above the car
       end: 0.3184,
-      position: middle,
+      position: "top-[70%] mx-auto     -translate-y-[70%] !w-[100%]",
       content: (
-        <DriveAlertH820
+        <DriveAlertH820 
+        
           highlightedText="Built to Notice Before You Do "
           heading="ADAS  Alerts"
           subheading="The VREC-Z820DC monitors lane position, vehicle distance and traffic flow to deliver timely alerts and help you stay in control."
@@ -290,7 +291,7 @@ export default function TextOverlay({
       ),
     },
     {
-      start: 0.7361, // When the camera is high above the car
+      start: 0.755, // When the camera is high above the car
       end: 0.7952,
       position: top,
       content: (

@@ -33,7 +33,7 @@ const animationData = [
   { time: 0.25, position: [-0.0093, 1.2509, -2.7], quaternion: [0.00000002, 0.99999607, 0.00280268, 0.0000004], fov: 40 },
   { time: 0.2917, position: [-0.0093, 3.9288, -3.2975], quaternion: [0.00000007, 0.9208445, 0.38993004, 0.00000008], fov: 40 },
   { time: 0.3333, position: [-0.0, 5.6768, 1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
-  { time: 0.3333, position: [-0.0, 5.6768, 2.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
+  { time: 0.3333, position: [-0.0, 5.6768, 2.038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
   // { time: 0.3333, position: [-0.0, 5.6768, -1.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
   { time: 0.3333, position: [-0.0, 5.6768, -5.5038], quaternion: [-0.0000001, 0.70092404, 0.71323591, 0.0000003], fov: 40 },
 ];
@@ -52,7 +52,7 @@ const dashcamKeyframes = [
   {
     time: 0.3, // Start of the animation
 
-    position: [0.05, -0.01, 0],
+    position: [0.05, 0.01, 0],
 
     rotation: [10, 230, 20], // Starts rotated 180 degrees
 
@@ -62,7 +62,7 @@ const dashcamKeyframes = [
   {
     time: 0.6, // 60% of the way through
 
-    position: [0, 0, 0],
+    position: [0, 0.0125, 0],
 
     rotation: [0, 310, 0], // Fully rotated to face forward
 
@@ -72,7 +72,7 @@ const dashcamKeyframes = [
   {
     time: 1.0, // End of the animation
 
-    position: [0, 0, 0], // Settles in the final, neutral position
+    position: [0, 0.0125, 0], // Settles in the final, neutral position
 
     rotation: [0, 0, 0],
 
@@ -1359,7 +1359,7 @@ function useDashcamIntroAnimation(scrollProgress: number, dashcamOffsetGroupRef:
         THREE.MathUtils.degToRad(rot[1]),
         THREE.MathUtils.degToRad(rot[2])
       );
-    } 
+    }
     // --- The existing "if" is now an "else if" ---
     else if (scrollProgress >= preAnimationStart && scrollProgress <= preAnimationEnd) {
       const phaseProgress = (scrollProgress - preAnimationStart) / (preAnimationEnd - preAnimationStart);
@@ -1388,13 +1388,13 @@ function useDashcamIntroAnimation(scrollProgress: number, dashcamOffsetGroupRef:
       const rot1Deg = keyframe1.rotation;
       const rot2Deg = keyframe2.rotation;
       const quat1 = quat.setFromEuler(euler.set(
-        THREE.MathUtils.degToRad(rot1Deg[0]), 
-        THREE.MathUtils.degToRad(rot1Deg[1]), 
+        THREE.MathUtils.degToRad(rot1Deg[0]),
+        THREE.MathUtils.degToRad(rot1Deg[1]),
         THREE.MathUtils.degToRad(rot1Deg[2])
       ));
       const quat2 = new THREE.Quaternion().setFromEuler(euler.set(
-        THREE.MathUtils.degToRad(rot2Deg[0]), 
-        THREE.MathUtils.degToRad(rot2Deg[1]), 
+        THREE.MathUtils.degToRad(rot2Deg[0]),
+        THREE.MathUtils.degToRad(rot2Deg[1]),
         THREE.MathUtils.degToRad(rot2Deg[2])
       ));
       dashcamOffsetGroupRef.current.quaternion.slerpQuaternions(quat1, quat2, t);
@@ -1403,7 +1403,7 @@ function useDashcamIntroAnimation(scrollProgress: number, dashcamOffsetGroupRef:
       const scale1 = vec3.set(...keyframe1.scale);
       const scale2 = new THREE.Vector3().set(...keyframe2.scale);
       dashcamOffsetGroupRef.current.scale.lerpVectors(scale1, scale2, t);
-    } 
+    }
     else if (scrollProgress > preAnimationEnd) {
       // This part remains the same, locking to the last keyframe after the animation.
       const lastKeyframe = dashcamKeyframes[dashcamKeyframes.length - 1];
@@ -1495,7 +1495,7 @@ function StickyNav({
     pointerEvents: rawScrollProgress >= 1 ? "none" : "auto",
   };
   // --- END OF CORRECTION ---
-console.log("dededwdew",rawScrollProgress)
+  console.log("dededwdew", rawScrollProgress)
   return (
     <div style={containerStyle}> {/* Use the new style object here */}
       {stickyZones.map((zone, index) => {
@@ -1534,55 +1534,52 @@ export default function Blender2JSPageModel1Mobile() {
   const gsapRef = useRef<typeof import("gsap").gsap>();
   const stRef = useRef<typeof import("gsap/ScrollTrigger").ScrollTrigger>();
 
-    const stickyZones = [
+  const stickyZones = [
     // First pause
     [0.02, 0.06],
-    [0.0735, 0.1], 
+    [0.0735, 0.1],
     [0.148, 0.188],
     [0.248, 0.288],
     [0.334, 0.364],
     [0.369, 0.412],
     [0.57, 0.61],
-        [0.74, 0.78],
-                [0.85, 0.89],
-
-
-   
+    [0.74, 0.78],
+    [0.85, 0.89],
     [0.95, 0.99],
   ];
-// Replace your handleDotClick function with this one
+  // Replace your handleDotClick function with this one
 
-const handleDotClick = (zoneIndex: number) => {
-  // --- THIS IS THE CORRECTED PART ---
-  // Access ScrollTrigger and gsap from their refs' .current property
-  const ScrollTrigger = stRef.current;
-  const gsap = gsapRef.current;
+  const handleDotClick = (zoneIndex: number) => {
+    // --- THIS IS THE CORRECTED PART ---
+    // Access ScrollTrigger and gsap from their refs' .current property
+    const ScrollTrigger = stRef.current;
+    const gsap = gsapRef.current;
 
-  // Safety check to ensure GSAP has loaded before we try to use it
-  if (!ScrollTrigger || !gsap) {
-    console.error("GSAP instances not available yet.");
-    return;
-  }
-  // --- END OF CORRECTION ---
+    // Safety check to ensure GSAP has loaded before we try to use it
+    if (!ScrollTrigger || !gsap) {
+      console.error("GSAP instances not available yet.");
+      return;
+    }
+    // --- END OF CORRECTION ---
 
-  const mainScrollTrigger = ScrollTrigger.getById("main-scroll");
-  if (!mainScrollTrigger) {
-    console.error("ScrollTrigger instance not found!");
-    return;
-  }
+    const mainScrollTrigger = ScrollTrigger.getById("main-scroll");
+    if (!mainScrollTrigger) {
+      console.error("ScrollTrigger instance not found!");
+      return;
+    }
 
-  const targetProgress = stickyZones[zoneIndex][0];
-  const scrollAmount = mainScrollTrigger.start + (mainScrollTrigger.end - mainScrollTrigger.start) * targetProgress;
+    const targetProgress = stickyZones[zoneIndex][0];
+    const scrollAmount = mainScrollTrigger.start + (mainScrollTrigger.end - mainScrollTrigger.start) * targetProgress;
 
-  gsap.to(window, {
-    scrollTo: {
-      y: scrollAmount,
-      autoKill: false,
-    },
-    duration: 1.5,
-    ease: "power2.inOut",
-  });
-};
+    gsap.to(window, {
+      scrollTo: {
+        y: scrollAmount,
+        autoKill: false,
+      },
+      duration: 1.5,
+      ease: "power2.inOut",
+    });
+  };
 
   useEffect(() => {
     if (!modelIsReady) {
@@ -1595,7 +1592,9 @@ const handleDotClick = (zoneIndex: number) => {
 
   // Replace your entire GSAP useEffect with this one
 
-  useEffect(() => {
+
+useEffect(() => {
+
     if (!modelIsReady) return;
     if (typeof window === "undefined") return;
     const snapPoints = [
@@ -1688,7 +1687,7 @@ const handleDotClick = (zoneIndex: number) => {
           buttonText="Scroll to explore"
         />
       )}
-       {modelIsReady && (
+      {modelIsReady && (
         <FullscreenBlackOverlay scrollProgress={scrollProgress} />
       )}
       {modelIsReady && <HeroImageFade scrollProgress={scrollProgress} />}
