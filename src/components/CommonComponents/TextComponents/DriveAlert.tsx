@@ -29,13 +29,13 @@ export default function DriveAlert({
   return (
     <section className="min-h-screen  text-white flex flex-col justify-between px-4 sm:px-6 py-7 text-center">
       {/* Top Icon */}
-      <div className="pt-28 xl:pt-40 x animate-pulse">
+      <div className="pt-28 lg:pt-40 xl:pt-40 x animate-pulse">
         <Image
           src="/productPageImages/driveAlertIcons/dangerIcon.svg"
           alt="Warning Icon"
           width={80} // smaller on mobile
           height={80}
-          className="mx-auto sm:w-[130px] sm:h-[100px]"
+          className="mx-auto sm:w-[130px] sm:h-[150px]"
         />
       </div>
 
@@ -54,13 +54,13 @@ export default function DriveAlert({
         <div className="flex flex-row sm:flex-row justify-center items-center gap-8 sm:gap-23 mt-6 sm:mt-0">
           {/* Lane Departure Alert */}
           <div className="flex flex-col items-center space-y-2">
-            <Image src={alert1Image} alt="Lane Departure" width={40} height={40} className="xl:w-[60px] xl:h-[60px]" />
+            <Image src={alert1Image} alt="Lane Departure" width={40} height={40} className="xl:w-[60px] xl:h-[60px] sm:w-[60px] sm:h-[60px]" />
             <p className="text-white font-medium text-[10px] sm:text-sm">{alert1}</p>
           </div>
 
           {/* Forward Collision Alert */}
           <div className="flex flex-col items-center space-y-2">
-            <Image src={alert3Image} alt="Forward Collision" width={40} height={40} className="xl:w-[60px] xl:h-[60px]" />
+            <Image src={alert3Image} alt="Forward Collision" width={40} height={40} className="xl:w-[60px] xl:h-[60px] sm:w-[60px] sm:h-[60px]" />
             <p className="text-white font-medium text-[10px] sm:text-sm">{alert2}</p>
           </div>
 
@@ -68,7 +68,7 @@ export default function DriveAlert({
           {model !== "model3" && (
 
             <div className="flex flex-col items-center space-y-2">
-              <Image src={alert2Image} alt="Stop and Go" width={40} height={40} className="xl:w-[60px] xl:h-[60px]" />
+              <Image src={alert2Image} alt="Stop and Go" width={40} height={40} className="xl:w-[60px] xl:h-[60px] sm:w-[60px] sm:h-[60px]" />
               <p className="text-white font-medium text-[10px] sm:text-sm">{alert3}</p>
             </div>
           )}

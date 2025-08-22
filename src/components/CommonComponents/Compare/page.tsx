@@ -47,8 +47,8 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
   const handleClick = (index: number) => {
     setActiveTab(index);
   };
-  const isSliderNearBefore = sliderXPercent < 8; // Hide "Before" when slider is very close to left text
-  const isSliderNearAfter = sliderXPercent > 92;
+  const isSliderNearBefore = sliderXPercent < 15; // Hide "Before" when slider is very close to left text
+  const isSliderNearAfter = sliderXPercent > 79;
   return (
     <section className="w-full h-[120vh] md:h-auto xl:h-[100vh] text-white flex flex-col items-center py-16 px-4 opacity-100 z-1000">
       {/* Heading */}
@@ -83,6 +83,7 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
             >
               {currentTab.beforeImageText}
             </div>
+            
 
             <div
               className={cn(
@@ -92,6 +93,9 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
             >
               {currentTab.afterImageText}
             </div>
+                        <div className="absolute top-0 hidden lg:block left-0 w-full h-[30%] bg-gradient-to-b from-[#000000] via-black/40 to-transparent z-30 pointer-events-none" />
+                        <div className="absolute top-0  left-0 w-full h-[30%] bg-gradient-to-b from-[#000000] via-black/40 to-transparent z-30 pointer-events-none" />
+              
             {/* Handlebar */}
             <motion.div
               className="h-full w-px absolute top-0 z-30 bg-gradient-to-b from-transparent via-white to-transparent"
@@ -151,7 +155,8 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
             )} */}
 
             {/* Gradient Overlay */}
-            <div className="absolute bottom-0 left-0 w-full h-[40%] bg-gradient-to-t from-black/70 via-black/40 to-transparent z-30 pointer-events-none" />
+            <div className="absolute hidden lg:block bottom-0 left-0 w-full h-[60%] bg-gradient-to-t from-[#000000] via-black/40 to-transparent z-30 pointer-events-none" />
+            <div className="absolute hidden lg:block bottom-0 left-0 w-full h-[60%] bg-gradient-to-t from-[#000000] via-black/30 to-transparent z-30 pointer-events-none" />
 
             {/* Headline/Subtext over image for desktop only */}
             <div className="hidden md:block absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center z-100 px-4 w-[60%]">
@@ -163,7 +168,10 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
           <div className="relative w-full h-full">
             <Image fill src={currentTab.image2} alt="Full" className="absolute top-0 left-0 w-full h-full object-cover z-10" draggable={false} />
             {/* Gradient Overlay */}
-            <div className="absolute bottom-0 left-0 w-full h-[40%] bg-gradient-to-t from-black/70 via-black/40 to-transparent z-30 pointer-events-none" />
+                        <div className="absolute bottom-0 left-0 w-full h-[50%] bg-gradient-to-t from-black/90 via-black/40 to-transparent z-30 pointer-events-none" />
+
+            <div className="absolute bottom-0 left-0 w-full h-[40%] bg-gradient-to-t from-black/90 via-black/40 to-transparent z-30 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-full h-[40%] bg-gradient-to-t from-[black] via-black/40 to-transparent z-30 pointer-events-none" />
 
             <div className="hidden md:block absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center z-100 px-4 w-[90%]">
               <h3 className="text-white text-2xl font-semibold">{currentTab.compareHeading}</h3>
@@ -175,25 +183,23 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
 
       {/* Tabs */}
       <div className="w-full flex justify-center mt-12">
-        <div className="flex justify-center gap-4 sm:gap-6 md:gap-27 flex-wrap max-w-full">
-          {" "}
-          {/* ✨ sm:flex-nowrap removed */}
-          {tabs.map((tab, index) => (
-            <button
-              type="button"
-              key={index}
-              onClick={() => setActiveTab(index)}
-              className={cn(
-                "relative font-semibold text-[13px] cursor-pointer sm:text-sm md:text-[20px] transition-all duration-300 text-center",
-                activeTab === index
-                  ? "text-white after:content-[''] after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-[-6px] after:w-[60px] sm:after:w-[100px] md:after:w-[120px] after:h-[2px] after:bg-white after:rounded-full"
-                  : "text-gray-400 hover:text-[#AD2239]"
-              )}
-            >
-              <h4 className="w-[109px] md:w-full ">{tab.tabtitle}</h4>
-            </button>
-          ))}
-        </div>
+ <div className="grid grid-cols-3 gap-4 sm:gap-6 md:gap-10 max-w-full items-center justify-between">
+  {tabs.map((tab, index) => (
+    <button
+      type="button"
+      key={index}
+      onClick={() => setActiveTab(index)}
+      className={cn(
+        "relative font-semibold text-[13px] cursor-pointer sm:text-sm md:text-[20px] transition-all duration-300 text-center",
+        activeTab === index
+          ? "text-white after:content-[''] after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-[-6px] after:w-[60px] sm:after:w-[100px] md:after:w-[120px] after:h-[2px] after:bg-white after:rounded-full"
+          : "text-gray-400 hover:text-[#AD2239]"
+      )}
+    >
+      <h4 className=" md:w-full">{tab.tabtitle}</h4>
+    </button>
+  ))}
+</div>
       </div>
 
       {/* Mobile-only subtext below tabs */}
