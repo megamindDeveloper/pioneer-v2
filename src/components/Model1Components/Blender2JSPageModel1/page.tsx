@@ -1173,48 +1173,78 @@ export default function Blender2JSPageModel1() {
     [0.842, 0.91],
   ];
 
+
+
   useEffect(() => {
-    if (!modelIsReady) return; // Defer ScrollTrigger init until models are ready
+    if (!modelIsReady) return;
     if (typeof window === "undefined") return;
+    const snapPoints = [
+      0,        // Start
+     0.045,    // First key view
+      0.084,     // Wide angle view
+      0.188,    // Top-down view
+      0.274,     // Focus on screen
+      0.328,     // Rear camera view
+      0.3332,
+      0.525,
+      0.6800,
+      0.8660,
+      0.9070
+
+
+               // End
+    ];
     let cleanup: (() => void) | undefined;
-    const targetProgress = { value: 0 };
-    const rawTargetProgress = { value: 0 };
+    // This object will be directly manipulated by ScrollTrigger
+    const targetProgress = { value: 0 }; 
+  
     const initGSAP = async () => {
       try {
         const { gsap } = await import("gsap");
         const { ScrollTrigger } = await import("gsap/ScrollTrigger");
         gsap.registerPlugin(ScrollTrigger);
-
+  
+        // We create a GSAP timeline and link it to the ScrollTrigger
         gsap.timeline({
           scrollTrigger: {
             trigger: "#blender2js-scroll-container-model1",
             start: "top top",
             end: "bottom bottom",
-            scrub: 0,
+            scrub: 0.5,
+        
+            // ✅ NEW: ADD THE SNAP PROPERTY HERE
+            snap: {
+              snapTo: snapPoints, // The array of points to snap to
+              duration: 2.5, // How long the snap animation takes
+              ease: "power2.inOut", // Easing for a smooth start and end
+              delay: 0.2, // A small delay before snapping
+              directional: true,
+            },
+        
             onUpdate: (self) => {
-              const rawProgress = self.progress;
-
-              // --- MODIFIED: Call the new function with the zones array ---
-              const mappedProgress = getAdjustedProgress(rawProgress, stickyZones);
-
-              targetProgress.value = mappedProgress;
-              rawTargetProgress.value = rawProgress;
+              targetProgress.value = self.progress;
             },
           },
         });
+        
+  
+        // Your existing ticker for smoothly updating React state from the targetProgress object
         gsap.ticker.add(() => {
-          setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress.value, 0.04));
-          setRawScrollProgress((prev) => THREE.MathUtils.lerp(prev, rawTargetProgress.value, 0.07));
+          // We no longer need two progress trackers. The main scrollProgress is all we need.
+          setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress.value, 0.07));
+          setRawScrollProgress(targetProgress.value); // Raw and mapped can now be the same
         });
-
+        
+        // Cleanup function
         cleanup = () => {
           ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
         };
-      } catch (err) {
+      } catch (err)
+       {
         console.error("Failed to load GSAP:", err);
       }
     };
-
+  
     initGSAP();
     return () => cleanup?.();
   }, [modelIsReady]);
@@ -1227,7 +1257,7 @@ export default function Blender2JSPageModel1() {
         </div>
       )}
       <div id="text-overlay-portal"></div>
-      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />} */}
+      {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />}
       {modelIsReady && (
         <FadingHeroContent
           scrollProgress={scrollProgress}

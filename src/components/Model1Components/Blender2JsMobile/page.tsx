@@ -1596,16 +1596,21 @@ const handleDotClick = (zoneIndex: number) => {
   // Replace your entire GSAP useEffect with this one
 
 useEffect(() => {
+
     if (!modelIsReady) return;
     if (typeof window === "undefined") return;
     const snapPoints = [
       0,        // Start
-      0.125,    // First key view
-      0.25,     // Wide angle view
-      0.375,    // Top-down view
-      0.60,     // Focus on screen
-      0.85,     // Rear camera view
-      1         // End
+      0.0300,    // First key view
+      0.0465,     // Wide angle view
+      0.1392,    // Top-down view
+      0.2236,     // Focus on screen
+      0.2890,     // Rear camera view
+      0.3169,     // End
+      0.5699,
+      0.7540,
+      0.8885,
+      0.9850
     ];
     let cleanup: (() => void) | undefined;
     // This object will be directly manipulated by ScrollTrigger
