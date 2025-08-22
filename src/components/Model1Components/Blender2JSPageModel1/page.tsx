@@ -1180,12 +1180,19 @@ export default function Blender2JSPageModel1() {
     if (typeof window === "undefined") return;
     const snapPoints = [
       0,        // Start
-      0.125,    // First key view
-      0.25,     // Wide angle view
-      0.375,    // Top-down view
-      0.60,     // Focus on screen
-      0.85,     // Rear camera view
-      1         // End
+     0.045,    // First key view
+      0.084,     // Wide angle view
+      0.188,    // Top-down view
+      0.274,     // Focus on screen
+      0.328,     // Rear camera view
+      0.3332,
+      0.525,
+      0.6800,
+      0.8660,
+      0.9070
+
+
+               // End
     ];
     let cleanup: (() => void) | undefined;
     // This object will be directly manipulated by ScrollTrigger
