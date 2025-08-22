@@ -1207,7 +1207,7 @@ export default function Blender2JSPageModel2() {
     [0.263, 0.303],
     [0.362, 0.3945],
     [0.395, 0.4512],
-    [0.5604, 0.6004],
+    [0.5674, 0.6084],
     [0.90, 0.94],
   ];
 
@@ -1288,7 +1288,7 @@ export default function Blender2JSPageModel2() {
         </div>
       )}
       <div id="text-overlay-portal"></div>
-      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />} */}
+      {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />}
       {/* {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />} */}
       {modelIsReady && (
         <FadingHeroContent

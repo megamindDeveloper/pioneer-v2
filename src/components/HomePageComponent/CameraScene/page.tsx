@@ -8,6 +8,8 @@ import * as THREE from "three";
 import { Html } from "@react-three/drei";
 import { Typography } from "@/components/CommonComponents/Typography/page";
 import { useBreakpoint } from "@/app/hooks/useBreakPoints";
+import Lottie from "lottie-react";
+import handScroll from '../../../../public/animations/scrollHand.json'
 
 const degToRad = (deg: number) => deg * (Math.PI / 180);
 
@@ -62,7 +64,7 @@ function CameraModel({ onModelReady, onIntroComplete }: { onModelReady: () => vo
       if (!groupRef.current) return;
       if (hasPlayedRef.current) return;
       const { scale, position } = getModelTransformByBreakpoint(breakpoint);
-    
+
       tl = gsap.timeline({
         defaults: { duration: 6, ease: "slow(0.7, 0.7, false)" },
         onComplete: onIntroComplete,
@@ -74,7 +76,7 @@ function CameraModel({ onModelReady, onIntroComplete }: { onModelReady: () => vo
           }
         }
       });
-    
+
       tl.to(groupRef.current!.position, { x: position[0], y: position[1], z: position[2] }, 0)
         .to(groupRef.current!.scale, { x: scale, y: scale, z: scale }, 0)
         .to(
@@ -86,10 +88,10 @@ function CameraModel({ onModelReady, onIntroComplete }: { onModelReady: () => vo
           },
           0
         );
-    
+
       hasPlayedRef.current = true;
     }, 1800);
-    
+
 
     return () => {
       clearTimeout(timer);
@@ -118,7 +120,7 @@ export default function CameraScene({ onModelReady }: { onModelReady: () => void
     const section = document.getElementById("scroll-container");
     const previous = document.body.style.overflow;
     let halfComplete = false;
-  
+
     function updateScrollLock() {
       const rect = section?.getBoundingClientRect();
       // Consider the section "visible" only if some part of its UPPER half is in the viewport.
@@ -128,7 +130,7 @@ export default function CameraScene({ onModelReady }: { onModelReady: () => void
         !!rect &&
         rect.top < window.innerHeight &&
         rect.top + rect.height / 2 > 0;
-  
+
       // Lock only if intro is not at least half complete
       if (isVisible && !introComplete && !halfComplete) {
         document.body.style.overflow = "hidden";
@@ -136,25 +138,25 @@ export default function CameraScene({ onModelReady }: { onModelReady: () => void
         document.body.style.overflow = previous;
       }
     }
-  
+
     function handleHalfComplete() {
       halfComplete = true;
       updateScrollLock();
     }
-  
+
     // Check on load and scroll
     updateScrollLock();
     window.addEventListener("scroll", updateScrollLock);
     window.addEventListener("introHalfComplete", handleHalfComplete);
-  
+
     return () => {
       document.body.style.overflow = previous;
       window.removeEventListener("scroll", updateScrollLock);
       window.removeEventListener("introHalfComplete", handleHalfComplete);
     };
   }, [introComplete]);
-  
-  
+
+
 
   useEffect(() => {
     if (isModelReady) {
@@ -220,16 +222,39 @@ export default function CameraScene({ onModelReady }: { onModelReady: () => void
           >
             <Suspense fallback={false}>
               <CameraModel onModelReady={() => setIsModelReady(true)} onIntroComplete={() => setIntroComplete(true)} />
+             
+             
+
               <Environment files="/hdri/07.hdr" background={false} />
               <Html fullscreen>
                 <div className="pointer-events-none w-full h-full bg-gradient-to-t from-[#0D0D0D] via-transparent to-transparent" />
               </Html>
+
             </Suspense>
+            
           </Canvas>
+
+    <div className="flex md:hidden justify-center items-center absolute top-[82%] left-[40%] ">
+ <Lottie
+                animationData={handScroll}
+                loop={true}
+                autoplay={true}
+                style={{ width: 80, height: 80 }}
+              />
         </div>
+
+        </div>
+
+    
+
+
       </div>
+
+
       {/* <div className="pointer-events-none absolute bottom-0 left-0 w-full h-full z-20 bg-gradient-to-t from-[#0D0D0D] via-transparent to-transparent" /> */}
     </div>
+
+
   );
 }
 

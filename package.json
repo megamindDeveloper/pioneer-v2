@@ -17,6 +17,7 @@
     "@tsparticles/slim": "^3.9.1",
     "framer-motion": "^12.23.12",
     "gsap": "^3.13.0",
+    "lottie-react": "^2.4.1",
     "next": "15.4.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
