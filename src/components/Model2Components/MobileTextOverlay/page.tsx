@@ -116,7 +116,7 @@ export default function TextOverlayMobile({
           className=""
           superScript="See the Road in High Definition"
           title="2K Video Resolution"
-          descriptionWidth="max-w-[19rem]"
+          descriptionWidth="max-w-[29rem]"
           description=" From morning commutes to late-night returns, the front camera records in sharp 2K while the rear captures in Full HD. Whether it’s a close call or a scenic stretch, you’ll have a clear, reliable record from both angles."
         />
       ),

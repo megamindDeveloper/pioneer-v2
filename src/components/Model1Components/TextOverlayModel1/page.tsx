@@ -301,9 +301,11 @@ export default function Model1TextOverlay({ scrollProgress }: { scrollProgress: 
       position: centeredFlex,
       content: (
         <TextDisplay
+               descriptionWidth="w-lg"
+
           superScript="Sharp Footage in Low Light"
           title="AI Powered Night Vision"
-          className="w-[100%]"
+          className="w-[100%] space-y-3"
           description="An 8MP sensor that captures sharp, detailed video with high sensitivity, preserving image quality even during night drives and low-light conditions."
         />
       ),
@@ -314,6 +316,7 @@ export default function Model1TextOverlay({ scrollProgress }: { scrollProgress: 
       position: middle,
       content: (
         <TextDisplay
+       descriptionWidth="w-lg"
           superScript="Details Stay Intact"
           title="4K Video Resolution"
           description="The VREC-Z820DC records in true 4K, producing sharp video that makes plates, signs and unexpected moments easy to identify when needed."
@@ -323,12 +326,14 @@ export default function Model1TextOverlay({ scrollProgress }: { scrollProgress: 
     { 
       start: 0.184,
       end: 0.2286,
-      position: "w-full h-screen flex items-end justify-end bottom-[10%] right-[0%] xl:bottom-[10%] xl:right-[10%] !w-[100%]",
+      position: "w-full h-screen flex items-end justify-end bottom-[10%] right-[2%] xl:bottom-[10%] xl:right-[10%] !w-[100%]",
       content: (
         <TextDisplay
+               descriptionWidth="w-[660px]"
+
           superScript="Clarity That Goes Further"
           title="High-Performance Imaging"
-          description="The VREC-Z820DC uses a Sony STARVIS IMX415 sensor, an f/1.8 aperture and a 7-layer glass lens. Together, they capture sharp, bright footage with accurate detail even in low or uneven lighting."
+          description="The VREC-Z820DC uses a Sony STARVIS IMX415 sensor, an f/1.8 aperture and a  7-layer glass lens. Together, they capture sharp, bright footage with accurate detail even in low or uneven lighting."
         />
       ),
     },
@@ -338,6 +343,8 @@ export default function Model1TextOverlay({ scrollProgress }: { scrollProgress: 
       position: "w-full h-screen flex items-center justify-center !w-[50%] px-12",
       content: (
         <TextDisplay
+               descriptionWidth="w-[450px]"
+
           superScript="Sharp On-Screen Clarity"
           title='3.2" IPS Display'
           description="The 8.1 cm built-in screen lets you review footage and adjust settings with sharp detail, all without taking up space on your dash."
@@ -350,6 +357,8 @@ export default function Model1TextOverlay({ scrollProgress }: { scrollProgress: 
       position: "w-full h-screen flex items-end justify-center !w-[100%] px-12 bottom-[8%] xl:bottom-[15%]",
       content: (
         <TextDisplay
+               descriptionWidth="w-xl"
+
           superScript="Adapts to Any Light"
           title="WDR & HDR Recording"
           description="It adjusts exposure in real time, preserving visibility and fine detail, so footage stays clear in both bright and low-light conditions."
@@ -377,7 +386,7 @@ export default function Model1TextOverlay({ scrollProgress }: { scrollProgress: 
     {
       start: 0.52,
       end: 0.53,
-      position: "xl:top-[80px] top-[10px] left-[50%] transform -translate-x-1/2 ",
+      position: "lg:top-[50px] top-[10px] left-[50%] transform -translate-x-1/2 ",
       content: (
         <TextDisplay
           superScript="Every Angle Matters"
@@ -478,7 +487,7 @@ function TextDisplay({
   return (
     <div className={cn("text-center ", className)}>
       {/* <p className="text-[#AD2239] font-bold text-sm sm:text-base md:text-lg ">{superScript}</p> */}
-      <Typography variant="slider-heading" className="text-[#AD2239]  font-bold">
+      <Typography variant="slider-heading" className="text-[#AD2239]  font-bold ">
         {superScript}
       </Typography>
       <Typography variant="section-heading" className={cn("font-medium  text-center text-white px-12 md:px-8", titleMinWidth)}>

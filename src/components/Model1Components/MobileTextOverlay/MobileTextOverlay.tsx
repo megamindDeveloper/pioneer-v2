@@ -211,7 +211,7 @@ export default function TextOverlay({
 
     },
     {
-      start: 0.1292, // When the camera is high above the car
+      start: 0.1192, // When the camera is high above the car
       end: 0.1448,
       position: bottom,
       content: (
@@ -276,8 +276,8 @@ export default function TextOverlay({
     },
 
     {
-      start: 0.5599, // When the camera is high above the car
-      end: 0.5866,
+      start: 0.594, // When the camera is high above the car
+      end: 0.604,
       position: top,
       content: (
         <TextDisplay

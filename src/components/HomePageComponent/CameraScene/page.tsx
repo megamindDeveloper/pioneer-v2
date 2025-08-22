@@ -114,6 +114,7 @@ export default function CameraScene({ onModelReady }: { onModelReady: () => void
   const navbarRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLDivElement>(null);
   const { active } = useProgress();
+  
 
   // Lock page scroll until intro animation completes
   useEffect(() => {
@@ -222,8 +223,8 @@ export default function CameraScene({ onModelReady }: { onModelReady: () => void
           >
             <Suspense fallback={false}>
               <CameraModel onModelReady={() => setIsModelReady(true)} onIntroComplete={() => setIntroComplete(true)} />
-             
-             
+
+
 
               <Environment files="/hdri/07.hdr" background={false} />
               <Html fullscreen>
@@ -231,21 +232,24 @@ export default function CameraScene({ onModelReady }: { onModelReady: () => void
               </Html>
 
             </Suspense>
-            
+
           </Canvas>
+{introComplete && (
 
     <div className="flex md:hidden justify-center items-center absolute top-[82%] left-[40%] ">
- <Lottie
-                animationData={handScroll}
-                loop={true}
-                autoplay={true}
-                style={{ width: 80, height: 80 }}
-              />
-        </div>
+            <Lottie
+              animationData={handScroll}
+              loop={true}
+              autoplay={true}
+              style={{ width: 80, height: 80 }}
+            />
+          </div>
+)}
+        
 
         </div>
 
-    
+
 
 
       </div>

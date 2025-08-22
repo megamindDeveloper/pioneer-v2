@@ -27,7 +27,7 @@ export default function ZenVue() {
 
         {/* Mobile Image */}
         <div className="block lg:hidden   justify-center mt-[-5rem]">
-          <div className="w-[390px]  sm:w-[300px] md:w-[500px] h-auto">
+          <div className="w-full  sm:w-[300px] md:w-[500px] h-auto">
             <Image
               src="/homePageImages/featureAccordionImages/test.png"
               alt="Mobile Device"
