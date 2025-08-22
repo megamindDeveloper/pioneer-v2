@@ -999,16 +999,14 @@ export default function Blender3JSPageModel1() {
     if (typeof window === "undefined") return;
     const snapPoints = [
       0,        // Start
-     0.045,    // First key view
-      0.084,     // Wide angle view
-      0.188,    // Top-down view
-      0.274,     // Focus on screen
-      0.328,     // Rear camera view
-      0.3332,
-      0.525,
-      0.6800,
-      0.8660,
-      0.9070
+     0.039,    // First key view
+      0.158,     // Wide angle view
+      0.22,    // Top-down view
+      0.3110,
+      0.3156,
+      0.7362 ,    // Focus on screen     // Rear camera view
+      0.917,
+      0.9797,
 
 
                // End
