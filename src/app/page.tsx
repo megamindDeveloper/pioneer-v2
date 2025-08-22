@@ -8,6 +8,8 @@ import DashcamShowcase from "@/components/HomePageComponent/DashcamShowcase/Dash
 import ProductDetails from "@/components/HomePageComponent/ProductDetials/page";
 import ProductComparisonTable from "@/components/HomePageComponent/ProductComparisonTable/page";
 import FeatureAccordion from "@/components/HomePageComponent/FeatureAccordion/page";
+import { useInView } from "framer-motion";
+import LazyCameraScene from "@/components/HomePageComponent/LazyCameraScene";
 const CameraScene = dynamic(() => import("../components/HomePageComponent/CameraScene/page"), {
   ssr: false,
 });
@@ -24,7 +26,7 @@ export default function Home() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  
+
   return (
     <>
       {/* ✅ Loader rendered from the page itself */}
@@ -34,7 +36,7 @@ export default function Home() {
         </div>
       )} */}
       <div className="w-full h-full bg-gradient-to-b ">
-        <CameraScene/>
+        <LazyCameraScene/>
         {isMobile ? <DashcamShowcaseMobile /> : <DashcamShowcase />}
         <ProductDetails />
         <ProductComparisonTable />
