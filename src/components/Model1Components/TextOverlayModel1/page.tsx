@@ -394,7 +394,7 @@ export default function Model1TextOverlay({ scrollProgress }: { scrollProgress: 
         <div className="w-[100%]">
           <FieldOfVision
             highlightedText="Comprehensive Coverage"
-            heading="137° Wide-Angle View"
+            heading="139° Wide-Angle View"
             subheading="Gives you a broader view of the road, capturing side lanes, nearby traffic and details that other cameras might miss."
           />
         </div>

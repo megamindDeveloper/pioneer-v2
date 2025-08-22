@@ -1619,62 +1619,76 @@ export default function Blender2JSPageModel1Mobile() {
   // Replace your entire GSAP useEffect with this one
 
   useEffect(() => {
-    if (!modelIsReady || typeof window === "undefined") return;
+    if (!modelIsReady) return;
+    if (typeof window === "undefined") return;
+    const snapPoints = [
+      0,        // Start
+      0.039,    // First key view
+      0.1350,     // Wide angle view
+      0.1825,    // Top-down view
+      0.2978,     // Focus on screen
+      0.2582,     // Rear camera view
+      0.3130,
+      0.5254,
+      0.7456,
+      0.863,
+      0.9876
 
+    ];
     let cleanup: (() => void) | undefined;
-    const targetProgress = { value: 0 };
-    const rawTargetProgress = { value: 0 };
-
+    // This object will be directly manipulated by ScrollTrigger
+    const targetProgress = { value: 0 }; 
+  
     const initGSAP = async () => {
       try {
-        const gsapModule = await import("gsap");
-        const stModule = await import("gsap/ScrollTrigger");
-        const { ScrollToPlugin } = await import("gsap/ScrollToPlugin");
-
-        // --- Assign the modules to the .current property of the refs ---
-        gsapRef.current = gsapModule.gsap;
-        stRef.current = stModule.ScrollTrigger;
-
-        // Now use the refs to register plugins
-        gsapRef.current.registerPlugin(stRef.current, ScrollToPlugin);
-
-
-        gsapRef.current.timeline({
+        const { gsap } = await import("gsap");
+        const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+        gsap.registerPlugin(ScrollTrigger);
+  
+        // We create a GSAP timeline and link it to the ScrollTrigger
+        gsap.timeline({
           scrollTrigger: {
-            // I also fixed a syntax error here by removing a misplaced comment
-            id: "main-scroll",
             trigger: "#blender2js-scroll-container-model1",
             start: "top top",
             end: "bottom bottom",
-            scrub: 0.1,
+            scrub: 0.5,
+        
+            // ✅ NEW: ADD THE SNAP PROPERTY HERE
+            snap: {
+              snapTo: snapPoints, // The array of points to snap to
+              duration: 2.5, // How long the snap animation takes
+              ease: "power2.inOut", // Easing for a smooth start and end
+              delay: 0.2, // A small delay before snapping
+              directional: true,
+            },
+        
             onUpdate: (self) => {
-              const rawProgress = self.progress;
-              const mappedProgress = getAdjustedProgress(rawProgress, stickyZones);
-              targetProgress.value = mappedProgress;
-              rawTargetProgress.value = rawProgress;
+              targetProgress.value = self.progress;
             },
           },
         });
-
-        gsapRef.current.ticker.add(() => {
-          setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress.value, 0.075));
-          setRawScrollProgress((prev) => THREE.MathUtils.lerp(prev, rawTargetProgress.value, 0.075));
-          animationProgress.current = targetProgress.value;
+        
+  
+        // Your existing ticker for smoothly updating React state from the targetProgress object
+        gsap.ticker.add(() => {
+          // We no longer need two progress trackers. The main scrollProgress is all we need.
+          setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress.value, 0.07));
+          setRawScrollProgress(targetProgress.value); // Raw and mapped can now be the same
         });
-
+        
+        // Cleanup function
         cleanup = () => {
           ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-          gsapRef.current.ticker.remove(() => { });
         };
-      } catch (err) {
+      } catch (err)
+       {
         console.error("Failed to load GSAP:", err);
       }
     };
-
+  
     initGSAP();
     return () => cleanup?.();
   }, [modelIsReady]);
-
   // The rest of your component's JSX remains the same...
   return (
     <div id="blender2js-scroll-container-model1" ref={containerRef} style={{ height: "1000vh", width: "100%" }}>

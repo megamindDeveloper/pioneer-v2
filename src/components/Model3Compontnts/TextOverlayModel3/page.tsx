@@ -188,6 +188,7 @@ export default function Model3textOverlay({
 }) {
   // Define your text content and scroll ranges here
   const middle = "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2";
+  
   const textSections = [
     {
       start: 0.032, // When the camera is looking at the dashcam
