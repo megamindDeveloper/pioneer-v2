@@ -149,8 +149,8 @@ export default function Model3textOverlayMobile({
       ),
     },
     {
-      start: 0.256, // When the camera is high above the car
-      end: 0.289,
+      start: 0.2352, // When the camera is high above the car
+      end: 0.2672,
       position: bottom,
       content: (
         <TextDisplay

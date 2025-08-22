@@ -74,7 +74,7 @@ const dashcamKeyframes = [
   {
     time: 1.0, // End of the animation
 
-    position: [0, -0.01, 0], // Settles in the final, neutral position
+    position: [0, 0.002, 0], // Settles in the final, neutral position
 
     rotation: [0, 0, 0],
 
@@ -811,7 +811,7 @@ function Blender2JSScene({
     });
   }, [cameraNodes]);
   if (imagePlaneRef.current) {
-    if (scrollProgress >= 0.2817) {
+    if (scrollProgress >= 0.2867) {
       const { videoMap, videoEl } = imagePlaneRef.current.userData;
       if (videoMap) {
         const material = imagePlaneRef.current.material as THREE.MeshBasicMaterial;
@@ -825,7 +825,7 @@ function Blender2JSScene({
         // fallback: hide until video is ready
         imagePlaneRef.current.visible = false;
       }
-    } else if (scrollProgress >= 0.234 && scrollProgress <= 0.255) {
+    } else if (scrollProgress >= 0.234 && scrollProgress <= 0.267) {
       const { imageMap, videoEl } = imagePlaneRef.current.userData;
       const material = imagePlaneRef.current.material as THREE.MeshBasicMaterial;
       if (imageMap && material.map !== imageMap) {
@@ -1517,7 +1517,7 @@ export default function Blender2JSPageModel1Mobile() {
       {modelIsReady && <StickyNav stickyZones={stickyZones} rawScrollProgress={rawScrollProgress} onDotClick={handleDotClick} />}
 
       {/* Pass both raw and mapped progress to your debug timeline to see the effect */}
-      {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />}
+      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />} */}
       {/* {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />}HeroImageFade */}
       {modelIsReady && (
         <FadingHeroContent

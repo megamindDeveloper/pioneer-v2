@@ -180,7 +180,11 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
           </div>
         )}
       </div>
-
+   {/* Mobile-only subtext below tabs */}
+      <div className="block md:hidden text-center mt-12 px-4 max-w-sm">
+        <h3 className="text-white  text-base font-semibold">{currentTab.compareHeading}</h3>
+        <p className="text-gray-300 text-xs mt-2">{currentTab.compareSubheading}</p>
+      </div>
       {/* Tabs */}
       <div className="w-full flex justify-center mt-12">
  <div className="grid grid-cols-3 gap-4 sm:gap-6 md:gap-10 max-w-full items-center justify-between">
@@ -190,7 +194,7 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
       key={index}
       onClick={() => setActiveTab(index)}
       className={cn(
-        "relative font-semibold text-[13px] cursor-pointer sm:text-sm md:text-[20px] transition-all duration-300 text-center",
+        "relative font-semibold text-[13px] cursor-pointer sm:text-sm md:text-[16px] md:px-5  transition-all duration-300 text-center",
         activeTab === index
           ? "text-white after:content-[''] after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-[-6px] after:w-[60px] sm:after:w-[100px] md:after:w-[120px] after:h-[2px] after:bg-white after:rounded-full"
           : "text-gray-400 hover:text-[#AD2239]"
@@ -202,11 +206,7 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
 </div>
       </div>
 
-      {/* Mobile-only subtext below tabs */}
-      <div className="block md:hidden text-center mt-12 px-4 max-w-sm">
-        <h3 className="text-white text-base font-semibold">{currentTab.compareHeading}</h3>
-        <p className="text-gray-300 text-xs mt-2">{currentTab.compareSubheading}</p>
-      </div>
+   
     </section>
   );
 };
