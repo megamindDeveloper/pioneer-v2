@@ -23,7 +23,7 @@ useTexture.preload("/modelImages/CommonModelImages/aiNight.png");
 const animationData = [
   {
     time: 0.0,
-    position: [0.005, 1.222, 0.4968],
+    position: [0.005, 1.2217, 0.4968],
     quaternion: [0.0, 0.0, 0.0, 1.0],
     fov: 2,
   },
@@ -31,7 +31,7 @@ const animationData = [
   // { time: 0.0, position: [0.005, 1.222, 0.4968], quaternion: [0.0, 0.0, 0.0, 1.0], fov: 3 },
   {
     time: 0.0417,
-    position: [-0.11, 1.215, 0.44],
+    position: [-0.11, 1.218, 0.44],
     quaternion: [0.03902204, -0.5, -0.0781377, 0.9276399],
     fov: 20,
   },
@@ -44,7 +44,7 @@ const animationData = [
   {
     time: 0.122,
     position: [-0.08, 1.22, 0.275],
-    quaternion: [0, -0.90010577, 0.00000004, 0.43567151],
+    quaternion: [0, -0.90010577, 0.0, 0.43567151],
     fov: 20,
   },
   // {
@@ -55,9 +55,9 @@ const animationData = [
   // },
   {
     time: 0.1667,
-    position: [-0.001, 1.216, 0.3],
+    position: [-0.001, 1.216, 0.27],
     quaternion: [0, 1.0, 0.0, 0.0],
-    fov: 30,
+    fov: 20,
   },
 
   // {
@@ -1288,7 +1288,7 @@ export default function Blender2JSPageModel2() {
         </div>
       )}
       <div id="text-overlay-portal"></div>
-      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />} */}
+      {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />}
       {/* {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />} */}
       {modelIsReady && (
         <FadingHeroContent

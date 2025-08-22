@@ -17,7 +17,7 @@ useTexture.preload("/modelImages/CommonModelImages/aiNight.png");
 const animationData = [
   {
     time: 0.0,
-    position: [-0.001, 1.222, 0.4968],
+    position: [-0.00066, 1.22154, 0.4968],
     quaternion: [0.0, 0.0, 0.0, 1.0],
     fov: 2,
   },
