@@ -1173,95 +1173,74 @@ export default function Blender2JSPageModel1() {
     [0.842, 0.91],
   ];
 
- // Inside the Blender2JSPageModel1 component
 
- // Inside the Blender2JSPageModel1 component
 
- // Inside the Blender2JSPageModel1 component
-
- // Inside the Blender2JSPageModel1 component
-
-useEffect(() => {
-  if (!modelIsReady) return;
-  if (typeof window === "undefined") return;
-
-  let cleanup: (() => void) | undefined;
-  const targetProgress = { value: 0 };
-  const rawTargetProgress = { value: 0 };
-
-  const initGSAP = async () => {
-    try {
-      const { gsap } = await import("gsap");
-      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-      gsap.registerPlugin(ScrollTrigger);
-
-      const snapPoints = [0, 0.06, 0.09, 0.19, 0.273, 0.332, 0.34,0.52,0.65,0.79,0.86,0.91];
-      
-      // ✨ 1. We need a variable to hold our ScrollTrigger instance
-      // This is so our snap function can access its properties, like scroll direction.
-      let scrollTriggerInstance: ScrollTrigger;
-
-      // ✨ 2. Create the directional snapping function
-      const directionalSnap = (value: number) => {
-        // Get the direction from our instance: 1 for down, -1 for up
-        const direction = scrollTriggerInstance.direction;
-
-        if (direction === 1) {
-          // --- Scrolling DOWN ---
-          // Find the first snap point that is GREATER than the current scroll value
-          for (const point of snapPoints) {
-            if (point > value) return point;
-          }
-          return 1; // If none found, snap to the end
-        } else {
-          // --- Scrolling UP ---
-          // Find the first snap point that is LESS than the current scroll value (looping backwards)
-          for (let i = snapPoints.length - 1; i >= 0; i--) {
-            const point = snapPoints[i];
-            if (point < value) return point;
-          }
-          return 0; // If none found, snap to the start
-        }
-      };
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: "#blender2js-scroll-container-model1",
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 0.5,
-          snap: {
-            snapTo: directionalSnap, // ✨ 3. Use our new function instead of the array
-            duration: 0.8,
-            ease: "power2.inOut",
-            // delay: 0.1,
+  useEffect(() => {
+    if (!modelIsReady) return;
+    if (typeof window === "undefined") return;
+    const snapPoints = [
+      0,        // Start
+      0.125,    // First key view
+      0.25,     // Wide angle view
+      0.375,    // Top-down view
+      0.60,     // Focus on screen
+      0.85,     // Rear camera view
+      1         // End
+    ];
+    let cleanup: (() => void) | undefined;
+    // This object will be directly manipulated by ScrollTrigger
+    const targetProgress = { value: 0 }; 
+  
+    const initGSAP = async () => {
+      try {
+        const { gsap } = await import("gsap");
+        const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+        gsap.registerPlugin(ScrollTrigger);
+  
+        // We create a GSAP timeline and link it to the ScrollTrigger
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: "#blender2js-scroll-container-model1",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.5,
+        
+            // ✅ NEW: ADD THE SNAP PROPERTY HERE
+            snap: {
+              snapTo: snapPoints, // The array of points to snap to
+              duration: 2.5, // How long the snap animation takes
+              ease: "power2.inOut", // Easing for a smooth start and end
+              delay: 0.2, // A small delay before snapping
+              directional: true,
+            },
+        
+            onUpdate: (self) => {
+              targetProgress.value = self.progress;
+            },
           },
-          onUpdate: (self) => {
-            targetProgress.value = self.progress;
-            rawTargetProgress.value = self.progress;
-          },
-        },
-      });
-
-      // ✨ 4. Grab the instance after it's created and store it
-      scrollTriggerInstance = tl.scrollTrigger as ScrollTrigger;
-
-      gsap.ticker.add(() => {
-        setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress.value, 0.04));
-        setRawScrollProgress((prev) => THREE.MathUtils.lerp(prev, rawTargetProgress.value, 0.07));
-      });
-
-      cleanup = () => {
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-      };
-    } catch (err) {
-      console.error("Failed to load GSAP:", err);
-    }
-  };
-
-  initGSAP();
-  return () => cleanup?.();
-}, [modelIsReady]);
+        });
+        
+  
+        // Your existing ticker for smoothly updating React state from the targetProgress object
+        gsap.ticker.add(() => {
+          // We no longer need two progress trackers. The main scrollProgress is all we need.
+          setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress.value, 0.07));
+          setRawScrollProgress(targetProgress.value); // Raw and mapped can now be the same
+        });
+        
+        // Cleanup function
+        cleanup = () => {
+          ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+        };
+      } catch (err)
+       {
+        console.error("Failed to load GSAP:", err);
+      }
+    };
+  
+    initGSAP();
+    return () => cleanup?.();
+  }, [modelIsReady]);
   const [dpr, setDpr] = useState(1.5);
   return (
     <div id="blender2js-scroll-container-model1" ref={containerRef} style={{ height: "2000vh", width: "100%" }}>
