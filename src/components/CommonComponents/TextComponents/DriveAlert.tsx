@@ -43,7 +43,7 @@ export default function DriveAlert({
       <div className="flex flex-col items-center lg2:space-y-7 ">
         {/* Headings */}
         <div>
-          <p className="text-[#AD2239] text-[16px]  font-bold  ">{highlightedText}</p>
+          <p className="text-[#AD2239] text-[16px]  font-bold">{highlightedText}</p>
           <Typography variant="section-heading" className="font-medium  text-center text-white px-12 md:px-8">{heading}</Typography>
           <h2 className="lg2:text-[50px] text-[32px] font-medium  leading-tight sm:leading-none"></h2>
           <Typography variant="section-card-body" className=" text-[#ABABAB]/80 mx-auto lg2:max-w-xl ">{subheading}</Typography>

@@ -347,7 +347,7 @@ export default function Model1TextOverlay({ scrollProgress }: { scrollProgress: 
     {
       start: 0.322,
       end: 0.3325,
-      position: "w-full h-screen flex items-end justify-center !w-[100%] px-12 bottom-[8%]",
+      position: "w-full h-screen flex items-end justify-center !w-[100%] px-12 bottom-[8%] xl:bottom-[15%]",
       content: (
         <TextDisplay
           superScript="Adapts to Any Light"

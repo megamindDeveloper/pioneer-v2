@@ -3,15 +3,14 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Typography } from "../Typography/page";
 
-
 interface OverlayCardProps {
   image: string;
   title: string;
   description: string;
-  mobileImage:string;
+  mobileImage?: string;
 }
 
-export const OverlayCard: React.FC<OverlayCardProps> = ({ image, title, description }) => {
+export const OverlayCard: React.FC<OverlayCardProps> = ({ image, title, description, mobileImage }) => {
   return (
     <motion.div
       key={image + title}
@@ -22,7 +21,12 @@ export const OverlayCard: React.FC<OverlayCardProps> = ({ image, title, descript
       className="relative overflow-hidden h-[300px] xl:h-[380px] rounded-xl bg-gray-900 shadow-2xl group cursor-pointer transition-transform"
     >
       <div className="absolute inset-0 ">
-        <Image src={image} alt={title} fill className="object-cover transition-transform translate-x-8  md:translate-x-0" />
+      <Image src={image} alt={title} fill className="object-cover transition-transform translate-x-8 hidden md:block  md:translate-x-0" />
+        {mobileImage ? (
+          <Image src={mobileImage} alt={title} fill className="object-cover transition-transform  block md:hidden md:translate-x-[2rem]" />
+        ) : (
+          <Image src={image} alt={title} fill className="object-cover transition-transform translate-x-8  md:translate-x-0" />
+        )}
       </div>
 
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/0 z-10 w-[45%]" />
@@ -32,9 +36,11 @@ export const OverlayCard: React.FC<OverlayCardProps> = ({ image, title, descript
       <div className="absolute inset-0 bg-gradient-to-t bottom-0 from-black/40 via-black/0 to-transparent z-10" />
 
       <div className="absolute inset-0 z-20 p-8 p flex flex-col justify-center">
-      <h3 className="text-[20px] md:text-2xl lg2:text-3xl !font-bold xl:text-4xl mb-3 whitespace-pre-line leading-[23px] md:leading-none">{title}</h3>
+        <h3 className="text-[20px] md:text-2xl lg2:text-3xl !font-medium xl:text-4xl mb-3 whitespace-pre-line leading-[23px] md:leading-none">
+          {title}
+        </h3>
 
-        <Typography variant="section-card-body" className="text-[#DFDFDF] whitespace-pre-line ">
+        <Typography variant="section-card-body" className="text-[#DFDFDF] mwhitespace-pre-line max-w-[65%]">
           {description}
         </Typography>
         {/* <Typography variant="section-card-body" className="text-[#DFDFDF]  max-w-[50%]">

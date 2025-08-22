@@ -197,9 +197,9 @@ export default function DashcamShowcase() {
           <DashcamCard
             directionalLights={[
               {
-                position: [-5.477, 20.381, 18.049],
+                position: [-2.477, 20.381, 8.049],
                 hoveredPosition: [-23.118, 10.792, 4.712],
-                intensity: 0.5,
+                intensity: 0,
                 hoveredIntensity: 4,
                 color: "#ffffff",
               },
@@ -274,9 +274,9 @@ export default function DashcamShowcase() {
           <DashcamCard
             directionalLights={[
               {
-                position: [-1.241, 8.582, 17.441],
+                position: [-1.2, 8.582, 1],
                 hoveredPosition: [-1.673, 5.556, 25.09],
-                intensity: 4,
+                intensity: 2,
                 hoveredIntensity: 8,
                 color: "#ffffff",
               },

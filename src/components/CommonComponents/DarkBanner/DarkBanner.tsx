@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Typography } from "../Typography/page";
 
-
 interface DarkBannerProps {
   title: string;
   description: string;
@@ -62,29 +61,28 @@ const DarkBanner: React.FC<DarkBannerProps> = ({
 
         <div className="relative" />
         <div className="md:hidden flex">
+          <motion.div
+            key={title + description}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            transition={{ duration: 0.4 }}
+            className="z-20 h-full flex md:hidden flex-col justify-end"
+          >
+            <div>
+              <h3 className="text-[20px] md:text-2xl lg2:text-3xl !font-medium xl:text-4xl mb-3 whitespace-pre-line leading-[23px] md:leading-auto">
+                {title}
+              </h3>
 
-        <motion.div
-          key={title + description}
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 20 }}
-          transition={{ duration: 0.4 }}
-          className="z-20 h-full flex md:hidden flex-col justify-end"
-        >
-          <div>
-            <h3 className="text-[20px] md:text-2xl lg2:text-3xl !font-medium xl:text-4xl mb-3 whitespace-pre-line leading-[23px] md:leading-auto">
-              {title}
-            </h3>
+              <Typography variant="section-card-body">{description}</Typography>
+            </div>
 
-            <Typography variant="section-card-body">{description}</Typography>
-          </div>
-
-          <Link href={buttonLink}>
-            <p className="bg-white md:inline-block hidden text-black text-[12px] lg2:text-sm font-bold px-4 py-2 mt-10 rounded hover:bg-gray-200 transition  w-fit">
-              Learn More
-            </p>
-          </Link>
-        </motion.div>
+            <Link href={buttonLink}>
+              <p className="bg-white md:inline-block hidden text-black text-[12px] lg2:text-sm font-bold px-4 py-2 mt-10 rounded hover:bg-gray-200 transition  w-fit">
+                Learn More
+              </p>
+            </Link>
+          </motion.div>
         </div>
       </div>
 
@@ -98,13 +96,11 @@ const DarkBanner: React.FC<DarkBannerProps> = ({
         transition={{ duration: 0.4 }}
         className="absolute md:-bottom-14 top-0 flex justify-center  z-20 md:left-[52%] "
       >
-
         {buttonLink === "/models/vrec-z820dc" ? (
-             <Image src={imageSrc} alt={imageAlt} placeholder="blur" className={` h-full mx md:w-[100%] w-[100%]`} />
-        ):(
-          <Image src={imageSrc} alt={imageAlt} placeholder="blur" className={` h-full p-12 md:w-[100%] w-[100%]`} />
+          <Image src={imageSrc} alt={imageAlt} className={` h-full mx md:w-[100%] w-[100%]`} />
+        ) : (
+          <Image src={imageSrc} alt={imageAlt} className={` h-full p-12 md:w-[100%] w-[100%]`} />
         )}
-  
       </motion.div>
     </section>
   );
