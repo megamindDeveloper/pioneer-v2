@@ -1595,7 +1595,8 @@ const handleDotClick = (zoneIndex: number) => {
 
   // Replace your entire GSAP useEffect with this one
 
-  useEffect(() => {
+useEffect(() => {
+
     if (!modelIsReady) return;
     if (typeof window === "undefined") return;
     const snapPoints = [
