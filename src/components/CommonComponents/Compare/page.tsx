@@ -93,8 +93,8 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
             >
               {currentTab.afterImageText}
             </div>
-                        <div className="absolute top-0 left-0 w-full h-[30%] bg-gradient-to-b from-[#000000] via-black/40 to-transparent z-30 pointer-events-none" />
-                        <div className="absolute top-0 left-0 w-full h-[30%] bg-gradient-to-b from-[#000000] via-black/40 to-transparent z-30 pointer-events-none" />
+                        <div className="absolute top-0 hidden lg:block left-0 w-full h-[30%] bg-gradient-to-b from-[#000000] via-black/40 to-transparent z-30 pointer-events-none" />
+                        <div className="absolute top-0  left-0 w-full h-[30%] bg-gradient-to-b from-[#000000] via-black/40 to-transparent z-30 pointer-events-none" />
               
             {/* Handlebar */}
             <motion.div
@@ -155,8 +155,8 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
             )} */}
 
             {/* Gradient Overlay */}
-            <div className="absolute bottom-0 left-0 w-full h-[60%] bg-gradient-to-t from-[#000000] via-black/40 to-transparent z-30 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-full h-[60%] bg-gradient-to-t from-[#000000] via-black/30 to-transparent z-30 pointer-events-none" />
+            <div className="absolute hidden lg:block bottom-0 left-0 w-full h-[60%] bg-gradient-to-t from-[#000000] via-black/40 to-transparent z-30 pointer-events-none" />
+            <div className="absolute hidden lg:block bottom-0 left-0 w-full h-[60%] bg-gradient-to-t from-[#000000] via-black/30 to-transparent z-30 pointer-events-none" />
 
             {/* Headline/Subtext over image for desktop only */}
             <div className="hidden md:block absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center z-100 px-4 w-[60%]">

@@ -16,18 +16,18 @@ export default function ZenVue() {
 
         {/* ZenVue Heading (Mobile) */}
         <div className="block lg:hidden w-full text-center mt-[-4rem] xl:mt-[-4rem]">
-          <h1 className="text-[40px] xs:text-[48px] sm:text-[60px] leading-[1.1] font-bold">ZenVue</h1>
+          <h1 className="text-[70px] xs:text-[48px] sm:text-[60px] leading-[1.1] font-bold">ZenVue</h1>
         </div>
 
         {/* App Description (Mobile) */}
-        <p className="block lg:hidden text-white/80 text-[13px] sm:text-[14px] max-w-sm mx-auto text-center mt-[-3rem] px-3">
+        <p className="block lg:hidden text-white/80 text-[14px] sm:text-[14px] max-w-md mx-auto text-center mt-[-3rem] ">
           The Pioneer ZenVue Dash Camera App gives you instant access to your recordings, making it easy to view, download, and share footage on the
           go. With its intuitive, user-friendly interface, the experience is seamless from start to finish.
         </p>
 
         {/* Mobile Image */}
-        <div className="block lg:hidden  justify-center mt-[-5rem]">
-          <div className="w-screen sm:w-[300px] md:w-[500px] h-auto">
+        <div className="block lg:hidden   justify-center mt-[-5rem]">
+          <div className="w-[390px]  sm:w-[300px] md:w-[500px] h-auto">
             <Image
               src="/homePageImages/featureAccordionImages/test.png"
               alt="Mobile Device"
@@ -39,8 +39,8 @@ export default function ZenVue() {
         </div>
 
         {/* Mobile "Available on" + Logos */}
-        <div className="block lg:hidden text-center mt-[-2rem]  ">
-          <p className="text-[13px] text-white/70 mb-2 ">Available on</p>
+        <div className="block lg:hidden text-center absolute bottom-6 ">
+          <p className="text-[15px] text-white/70 mb-3 ">Available on</p>
           <div className="flex justify-center gap-6">
             <Link href="https://play.google.com/store/apps/details?id=com.pioneer.pioneer_dashcamconnect&pcampaignid=web_share" target="_blank">
               <Image src="/productPageImages/zenVueImages/googlePlay.png" alt="Google Play" width={130} height={40} className="object-contain" />
