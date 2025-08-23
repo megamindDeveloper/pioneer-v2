@@ -875,7 +875,7 @@ function IntroImageAnimation({ scrollProgress }: { scrollProgress: number }) {
     let targetOpacity: number;
 
     if (scrollProgress <= holdEnd) {
-      targetOpacity = 1; // Opacity is 1 until 0.08
+      targetOpacity = 0; // Opacity is 1 until 0.08
     } else if (scrollProgress >= fadeEnd) {
       targetOpacity = 0; // Opacity is 0 after 0.11
     } else {
@@ -1169,7 +1169,7 @@ export default function Blender2JSPageModel4() {
         <BackgroundFade scrollProgress={scrollProgress} />
 
         <Suspense fallback={null}>
-          <IntroImageAnimation scrollProgress={scrollProgress} />
+          {/* <IntroImageAnimation scrollProgress={scrollProgress} /> */}
           {modelIsReady && <Environment files="/hdri/111.hdr" background={false} />}
           <Blender2JSScene
             scrollProgress={scrollProgress}

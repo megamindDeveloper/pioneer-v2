@@ -126,8 +126,13 @@ export default function TextOverlay({
       padding: "px-3",
     },
     {
+<<<<<<< HEAD
       start: 0.781, // When the camera is high above the car
       end: 0.801,
+=======
+      start: 0.78, // When the camera is high above the car
+      end: 0.8104,
+>>>>>>> main
       position:
         "top-1/2 left-[20px] lg:left-[40px] lg2:left-[100px] xl:left-[128px] transform -translate-y-1/2",
       content: (
