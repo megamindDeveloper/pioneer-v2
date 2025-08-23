@@ -1,4 +1,3 @@
-import { cn } from "@/app/lib/utils";
 import { Typography } from "../Typography/page";
 
 type GpsLoggerProps = {
@@ -14,27 +13,27 @@ export default function GpsLogger({ highlightedText, heading, subheading, descri
     <>
    <main className="min-h-screen  text-white flex flex-col items-center justify-center relative text-center">
   {/* Content */}
-  <div className="w-full md:max-w-[660px] flex flex-col items-center  px-6justify-center">
+  <div className="w-full max-w-[660px] flex flex-col items-center  px-6justify-center">
     {/* Red Label */}
-    <Typography variant="slider-heading" className="text-[#AD2239]  font-bold pr-5">
+    <Typography variant="slider-heading" className="text-[#AD2239]  font-semibold mb-2">
       {highlightedText}
     </Typography>
 
     {/* Heading */}
-    <Typography variant="section-heading" className={cn("font-medium  text-center text-white px-12 md:px")}>
-     {heading} <span className="text-[#313131]">*</span>
+    <Typography variant="section-heading" className="text-white  font-medium mb-4">
+     {heading}<span className="text-[#313131]">*</span>
     </Typography>
 
     {/* Subheading */}
-    <Typography variant="section-card-body" className={cn(" text-[#ABABAB]/80 mx-auto")}>
+    <Typography variant="section-card-body" className="text-[#ABABAB]/80  leading-snug w-[320px] lg:w-[480px] mx-auto">
      {subheading}
     </Typography>
   </div>
 
   {/* Disclaimer - fixed at bottom */}
-  <p className="absolute bottom-[8rem] sm:bottom-[6rem] text-[12px] text-[#313131] text-center w-[350px] lg:w-[860px] px-6">
+  <Typography variant="section-card-body" className="absolute bottom-[8rem] sm:bottom-[6rem]  text-[#313131] text-center w-[320px] lg:w-[860px] px-6">
  {description}
-  </p>
+  </Typography>
 </main>
 
     </>

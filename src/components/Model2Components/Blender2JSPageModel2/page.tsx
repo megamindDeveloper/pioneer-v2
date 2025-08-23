@@ -669,7 +669,7 @@ function Blender2JSScene({
       } else {
         imagePlaneRef.current.visible = false;
       }
-    } else if (scrollProgress >= 0.302 && scrollProgress <= 0.3167) {
+    } else if (scrollProgress >= 0.302 && scrollProgress <= 0.3168) {
       const { imageMap, videoEl } = imagePlaneRef.current.userData;
       const material = imagePlaneRef.current.material as THREE.MeshBasicMaterial;
       if (imageMap && material.map !== imageMap) {
@@ -1086,9 +1086,9 @@ export default function Blender2JSPageModel2() {
     // First pause
     [0.027, 0.047], // Second pause
     [0.122, 0.1595],
-    [0.171, 0.218],
-    [0.263, 0.303],
-    [0.362, 0.3945],
+    [0.166, 0.204],
+    [0.256, 0.303],
+    [0.3596, 0.3945],
     [0.395, 0.4512],
     [0.5674, 0.6084],
     [0.9, 0.94],
