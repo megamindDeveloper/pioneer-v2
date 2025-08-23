@@ -791,7 +791,7 @@ function clipPathToShape(points: string, width = 5, height = 5) {
 }
 
 const openShape = "polygon(-60% 0%, 0 0, 100% 0, 155% 0%, 50% 49%)";
-const closedShape = "polygon(49.75% 0%, 49.75% 0%, 49.75% 0%, 49.75% 0%, 50.41% 66.01%)";
+const closedShape = "polygon(49.75% 0%, 49.75% 0%, 49.75% 0%, 49.75% 0%, 50.41% 62%)";
 
 function interpolateClipShape(from: string, to: string, t: number): string {
   const parse = (str: string) =>
@@ -1063,10 +1063,10 @@ export default function Blender2JSPageModel4() {
   const stickyZones = [
     // First pause
     [0.063, 0.1], // Second pause
-    [0.422, 0.462],
-    [0.692, 0.732],
-    [0.834, 0.874],
-    [0.918, 0.958],
+    [0.342, 0.382],
+    [0.722, 0.762],
+    [0.844, 0.894],
+    [0.973, 0.993],
   ];
   // When all assets are loaded (useProgress active = false), mark ready
   useEffect(() => {
