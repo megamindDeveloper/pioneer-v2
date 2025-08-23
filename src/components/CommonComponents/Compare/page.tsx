@@ -179,7 +179,10 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
           </div>
         )}
       </div>
-
+      <div className="block md:hidden text-center mt-12 px-4 max-w-sm">
+        <h3 className="text-white text-base font-semibold">{currentTab.compareHeading}</h3>
+        <p className="text-gray-300 text-xs mt-2">{currentTab.compareSubheading}</p>
+      </div>
       {/* Tabs */}
       <div className="w-full flex justify-center mt-12">
         <div className="grid grid-cols-3 gap-4 sm:gap-6 md:gap-10 max-w-full items-center justify-between">
@@ -202,10 +205,7 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
       </div>
 
       {/* Mobile-only subtext below tabs */}
-      <div className="block md:hidden text-center mt-12 px-4 max-w-sm">
-        <h3 className="text-white text-base font-semibold">{currentTab.compareHeading}</h3>
-        <p className="text-gray-300 text-xs mt-2">{currentTab.compareSubheading}</p>
-      </div>
+      
     </section>
   );
 };
