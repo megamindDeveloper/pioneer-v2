@@ -254,10 +254,10 @@ export default function TextOverlayMobile({
       start: 0.9776, // When the camera is high above the car
       end: 0.999,
        position:
-        "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[55%]",
-      content: (
-        <GpsLogger
-          style="flex flex-col items-center sm:items-start justify-center sm:justify-center"
+       "top-1/2 px-12 -translate-y-[55%]",
+       content: (
+         <GpsLogger
+           style="flex flex-col items-center sm:items-start justify-center sm:justify-center max-w-[20rem]"
           highlightedText="Every Trip Logged"
           heading="GPS Logger"
           subheading="Automatically record your driving routes with GPS logging, making it easy to revisit past trips whenever needed."
