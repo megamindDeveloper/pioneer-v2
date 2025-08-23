@@ -25,13 +25,13 @@ export default function OptionalParking({ highlightedText, heading, subheading, 
             <span className="text-[#313131]">*</span>
           </h1> */}
           <Typography variant="section-heading" className="font-medium  text-center text-white px-12 md:px-8 ">
-            {heading}<span className="text-[#313131]">*</span>
+            {heading}
+            <span className="text-[#313131]">*</span>
           </Typography>
           {/* Subheading */}
-          <Typography
-            variant="section-card-body"
-            className="text-[#ABABAB]/80 px-16"
-          >{subheading}</Typography>
+          <Typography variant="section-card-body" className="text-[#ABABAB]/80 px-32">
+            {subheading}
+          </Typography>
         </div>
 
         {/* Disclaimer (Bottom Center on all screens) */}
@@ -40,7 +40,9 @@ export default function OptionalParking({ highlightedText, heading, subheading, 
         {/* <p className="absolute bottom-6 sm:max-w-[550px]  max-w-[400px] sm:bottom-10 ms-6 text-[13px] text-[#4B4B4B] text-center px-4">
           {description}
         </p> */}
-          <p className="absolute bottom-[8rem] sm:bottom-[6rem] text-[12px] text-[#313131] text-center mx-12 w-[350px] lg:w-[800px] px-6">{description}</p>
+        <p className="absolute bottom-[8rem] sm:bottom-[6rem] text-[12px] text-[#313131] text-center mx-12 w-[350px] lg:w-[800px] px-6">
+          {description}
+        </p>
       </main>
     </>
   );
