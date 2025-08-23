@@ -87,7 +87,7 @@ export default function TextOverlay({
       position: middle,
       content: (
         <TextDisplay
-          superScript="Sharper Footage in Any Light"
+          superScript="Sharper Footage in Any Light "
           title="1.5K Recording with WDR"
           description="The VREC-H120SC captures clear, steady video in all kinds of light, combining 1.5K resolution with smart brightness control for better visibility day and night.(Resolution can be enabled through the ZenVue app.)"
         />
