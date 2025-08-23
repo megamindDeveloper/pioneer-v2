@@ -1288,6 +1288,7 @@ export default function Blender2JSPageModel1() {
             setLensAnimation={setLensAnimation}
           />
         )}
+        
       </Canvas>
     </div>
   );
