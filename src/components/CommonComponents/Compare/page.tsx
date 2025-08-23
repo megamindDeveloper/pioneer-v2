@@ -86,7 +86,7 @@ export const Compare = ({ tabs }: { tabs: tabDataProps[] }) => {
 
             <div
               className={cn(
-                "absolute top-4 max-w-[10%] text-right right-0 md:right-4 z-50 b text-white px-3 py-1 rounded-md text-[10px] md:text-sm font-medium backdrop-blur-sm transition-opacity duration-200",
+                "absolute top-4 md:max-w-[10%] max-w-[40%] text-right right-0 md:right-4 z-50 b text-white px-3 py-1 rounded-md text-[10px] md:text-sm font-medium backdrop-blur-sm transition-opacity duration-200",
                 isSliderNearAfter ? "opacity-0" : "opacity-100"
               )}
             >
