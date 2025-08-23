@@ -11,6 +11,7 @@ type DriveAlertH520Props = {
   alert2?: string;
   alert3?: string;
   model?: string;
+  subheadingwidth?:string
 };
 
 export default function DriveAlertH520({
@@ -24,6 +25,7 @@ export default function DriveAlertH520({
   alert2Image,
   alert3Image,
   model,
+  subheadingwidth,
 }: DriveAlertH520Props) {
   return (
     <section className="relative min-h-screen text-white flex flex-col justify-between py-12 text-center overflow-hidden">
@@ -45,13 +47,13 @@ export default function DriveAlertH520({
   <div className="flex flex-col w-full md:w-3xl items-center space-y-12 px-12 sm:space-y-6 pb-8 relative z-10">
     {/* Headings */}
     <div>
-      <p className="text-[#AD2239] font-bold w-sm mb-2  text-sm sm:text-base md:text-lg">
+      <p className="text-[#AD2239] font-bold w-xl mb-2  text-sm sm:text-base md:text-lg">
         {highlightedText}
       </p>
-      <h2 className="font-medium leading-tight w-sm sm:leading-none mb-2 text-[26px] sm:text-4xl md:text-[38px]">
+      <h2 className="font-medium leading-tight w-xl sm:leading-none mb-4 text-[26px] sm:text-4xl md:text-[38px]">
         {heading}
       </h2>
-      <p className="text-[#ABABAB] mx-auto w-sm px-3.5 ling-snug  sm:leading-relaxed text-[14px] sm:text-base md:text-md">
+      <p className={`text-[#ABABAB] mx-auto w-xl px-3.5 ling-snug  sm:leading-relaxed text-[14px] sm:text-base md:text-md`}>
         {subheading}
       </p>
     </div>
