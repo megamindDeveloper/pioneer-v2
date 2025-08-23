@@ -29,16 +29,16 @@ const animationData = [
   // }, // close
   {
     time: 0.0,
-    position: [0.001, 1.2215, 0.368],
+    position: [0.0014, 1.22152, 0.368],
     quaternion: [0.0, 0.0, 0.0, 1.0],
     fov: 40,
   }, //extreme close
   {
-      time: 0.0,
-      position: [0.001, 1.2215, 0.368],
-      quaternion: [0.0, 0.0, 0.0, 1.0],
-      fov: 40,
-    }, //extreme close
+    time: 0.0,
+    position: [0.001, 1.2215, 0.368],
+    quaternion: [0.0, 0.0, 0.0, 1.0],
+    fov: 40,
+  }, //extreme close
   {
     time: 0.0417,
     position: [-0.05, 1.22, 0.45],
@@ -67,11 +67,10 @@ const animationData = [
   }, // behind
   {
     time: 0.205,
-    position: [0.086, 1.23, 0.25],
-    quaternion: [0.0, 0.9, -0.019, 0.44],
+    position: [0.11, 1.223, 0.25],
+    quaternion: [0.0, 0.9, -0.0, 0.44],
     fov: 8,
   }, // left
-  
 ];
 
 function HeroTextFade({ scrollProgress }: { scrollProgress: number }) {
@@ -101,7 +100,7 @@ function HeroTextFade({ scrollProgress }: { scrollProgress: number }) {
       }}
     >
       <Typography variant="hero-section-heading" className=" font-bold text-white text-center px-4 max-w-6xl">
-      Built to fit in, made to stand out
+        Built to fit in, made to stand out
       </Typography>
       <p className="text-[16px] text-[#ABABAB]  mt-2"> Compact, discreet, and always ready to capture your drive in stunning 1.5K</p>
       <button className="bg-[#262626] px-2 pl-4 py-2 rounded-full text-white mt-12 flex text-[16px] font-medium items-center mx-auto">
@@ -287,15 +286,10 @@ function useCameraAnimationSync(
       cameraMount.updateWorldMatrix(true, false);
       cameraMountWorldMatrix.copy(cameraMount.matrixWorld);
       dashcamGroupRef.current.matrix.copy(cameraMountWorldMatrix);
-      dashcamGroupRef.current.matrix.decompose(
-        dashcamGroupRef.current.position,
-        dashcamGroupRef.current.quaternion,
-        dashcamGroupRef.current.scale
-      );
+      dashcamGroupRef.current.matrix.decompose(dashcamGroupRef.current.position, dashcamGroupRef.current.quaternion, dashcamGroupRef.current.scale);
     }
   });
 }
-
 
 function Timeline({ scrollProgress, rawProgress }: { scrollProgress: number; rawProgress?: number }) {
   const totalFrames = animationData.length + 1;
@@ -351,9 +345,7 @@ function Timeline({ scrollProgress, rawProgress }: { scrollProgress: number; raw
               }}
             />
             <div>
-              <div style={{ fontWeight: isActive ? "bold" : "normal" }}>
-                {keyframeTime.toFixed(4)}
-              </div>
+              <div style={{ fontWeight: isActive ? "bold" : "normal" }}>{keyframeTime.toFixed(4)}</div>
               <div
                 style={{
                   fontSize: "10px",
@@ -409,15 +401,11 @@ function Timeline({ scrollProgress, rawProgress }: { scrollProgress: number; raw
         }}
       >
         <div style={{ fontWeight: "bold", marginBottom: "4px" }}>Debug:</div>
-        <div style={{ fontSize: "8px", marginBottom: "2px", color: "#ffff00" }}>
-          Frame Index: {frameIndex.toFixed(3)}
-        </div>
+        <div style={{ fontSize: "8px", marginBottom: "2px", color: "#ffff00" }}>Frame Index: {frameIndex.toFixed(3)}</div>
         <div style={{ fontSize: "8px", marginBottom: "2px", color: "#ffff00" }}>
           Frame1: {frame1} | Frame2: {frame2}
         </div>
-        <div style={{ fontSize: "8px", marginBottom: "2px", color: "#ffff00" }}>
-          Interpolation: {t.toFixed(3)}
-        </div>
+        <div style={{ fontSize: "8px", marginBottom: "2px", color: "#ffff00" }}>Interpolation: {t.toFixed(3)}</div>
         {animationData.map((keyframe, index) => {
           const isActive = index === frame1;
           const keyframeTime = index / (totalFrames - 1);
@@ -430,8 +418,7 @@ function Timeline({ scrollProgress, rawProgress }: { scrollProgress: number; raw
                 marginBottom: "2px",
               }}
             >
-              KF{index + 1}: {keyframeTime.toFixed(4)} | Active:{" "}
-              {isActive ? "YES" : "NO"}
+              KF{index + 1}: {keyframeTime.toFixed(4)} | Active: {isActive ? "YES" : "NO"}
             </div>
           );
         })}
@@ -441,22 +428,14 @@ function Timeline({ scrollProgress, rawProgress }: { scrollProgress: number; raw
         style={{
           marginTop: "10px",
           padding: "8px",
-          background:
-            scrollProgress >= 0.0417 && scrollProgress <= 0.0833
-              ? "rgba(255,0,0,0.3)"
-              : "rgba(255,255,255,0.1)",
+          background: scrollProgress >= 0.0417 && scrollProgress <= 0.0833 ? "rgba(255,0,0,0.3)" : "rgba(255,255,255,0.1)",
           borderRadius: "4px",
           textAlign: "center",
-          border:
-            scrollProgress >= 0.0417 && scrollProgress <= 0.0833
-              ? "2px solid #ff0000"
-              : "1px solid rgba(255,255,255,0.2)",
+          border: scrollProgress >= 0.0417 && scrollProgress <= 0.0833 ? "2px solid #ff0000" : "1px solid rgba(255,255,255,0.2)",
         }}
       >
         <div style={{ fontSize: "10px", fontWeight: "bold" }}>
-          {scrollProgress >= 0.0417 && scrollProgress <= 0.0833
-            ? "🚨 LOOKAT ACTIVE"
-            : "Normal Mode"}
+          {scrollProgress >= 0.0417 && scrollProgress <= 0.0833 ? "🚨 LOOKAT ACTIVE" : "Normal Mode"}
         </div>
         <div style={{ fontSize: "9px", color: "#aaa" }}>0.0417 → 0.0833</div>
       </div>
@@ -1083,11 +1062,11 @@ export default function Blender2JSPageModel4() {
   const { active } = useProgress();
   const stickyZones = [
     // First pause
-    [0.063, 0.10], // Second pause
+    [0.063, 0.1], // Second pause
     [0.422, 0.462],
     [0.692, 0.732],
     [0.834, 0.874],
-     [0.918, 0.958],
+    [0.918, 0.958],
   ];
   // When all assets are loaded (useProgress active = false), mark ready
   useEffect(() => {
@@ -1123,7 +1102,7 @@ export default function Blender2JSPageModel4() {
           scrollTrigger: {
             trigger: "#blender2js-scroll-container-model4",
             start: "top top",
-            end: "bottom top", 
+            end: "bottom bottom",
             scrub: 0,
             onUpdate: (self) => {
               const rawProgress = self.progress;
@@ -1154,14 +1133,14 @@ export default function Blender2JSPageModel4() {
   }, [modelIsReady]);
 
   return (
-    <div id="blender2js-scroll-container-model4" ref={containerRef} style={{ height: "2000vh", width: "100%" }}>
+    <div id="blender2js-scroll-container-model4" ref={containerRef} style={{ height: "1000vh", width: "100%" }}>
       {!modelIsReady && (
         <div className="fixed inset-0 z-[9999] bg-black flex items-center justify-center">
           <FadeLoader isModelReady={false} />
         </div>
       )}
       {/* <div id="text-overlay-portal"></div> */}
-      {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress}/>}
+      {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />}
       {/* {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />} */}
       {modelIsReady && (
         <FadingHeroContent

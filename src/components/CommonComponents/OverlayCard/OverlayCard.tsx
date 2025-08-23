@@ -36,11 +36,11 @@ export const OverlayCard: React.FC<OverlayCardProps> = ({ image, title, descript
       <div className="absolute inset-0 bg-gradient-to-t bottom-0 from-black/40 via-black/0 to-transparent z-10" />
 
       <div className="absolute inset-0 z-20 p-8 p flex flex-col justify-center">
-        <h3 className="text-[20px] md:text-2xl lg2:text-3xl !font-medium xl:text-4xl mb-3 whitespace-pre-line leading-[23px] md:leading-none">
+        <h3 className="text-[20px] md:text-2xl lg2:text-3xl !font-medium xl:text-4xl mb-3 max-w-[40%] leading-[23px] md:leading-none">
           {title}
         </h3>
 
-        <Typography variant="section-card-body" className="text-[#DFDFDF] mwhitespace-pre-line max-w-[65%]">
+        <Typography variant="section-card-body" className="text-[#DFDFDF] md:whitespace-pre-line max-w-[65%]">
           {description}
         </Typography>
         {/* <Typography variant="section-card-body" className="text-[#DFDFDF]  max-w-[50%]">
