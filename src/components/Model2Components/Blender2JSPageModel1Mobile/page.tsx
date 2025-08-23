@@ -1522,24 +1522,37 @@ function StickyNav({
   };
 
   return (
-    <div style={containerStyle}> {/* Use the new style object here */}
-      {stickyZones.map((zone, index) => {
-        const [start, end] = zone;
-        const isActive = rawScrollProgress + 0.001 >= start && rawScrollProgress <= end;
-
-        const dotStyle: React.CSSProperties = {
-          width: "8px",
-          height: "8px",
-          borderRadius: "50%",
-          backgroundColor: isActive ? "white" : "rgba(255, 255, 255, 0.3)",
-          transform: isActive ? "scale(1.5)" : "scale(1)",
-          transition: "all 0.3s ease",
-          cursor: "pointer",
-        };
-
-        return <div key={index} style={dotStyle} onClick={() => onDotClick(index)} />;
-      })}
-    </div>
+      <div style={containerStyle}> 
+        {stickyZones.map((zone, index) => {
+          const [start, end] = zone;
+          const isActive =
+            rawScrollProgress + 0.001 >= start && rawScrollProgress <= end;
+    
+          const dotStyle: React.CSSProperties = {
+            width: "8px",
+            height: "8px",
+            borderRadius: "50%",
+            backgroundColor: isActive ? "white" : "rgba(255, 255, 255, 0.3)",
+            transform: isActive ? "scale(1.5)" : "scale(1)",
+            transition: "all 0.3s ease",
+          };
+    
+          const wrapperStyle: React.CSSProperties = {
+            width: "24px",   // enlarge clickable area
+            height: "24px",  // enlarge clickable area
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+          };
+    
+          return (
+            <div key={index} style={wrapperStyle} onClick={() => onDotClick(index)}>
+              <div style={dotStyle} />
+            </div>
+          );
+        })}
+      </div>
   );
 }
 

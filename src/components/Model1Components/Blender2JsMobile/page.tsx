@@ -1443,7 +1443,7 @@ function mapScrollProgress(rawProgress: number, stickStart: number, stickEnd: nu
   // This ensures the animation resumes smoothly from where it left off.
   if (rawProgress > stickEnd) {
     const remainingScrollRange = 1.0 - stickEnd;
-    const remainingAnimationRange = 1.0 - stickStart;
+    const remainingAnimationRange = 0.01 - stickStart;
     const progressAfterStick = (rawProgress - stickEnd) / remainingScrollRange;
 
     return stickStart + progressAfterStick * remainingAnimationRange;
@@ -1486,9 +1486,9 @@ function StickyNav({
     transform: "translateY(-50%)",
     display: "flex",
     flexDirection: "column",
-    gap: "24px",
+    gap: "8px",
     zIndex: 100,
-    transition: "opacity 0.3s ease", // Add a smooth fade transition
+    transition: "opacity 0.2s ease", // Add a smooth fade transition
     // Conditionally set the opacity to hide the component
     opacity: rawScrollProgress >= 0.98 ? 0 : 1,
     // Prevent mouse events when hidden
@@ -1497,24 +1497,37 @@ function StickyNav({
   // --- END OF CORRECTION ---
   console.log("dededwdew", rawScrollProgress)
   return (
-    <div style={containerStyle}> {/* Use the new style object here */}
-      {stickyZones.map((zone, index) => {
-        const [start, end] = zone;
-        const isActive = rawScrollProgress + 0.001 >= start && rawScrollProgress <= end;
-
-        const dotStyle: React.CSSProperties = {
-          width: "8px",
-          height: "8px",
-          borderRadius: "50%",
-          backgroundColor: isActive ? "white" : "rgba(255, 255, 255, 0.3)",
-          transform: isActive ? "scale(1.5)" : "scale(1)",
-          transition: "all 0.3s ease",
-          cursor: "pointer",
-        };
-
-        return <div key={index} style={dotStyle} onClick={() => onDotClick(index)} />;
-      })}
-    </div>
+   <div style={containerStyle}> 
+     {stickyZones.map((zone, index) => {
+       const [start, end] = zone;
+       const isActive =
+         rawScrollProgress + 0.001 >= start && rawScrollProgress <= end;
+ 
+       const dotStyle: React.CSSProperties = {
+         width: "9px",
+         height: "9px",
+         borderRadius: "50%",
+         backgroundColor: isActive ? "white" : "rgba(255, 255, 255, 0.3)",
+         transform: isActive ? "scale(1.5)" : "scale(1)",
+         transition: "all 0.1s ease",
+       };
+ 
+       const wrapperStyle: React.CSSProperties = {
+         width: "24px",   // enlarge clickable area
+         height: "24px",  // enlarge clickable area
+         display: "flex",
+         alignItems: "center",
+         justifyContent: "center",
+         cursor: "pointer",
+       };
+ 
+       return (
+         <div key={index} style={wrapperStyle} onClick={() => onDotClick(index)}>
+           <div style={dotStyle} />
+         </div>
+       );
+     })}
+   </div>
   );
 }
 

@@ -597,25 +597,38 @@ function StickyNav({
   };
 
   return (
-    <div style={containerStyle}> {/* Use the new style object here */}
-      {stickyZones.map((zone, index) => {
-        const [start, end] = zone;
-        const isActive = rawScrollProgress + 0.001 >= start && rawScrollProgress <= end;
+  <div style={containerStyle}> 
+    {stickyZones.map((zone, index) => {
+      const [start, end] = zone;
+      const isActive =
+        rawScrollProgress + 0.001 >= start && rawScrollProgress <= end;
 
-        const dotStyle: React.CSSProperties = {
-          width: "8px",
-          height: "8px",
-          borderRadius: "50%",
-          backgroundColor: isActive ? "white" : "rgba(255, 255, 255, 0.3)",
-          transform: isActive ? "scale(1.5)" : "scale(1)",
-          transition: "all 0.3s ease",
-          cursor: "pointer",
-        };
+      const dotStyle: React.CSSProperties = {
+        width: "8px",
+        height: "8px",
+        borderRadius: "50%",
+        backgroundColor: isActive ? "white" : "rgba(255, 255, 255, 0.3)",
+        transform: isActive ? "scale(1.5)" : "scale(1)",
+        transition: "all 0.3s ease",
+      };
 
-        return <div key={index} style={dotStyle} onClick={() => onDotClick(index)} />;
-      })}
-    </div>
-  );
+      const wrapperStyle: React.CSSProperties = {
+        width: "24px",   // enlarge clickable area
+        height: "24px",  // enlarge clickable area
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        cursor: "pointer",
+      };
+
+      return (
+        <div key={index} style={wrapperStyle} onClick={() => onDotClick(index)}>
+          <div style={dotStyle} />
+        </div>
+      );
+    })}
+  </div>
+);
 }
 
 function Blender2JSScene({
@@ -1265,7 +1278,7 @@ export default function Blender2JSPageModel4() {
       )}
           {modelIsReady && <StickyNav stickyZones={stickyZones} rawScrollProgress={rawScrollProgress} onDotClick={handleDotClick} />}
       {/* <div id="text-overlay-portal"></div> */}
-      {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress}/>}
+      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress}/>} */}
       {/* {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />} */}
       {modelIsReady && (
         <FadingHeroContent
