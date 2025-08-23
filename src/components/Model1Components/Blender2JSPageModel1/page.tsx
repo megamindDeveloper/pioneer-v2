@@ -1137,7 +1137,7 @@ function BackgroundFade({ scrollProgress }: { scrollProgress: number }) {
 }
 
 export default function Blender2JSPageModel1() {
-  const [modelIsReady, setModelIsReady] = useState(false);
+  const [modelIsReady, setModelIsReady] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [carScene, setCarScene] = useState<THREE.Group | null>(null);
   const [lensAnimation, setLensAnimation] = useState(false);
@@ -1165,7 +1165,7 @@ export default function Blender2JSPageModel1() {
   }, [modelIsReady]);
   const stickyZones = [
     // First pause
-    [0.13, 0.19], // Second pause
+    [0.15, 0.19], // Second pause
     [0.245, 0.30],
     [0.34, 0.38],
     [0.381, 0.43],
@@ -1179,72 +1179,84 @@ export default function Blender2JSPageModel1() {
     if (!modelIsReady) return;
     if (typeof window === "undefined") return;
     const snapPoints = [
-      0,        // Start
-     0.045,    // First key view
-      0.084,     // Wide angle view
-      0.188,    // Top-down view
-      0.274,     // Focus on screen
-      0.328,     // Rear camera view
+      0, // Start
+      0.045, // First key view
+      0.084, // Wide angle view
+      0.188, // Top-down view
+      0.274, // Focus on screen
+      0.328, // Rear camera view
       0.3332,
       0.525,
-      0.6800,
-      0.8660,
-      0.9070
-
-
-               // End
+      0.68,
+      0.866,
+      0.907, // End
     ];
     let cleanup: (() => void) | undefined;
-    // This object will be directly manipulated by ScrollTrigger
-    const targetProgress = { value: 0 }; 
-  
+    const targetProgress = { value: 0 };
+    
+    // ✅ NEW: Ref to track lock state to prevent multiple locks
+    const isLocked = { current: false };
+
     const initGSAP = async () => {
       try {
         const { gsap } = await import("gsap");
         const { ScrollTrigger } = await import("gsap/ScrollTrigger");
         gsap.registerPlugin(ScrollTrigger);
-  
-        // We create a GSAP timeline and link it to the ScrollTrigger
+
         gsap.timeline({
           scrollTrigger: {
             trigger: "#blender2js-scroll-container-model1",
             start: "top top",
             end: "bottom bottom",
             scrub: 0.5,
-        
-            // ✅ NEW: ADD THE SNAP PROPERTY HERE
+
             snap: {
-              snapTo: snapPoints, // The array of points to snap to
-              duration: 2.5, // How long the snap animation takes
-              ease: "power2.inOut", // Easing for a smooth start and end
-              delay: 0.2, // A small delay before snapping
+              snapTo: snapPoints,
+              duration: 2.5,
+              ease: "power2.inOut",
+              delay: 0.2,
               directional: true,
+
+              
+              // ✅ NEW: Add the onSnapComplete callback here
+              onComplete: (self) => {
+                // If already locked, do nothing.
+                // if (isLocked.current) return;
+                
+                // console.log("🔒 Snap complete. Locking scroll for 1.5s.");
+                // isLocked.current = true; // Set lock state to true
+                // self.disable(); // Disable the ScrollTrigger
+                
+                // // Set a timer to re-enable scrolling
+                // setTimeout(() => {
+                //   console.log("✅ Unlocking scroll.");
+                //   self.enable(); // Re-enable the ScrollTrigger
+                //   isLocked.current = false; // Set lock state to false
+                // }, 12000); // Lock duration: 1500ms = 1.5 seconds
+              },
             },
-        
+
             onUpdate: (self) => {
               targetProgress.value = self.progress;
             },
           },
         });
-        
-  
-        // Your existing ticker for smoothly updating React state from the targetProgress object
+
         gsap.ticker.add(() => {
-          // We no longer need two progress trackers. The main scrollProgress is all we need.
-          setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress.value, 0.07));
-          setRawScrollProgress(targetProgress.value); // Raw and mapped can now be the same
+          setScrollProgress((prev) =>
+            THREE.MathUtils.lerp(prev, targetProgress.value, 0.07)
+          );
+          setRawScrollProgress(targetProgress.value);
         });
-        
-        // Cleanup function
+
         cleanup = () => {
           ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
         };
-      } catch (err)
-       {
+      } catch (err) {
         console.error("Failed to load GSAP:", err);
       }
     };
-  
+
     initGSAP();
     return () => cleanup?.();
   }, [modelIsReady]);
