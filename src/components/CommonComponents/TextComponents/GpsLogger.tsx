@@ -1,3 +1,4 @@
+import { cn } from "@/app/lib/utils";
 import { Typography } from "../Typography/page";
 
 type GpsLoggerProps = {
@@ -15,19 +16,19 @@ export default function GpsLogger({ highlightedText, heading, subheading, descri
   {/* Content */}
   <div className="w-full max-w-[660px] flex flex-col items-center  px-6justify-center">
     {/* Red Label */}
-    <p className="text-[#AD2239] text-[14px] font-semibold mb-2">
+    <Typography variant="slider-heading" className="text-[#AD2239]  font-bold pr-5">
       {highlightedText}
-    </p>
+    </Typography>
 
     {/* Heading */}
-    <h1 className="text-white text-[32px] sm:text-[42px] md:text-[48px] lg:text-[56px] font-medium mb-4">
-     {heading}<span className="text-[#313131]">*</span>
-    </h1>
+    <Typography variant="section-heading" className={cn("font-medium  text-center text-white px-12 md:px")}>
+     {heading} <span className="text-[#313131]">*</span>
+    </Typography>
 
     {/* Subheading */}
-    <p className="text-[#ABABAB]/80 text-[14px] leading-snug w-[320px] lg:w-[480px] mx-auto">
+    <Typography variant="section-card-body" className={cn(" text-[#ABABAB]/80 mx-auto")}>
      {subheading}
-    </p>
+    </Typography>
   </div>
 
   {/* Disclaimer - fixed at bottom */}

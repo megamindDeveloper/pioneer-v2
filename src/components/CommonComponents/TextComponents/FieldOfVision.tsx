@@ -10,19 +10,33 @@ type FieldOfVisionProps = {
 
 export default function FieldOfVision({ highlightedText, heading, subheading }: FieldOfVisionProps) {
   return (
-    <main className="relative w-[100%] text-white translate-x-3 ">
-      <div className="mx-auto h-full gap-72 xl:gap-96 flex items-center justify-center ">
+    <main className="relative w-full text-white">
+      <div className="mx-auto h-full flex items-center justify-between px-8 lg:px-16 xl:px-26 xl:mx-12">
+        
         {/* Left Text */}
-        <div className="w-fit">
-        <Typography variant="slider-heading" className="text-[#AD2239] text-center  font-bold">{highlightedText}</Typography>
-        <Typography variant="section-heading" className="font-medium  w-xl text-center text-white px-12 md:px-8">
+        <div className="w-fit flex flex-col items-center">
+          <Typography
+            variant="slider-heading"
+            className="text-[#AD2239] font-bold"
+          >
+            {highlightedText}
+          </Typography>
+          <Typography
+            variant="section-heading"
+            className="font-medium max-w-xl text-white"
+          >
             {heading}
-            </Typography>
+          </Typography>
         </div>
 
         {/* Right Text */}
-        <div className="  w-[350px] lg:w-[450px] xl:w-[500px] text-[#ABABAB]/80 text-center leading-snug lg:mr-12 xl:mr-0">
-        <Typography variant="section-card-body" className=" text-[#ABABAB]/80 mx-auto">{subheading}</Typography>
+        <div className="w-[350px] lg:w-[450px] text-center xl:w-[500px] text-[#ABABAB]/80  leading-snug ">
+          <Typography
+            variant="section-card-body"
+            className="text-[#ABABAB]/80"
+          >
+            {subheading}
+          </Typography>
         </div>
       </div>
     </main>

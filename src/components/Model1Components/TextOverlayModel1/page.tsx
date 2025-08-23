@@ -403,10 +403,10 @@ export default function Model1TextOverlay({ scrollProgress }: { scrollProgress: 
     {
       start: 0.8573,
       end: 0.8709,
-      position: "w-full h-screen flex items-center   !w-[50%]",
+      position: "w-full h-screen flex items-center !w-[100%]",
       content: (
         <OptionalParking
-          style="flex flex-col w-[100%] items-center sm:items-start justify-center sm:justify-center"
+          style="flex flex-col w-[50%] items-center sm:items-start justify-center sm:justify-center"
           highlightedText="Stay Secure While Parked"
           heading="Optional Parking Mode"
           subheading="Parking mode requires additional installation of an external Hardwire Kit, which enables power supply to the Dash Camera directly from the vehicle battery."
