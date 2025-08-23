@@ -29,7 +29,7 @@ export default function DriveAlert({
   return (
     <section className="min-h-screen  text-white flex flex-col justify-between px-4 sm:px-6 py-7 text-center">
       {/* Top Icon */}
-      <div className="pt-[20%] xl:pt-[30%] animate-pulse">
+      <div className="pt-[20%] xl:pt-[39%] animate-pulse">
         <Image
           src="/productPageImages/driveAlertIcons/dangerIcon.svg"
           alt="Warning Icon"
@@ -40,7 +40,7 @@ export default function DriveAlert({
       </div>
 
       {/* Bottom Content */}
-      <div className="flex flex-col items-center lg2:space-y-7 ">
+      <div className="flex flex-col items-center lg2:space-y-20 ">
         {/* Headings */}
         <div>
           <p className="text-[#AD2239] text-[16px]  font-bold">{highlightedText}</p>
@@ -54,13 +54,13 @@ export default function DriveAlert({
         <div className="flex flex-row sm:flex-row justify-center items-center gap-8 sm:gap-23 mt-6 sm:mt-0">
           {/* Lane Departure Alert */}
           <div className="flex flex-col items-center space-y-2">
-            <Image src={alert1Image} alt="Lane Departure" width={40} height={40} className="xl:w-[60px] xl:h-[60px] sm:w-[45px] sm:h-[45px]" />
+            <Image src={alert1Image} alt="Lane Departure" width={40} height={40} className="xl:w-[50px] xl:h-[50px] sm:w-[45px] sm:h-[45px]" />
             <p className="text-white font-medium text-[10px] sm:text-sm">{alert1}</p>
           </div>
 
           {/* Forward Collision Alert */}
           <div className="flex flex-col items-center space-y-2">
-            <Image src={alert3Image} alt="Forward Collision" width={40} height={40} className="xl:w-[60px] xl:h-[60px] sm:w-[40px] sm:h-[40px]" />
+            <Image src={alert3Image} alt="Forward Collision" width={40} height={40} className="xl:w-[50px] xl:h-[50px] sm:w-[40px] sm:h-[40px]" />
             <p className="text-white font-medium text-[10px] sm:text-sm">{alert2}</p>
           </div>
 

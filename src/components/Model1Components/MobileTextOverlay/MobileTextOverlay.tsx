@@ -324,7 +324,7 @@ export default function TextOverlay({
       start: 0.9750, // When the camera is high above the car
       end: 0.9987,
       position:
-        "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[55%]",
+        "top-1/2 px-12 -translate-y-[55%]",
       content: (
         <GpsLogger
           style="flex flex-col items-center sm:items-start justify-center sm:justify-center max-w-[20rem]"

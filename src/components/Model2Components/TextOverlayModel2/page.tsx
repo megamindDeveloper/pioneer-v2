@@ -200,14 +200,15 @@ export default function TextOverlay({
 }) {
   // Define your text content and scroll ranges here
   const middle = "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2";
+  const centeredFlex = "w-full h-screen flex items-center justify-center !w-[100%]";
   const textSections = [
     {
       start: 0.032, // When the camera is looking at the dashcam
       end: 0.06,
-      position: middle,
+      position: centeredFlex,
       content: (
         <TextDisplay
-          className="-translate-x-8"
+          className=""
           superScript="See the Road in High Definition"
           title="2K Video Resolution"
           description=" From morning commutes to late-night returns, the front camera records in sharp 2K while the rear captures in Full HD. Whether it’s a close call or a scenic stretch, you’ll have a clear, reliable record from both angles."
@@ -312,9 +313,9 @@ export default function TextOverlay({
       start: 0.75, // When the camera is high above the car
       end: 0.882,
       position:
-        "top-1/2 left-1/2 transform -translate-x-[50%] -translate-y-1/2",
+        " h-screen flex items-center   !w-[100%]",
       content: (
-        <div className="">
+        <div className="w-[100%]">
           <FieldOfVision
             highlightedText="Wide Angle View"
             heading="140° Field of Vision"

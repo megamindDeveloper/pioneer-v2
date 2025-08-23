@@ -14,7 +14,7 @@ export default function GpsLogger({ highlightedText, heading, subheading, descri
     <>
    <main className="min-h-screen  text-white flex flex-col items-center justify-center relative text-center">
   {/* Content */}
-  <div className="w-full max-w-[660px] flex flex-col items-center  px-6justify-center">
+  <div className="w-full md:max-w-[660px] flex flex-col items-center  px-6justify-center">
     {/* Red Label */}
     <Typography variant="slider-heading" className="text-[#AD2239]  font-bold pr-5">
       {highlightedText}

@@ -23,7 +23,7 @@ useTexture.preload("/modelImages/CommonModelImages/aiNight.png");
 const animationData = [
   {
     time: 0.0,
-    position: [0.005, 1.222, 0.4968],
+    position: [0.00488, 1.2217, 0.4968],
     quaternion: [0.0, 0.0, 0.0, 1.0],
     fov: 2,
   },
@@ -1288,7 +1288,7 @@ export default function Blender2JSPageModel2() {
         </div>
       )}
       <div id="text-overlay-portal"></div>
-      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />} */}
+      {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />}
       {/* {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />} */}
       {modelIsReady && (
         <FadingHeroContent
