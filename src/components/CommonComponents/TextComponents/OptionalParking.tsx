@@ -29,7 +29,7 @@ export default function OptionalParking({ highlightedText, heading, subheading, 
             <span className="text-[#313131]">*</span>
           </Typography>
           {/* Subheading */}
-          <Typography variant="section-card-body" className="text-[#ABABAB]/80 px-32">
+          <Typography variant="section-card-body" className="text-[#ABABAB]/80 px-8 md:px-32">
             {subheading}
           </Typography>
         </div>
