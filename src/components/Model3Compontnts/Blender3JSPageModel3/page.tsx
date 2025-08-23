@@ -970,7 +970,7 @@ export default function Blender3JSPageModel1() {
   const stickyZones = [
     // First pause
     [0.035, 0.075], // Second pause
-    [0.167, 0.207],
+    [0.152, 0.192],
     [0.252, 0.305],
     [0.371, 0.40],
     [0.4002, 0.443],

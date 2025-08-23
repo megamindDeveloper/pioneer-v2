@@ -825,7 +825,7 @@ function Blender2JSScene({
         // fallback: hide until video is ready
         imagePlaneRef.current.visible = false;
       }
-    } else if (scrollProgress >= 0.234 && scrollProgress <= 0.255) {
+    } else if (scrollProgress >= 0.256 && scrollProgress <= 0.275) {
       const { imageMap, videoEl } = imagePlaneRef.current.userData;
       const material = imagePlaneRef.current.material as THREE.MeshBasicMaterial;
       if (imageMap && material.map !== imageMap) {

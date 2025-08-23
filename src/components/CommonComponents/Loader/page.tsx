@@ -80,34 +80,35 @@ export default function FadeLoader({ isModelReady }: { isModelReady: boolean }) 
   if (!visible) return null;
 
   return (
-    <div
+   <div
       ref={containerRef}
       className="fixed inset-0 bg-[#0D0D0D] z-50 flex items-center justify-center text-white font-mono select-none transition-opacity"
     >
       <div ref={contentGroupRef} className="relative w-full h-full">
-        {/* Top Left Info */}
-        {/* <div className="absolute top-24 left-16 text-gray-400 leading-tight">
-          <p>{resolution}</p>
-        </div> */}
+        {/* Top Info - Desktop */}
         <div className="absolute top-16 left-0 w-full px-16 hidden lg:flex justify-between items-center text-gray-400 leading-tight">
           {/* Logo */}
           <div>
             <Image src={image} alt="logo" className="w-32" />
           </div>
 
-          {/* Timer */}
+          {/* Timer + Red Dot */}
           <div className="flex gap-2 items-center">
+            {/* 🔴 Blinking Red Dot */}
+            <span className="w-3 h-3 rounded-full bg-red-600 animate-pulse"></span>
             <p>{timer}</p>
           </div>
         </div>
 
-        {/* Mobile Logo (unchanged) */}
+        {/* Mobile Logo */}
         <div className="absolute bottom-12 left-32 text-gray-400 leading-tight lg:hidden">
           <Image src={image} alt="logo" className="w-32" />
         </div>
 
-        {/* Mobile Timer (unchanged) */}
+        {/* Mobile Timer + Red Dot */}
         <div className="absolute top-18 left-1/2 -translate-x-1/2 flex gap-2 items-center text-gray-400 leading-tight lg:hidden">
+          {/* 🔴 Blinking Red Dot */}
+          <span className="w-3 h-3 rounded-full bg-red-600 animate-pulse"></span>
           <p>{timer}</p>
         </div>
 
