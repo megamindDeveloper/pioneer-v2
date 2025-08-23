@@ -1137,7 +1137,7 @@ function BackgroundFade({ scrollProgress }: { scrollProgress: number }) {
 }
 
 export default function Blender2JSPageModel1() {
-  const [modelIsReady, setModelIsReady] = useState(true);
+  const [modelIsReady, setModelIsReady] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [carScene, setCarScene] = useState<THREE.Group | null>(null);
   const [lensAnimation, setLensAnimation] = useState(false);
@@ -1165,7 +1165,7 @@ export default function Blender2JSPageModel1() {
   }, [modelIsReady]);
   const stickyZones = [
     // First pause
-    [0.15, 0.19], // Second pause
+    [0.13, 0.19], // Second pause
     [0.245, 0.30],
     [0.34, 0.38],
     [0.381, 0.43],
@@ -1173,30 +1173,12 @@ export default function Blender2JSPageModel1() {
     [0.842, 0.91],
   ];
 
-
-
   useEffect(() => {
-    if (!modelIsReady) return;
+    if (!modelIsReady) return; // Defer ScrollTrigger init until models are ready
     if (typeof window === "undefined") return;
-    const snapPoints = [
-      0, // Start
-      0.045, // First key view
-      0.084, // Wide angle view
-      0.188, // Top-down view
-      0.274, // Focus on screen
-      0.328, // Rear camera view
-      0.3332,
-      0.525,
-      0.68,
-      0.866,
-      0.907, // End
-    ];
     let cleanup: (() => void) | undefined;
     const targetProgress = { value: 0 };
-    
-    // ✅ NEW: Ref to track lock state to prevent multiple locks
-    const isLocked = { current: false };
-
+    const rawTargetProgress = { value: 0 };
     const initGSAP = async () => {
       try {
         const { gsap } = await import("gsap");
@@ -1208,45 +1190,21 @@ export default function Blender2JSPageModel1() {
             trigger: "#blender2js-scroll-container-model1",
             start: "top top",
             end: "bottom bottom",
-            scrub: 0.5,
-
-            snap: {
-              snapTo: snapPoints,
-              duration: 2.5,
-              ease: "power2.inOut",
-              delay: 0.2,
-              directional: true,
-
-              
-              // ✅ NEW: Add the onSnapComplete callback here
-              onComplete: (self) => {
-                // If already locked, do nothing.
-                // if (isLocked.current) return;
-                
-                // console.log("🔒 Snap complete. Locking scroll for 1.5s.");
-                // isLocked.current = true; // Set lock state to true
-                // self.disable(); // Disable the ScrollTrigger
-                
-                // // Set a timer to re-enable scrolling
-                // setTimeout(() => {
-                //   console.log("✅ Unlocking scroll.");
-                //   self.enable(); // Re-enable the ScrollTrigger
-                //   isLocked.current = false; // Set lock state to false
-                // }, 12000); // Lock duration: 1500ms = 1.5 seconds
-              },
-            },
-
+            scrub: 0,
             onUpdate: (self) => {
-              targetProgress.value = self.progress;
+              const rawProgress = self.progress;
+
+              // --- MODIFIED: Call the new function with the zones array ---
+              const mappedProgress = getAdjustedProgress(rawProgress, stickyZones);
+
+              targetProgress.value = mappedProgress;
+              rawTargetProgress.value = rawProgress;
             },
           },
         });
-
         gsap.ticker.add(() => {
-          setScrollProgress((prev) =>
-            THREE.MathUtils.lerp(prev, targetProgress.value, 0.07)
-          );
-          setRawScrollProgress(targetProgress.value);
+          setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress.value, 0.04));
+          setRawScrollProgress((prev) => THREE.MathUtils.lerp(prev, rawTargetProgress.value, 0.07));
         });
 
         cleanup = () => {
@@ -1269,7 +1227,7 @@ export default function Blender2JSPageModel1() {
         </div>
       )}
       <div id="text-overlay-portal"></div>
-      {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />}
+      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />} */}
       {modelIsReady && (
         <FadingHeroContent
           scrollProgress={scrollProgress}
