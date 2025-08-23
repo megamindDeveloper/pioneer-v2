@@ -9,7 +9,7 @@ import { Html } from "@react-three/drei";
 import { Typography } from "@/components/CommonComponents/Typography/page";
 import { useBreakpoint } from "@/app/hooks/useBreakPoints";
 import Lottie from "lottie-react";
-import handScroll from '../../../../public/animations/scrollHand.json'
+import handScroll from "../../../../public/animations/scrollHand.json";
 
 const degToRad = (deg: number) => deg * (Math.PI / 180);
 
@@ -74,7 +74,7 @@ function CameraModel({ onModelReady, onIntroComplete }: { onModelReady: () => vo
           if (progress >= 0.3) {
             window.dispatchEvent(new Event("introHalfComplete"));
           }
-        }
+        },
       });
 
       tl.to(groupRef.current!.position, { x: position[0], y: position[1], z: position[2] }, 0)
@@ -91,7 +91,6 @@ function CameraModel({ onModelReady, onIntroComplete }: { onModelReady: () => vo
 
       hasPlayedRef.current = true;
     }, 1800);
-
 
     return () => {
       clearTimeout(timer);
@@ -126,10 +125,7 @@ export default function CameraScene({ onModelReady }: { onModelReady: () => void
       // Consider the section "visible" only if some part of its UPPER half is in the viewport.
       // This means the top of the section is above the viewport bottom
       // AND the midpoint of the section has not yet scrolled past the top of the viewport.
-      const isVisible =
-        !!rect &&
-        rect.top < window.innerHeight &&
-        rect.top + rect.height / 2 > 0;
+      const isVisible = !!rect && rect.top < window.innerHeight && rect.top + rect.height / 2 > 0;
 
       // Lock only if intro is not at least half complete
       if (isVisible && !introComplete && !halfComplete) {
@@ -155,8 +151,6 @@ export default function CameraScene({ onModelReady }: { onModelReady: () => void
       window.removeEventListener("introHalfComplete", handleHalfComplete);
     };
   }, [introComplete]);
-
-
 
   useEffect(() => {
     if (isModelReady) {
@@ -222,39 +216,22 @@ export default function CameraScene({ onModelReady }: { onModelReady: () => void
           >
             <Suspense fallback={false}>
               <CameraModel onModelReady={() => setIsModelReady(true)} onIntroComplete={() => setIntroComplete(true)} />
-             
-             
 
               <Environment files="/hdri/07.hdr" background={false} />
               <Html fullscreen>
                 <div className="pointer-events-none w-full h-full bg-gradient-to-t from-[#0D0D0D] via-transparent to-transparent" />
               </Html>
-
             </Suspense>
-            
           </Canvas>
 
-    <div className="flex md:hidden justify-center items-center absolute top-[82%] left-[40%] ">
- <Lottie
-                animationData={handScroll}
-                loop={true}
-                autoplay={true}
-                style={{ width: 80, height: 80 }}
-              />
+          <div className="flex md:hidden justify-center items-center absolute top-[75%] left-[40%] ">
+            <Lottie animationData={handScroll} loop={true} autoplay={true} style={{ width: 60, height: 60 }} />
+          </div>
         </div>
-
-        </div>
-
-    
-
-
       </div>
-
 
       {/* <div className="pointer-events-none absolute bottom-0 left-0 w-full h-full z-20 bg-gradient-to-t from-[#0D0D0D] via-transparent to-transparent" /> */}
     </div>
-
-
   );
 }
 

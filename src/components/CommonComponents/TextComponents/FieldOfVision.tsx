@@ -14,7 +14,7 @@ export default function FieldOfVision({ highlightedText, heading, subheading }: 
       <div className="mx-auto h-full flex items-center justify-between px-8 lg:px-16 xl:px-26 xl:mx-12">
         
         {/* Left Text */}
-        <div className="w-fit flex flex-col items-center">
+        <div className="w-fit flex flex-col items-center xl:l-12">
           <Typography
             variant="slider-heading"
             className="text-[#AD2239] font-bold"

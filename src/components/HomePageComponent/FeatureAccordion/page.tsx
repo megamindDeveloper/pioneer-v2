@@ -9,7 +9,7 @@ const features = [
   {
     id: "innovation",
     title: "Trusted Innovation for Over  85 Years",
-    content: `For over 85 years, Pioneer has been a leader in precision engineering and innovation in audio and video products — a commitment to quality and reliability we now extend to our Dash Cam range.`,
+    content: `For over 85 years, Pioneer has been a leader in precision engineering and innovation in audio and video products a commitment to quality and reliability we now extend to our Dash Cam range.`,
     image: "/homePageImages/featureAccordionImages/feature1.png",
     imageClass: "object-cover object-center w-", // 👈 custom class
   },

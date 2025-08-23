@@ -150,7 +150,7 @@ export const SpecsModal: React.FC<SpecsModalProps> = ({ isOpen, onClose, specs }
               className="absolute  top-2 right-2 p-2 rounded-full cursor-pointer transition "
               aria-label="Close"
             >
-              <img src="/svgs/closeIcon.svg" className='w-10 h-12' alt="Close" />
+              <img src="/svgs/closeIcon.svg" className='w-8 md:w-10 md:h-12' alt="Close" />
             </button>
 
             {/* Scrollable Content */}

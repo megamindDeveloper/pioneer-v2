@@ -267,8 +267,8 @@ export default function TextOverlay({
     },
     {
       start: 0.3012, // When the camera is high above the car
-      end: 0.3178,
-      position: "bottom-[70px] left-1/2 transform -translate-x-1/2 ",
+      end: 0.3175,
+      position: "bottom-[70px] xl:bottom-[140px] left-1/2 transform -translate-x-1/2 ",
       content: (
         <TextDisplay
           descriptionWidth="w-[36rem] lg:w-[34rem]"
@@ -300,7 +300,7 @@ export default function TextOverlay({
     {
       start: 0.478, // When the camera is high above the car
       end: 0.4890,
-      position: "top-[40px] left-[50%] transform -translate-x-1/2 ",
+      position: "top-[40px] xl:top-[60px] flex justify-center !w-[100%]",
       content: (
         <TextDisplay
           superScript="Dual Camera Setup"

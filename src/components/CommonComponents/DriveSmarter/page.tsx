@@ -19,10 +19,10 @@ export default function DriveSmarter({ subText, image, amazonLink, noonLink }: D
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* Left Column */}
         <div className="space-y-6">
-          <h2 className="text-3xl md:text-5xl font-semibold leading-tight text-[#E2E2E2]">Drive Smarter, Safer & Sharper</h2>
-          <p className="text-[#ABABAB] text-base md:text-lg max-w-md">{subText}</p>
+          <h2 className="text-3xl md:text-5xl font-semibold text-center md:text-left leading-tight text-[#E2E2E2]">Drive Smarter, Safer & Sharper</h2>
+          <p className="text-[#ABABAB] text-base md:text-lg max-w-md text-center md:text-left">{subText}</p>
 
-          <div className="flex space-x-6 items-center">
+          <div className="flex w-[100%] items-center text-center md:text-left">
             {amazonLink && (
               <Link href={amazonLink} target="_blank">
                 <Image src={amazonLogo} alt="Amazon" className="h-8 w-auto md:h-10" />

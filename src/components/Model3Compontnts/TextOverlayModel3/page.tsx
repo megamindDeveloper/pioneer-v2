@@ -188,13 +188,14 @@ export default function Model3textOverlay({
 }) {
   // Define your text content and scroll ranges here
   const middle = "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2";
-  
+  const centeredFlex = "w-full h-screen flex items-center justify-center !w-[100%]";
+ 
+ 
   const textSections = [
     {
       start: 0.032, // When the camera is looking at the dashcam
       end: 0.06,
-      position:
-        "top-1/2 left-1/2 transform -translate-x-[45%] -translate-y-[10%]",
+      position:centeredFlex,
       content: (
         <TextDisplay
           superScript="Precision in Motion"
@@ -246,7 +247,7 @@ export default function Model3textOverlay({
     {
       start: 0.2971, // When the camera is high above the car
       end: 0.3152,
-      position: "bottom-[70px] left-1/2 transform -translate-x-1/2 ",
+      position: "bottom-[70px] xl:bottom-[140px] left-1/2 transform -translate-x-1/2 ",
       content: (
         <TextDisplay
           superScript="Clarity in Changing Light"
@@ -320,7 +321,7 @@ export default function Model3textOverlay({
     {
       start: 0.7062, // When the camera is high above the car
       end: 0.8422,
-      position: ' h-screen flex items-center   !w-[100%]',
+      position: " h-screen flex items-center   !w-[100%]",
       content: (
         <div className="w-[100%]">
           <FieldOfVision
@@ -336,11 +337,10 @@ export default function Model3textOverlay({
       end: 0.9307,
       top: "50%",
       left: "20%",
-      position:
-        "top-[50%] left-[40px] lg2:left-[80px] transform  -translate-y-[55%]",
+       position: "w-full h-screen flex items-center !w-[100%]",
       content: (
         <OptionalParking
-          style="flex flex-col items-center sm:items-start justify-center sm:justify-center"
+          style="flex flex-col w-[50%] items-center sm:items-start justify-center sm:justify-center"
           highlightedText="Stay Secure While Parked"
           heading="Optional Parking Mode"
           subheading="Parking mode requires additional installation of an external Hardwire Kit, which enables power supply to the Dash Camera directly from the vehicle battery."

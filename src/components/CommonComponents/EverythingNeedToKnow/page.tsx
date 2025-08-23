@@ -59,7 +59,7 @@ export default function EverythingNeedToKnow({ faqData }: Props) {
                     : 'max-h-0 opacity-0'
                   }`}
               >
-                <p className="text-[16px] mt-5 md:text-[18px] text-[#ABABAB]">
+                <p className="text-[16px] mt-5 md:text-[18px] text-[#ABABAB] max-w-[90%]">
                   {item.answer}
                 </p>
                 {item.disclaimer && (
