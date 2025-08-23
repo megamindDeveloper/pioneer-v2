@@ -327,11 +327,10 @@ export default function TextOverlay({
     {
       start: 0.9083, // When the camera is high above the car
       end: 0.9294,
-      position:
-        "top-[50%] left-[40px] lg2:left-[80px] transform  -translate-y-[55%]",
+      position: "w-full h-screen flex items-center !w-[100%]",
       content: (
         <OptionalParking
-          style="flex flex-col items-center sm:items-start justify-center sm:justify-center"
+          style="flex flex-col w-[50%] items-center sm:items-start justify-center sm:justify-center"
           highlightedText="Stay Secure While Parked"
           heading="Optional Parking Mode"
           subheading="Parking mode requires additional installation of an external Hardwire Kit, which enables power supply to the Dash Camera directly from the vehicle battery."
