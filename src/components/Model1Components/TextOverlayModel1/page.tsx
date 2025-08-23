@@ -377,7 +377,7 @@ export default function Model1TextOverlay({ scrollProgress }: { scrollProgress: 
     {
       start: 0.52,
       end: 0.53,
-      position: "xl:top-[80px] top-[10px] left-[50%] transform -translate-x-1/2 ",
+      position: "xl:top-[80px] lg:top-[30px] top-[10px] left-[50%] transform -translate-x-1/2 ",
       content: (
         <TextDisplay
           superScript="Every Angle Matters"

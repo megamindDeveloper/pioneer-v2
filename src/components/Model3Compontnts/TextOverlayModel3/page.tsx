@@ -320,9 +320,9 @@ export default function Model3textOverlay({
     {
       start: 0.7062, // When the camera is high above the car
       end: 0.8422,
-      position: middle,
+      position: ' h-screen flex items-center   !w-[100%]',
       content: (
-        <div className="">
+        <div className="w-[100%]">
           <FieldOfVision
             highlightedText="Wide Angle View"
             heading="140° Field of Vision"

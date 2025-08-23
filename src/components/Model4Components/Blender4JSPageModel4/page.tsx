@@ -29,16 +29,16 @@ const animationData = [
   // }, // close
   {
     time: 0.0,
-    position: [0.001, 1.2215, 0.368],
+    position: [0.0014, 1.22152, 0.368],
     quaternion: [0.0, 0.0, 0.0, 1.0],
     fov: 40,
   }, //extreme close
   {
-      time: 0.0,
-      position: [0.001, 1.2215, 0.368],
-      quaternion: [0.0, 0.0, 0.0, 1.0],
-      fov: 40,
-    }, //extreme close
+    time: 0.0,
+    position: [0.001, 1.2215, 0.368],
+    quaternion: [0.0, 0.0, 0.0, 1.0],
+    fov: 40,
+  }, //extreme close
   {
     time: 0.0417,
     position: [-0.05, 1.22, 0.45],
@@ -67,11 +67,10 @@ const animationData = [
   }, // behind
   {
     time: 0.205,
-    position: [0.086, 1.23, 0.25],
-    quaternion: [0.0, 0.9, -0.019, 0.44],
+    position: [0.11, 1.223, 0.25],
+    quaternion: [0.0, 0.9, -0.0, 0.44],
     fov: 8,
   }, // left
-  
 ];
 
 function HeroTextFade({ scrollProgress }: { scrollProgress: number }) {
@@ -896,7 +895,7 @@ function IntroImageAnimation({ scrollProgress }: { scrollProgress: number }) {
     let targetOpacity: number;
 
     if (scrollProgress <= holdEnd) {
-      targetOpacity = 1; // Opacity is 1 until 0.08
+      targetOpacity = 0; // Opacity is 1 until 0.08
     } else if (scrollProgress >= fadeEnd) {
       targetOpacity = 0; // Opacity is 0 after 0.11
     } else {
@@ -1084,8 +1083,8 @@ export default function Blender2JSPageModel4() {
   const stickyZones = [
     // First pause
     [0.063, 0.10], // Second pause
-    [0.422, 0.462],
-    [0.692, 0.732],
+    [0.355, 0.395],
+    [0.719, 0.762],
     [0.834, 0.874],
      [0.918, 0.958],
   ];
@@ -1190,7 +1189,7 @@ export default function Blender2JSPageModel4() {
         <BackgroundFade scrollProgress={scrollProgress} />
 
         <Suspense fallback={null}>
-          <IntroImageAnimation scrollProgress={scrollProgress} />
+          {/* <IntroImageAnimation scrollProgress={scrollProgress} /> */}
           {modelIsReady && <Environment files="/hdri/111.hdr" background={false} />}
           <Blender2JSScene
             scrollProgress={scrollProgress}
