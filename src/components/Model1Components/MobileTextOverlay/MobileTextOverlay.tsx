@@ -194,7 +194,7 @@ export default function TextOverlay({
         />
       ),
     },
-    {
+    { 
       start: 0.0418, // When the camera is high above the car
       end: 0.0607,
       position: middle,

@@ -244,7 +244,7 @@ export default function Model3textOverlay({
     },
     {
       start: 0.2971, // When the camera is high above the car
-      end: 0.3152,
+      end: 0.3156,
       position: "bottom-[70px] left-1/2 transform -translate-x-1/2 ",
       content: (
         <TextDisplay
@@ -292,7 +292,7 @@ export default function Model3textOverlay({
           model="model3"
         />
       ),
-      start: 0.3149, // When the camera is high above the car
+      start: 0.3153, // When the camera is high above the car
       end: 0.3188,
     },
     // {

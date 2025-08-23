@@ -76,7 +76,7 @@ const FadingHeroContent: React.FC<FadingHeroContentProps> = ({
       </Typography>
 
       {/* 3. Hand Scroll (only after animation finishes) */}
-      {showHandScroll && (
+     
         <div className="absolute top-[65%] left-1/2 transform -translate-x-1/2">
           {/* Desktop Scroll Indicator */}
           <div className="hidden md:flex w-8.5 h-14 border-2 border-white rounded-full items-start justify-center relative">
@@ -84,7 +84,9 @@ const FadingHeroContent: React.FC<FadingHeroContentProps> = ({
           </div>
 
           {/* Mobile Lottie Animation */}
-          <div className="flex md:hidden justify-center items-center mt-6">
+
+          {showHandScroll &&(
+            <div className="flex md:hidden justify-center items-center mt-6">
             <Lottie
               animationData={handScroll}
               loop={true}
@@ -92,8 +94,10 @@ const FadingHeroContent: React.FC<FadingHeroContentProps> = ({
               style={{ width: 80, height: 80 }}
             />
           </div>
+          )}
+          
         </div>
-      )}
+      
 
       <style jsx>{`
         @keyframes scroll {
