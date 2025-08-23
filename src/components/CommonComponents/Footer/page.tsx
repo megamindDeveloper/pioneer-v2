@@ -26,6 +26,7 @@ const mobileLinks = [
     links: [
       { label: "Dashcam EULA Document", href: "https://pioneer-mea.com/en/dash-camera-eula-document/" },
       { label: "Dashcam Privacy Policy", href: "https://pioneer-mea.com/en/dash-camera-privacy-policy/" },
+      { label: "Distributors", href: "https://pioneer-mea.com/en/distributors/" },
     ],
   },
   {
