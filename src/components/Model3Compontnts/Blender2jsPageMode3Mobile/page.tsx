@@ -1449,60 +1449,74 @@ export default function Blender2JSPageModel1Mobile() {
 
   useEffect(() => {
     if (!modelIsReady || typeof window === "undefined") return;
-
-    let cleanup: (() => void) | undefined;
+  
+    // 1. Define the function that will be used by the ticker
+    //    so we can add and remove the *exact same* function reference.
+    const updateProgress = () => {
+      setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress.value, 0.075));
+      setRawScrollProgress((prev) => THREE.MathUtils.lerp(prev, rawTargetProgress.value, 0.075));
+      animationProgress.current = targetProgress.value;
+    };
+  
     const targetProgress = { value: 0 };
     const rawTargetProgress = { value: 0 };
-
+  
     const initGSAP = async () => {
       try {
         const gsapModule = await import("gsap");
         const stModule = await import("gsap/ScrollTrigger");
         const { ScrollToPlugin } = await import("gsap/ScrollToPlugin");
-
-        // --- Assign the modules to the .current property of the refs ---
+  
+        // Assign the modules to the .current property of the refs
         gsapRef.current = gsapModule.gsap;
         stRef.current = stModule.ScrollTrigger;
-
-        // Now use the refs to register plugins
+  
+        // Register plugins using the refs
         gsapRef.current.registerPlugin(stRef.current, ScrollToPlugin);
-
-
-        gsapRef.current.timeline({
-          scrollTrigger: {
-            // I also fixed a syntax error here by removing a misplaced comment
-            id: "main-scroll",
-            trigger: "#blender2js-scroll-container-model1",
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 0.1,
-            onUpdate: (self) => {
-              const rawProgress = self.progress;
-              const mappedProgress = getAdjustedProgress(rawProgress, stickyZones);
-              targetProgress.value = mappedProgress;
-              rawTargetProgress.value = rawProgress;
-            },
+  
+        stRef.current.create({
+          id: "main-scroll",
+          trigger: "#blender2js-scroll-container-model1",
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 0.1,
+          onUpdate: (self) => {
+            const rawProgress = self.progress;
+            const mappedProgress = getAdjustedProgress(rawProgress, stickyZones);
+            targetProgress.value = mappedProgress;
+            rawTargetProgress.value = rawProgress;
           },
         });
-
-        gsapRef.current.ticker.add(() => {
-          setScrollProgress((prev) => THREE.MathUtils.lerp(prev, targetProgress.value, 0.075));
-          setRawScrollProgress((prev) => THREE.MathUtils.lerp(prev, rawTargetProgress.value, 0.075));
-          animationProgress.current = targetProgress.value;
-        });
-
-        cleanup = () => {
-          ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-          gsapRef.current.ticker.remove(() => { });
-        };
+  
+        // Add the listener function by reference
+        gsapRef.current.ticker.add(updateProgress);
+  
       } catch (err) {
         console.error("Failed to load GSAP:", err);
       }
     };
-
+  
     initGSAP();
-    return () => cleanup?.();
-  }, [modelIsReady]);
+  
+    // 2. The cleanup function is now the direct return value of useEffect.
+    return () => {
+      // It accesses ScrollTrigger and gsap via the refs.
+      const ScrollTrigger = stRef.current;
+      const gsap = gsapRef.current;
+  
+      // 3. Add safety checks. This is the crucial part.
+      //    The cleanup will only run if the refs have been populated.
+      if (ScrollTrigger) {
+        // Kill all ScrollTrigger instances to prevent memory leaks
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      }
+      
+      if (gsap) {
+        // Remove the *exact same* ticker function we added earlier.
+        gsap.ticker.remove(updateProgress);
+      }
+    };
+  }, [modelIsReady]); // The dependency array remains the same
 
   // The rest of your component's JSX remains the same...
   return (
@@ -1528,7 +1542,7 @@ export default function Blender2JSPageModel1Mobile() {
           buttonText="Scroll to explore"
         />
       )}
-      {modelIsReady && <HeroImageFade scrollProgress={scrollProgress} />}
+      {/* {modelIsReady && <HeroImageFade scrollProgress={scrollProgress} />} */}
       {modelIsReady && <Model3textOverlayMobile scrollProgress={scrollProgress} />}
       <FullscreenBlackOverlay scrollProgress={scrollProgress} />
       <Canvas
@@ -1547,7 +1561,7 @@ export default function Blender2JSPageModel1Mobile() {
         <AdaptiveDpr pixelated />
         <BackgroundFade scrollProgress={scrollProgress} />
         <Suspense fallback={null}>
-          <IntroImageAnimation scrollProgress={scrollProgress} />
+          {/* <IntroImageAnimation scrollProgress={scrollProgress} /> */}
           {modelIsReady && <Environment files="/hdri/111.hdr" background={false} />}
           <Blender2JSScene
             scrollProgress={scrollProgress}
