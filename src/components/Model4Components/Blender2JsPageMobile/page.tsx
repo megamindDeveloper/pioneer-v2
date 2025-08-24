@@ -1265,7 +1265,7 @@ export default function Blender2JSPageModel4() {
       )}
           {modelIsReady && <StickyNav stickyZones={stickyZones} rawScrollProgress={rawScrollProgress} onDotClick={handleDotClick} />}
       {/* <div id="text-overlay-portal"></div> */}
-      {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress}/>}
+      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress}/>} */}
       {/* {modelIsReady && <HeroTextFade scrollProgress={scrollProgress} />} */}
       {modelIsReady && (
         <FadingHeroContent

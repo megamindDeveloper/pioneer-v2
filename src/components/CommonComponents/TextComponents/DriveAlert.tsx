@@ -40,7 +40,7 @@ export default function DriveAlert({
       </div>
 
       {/* Bottom Content */}
-      <div className="flex flex-col items-center lg2:space-y-20 ">
+      <div className="flex flex-col items-center lg2:space-y-10 ">
         {/* Headings */}
         <div>
           <p className="text-[#AD2239] text-[16px]  font-bold">{highlightedText}</p>

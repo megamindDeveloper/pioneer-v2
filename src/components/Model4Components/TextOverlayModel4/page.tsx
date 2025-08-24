@@ -87,15 +87,15 @@ export default function TextOverlay({
       position: middle,
       content: (
         <TextDisplay
-          superScript="Sharper Footage in Any Light"
+          superScript="Sharper Footage in Any Light "
           title="1.5K Recording with WDR"
           description="The VREC-H120SC captures clear, steady video in all kinds of light, combining 1.5K resolution with smart brightness control for better visibility day and night.(Resolution can be enabled through the ZenVue app.)"
         />
       ),
     },
     {
-      start: 0.39, // When the camera is high above the car
-      end: 0.42,
+      start: 0.35, // When the camera is high above the car
+      end: 0.4918,
       position:
         "top-1/2 transform -translate-y-1/2 right-[60px] lg:right-[120px] xl:right-[220px]",
       content: (
@@ -126,8 +126,8 @@ export default function TextOverlay({
       padding: "px-3",
     },
     {
-      start: 0.78, // When the camera is high above the car
-      end: 0.8104,
+      start: 0.781, // When the camera is high above the car
+      end: 0.801,
       position:
         "top-1/2 left-[20px] lg:left-[40px] lg2:left-[100px] xl:left-[128px] transform -translate-y-1/2",
       content: (
@@ -152,8 +152,8 @@ export default function TextOverlay({
       ),
     },
     {
-      start: 0.940, // When the camera is high above the car
-      end: 0.9486,
+      start: 0.968, // When the camera is high above the car
+      end: 0.9932,
       position:
         "top-[50%] right-[40px] lg2:right-[180px] transform  -translate-y-[55%]",
       content: (
