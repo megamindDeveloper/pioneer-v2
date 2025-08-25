@@ -1,31 +1,38 @@
 "use client";
 
+import { db } from "@/app/utils/Firebase/firebaseConfig";
 import { Typography } from "@/components/CommonComponents/Typography/page";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
+import React, { useEffect, useRef, useState } from "react";
 
 const products = [
   {
+    key: "Z820DC",
     name: "VREC - Z820DC",
     image: "/modelImages/VREC-Z820DC/thumb.png", // Replace with actual image path
     link: "/models/vrec-z820dc",
     features: ["4K", "Yes", "Front\n+\nRear", "104mm x 26.7mm\n x  43mm", "Yes", "Yes", "Up to 512GB"],
   },
   {
+    key: "H520DC",
     name: "VREC - H520DC",
     image: "/modelImages/VREC-H520DC/thumb.png",
     link: "/models/vrec-h520dc",
     features: ["2K", "-", "Front\n+\nRear", "90mm x 34.8mm \n x 54.25mm", "Yes", "Yes", "Up to 512GB"],
   },
   {
+    key: "H320SC",
     name: "VREC - H320SC",
     image: "/modelImages/VREC-H320SC/thumb.png",
     link: "/models/vrec-h320sc",
     features: ["Full HD", "-", "Front \n+\n Rear (Optional)", "90mm x 34.8mm\n  x 54.25mm", "Yes", "Yes", "Up to 512GB"],
   },
   {
+    key: "H120SC",
     name: "VREC - H120SC",
     image: "/modelImages/VREC-H120SC/thumb.png",
     link: "/models/vrec-h120sc",
@@ -43,12 +50,56 @@ const features = [
   "Storage Capacity",
 ];
 
-export default function ProductComparisonTable() {
+export default function ProductComparisonTable({ priorityProductIndex = 0, }: { priorityProductIndex?: number }) {
 
- const scrollerRef = useRef<HTMLDivElement>(null);
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const [featureRows, setFeatureRows] = useState<any[]>([]);
+  const pathname = usePathname(); // e.g., "/vrec-z820sc"
 
+  const pageToIndexMap: Record<string, number> = {
+    "/vrec-z820dc": 0, // index of Z820DC in defaultProducts
+    "/vrec-h120sc": 1,
+    "/vrec-h320sc": 2,
+    "/vrec-h520dc": 3,
+  };
 
-   useEffect(() => {
+  const prioritySpecIndex = pageToIndexMap[pathname] ?? 0;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // 🔥 Query Firestore collection ordered by priority
+        const q = query(
+          collection(db, "comparison_chart"),
+          orderBy("priority", "asc") // or "desc" depending on your needs
+        );
+
+        const snapshot = await getDocs(q);
+        const rows: any[] = [];
+        snapshot.forEach((doc) => {
+          const data = doc.data();
+          rows.push(data);
+          // Example: { feature: "ZenVue App Support", H120SC: "NPP", H320SC: "Yes", ... , priority: 1 }
+        });
+
+        setFeatureRows(rows);
+      } catch (error) {
+        console.error("Error fetching comparison chart:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const reorderedProducts = [
+    products[priorityProductIndex],
+    ...products.filter((_, i) => i !== priorityProductIndex),
+  ];
+  console.log(reorderedProducts)
+  // Model keys matching Firestore field names
+  const modelKeys = reorderedProducts.map((product) => product.key);
+
+  useEffect(() => {
     const isMobile = window.matchMedia("(max-width: 767px)").matches;
     if (!isMobile) return;
 
@@ -128,14 +179,15 @@ export default function ProductComparisonTable() {
             </div>
           ))}
           {/* Feature Rows */}
-          {features.map((feature, rowIndex) => (
-            <React.Fragment key={feature}>
-              <Typography variant="comparison-grid-side-subheading" className="py-6  font-bold">
-                {feature}
-              </Typography>
-              {products.map((product, colIndex) => (
-                <div key={colIndex} className="py-6  text-center text-[#ABABAB] whitespace-pre-line">
-                  <Typography variant="comparison-grid-body">{product.features[rowIndex]}</Typography>
+          {featureRows.map((row, rowIndex) => (
+            <React.Fragment key={rowIndex}>
+              <div className="py-6 text-[20px] font-semibold">{row.feature}</div>
+              {modelKeys.map((modelKey, colIndex) => (
+                <div
+                  key={colIndex}
+                  className="py-6 text-[17px] text-center text-[#ABABAB] whitespace-pre-line"
+                >
+                  {row[modelKey] || "-"}
                 </div>
               ))}
             </React.Fragment>
