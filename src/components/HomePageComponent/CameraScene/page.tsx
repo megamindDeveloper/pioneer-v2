@@ -223,10 +223,12 @@ export default function CameraScene({ onModelReady }: { onModelReady: () => void
               </Html>
             </Suspense>
           </Canvas>
-
-          <div className="flex md:hidden justify-center items-center absolute top-[75%] left-[40%] ">
+{introComplete&&(
+  <div className="flex md:hidden justify-center items-center absolute top-[79%] left-[40%] ">
             <Lottie animationData={handScroll} loop={true} autoplay={true} style={{ width: 60, height: 60 }} />
           </div>
+)}
+        
         </div>
       </div>
 

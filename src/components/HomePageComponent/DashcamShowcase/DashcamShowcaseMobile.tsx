@@ -20,7 +20,7 @@ export default function DashcamShowcaseMobile() {
     { model: "VREC-Z820DC", link: "/models/vrec-z820dc" },
     { model: "VREC-H520DC", link: "/models/vrec-h520dc" },
     { model: "VREC-H320SC", link: "/models/vrec-h320sc" },
-    { model: "VREC-H120SC", link: "/models/vrec-h120dc" },
+    { model: "VREC-H120SC", link: "/models/vrec-h120sc" },
   ];
 
   // Find which card is active (in view)
@@ -122,7 +122,7 @@ export default function DashcamShowcaseMobile() {
             <DashcamCardMobile
               cardIndex={3}
               title="VREC-H120SC"
-              link="/models/vrec-h120dc"
+              link="/models/vrec-h120sc"
               image="/modelImages/VREC-H120SC/main.png"
               imageClassName="!w-[50%] mx-auto !h-52 mt-4"
               description={`Ultra Compact 1.5K Dash Cam`}

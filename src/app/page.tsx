@@ -38,7 +38,7 @@ export default function Home() {
         <CameraScene onModelReady={() => setModelReady(true)} />
         {isMobile ? <DashcamShowcaseMobile /> : <DashcamShowcase />}
         <ProductDetails />
-        <ProductComparisonTable />
+        <ProductComparisonTable priorityProductIndex={0} />
         <FeatureAccordion />
         <Footer />
       </div>
