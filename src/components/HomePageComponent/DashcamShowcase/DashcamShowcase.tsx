@@ -288,7 +288,7 @@ export default function DashcamShowcase() {
                 color: "#ffffff",
               },
             ]}
-            link="/models/vrec-h120dc"
+            link="/models/vrec-h120sc"
             cardIndex={3}
             title="VREC-H120SC"
             Component={<VRECH120SC />}

@@ -1,24 +1,50 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { IconMinus, IconPlus } from '@tabler/icons-react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '@/app/utils/Firebase/firebaseConfig';
 
 
+type FAQItem = {
+  question: string;
+  answer: string;
+  disclaimer?:string
+};
 
 type Props = {
   faqData: {
     question: string;
     answer: string;
     disclaimer?: string;
+    collectionName: string;
   }[];
 };
-export default function EverythingNeedToKnow({ faqData }: Props) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+export default function EverythingNeedToKnow({ collectionName }: Props) {
+    const [openIndex, setOpenIndex] = useState<number | null>(null);
+   const [faqData, setFaqData] = useState<FAQItem[]>([]);
 
   const toggleItem = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));
   };
+
+
+
+  useEffect(() => {
+    const fetchFAQ = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, collectionName));
+        const data: FAQItem[] = querySnapshot.docs.map(doc => doc.data() as FAQItem);
+        setFaqData(data);
+      } catch (error) {
+        console.error("Error fetching FAQ data:", error);
+      }
+    };
+
+    fetchFAQ();
+  }, [collectionName]); 
+
 
   return (
     <div className="bg-black text-white px-4 py-12 md:px-20 lg:px-32">
@@ -32,7 +58,7 @@ export default function EverythingNeedToKnow({ faqData }: Props) {
 
         {/* RIGHT COLUMN - ACCORDION */}
         <div className="divide-y divide-[#4B4B4B] w-full">
-          {faqData?.map((item, index) => (
+         {faqData.map((item, index) => (
             <div key={index} className="py-4 mt-5">
               <button
                 className="flex justify-between items-center w-full text-left focus:outline-none"
@@ -62,11 +88,10 @@ export default function EverythingNeedToKnow({ faqData }: Props) {
                 <p className="text-[16px] mt-5 md:text-[18px] text-[#ABABAB] max-w-[90%]">
                   {item.answer}
                 </p>
-                {item.disclaimer && (
-
-                  <p className="text-[12px] mt-5 md:text-[12px] text-[#ABABAB]/60">
-                    Disclaimer: {item.disclaimer}
-                  </p>
+               {item.disclaimer&&(
+                   <p className="text-[11px] mt-5 md:text-[12px] tracking-wide text-[#ABABAB]">
+                    Disclaimer:  {item.disclaimer}
+                </p>
                 )}
               </div>
             </div>

@@ -28,7 +28,7 @@ const products = [
   {
     name: "VREC - H120SC",
     image: "/modelImages/VREC-H120SC/thumb.png",
-    link: "/models/vrec-h120dc",
+    link: "/models/vrec-h120sc",
     features: ["1.5K", "-", "Front", "31.12mm x 28.8mm\n  x 37.33mm", "-", "Yes", "Up to 128GB"],
   },
 ];
