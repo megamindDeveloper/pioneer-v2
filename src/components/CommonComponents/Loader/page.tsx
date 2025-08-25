@@ -95,7 +95,7 @@ export default function FadeLoader({ isModelReady }: { isModelReady: boolean }) 
           {/* Timer + Red Dot */}
           <div className="flex gap-2 items-center">
             {/* 🔴 Blinking Red Dot */}
-            <span className="w-3 h-3 rounded-full bg-red-600 animate-pulse"></span>
+            <span className="w-3 h-3 rounded-full bg-[red] animate-pulse-loader"></span>
             <p>{timer}</p>
           </div>
         </div>
@@ -108,7 +108,7 @@ export default function FadeLoader({ isModelReady }: { isModelReady: boolean }) 
         {/* Mobile Timer + Red Dot */}
         <div className="absolute top-18 left-1/2 -translate-x-1/2 flex gap-2 items-center text-gray-400 leading-tight lg:hidden">
           {/* 🔴 Blinking Red Dot */}
-          <span className="w-3 h-3 rounded-full bg-red-600 animate-pulse"></span>
+          <span className="w-3 h-3 rounded-full bg-[#801111] animate-pulse-loader"></span>
           <p>{timer}</p>
         </div>
 

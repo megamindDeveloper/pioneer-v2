@@ -46,7 +46,7 @@ const variantClasses: Record<string, string> = {
 
   // Slider
   "slider-heading":
-    "text-[6.9px] leading-[8.3px] md:text-[8.3px] md:leading-[10.0px] lg:text-[11.0px] lg:leading-[13.2px] lg2:text-[20px] lg2:leading-[15.5px] xl:text-[20px] xl:leading-[20.4px] 2xl:text-[21.5px] 2xl:leading-[25.8px]",
+    "text-sm leading-[8.3px] md:text-[8.3px] md:leading-[10.0px] lg:text-[11.0px] lg:leading-[13.2px] lg2:text-[20px] lg2:leading-[15.5px] xl:text-[20px] xl:leading-[20.4px] 2xl:text-[21.5px] 2xl:leading-[25.8px]",
   "slider-subtext":
     "text-[5.7px] leading-auto md:text-[6.8px] md:leading-auto lg:text-[9.1px] lg:leading-auto lg2:text-[10.6px] lg2:leading-auto xl:text-[14.0px] xl:leading-auto 2xl:text-[17.7px] 2xl:leading-auto",
 

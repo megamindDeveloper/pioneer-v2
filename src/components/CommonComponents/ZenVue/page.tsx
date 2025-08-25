@@ -8,7 +8,7 @@ export default function ZenVue() {
     <section className="relative w-full min-h-screen  text-white mt-32 ">
       <div className="zen-vue-bg-grad absolute top-0 left-0 h-full w-full" />
       {/* Main Content */}
-      <div className="relative z-10 max-w-[screen] mx-auto px-6 md:px-[5rem] py-12 md:py-20 lg:py-56 flex flex-col lg:flex-row justify-center gap-20 lg:gap-80 items-center lg:items-start">
+      <div className="relative z-10 max-w-full mx-auto px-6 md:px-[1rem] py-12 md:py-20 lg:py-56 flex flex-col lg:flex-row justify-center gap-20 lg:gap-80 items-center lg:items-start">
         {/* Mobile Header */}
         <div className="block lg:hidden text-center w-full mt-6">
           <p className="text-[16px] text-white/70">Control at Your Fingertips</p>
@@ -27,7 +27,7 @@ export default function ZenVue() {
 
         {/* Mobile Image */}
         <div className="block lg:hidden   justify-center mt-[-5rem]">
-          <div className="w-[390px]  sm:w-[300px] md:w-[500px] h-auto">
+          <div className="w-full  sm:w-full md:w-full h-auto">
             <Image
               src="/homePageImages/featureAccordionImages/test.png"
               alt="Mobile Device"

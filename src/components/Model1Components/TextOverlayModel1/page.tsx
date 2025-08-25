@@ -417,7 +417,7 @@ export default function Model1TextOverlay({ scrollProgress }: { scrollProgress: 
     {
       start: 0.8899,
       end: 1,
-      position: middle,
+      position: 'w-full h-screen flex items-center justify-center !w-[100%]',
       content: (
         <GpsLogger
           style="flex flex-col items-center sm:items-start justify-center sm:justify-center"
