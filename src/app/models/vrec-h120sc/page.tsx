@@ -21,9 +21,9 @@ const page = () => {
   const isDesktop = useMediaQuery('(min-width: 768px)');
   return (
     <div className='bg-black'>
-      <HomeButton/>
-     {isDesktop && <Blender2JSPageModel4/>}
-      {!isDesktop && <Blender2JSPageModel4Mobile />}
+      <HomeButton />
+      {/* {isDesktop && <Blender2JSPageModel4 />}
+      {!isDesktop && <Blender2JSPageModel4Mobile />} */}
 
       <Compare
         tabs={[
@@ -56,24 +56,25 @@ const page = () => {
             tabtitle: "Crystal Clear, Every Drive",
             image2: "/productPageImages/comparisionImages/h120sc/120 AFTER.webp",
             image1: "/productPageImages/comparisionImages/h120sc/120 BEFORE.webp",
-            afterImageText:"VREC-H120SC’s View",
-            beforeImageText:"Normal Dashcams",
-            compare:true,
+            afterImageText: "VREC-H120SC’s View",
+            beforeImageText: "Normal Dashcams",
+            compare: true,
           },
         ]}
       />
       <ZenVue />
       <section className="bg-black">
-   <ProductFeatureTable
+        <ProductFeatureTable
 
-                     
-                    // products={defaultProducts}
-                    priorityProductIndex={3} />            </section>
-<EverythingNeedToKnow collectionName="faq_detailed_specs_H120SC"  />     
+
+          // products={defaultProducts}
+          priorityProductIndex={3} />            </section>
+      <EverythingNeedToKnow collectionName="faq_detailed_specs_H120SC" />
       <DriveSmarter
-        subText="Drive with confidence, capture every moment, & stay protected. Explore what the Z820DC brings to every drive."
-        image="/homePageImages/productDetailsImage/h120scImages/0057 3 (3).png"
-        amazonLink='https://www.amazon.ae/Pioneer-VREC-H120SC-Resolution-Emergency-Recording/dp/B0F3P5TT8T/ref=sr_1_1?crid=3R4N0X0D03ADX&dib=eyJ2IjoiMSJ9.s-iSMezIPvu4bZM8oJxRfx52whbEZfwXiwZxGQyGJH5PgEHrPF-_7eXob3XB7-KGvWIfbOZmRpwKBL66cssjoA.a1SotwEmRrTfpKjy6hu9g8Sj_CLlQFYpfnNg87wsttA&dib_tag=se&keywords=vrec-h120sc&qid=1746093914&s=amazon-ereaders&sprefix=vrec-h120s%2Camazon-devices%2C208&sr=1-1'
+        subText="Drive with confidence, capture every moment, & stay protected. Explore what the H120SC brings to every drive."
+        image="/productPageImages/driveSmarterImages/h120sc.webp" // static product image
+        currentCountry="US"
+        model="H120SC" // Firestore doc ID in `retailerHyperlinks`
       />
       <Footer />
     </div>

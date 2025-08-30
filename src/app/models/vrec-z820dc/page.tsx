@@ -4,6 +4,8 @@ import { useMediaQuery } from "@/app/hooks/useMediaQuery";
 import { faqData } from "@/app/utils/FaqData/FaqData";
 import { defaultProducts } from "@/app/utils/ProductData/ProductData";
 import { Compare } from "@/components/CommonComponents/Compare/page";
+// give lazy loading export
+
 import DriveSmarter from "@/components/CommonComponents/DriveSmarter/page";
 import EverythingNeedToKnow from "@/components/CommonComponents/EverythingNeedToKnow/page";
 import Footer from "@/components/CommonComponents/Footer/page";
@@ -21,8 +23,8 @@ const page = () => {
   return (
     <div className="bg-black">
       <HomeButton />
-      {isDesktop && <Blender2JSPageModel1 />}
-      {!isDesktop && <Blender2JSPageModel1Mobile />}
+       {isDesktop && <Blender2JSPageModel1 />}
+      {!isDesktop && <Blender2JSPageModel1Mobile />} 
       <Compare
         tabs={[
           {
@@ -73,11 +75,17 @@ const page = () => {
                     priorityProductIndex={0} />            </section>
 
 <EverythingNeedToKnow collectionName="faq_detailed_specs_Z820DC"  />     
- <DriveSmarter
+ {/* <DriveSmarter
         subText="Drive with confidence, capture every moment, & stay protected. Explore what the Z820DC brings to every drive."
         image="/productPageImages/driveSmarterImages/z820dc.webp"
         amazonLink="https://www.amazon.ae/Pioneer-Camera-VREC-Z820DC-STARVIS-Logging/dp/B0FFGT6W64/?_encoding=UTF8&pd_rd_w=Y0Sho&content-id=amzn1.sym.f3dfb22d-d9f5-4e81-84a1-ea09e77060d5%3Aamzn1.symc.fc11ad14-99c1-406b-aa77-051d0ba1aade&pf_rd_p=f3dfb22d-d9f5-4e81-84a1-ea09e77060d5&pf_rd_r=2Y171QKMH2AW1QDSCDXM&pd_rd_wg=cOfd6&pd_rd_r=76773a37-41c7-45cd-a58f-22179c9bb919&ref_=pd_hp_d_atf_ci_mcx_mr_ca_hp_atf_d"
-      />
+      /> */}
+      <DriveSmarter
+  subText="Drive with confidence, capture every moment, & stay protected. Explore what the Z820DC brings to every drive."
+  image="/productPageImages/driveSmarterImages/z820dc.webp" // static product image
+  currentCountry="IN"
+  model="Z820DC" // Firestore doc ID in `retailerHyperlinks`
+/>
       <Footer />
     </div>
   );

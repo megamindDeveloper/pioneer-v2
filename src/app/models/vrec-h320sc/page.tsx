@@ -19,8 +19,8 @@ const page = () => {
   return (
     <div className='bg-black'>
       <HomeButton />
-      {isDesktop && <Blender2JSPageModel3 />}
-      {!isDesktop && <Blender2JSPageModel3Mobile />}
+      {/* {isDesktop && <Blender2JSPageModel3 />}
+      {!isDesktop && <Blender2JSPageModel3Mobile />} */}
 
       {/* <Model3textOverlay /> */}
       <Compare
@@ -73,10 +73,11 @@ const page = () => {
       <div className='bg-black'>
 
         <DriveSmarter
-          subText="Drive with confidence, capture every moment, & stay protected. Explore what the H320SC brings to every drive."
-          image="/productPageImages/driveSmarterImages/h320sc.webp"
-          amazonLink='https://www.amazon.ae/Pioneer-VREC-H320SC-Warnings-Emergency-Recording/dp/B0F3TSNGWH/ref=sr_1_1?crid=1B1I9LW15I8GC&dib=eyJ2IjoiMSJ9.Xm6D97tGHjGthpltkpC9R4QWrCYDR6JTxr396iyvzzjGjHj071QN20LucGBJIEps.dnLtV8rMS8F3b_00TzDWeN7y6ypC7M-7YGALoR-disc&dib_tag=se&keywords=vrec-h320sc&qid=1746096164&sprefix=vrec-h320s%2Caps%2C244&sr=8-1'
-        />
+             subText="Drive with confidence, capture every moment, & stay protected. Explore what the H320SC brings to every drive."
+             image="/productPageImages/driveSmarterImages/h320sc.webp" // static product image
+             currentCountry="IN"
+             model="H320SC" // Firestore doc ID in `retailerHyperlinks`
+           />
       </div>
       <Footer />
 
