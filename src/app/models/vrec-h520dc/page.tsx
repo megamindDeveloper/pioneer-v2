@@ -22,8 +22,8 @@ const page = () => {
   return (
     <div className='bg-black'>
       <HomeButton/>
-      {isDesktop && <Blender2JSPageModel2 />}
-      {!isDesktop && <Blender2JSPageModel2Mobile />}
+       {/* {isDesktop && <Blender2JSPageModel2 />}
+      {!isDesktop && <Blender2JSPageModel2Mobile />}  */}
       {/* <Model2textOverlay /> */}
       <Compare
         tabs={[
@@ -80,7 +80,6 @@ const page = () => {
      <DriveSmarter
        subText="Drive with confidence, capture every moment, & stay protected. Explore what the H520DC brings to every drive."
        image="/productPageImages/driveSmarterImages/h520dc.webp" // static product image
-       currentCountry="US"
        model="H520DC" // Firestore doc ID in `retailerHyperlinks`
      />
 

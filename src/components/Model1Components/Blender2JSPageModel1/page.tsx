@@ -17,6 +17,8 @@ import { Typography } from "@/components/CommonComponents/Typography/page";
 import FadeLoader from "@/components/CommonComponents/Loader/page";
 import Model1TextOverlay from "../TextOverlayModel1/page";
 import FadingHeroContent from "@/components/ModelHelperComponents/ScrollFadeAndScale";
+import gsap from "gsap";
+import dynamic from "next/dynamic";
 useGLTF.preload("/models/car.glb");
 useGLTF.preload("/models/VREC-Z820DC.glb");
 useTexture.preload("/modelImages/CommonModelImages/aiNight.png");
@@ -1136,7 +1138,12 @@ function BackgroundFade({ scrollProgress }: { scrollProgress: number }) {
   return null;
 }
 
+
 export default function Blender2JSPageModel1() {
+
+  const ClientCanvas = dynamic(() => import("@react-three/fiber").then(mod => mod.Canvas), {
+  ssr: false,
+});
   const [modelIsReady, setModelIsReady] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [carScene, setCarScene] = useState<THREE.Group | null>(null);
@@ -1144,7 +1151,7 @@ export default function Blender2JSPageModel1() {
   const dashcamGroupRef = useRef<THREE.Group>(null);
   const containerRef = useRef(null);
   const dashcamOffsetGroupRef = useRef<THREE.Group>(null);
-  const { active } = useProgress();
+  const { active } = typeof window !== "undefined" ? useProgress() : { active: true };
   const [rawScrollProgress, setRawScrollProgress] = useState(0);
   // When all assets are loaded (useProgress active = false), mark ready
   // useEffect(() => {
@@ -1163,15 +1170,20 @@ export default function Blender2JSPageModel1() {
       };
     }
   }, [modelIsReady]);
-  const stickyZones = [
+  const stickyZones: [number, number][] = [
     // First pause
-    [0.13, 0.19], // Second pause
-    [0.245, 0.30],
-    [0.34, 0.38],
-    [0.381, 0.43],
-    [0.56, 0.61],
+    [0.0281, 0.0681], // Second pause
+    [0.080, 0.12],
+    [0.177, 0.219],
+    [0.2552, 0.2952],
+    [0.3268, 0.3765],
+    [0.3805, 0.4008],  
+    [0.546, 0.586],
+    [0.842, 0.91],
+    [0.842, 0.91],
     [0.842, 0.91],
   ];
+  const snapPoints = stickyZones.map((zone) => zone[0]);
 
   useEffect(() => {
     if (!modelIsReady) return; // Defer ScrollTrigger init until models are ready
@@ -1190,7 +1202,15 @@ export default function Blender2JSPageModel1() {
             trigger: "#blender2js-scroll-container-model1",
             start: "top top",
             end: "bottom bottom",
-            scrub: 0,
+            scrub: 1,
+            pin: false,
+            pinSpacing: false,
+            // snap: {
+            //   snapTo: snapPoints,
+            //   duration: 0.8,
+            //   delay: 0.1,
+            //   ease: "power1.inOut",
+            // },
             onUpdate: (self) => {
               const rawProgress = self.progress;
 
@@ -1218,16 +1238,20 @@ export default function Blender2JSPageModel1() {
     initGSAP();
     return () => cleanup?.();
   }, [modelIsReady]);
+
+
+
+
   const [dpr, setDpr] = useState(1.5);
   return (
     <div id="blender2js-scroll-container-model1" ref={containerRef} style={{ height: "2000vh", width: "100%" }}>
-      {!modelIsReady && (
-        <div className="fixed inset-0 z-[9999] bg-black flex items-center justify-center">
-          <FadeLoader isModelReady={false} />
-        </div>
-      )}
+     {!modelIsReady && (
+  <div className="fixed inset-0 z-[9999] bg-black flex items-center justify-center">
+    <FadeLoader isModelReady={false} />
+  </div>
+)}
       <div id="text-overlay-portal"></div>
-      {/* {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />} */}
+      {modelIsReady && <Timeline scrollProgress={scrollProgress} rawProgress={rawScrollProgress} />}
       {modelIsReady && (
         <FadingHeroContent
           scrollProgress={scrollProgress}
@@ -1288,7 +1312,7 @@ export default function Blender2JSPageModel1() {
             setLensAnimation={setLensAnimation}
           />
         )}
-        
+
       </Canvas>
     </div>
   );

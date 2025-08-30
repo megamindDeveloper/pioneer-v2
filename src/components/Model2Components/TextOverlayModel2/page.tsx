@@ -2,7 +2,7 @@
 
 import DriveAlertH520 from "@/components/CommonComponents/TextComponents/DriveAlertH520";
 import FourKVideo from "@/components/CommonComponents/TextComponents/FourKVideo";
-import React from "react";
+import React, { useEffect } from "react";
 import * as THREE from "three";
 import ReactDOM from "react-dom";
 import SharpVision from "@/components/CommonComponents/TextComponents/SharpVision";
@@ -31,6 +31,7 @@ type TextSectionProps = {
   width?: string;
   padding?: string;
   descPostion?: string;
+  snapId?: string;
 };
 
 // This component handles the fade-in/fade-out logic for a single text block
@@ -52,6 +53,7 @@ function TextSection({
   bottom = "0%",
   right = "0%",
   descPostion,
+  snapId
 }: TextSectionProps) {
   // Define a fade margin (e.g., 20% of the section's duration)
   const fadeDuration = (end - start) * 0.2;
@@ -198,6 +200,50 @@ export default function TextOverlay({
 }: {
   scrollProgress: number;
 }) {
+
+
+useEffect(() => {
+  const handleSnap = () => {
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+    textSections.forEach((sec) => {
+      const targetY = sec.start * docHeight; // exact scroll position
+
+      // how close we are
+      const distance = Math.abs(window.scrollY - targetY);
+
+      if (distance < 100) { // only snap if we're within 100px
+        gsap.to(window, {
+          duration: 0.8,
+          scrollTo: { y: targetY },
+          ease: "power2.out",
+        });
+      }
+    });
+  };
+
+  window.addEventListener("scrollend", handleSnap); // you’ll need a small helper to detect scroll end
+
+  return () => window.removeEventListener("scrollend", handleSnap);
+}, []);
+
+
+
+useEffect(() => {
+  let isScrolling: any;
+
+  const onScroll = () => {
+    clearTimeout(isScrolling);
+    isScrolling = setTimeout(() => {
+      handleSnap();
+    }, 120); // 120ms after scroll stops
+  };
+
+  window.addEventListener("scroll", onScroll);
+  return () => window.removeEventListener("scroll", onScroll);
+}, []);
+
+
   // Define your text content and scroll ranges here
   const middle = "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2";
   const centeredFlex = "w-full h-screen flex items-center justify-center !w-[100%]";
@@ -206,8 +252,10 @@ export default function TextOverlay({
       start: 0.032, // When the camera is looking at the dashcam
       end: 0.06,
       position: centeredFlex,
+      snapId:"resolution",
       content: (
         <TextDisplay
+        
           className=""
           superScript="See the Road in High Definition"
           title="2K Video Resolution"

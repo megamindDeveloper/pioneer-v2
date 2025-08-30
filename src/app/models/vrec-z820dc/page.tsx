@@ -21,8 +21,8 @@ const page = () => {
   return (
     <div className="bg-black">
       <HomeButton />
-      {isDesktop && <Blender2JSPageModel1 />}
-      {!isDesktop && <Blender2JSPageModel1Mobile />}
+      {/* {isDesktop && <Blender2JSPageModel1 />}
+      {!isDesktop && <Blender2JSPageModel1Mobile />} */}
       <Compare
         tabs={[
           {
@@ -81,7 +81,7 @@ const page = () => {
       <DriveSmarter
   subText="Drive with confidence, capture every moment, & stay protected. Explore what the Z820DC brings to every drive."
   image="/productPageImages/driveSmarterImages/z820dc.webp" // static product image
-  currentCountry="US"
+  currentCountry="IN"
   model="Z820DC" // Firestore doc ID in `retailerHyperlinks`
 />
       <Footer />

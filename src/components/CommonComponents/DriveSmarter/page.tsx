@@ -19,53 +19,64 @@ type Retailer = {
 type DriveSmarterProps = {
   subText?: string;
   image: string; // product image
-  currentCountry: string; // filter retailers by this
+  // currentCountry: string; // filter retailers by this
   model: string; // Firestore doc ID e.g. "H120SC"
 };
 
 export default function DriveSmarter({
   subText,
   image,
-  currentCountry,
+
   model,
 }: DriveSmarterProps) {
   const [retailers, setRetailers] = useState<Retailer[]>([]);
   const [images, setImages] = useState<{ [key: string]: string | null }>({});
   const [loading, setLoading] = useState(true);
+  const [currentCountry, setCurrentCountry] = useState<string>("");
 
   // Fetch retailers from Firestore + Storage
+  // Fetch retailers from Firestore (no need for getDownloadURL)
+
   useEffect(() => {
+    async function detectCountry() {
+      try {
+        const res = await fetch("https://ipapi.co/json/");
+        const data = await res.json();
+        setCurrentCountry(data.country);
+        console.log(res, "ressss");
+        // e.g. "IN", "US"
+      } catch (err) {
+        console.error("Failed to detect country, defaulting to US:", err);
+        setCurrentCountry("US"); // fallback
+      }
+    }
+
+    detectCountry();
+  }, []);
+
+
+  useEffect(() => {
+    if (!currentCountry) return;
     async function fetchRetailers() {
       try {
-        const docRef = doc(db, "retailerHyperlinks", model);
+        // ✅ fix doc path
+        const docRef = doc(db, "retailerHyperlinks", `detailed_specs_${model}`);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
           const data = docSnap.data();
           const fetchedRetailers: Retailer[] = data.retailers || [];
           setRetailers(fetchedRetailers);
-          console.log(fetchedRetailers, "kjn");
 
-          // Load logos from Firebase Storage
+          // ✅ logos are already full URLs, no need for getDownloadURL
           const newImages: { [key: string]: string | null } = {};
-          await Promise.all(
-            fetchedRetailers.map(async (retailer) => {
-              if (retailer.logo) {
-                try {
-                  const url = await getDownloadURL(ref(storage, retailer.logo));
-                  newImages[retailer.name] = url;
-                } catch (err) {
-                  console.warn(`Logo not found in storage for ${retailer.name}`);
-                  newImages[retailer.name] = null;
-                }
-              } else {
-                newImages[retailer.name] = null;
-              }
-            })
-          );
+          fetchedRetailers.forEach((retailer) => {
+            newImages[retailer.name] = retailer.logo || null;
+          });
 
           setImages(newImages);
         } else {
+          console.warn(`No doc found for ${model}`);
           setRetailers([]);
           setImages({});
         }
@@ -76,15 +87,16 @@ export default function DriveSmarter({
       }
     }
 
-
-
     fetchRetailers();
-  }, [model]);
+  }, [model, currentCountry]);
+
 
   // Filter by country
   const availableRetailers = (retailers || []).filter(
     (retailer) => retailer.countryCode === currentCountry
   );
+  console.log(currentCountry, "sssssss");
+
 
   return (
     <section className="bg-black text-white px-4 md:px-16 lg:px-32 py-12 md:py-24">
@@ -110,12 +122,12 @@ export default function DriveSmarter({
                   key={retailer.name}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition-transform duration-200 hover:scale-110 focus:scale-110"
+                  className="transition-transform duration-200 "
                   aria-label={`Buy from ${retailer.name}`}
                 >
-                  {images[retailer.name] ? (
+                  {retailer.logo ? (
                     <Image
-                      src={images[retailer.name]!}
+                      src={retailer.logo}
                       alt={`${retailer.name} logo`}
                       className="h-8 w-auto md:h-10"
                       width={100}

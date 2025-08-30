@@ -19,8 +19,8 @@ const page = () => {
   return (
     <div className='bg-black'>
       <HomeButton />
-      {isDesktop && <Blender2JSPageModel3 />}
-      {!isDesktop && <Blender2JSPageModel3Mobile />}
+      {/* {isDesktop && <Blender2JSPageModel3 />}
+      {!isDesktop && <Blender2JSPageModel3Mobile />} */}
 
       {/* <Model3textOverlay /> */}
       <Compare
@@ -75,7 +75,7 @@ const page = () => {
         <DriveSmarter
              subText="Drive with confidence, capture every moment, & stay protected. Explore what the H320SC brings to every drive."
              image="/productPageImages/driveSmarterImages/h320sc.webp" // static product image
-             currentCountry="US"
+             currentCountry="IN"
              model="H320SC" // Firestore doc ID in `retailerHyperlinks`
            />
       </div>

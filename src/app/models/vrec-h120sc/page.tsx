@@ -22,8 +22,8 @@ const page = () => {
   return (
     <div className='bg-black'>
       <HomeButton />
-      {isDesktop && <Blender2JSPageModel4 />}
-      {!isDesktop && <Blender2JSPageModel4Mobile />}
+      {/* {isDesktop && <Blender2JSPageModel4 />}
+      {!isDesktop && <Blender2JSPageModel4Mobile />} */}
 
       <Compare
         tabs={[
