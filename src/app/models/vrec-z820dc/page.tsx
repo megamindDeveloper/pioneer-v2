@@ -4,6 +4,8 @@ import { useMediaQuery } from "@/app/hooks/useMediaQuery";
 import { faqData } from "@/app/utils/FaqData/FaqData";
 import { defaultProducts } from "@/app/utils/ProductData/ProductData";
 import { Compare } from "@/components/CommonComponents/Compare/page";
+// give lazy loading export
+
 import DriveSmarter from "@/components/CommonComponents/DriveSmarter/page";
 import EverythingNeedToKnow from "@/components/CommonComponents/EverythingNeedToKnow/page";
 import Footer from "@/components/CommonComponents/Footer/page";
@@ -21,8 +23,8 @@ const page = () => {
   return (
     <div className="bg-black">
       <HomeButton />
-      {/* {isDesktop && <Blender2JSPageModel1 />}
-      {!isDesktop && <Blender2JSPageModel1Mobile />} */}
+       {isDesktop && <Blender2JSPageModel1 />}
+      {!isDesktop && <Blender2JSPageModel1Mobile />} 
       <Compare
         tabs={[
           {

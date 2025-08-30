@@ -569,6 +569,7 @@ function Blender2JSScene({
     });
 
     dashcamScene.traverse((node) => {
+      
       if (node instanceof THREE.Mesh) {
         node.castShadow = true;
         node.receiveShadow = true;

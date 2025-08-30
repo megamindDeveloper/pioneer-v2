@@ -22,8 +22,8 @@ const page = () => {
   return (
     <div className='bg-black'>
       <HomeButton/>
-       {/* {isDesktop && <Blender2JSPageModel2 />}
-      {!isDesktop && <Blender2JSPageModel2Mobile />}  */}
+     {/* {isDesktop && <Blender2JSPageModel2 />}
+      {!isDesktop && <Blender2JSPageModel2Mobile />}   */}
       {/* <Model2textOverlay /> */}
       <Compare
         tabs={[
